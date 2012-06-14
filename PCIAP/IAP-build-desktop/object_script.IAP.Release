@@ -1,0 +1,12 @@
+INPUT(
+./release/main.o
+./release/mainwindow.o
+./release/win_qextserialport.o
+./release/qextserialbase.o
+./release/dialogsetcom.o
+./release/sysdef.o
+./release/moc_mainwindow.o
+./release/moc_qextserialbase.o
+./release/moc_win_qextserialport.o
+./release/moc_dialogsetcom.o
+);

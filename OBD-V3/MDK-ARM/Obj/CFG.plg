@@ -1,0 +1,245 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\work\code\OBD-V3\MDK-ARM\Project.uvproj
+Project File Date:  05/17/2012
+
+<h2>Output:</h2>
+Build target 'OBD'
+compiling sysdef.c...
+compiling stm32f10x_it.c...
+compiling main.c...
+compiling misc.c...
+compiling stm32f10x_flash.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_adc.c...
+compiling stm32f10x_bkp.c...
+compiling stm32f10x_can.c...
+compiling stm32f10x_cec.c...
+compiling stm32f10x_crc.c...
+compiling stm32f10x_dac.c...
+compiling stm32f10x_dbgmcu.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_exti.c...
+compiling stm32f10x_fsmc.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_iwdg.c...
+compiling stm32f10x_pwr.c...
+compiling stm32f10x_rtc.c...
+compiling stm32f10x_sdio.c...
+compiling stm32f10x_spi.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_wwdg.c...
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+assembling startup_stm32f10x_hd.s...
+compiling blueTooth.c...
+compiling fifo.c...
+compiling flash.c...
+src\flash.c(150): warning:  #177-D: variable "i" was declared but never referenced
+src\flash.c:    int i = 0;
+src\flash.c:        ^
+src\flash.c(359): warning:  #69-D: integer conversion resulted in truncation
+src\flash.c:    updateFlash.crc = calBufCrc(p + 2,sizeof(FLASH_CONFIG)-2);
+src\flash.c:                                      ^
+src\flash.c(362): warning:  #69-D: integer conversion resulted in truncation
+src\flash.c:    if(writeFlashCfg(IAP_PARAMETER,SYS_PARAMETER,p,sizeof(FLASH_CONFIG),calBufCrc(p,sizeof(FLASH_CONFIG))) < 0){
+src\flash.c:                                                                                    ^
+src\flash.c(373): warning:  #223-D: function "showConfig" declared implicitly
+src\flash.c:            showConfig(&updateFlash);
+src\flash.c:            ^
+src\flash.c(340): warning:  #177-D: variable "i" was declared but never referenced
+src\flash.c:    int i = 0;
+src\flash.c:        ^
+src\flash.c: src\flash.c: 5 warnings, 0 errors
+compiling flashFifo.c...
+compiling gps.c...
+compiling hard_init.c...
+compiling mainfunc.c...
+src\mainfunc.c(41): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         strcat(socket.ipUrl,"in.phonewingstech.com");
+src\mainfunc.c:                ^
+src\mainfunc.c(36): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t temp[20];
+src\mainfunc.c:                ^
+src\mainfunc.c(167): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketCmd,"AT+MIPOPEN=%d,%d,\"%s\",%d,%d\r",socket.socketNum,socket.localPort,socket.ipUrl,socket.desPort,socket.udpTcp);
+src\mainfunc.c:                         ^
+src\mainfunc.c(169): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketState,"+MIPOPEN: %d,%d",socket.socketNum,1);
+src\mainfunc.c:                         ^
+src\mainfunc.c(236): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                  ^
+src\mainfunc.c(236): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                            ^
+src\mainfunc.c(648): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(tmp,"%2X",(uint8_t)(src[i]));
+src\mainfunc.c:                         ^
+src\mainfunc.c(658): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                        ^
+src\mainfunc.c(658): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                            ^
+src\mainfunc.c(632): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t tmp[2],temp = '0';
+src\mainfunc.c:                       ^
+src\mainfunc.c(699): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         obdHeader.MSG_CRC = getCrc(pointer,length);
+src\mainfunc.c:                                    ^
+src\mainfunc.c(674): warning:  #177-D: variable "i" was declared but never referenced
+src\mainfunc.c:         uint16_t i = 0;
+src\mainfunc.c:                  ^
+src\mainfunc.c(786): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:                 dataLength = str2hex((int8_t *)pointer,length,sendBuf+strlen(sendBuf)) + dataLength;
+src\mainfunc.c:                                                                              ^
+src\mainfunc.c(795): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(setSocket,"AT+MIPSETS=1,%d,500\r",dataLength/2 +1);
+src\mainfunc.c:                 ^
+src\mainfunc.c(798): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(setSocket,"OK",500); 
+src\mainfunc.c:                          ^
+src\mainfunc.c(806): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(sendCmd,"AT+MIPSEND=%d,\"",socket.socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(821): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                         ^
+src\mainfunc.c(821): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                                         ^
+src\mainfunc.c(827): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         for(i=0;i<strlen(sendCmd);i++)//cmd
+src\mainfunc.c:                          ^
+src\mainfunc.c: src\mainfunc.c: 19 warnings, 0 errors
+compiling OBD.c...
+src\OBD.c(222): warning:  #550-D: variable "psi" was set but never used
+src\OBD.c:      float kpa, psi;
+src\OBD.c:                 ^
+src\OBD.c(233): warning:  #550-D: variable "psi" was set but never used
+src\OBD.c:      float psi;
+src\OBD.c:            ^
+src\OBD.c(315): warning:  #550-D: variable "f" was set but never used
+src\OBD.c:      float c, f;
+src\OBD.c:               ^
+src\OBD.c(350): warning:  #550-D: variable "f" was set but never used
+src\OBD.c:      int c, f;
+src\OBD.c:             ^
+src\OBD.c(643): warning:  #940-D: missing return statement at end of non-void function "obdExec"
+src\OBD.c:   }
+src\OBD.c:   ^
+src\OBD.c: src\OBD.c: 5 warnings, 0 errors
+compiling sanyData.c...
+compiling sim900.c...
+src\sim900.c(382): warning:  #111-D: statement is unreachable
+src\sim900.c:           TIM_Cmd(TIM3, ENABLE);
+src\sim900.c:           ^
+src\sim900.c(300): warning:  #177-D: variable "j" was declared but never referenced
+src\sim900.c:           int j=0;
+src\sim900.c:               ^
+src\sim900.c(301): warning:  #177-D: variable "temp" was declared but never referenced
+src\sim900.c:           char *temp;
+src\sim900.c:                 ^
+src\sim900.c(700): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\sim900.c:           uint16_t crc = calBufCrc(net.ipUrl-2,sizeof(SOCKET)-2);
+src\sim900.c:                                    ^
+src\sim900.c(718): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\sim900.c:           uint16_t crc = calBufCrc(net.ipUrl-2,sizeof(SOCKET)-2);
+src\sim900.c:                                    ^
+src\sim900.c(754): warning:  #513-D: a value of type "char *" cannot be assigned to an entity of type "int8_t *"
+src\sim900.c:           p=strstr(SIM_BUF,"OK");
+src\sim900.c:            ^
+src\sim900.c(824): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+src\sim900.c:                   iap.desPort = atoi(port);
+src\sim900.c:                                      ^
+src\sim900.c(839): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+src\sim900.c:                   net.desPort = atoi(port);
+src\sim900.c:                                      ^
+src\sim900.c(859): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+src\sim900.c:                   blue.baudrate = atoi(port);
+src\sim900.c:                                        ^
+src\sim900.c(875): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\sim900.c:           iap.crc = calBufCrc(iap.ipUrl-2,sizeof(SOCKET)-2);
+src\sim900.c:                               ^
+src\sim900.c(881): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\sim900.c:           net.crc = calBufCrc(net.ipUrl-2,sizeof(SOCKET)-2);
+src\sim900.c:                               ^
+src\sim900.c(889): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+src\sim900.c:           blue.crc = calBufCrc((char *)(&(blue.crc)) + 2,sizeof(SOCKET)-2);
+src\sim900.c:                                ^
+src\sim900.c(784): warning:  #177-D: variable "type" was declared but never referenced
+src\sim900.c:           int type = 0;
+src\sim900.c:               ^
+src\sim900.c(785): warning:  #550-D: variable "devId" was set but never used
+src\sim900.c:           uint8_t devId[20];
+src\sim900.c:                   ^
+src\sim900.c(925): warning:  #177-D: variable "q" was declared but never referenced
+src\sim900.c:           char *q = (char *)p;
+src\sim900.c:                 ^
+src\sim900.c: src\sim900.c: 15 warnings, 0 errors
+compiling rtc.c...
+compiling at45db161d.c...
+compiling crc.c...
+compiling iap.c...
+src\iap.c(82): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\iap.c:      strcat(net.ipUrl,"in.phonewingstech.com");
+src\iap.c:             ^
+src\iap.c(79): warning:  #177-D: variable "iapDate" was declared but never referenced
+src\iap.c:      IAP_DATA  *iapDate;
+src\iap.c:                 ^
+src\iap.c(186): warning:  #175-D: subscript out of range
+src\iap.c:      iapGet.crc = calBufCrc(iapGet.start + 6 , sizeof(IAP_GET)-6);
+src\iap.c:                                          ^
+src\iap.c(188): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\iap.c:      dataSend(iapGet.start , sizeof(IAP_GET),0,0,0,net,0); //发送数据，不尝试在发送中重新建立连接，错误即退出，重新获取数据信息
+src\iap.c:               ^
+src\iap.c(190): warning:  #513-D: a value of type "char *" cannot be assigned to an entity of type "int8_t *"
+src\iap.c:      pointer = strstr(SIM_BUF,"****");
+src\iap.c:              ^
+src\iap.c(198): warning:  #175-D: subscript out of range
+src\iap.c:              if(iapData->crc == calBufCrc(iapData->start + 6,sizeof(IAP_BRIFE)-6)){                  
+src\iap.c:                                                          ^
+src\iap.c(200): warning:  #513-D: a value of type "uint8_t *" cannot be assigned to an entity of type "int8_t *"
+src\iap.c:                      pointer = (uint8_t *)(&(iapData->packetCrc)) +2;
+src\iap.c:                              ^
+src\iap.c(201): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "uint8_t *"
+src\iap.c:                      if(WriteReadCheck(address,pointer,iapData->packetLength,iapData->packetCrc) < 0 ){                              
+src\iap.c:                                                ^
+src\iap.c(225): warning:  #940-D: missing return statement at end of non-void function "tcpGetData"
+src\iap.c:   }
+src\iap.c:   ^
+src\iap.c(264): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\iap.c:      dataSend(iapStart.start,sizeof(IAP_START),0,0,0,net,1);
+src\iap.c:               ^
+src\iap.c(392): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\iap.c:      strcat(sysCfg.iapConfig.ipUrl,"in.phonewingstech.com");
+src\iap.c:             ^
+src\iap.c(397): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\iap.c:      sysCfg.iapConfig.crc = calBufCrc(sysCfg.iapConfig.ipUrl-2,sizeof(SOCKET)-2);
+src\iap.c:                                       ^
+src\iap.c(400): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\iap.c:      strcat(sysCfg.netConfig.ipUrl,"in.phonewingstech.com");
+src\iap.c:             ^
+src\iap.c(405): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "unsigned char *"
+src\iap.c:      sysCfg.netConfig.crc = calBufCrc(sysCfg.netConfig.ipUrl-2,sizeof(SOCKET)-2);
+src\iap.c:                                       ^
+src\iap.c(409): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\iap.c:      strcat(sysCfg.blueConfig.name,"OBD_2");
+src\iap.c:             ^
+src\iap.c(410): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\iap.c:      strcat(sysCfg.blueConfig.password,"0000"); 
+src\iap.c:             ^
+src\iap.c(432): warning:  #175-D: subscript out of range
+src\iap.c:      sysCfg.iapBrife.crc = calBufCrc(sysCfg.iapBrife.start+4,sizeof(IAP_BRIFE)-4);
+src\iap.c:                                                           ^
+src\iap.c: src\iap.c: 17 warnings, 0 errors
+linking...
+Program Size: Code=21288 RO-data=336 RW-data=8440 ZI-data=10296  
+FromELF: creating hex file...
+".\Obj\OBD_2.axf" - 0 Error(s), 61 Warning(s).
