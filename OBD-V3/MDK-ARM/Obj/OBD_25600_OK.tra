@@ -50,7 +50,7 @@
 ### ADS-LD Output File: '.\Obj\OBD_25600_OK.axf'
 ### ADS-LD Command File: '.\Obj\OBD_25600_OK.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '.\Obj\OBD_25600_OK.lnp', Handle=0x00000330
+### Creating CmdFile '.\Obj\OBD_25600_OK.lnp', Handle=0x00000304
 ### Writing '.lnp' file
 ### ADS-LD Command file '.\Obj\OBD_25600_OK.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

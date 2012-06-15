@@ -226,6 +226,10 @@ typedef struct {
 	BLUE_CONFIG		blueConfig;
 	OBD_CONFIG		obdConfig;	
 }FLASH_CONFIG;
+typedef struct {
+	uint16_t length;
+ 	uint8_t obdBuf[200];
+}OBD_MSG_BUG;
 
 
 

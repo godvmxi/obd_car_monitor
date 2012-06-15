@@ -1,4 +1,5 @@
 #include "OBD.h"
+OBD_MSG_BUG obdBuf;
 void engine_rpm_formula(int data, char *buf)
 {
       sprintf(buf, "%i r/min", (int)((float)data/4));
@@ -38,7 +39,9 @@ void fuel_system_status_formula(int data, char *buf)
 
 void fuel_system1_status_formula(int data, char *buf)
 {
-   fuel_system_status_formula((data >> 8) & 0xFF, buf);  // Fuel System 1 status: Data A
+   	if(checkObdReturn < 0)
+   	fillObdBuf(data,buf,1);
+//   fuel_system_status_formula((data >> 8) & 0xFF, buf);  // Fuel System 1 status: Data A
 }
 
 
@@ -80,7 +83,7 @@ void air_flow_rate_formula(int data, char *buf)
 
 void throttle_position_formula(int data, char *buf)
 {
-   sprintf(buf, "%.1f%%", (float)data*100/255);
+	sprintf(buf, "%.1f%%", (float)data*100/255);
 }
 
 
@@ -381,7 +384,18 @@ void clr_time_formula(int data, char *buf)
 
 void fuel_system1_frame_dtc(int data, char *buf)
 {
-   sprintf(buf, "%i hrs %i min", data/60, data%60);
+	char *point = strstr(buf,"4101");
+	if(point != NULL)
+		fillObdBuf(data,point);
+//	uint16_t point; 
+//	uint16_t size = ( sysCfg.obdConfig.cmdList[data] & 0xF000 ) >> 12;
+//	if(size == 0)
+//	{
+//		return ;
+//	}
+//	size = size * 4;
+//	point = getBufIndex(index);
+   //sprintf(buf, "%i hrs %i min", data/60, data%60);
 }
 
 void oxygen_sensors_present_1(int data, char *buf)
@@ -422,13 +436,69 @@ void support_pid_41_5f(int data, char *buf)
 
 void get_device_identifier(int index, char *buf)
 {
-//   sprintf(buf, "%i hrs %i min", data/60, data%60);
-
-	if(checkObdReturn(buf,0x0001) > 0 )
+	if(checkObdReturn(buf,0x1) < 0)
+		return;
+	fillObdBuf(index,buf,1);
+}
+int16_t fillObdBuf(uint16_t index,char *buf,int value)
+{
+	uint16_t i = 0;
+	uint16_t point; 
+	uint16_t size =( ( sysCfg.obdConfig.cmdList[index] & 0xF000 ) >> 12 )*4;
+	if(size == 0)
 	{
-	 	//copy data
+		return size;
+	}
+	point = getBufIndex(index);	
+ 	//copy data
+	if(value){
+		for(i=0;i<size;i++)
+			obdBuf.obdBuf[point+i] = buf[i];
+	}
+	else
+	{
+		for(i=0;i<size;i++)
+			obdBuf.obdBuf[point+i] = 0;
 	}
 
+	return size;
+}
+/*******************************************************************************
+ * 函数名称:checkObdReturn                                                                     
+ * 描    述:根据命令的index信息，获取在缓冲区的其实位置                                                                   
+ *                                                                               
+ * 输    入: type                                                                   
+ * 输    出:无                                                                    
+ * 返    回:命令执行状态1：正常  -1：错误                                                                       
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2012年3月1日                                                                    
+ *******************************************************************************/
+//typedef struct {
+//  	uint16_t srcIndex;
+//	uint16_t desIndex;
+// }MAP_INDEX;
+uint16_t getBufIndex(uint16_t index)
+{
+	uint16_t i = 0;	
+	static uint16_t mapIndex[200];
+	static uint16_t flag = 0;
+	if(flag == 0)		
+	{ 
+		mapIndex[0] = 0;
+		for(i = 0;i<sysCfg.obdConfig.cmdNum;i++)
+		{
+			mapIndex[i+1] += ( ( sysCfg.obdConfig.cmdList[i] & 0xF000 ) >> 12 ) * 4 ;		
+		}
+		printf("\r\nINDEX MAP\r\n");
+		for(i = 0 ;i < 200;i++)
+		{
+		 	if(i %20 == 0)
+				printf("\r\n");
+			printf("%3d->%3d  ",i,mapIndex[i]);
+		}
+		flag = 1;
+	}
+	return mapIndex[index];		
 
 }
 /*******************************************************************************
@@ -443,15 +513,15 @@ void get_device_identifier(int index, char *buf)
  *******************************************************************************/
 int checkObdReturn(char *buf ,uint16_t type){
 	if(type & 0x8){
-		if(strstr(buf,"NO DATA")!= NULL)//find NO DATA
+		if(strstr(buf,"DATA")!= NULL)//find NO DATA
 			return -1;	
 	}
 	if(type & 0x2){
-		if(strstr(buf,"SEARCH")!=NULL)
+		if(strstr(buf,"NECT")!=NULL)	//FIND CONNECT
 			return -1; 	
 	}
 	if(type & 0x4){
-		if(strstr(buf,"SEARCH")!=NULL)
+		if(strstr(buf,"RCHING")!=NULL) //SEARCHING
 			return -1; 	
 	}
 	if(type & 0x1){
@@ -462,120 +532,6 @@ int checkObdReturn(char *buf ,uint16_t type){
 	return 1;		
 }
 
-
-//SENSOR sensors[] =
-//{
-//   // formula                        // label            //screen_buffer  //pid  //enabled // bytes   
-//   // Page 1
-//   { throttle_position_formula,     "Absolute Throttle Position:",     "", "11",      1,    1 },
-//   { engine_rpm_formula,            "Engine RPM:",                     "", "0C",      1,    2 },
-//   { vehicle_speed_formula,         "Vehicle Speed:",                  "", "0D",      1,    1 },
-//   { engine_load_formula,           "Calculated Load Value:",          "", "04",      1,    1 },
-//   { timing_advance_formula,        "Timing Advance (Cyl. #1):",       "", "0E",      1,    1 },
-//   { intake_pressure_formula,       "Intake Manifold Pressure:",       "", "0B",      1,    1 },
-//   { air_flow_rate_formula,         "Air Flow Rate (MAF sensor):",     "", "10",      1,    2 },
-//   { fuel_system1_status_formula,   "Fuel System 1 Status:",           "", "03",      1,    2 },
-//   { fuel_system2_status_formula,   "Fuel System 2 Status:",           "", "03",      1,    2 },  
-//   { short_term_fuel_trim_formula,  "Short Term Fuel Trim (Bank 1):",  "", "06",      1,    2 },
-//   { long_term_fuel_trim_formula,   "Long Term Fuel Trim (Bank 1):",   "", "07",      1,    2 },
-//   { short_term_fuel_trim_formula,  "Short Term Fuel Trim (Bank 2):",  "", "08",      1,    2 },
-//   { long_term_fuel_trim_formula,   "Long Term Fuel Trim (Bank 2):",   "", "09",      1,    2 },
-//   { intake_air_temp_formula,       "Intake Air Temperature:",         "", "0F",      1,    1 },
-//   { coolant_temp_formula,          "Coolant Temperature:",            "", "05",      1,    1 },
-//   { fuel_pressure_formula,         "Fuel Pressure (gauge):",          "", "0A",      1,    1 },
-//   { secondary_air_status_formula,  "Secondary air status:",           "", "12",      1,    1 },
-//   { pto_status_formula,            "Power Take-Off Status:",          "", "1E",      1,    1 },
-//   // Page 2
-//   { o2_sensor_formula,             "O2 Sensor 1, Bank 1:",            "", "14",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 2, Bank 1:",            "", "15",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 3, Bank 1:",            "", "16",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 4, Bank 1:",            "", "17",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 1, Bank 2:",            "", "18",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 2, Bank 2:",            "", "19",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 3, Bank 2:",            "", "1A",      1,    2 },
-//   { o2_sensor_formula,             "O2 Sensor 4, Bank 2:",            "", "1B",      1,    2 },
-//   { obd_requirements_formula,      "OBD conforms to:",                "", "1C",      1,    1 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 1, Bank 1 (WR):",       "", "24",      1,    4 },    // o2 sensors (wide range), voltage
-//   { o2_sensor_wrv_formula,         "O2 Sensor 2, Bank 1 (WR):",       "", "25",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 3, Bank 1 (WR):",       "", "26",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 4, Bank 1 (WR):",       "", "27",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 1, Bank 2 (WR):",       "", "28",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 2, Bank 2 (WR):",       "", "29",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 3, Bank 2 (WR):",       "", "2A",      1,    4 },
-//   { o2_sensor_wrv_formula,         "O2 Sensor 4, Bank 2 (WR):",       "", "2B",      1,    4 },
-//   { engine_run_time_formula,       "Time Since Engine Start:",        "", "1F",      1,    2 },
-//   // Page 3
-//   { frp_relative_formula,          "FRP rel. to manifold vacuum:",    "", "22",      1,    2 },    // fuel rail pressure relative to manifold vacuum
-//   { frp_widerange_formula,         "Fuel Pressure (gauge):",          "", "23",      1,    2 },    // fuel rail pressure (gauge), wide range
-//   { commanded_egr_formula,         "Commanded EGR:",                  "", "2C",      1,    1 },
-//   { egr_error_formula,             "EGR Error:",                      "", "2D",      1,    1 },
-//   { evap_pct_formula,              "Commanded Evaporative Purge:",    "", "2E",      1,    1 },
-//   { fuel_level_formula,            "Fuel Level Input:",               "", "2F",      1,    1 },
-//   { warm_ups_formula,              "Warm-ups since ECU reset:",       "", "30",      1,    1 },
-//   { clr_distance_formula,          "Distance since ECU reset:",       "", "31",      1,    2 },
-//   { evap_vp_formula,               "Evap System Vapor Pressure:",     "", "32",      1,    2 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 1, Bank 1 (WR):",       "", "34",      1,    4 },   // o2 sensors (wide range), current
-//   { o2_sensor_wrc_formula,         "O2 Sensor 2, Bank 1 (WR):",       "", "35",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 3, Bank 1 (WR):",       "", "36",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 4, Bank 1 (WR):",       "", "37",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 1, Bank 2 (WR):",       "", "38",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 2, Bank 2 (WR):",       "", "39",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 3, Bank 2 (WR):",       "", "3A",      1,    4 },
-//   { o2_sensor_wrc_formula,         "O2 Sensor 4, Bank 2 (WR):",       "", "3B",      1,    4 },
-//   { mil_distance_formula,          "Distance since MIL activated:",   "", "21",      1,    2 },
-//   // Page 4
-//   { baro_pressure_formula,         "Barometric Pressure (absolute):", "", "33",      1,    1 },
-//   { cat_temp_formula,              "CAT Temperature, B1S1:",          "", "3C",      1,    2 },
-//   { cat_temp_formula,              "CAT Temperature, B2S1:",          "", "3D",      1,    2 },
-//   { cat_temp_formula,              "CAT Temperature, B1S2:",          "", "3E",      1,    2 },
-//   { cat_temp_formula,              "CAT Temperature, B2S2:",          "", "3F",      1,    2 },
-//   { ecu_voltage_formula,           "ECU voltage:",                    "", "42",      1,    2 },
-//   { abs_load_formula,              "Absolute Engine Load:",           "", "43",      1,    2 },
-//   { eq_ratio_formula,              "Commanded Equivalence Ratio:",    "", "44",      1,    2 },
-//   { amb_air_temp_formula,          "Ambient Air Temperature:",        "", "46",      1,    1 },  // same scaling as $0F
-//   { relative_tp_formula,           "Relative Throttle Position:",     "", "45",      1,    1 },
-//   { abs_tp_formula,                "Absolute Throttle Position B:",   "", "47",      1,    1 },
-//   { abs_tp_formula,                "Absolute Throttle Position C:",   "", "48",      1,    1 },
-//   { abs_tp_formula,                "Accelerator Pedal Position D:",   "", "49",      1,    1 },
-//   { abs_tp_formula,                "Accelerator Pedal Position E:",   "", "4A",      1,    1 },
-//   { abs_tp_formula,                "Accelerator Pedal Position F:",   "", "4B",      1,    1 },
-//   { tac_pct_formula,               "Comm. Throttle Actuator Cntrl:",  "", "4C",      1,    1 }, // commanded TAC
-//   { mil_time_formula,              "Engine running while MIL on:",    "", "4D",      1,    2 }, // minutes run by the engine while MIL activated
-//   { clr_time_formula,              "Time since DTCs cleared:",        "", "4E",      1,    2 },
-//   { NULL,                          "",                                "", "",        0,    0 }
-//};
-
-
-
-
-
-//const OBD_SENSOR initCmd[] = {
-//	{NULL,"REBOOT",						"ATZ\r",			"",1,4,200,0,0},
-//	{NULL,"ECHO OFF",					"ATE0\r",			"",1,4,200,0,0},
-//	{NULL,"ECHO OFF",					"ATE0\r",			"",1,4,200,0,0},
-//	{NULL,"MEMORY OFF",					"ATM0\r",			"",1,4,200,0,0},
-//	{NULL,"LINEFEED OFF",				"ATL0\r",			"",1,4,200,0,0},
-//	{NULL,"PRINT SPACES OFF",			"ATS0\r",			"",1,4,200,0,0},
-//	{NULL,"DEVICE ID1",					"AT@1\r",			"",1,4,200,0,0},
-//	{NULL,"DEVICE ID2",					"AT@2\r",			"",1,4,200,0,0},
-//	{NULL,"ELM327 INFO",				"ATI\r",			"",1,4,200,0,0},
-//	{NULL,"STN1110 INFO",				"STI\r",			"",1,4,200,0,0},
-//	{NULL,"??????",						"ATPP 0E OFF\r",	"",1,4,200,0,0},
-//	{NULL,"??????",						"ST SL off,on\r",	"",1,4,200,0,0},
-//	{NULL,"ST SL off,on",				"ST SL off,on\r",	"",1,4,200,0,0},
-//	{NULL,"ST SLU off,on",				"ST SLU off,on\r",	"",1,4,200,0,0},
-//	{NULL,"ST SLVL off,on",				"ST SLVL off,on\r",	"",1,4,200,0,0},
-//	{NULL,"ST SLVL off,on",				"ST SLVG off\r",	"",1,4,200,0,0}, 
-//	{NULL,"PRINT AT PP SUMMARY",		"ATPPS\r",			"",1,4,200,0,0},	
-//	{NULL,"PRINT ST PP SUMMARY",		"STPPS\r",			"",1,4,200,0,0},
-//	{NULL,"HEADER OFF",					"ATH0\r",			"",1,4,200,0,0},
-//	{NULL,"ATAT2",						"ATAT2\r",			"",1,4,200,0,0},
-//	{NULL,"ATSP0",						"ATSP0\r",			"",1,4,200,0,0},
-//	{NULL,"SHOW CURRENT PROTOCOL",		"ATDPN\r",			"",1,4,200,0,0},
-//	{NULL,"car ",						"0100\r",			"",1,4,200,0,0},
-//	{NULL,"",							"",					"",1,4,200,0,0},
-//
-//};
 
 const OBD_SENSOR obdCmdList[] = {
 	{NULL,								"REBOOT",						"",		"ATZ\r",			1,4,200,0,0},//0
