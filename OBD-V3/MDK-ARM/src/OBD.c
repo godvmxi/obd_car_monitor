@@ -1147,6 +1147,30 @@ void external_test_cfg_2(int data, char *buf)
 		fillObdBuf(data,point+4,1);
 	}
 }
+void fuel_type(int data, char *buf)
+{
+//   sprintf(buf, "%i hrs %i min", data/60, data%60);
+   char *point = strstr(buf,"4151");
+	if(checkObdReturn(buf,0xF) < 0 && point != NULL){
+		fillObdBuf(data,buf,0);
+	}
+	else
+	{
+		fillObdBuf(data,point+4,1);
+	}
+}
+void percentage_alcohol_fuel(int data, char *buf)
+{
+//   sprintf(buf, "%i hrs %i min", data/60, data%60);
+   char *point = strstr(buf,"4152");
+	if(checkObdReturn(buf,0xF) < 0 && point != NULL){
+		fillObdBuf(data,buf,0);
+	}
+	else
+	{
+		fillObdBuf(data,point+4,1);
+	}
+}
 
 void fuel_system1_frame_dtc(int data, char *buf)
 {
@@ -1515,22 +1539,22 @@ const OBD_SENSOR obdCmdList[] = {
 	{ external_test_cfg_1,              "External test configuration #1:", "", 	"014F\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//External test configuration #1
 
 
-	{ external_test_cfg_2,           "External test configuration #2:", "", 	"0150\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//External test configuration #1
-	{ fuel_type,           				"Fuel type:",                    	"", 	"0151\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃料型号？？
-	{ percentage_alcohol_fuel,			"Percentage of alcohol fuel mix:", "", 	"0152\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃油中酒精含量
-	{ abs_load_formula,              "Absolute Engine Load:",           "",		"0153\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//绝对蒸发系统蒸汽压力
-	{ eq_ratio_formula,              "Commanded Equivalence Ratio:",    "", 	"0154\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//蒸发系统蒸汽压力
-	{ short_term_seoxygen_1_3,       "Short term sec-oxygen bank 1 3:",    	"", 	"0155\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK1 BANK3
-	{ long_term_seoxygen_1_3,        "Long term sec-oxygen bank 1 3:",       "", 	"0156\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//长期次氧传感器燃油修剪-BANK1 BANK3	
-	{ abs_tp_formula,                "Short term sec-oxygen bank 2 4:",   	"", 	"0157\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK2 BANK3
-	{ abs_tp_formula,                "Long term sec-oxygen bank 2  4:",   	"", 	"0158\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//长期次氧传感器燃油修剪-BANK2 BANK4
-	{ abs_tp_formula,                "Accelerator Pedal Position D:",   "", 	"0159\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
-	{ abs_tp_formula,                "Accelerator Pedal Position E:",   "", 	"015A\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
-	{ abs_tp_formula,                "Accelerator Pedal Position F:",   "", 	"015B\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
-	{ tac_pct_formula,               "Comm. Throttle Actuator Cntrl:",  "", 	"015C\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF}, // commanded TAC
-	{ mil_time_formula,              "Engine running while MIL on:",    "", 	"015D\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF}, // minutes run by the engine while MIL activated
-	{ clr_time_formula,              "Time since DTCs cleared:",        "", 	"015E\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},
-	{ clr_time_formula,              "Time since DTCs cleared:",        "", 	"015F\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},
+	{ external_test_cfg_2,          "External test configuration #2:", "", 		"0150\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//External test configuration #1
+	{ fuel_type,           			"Fuel type:",                    	"", 	"0151\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃料型号？？
+	{ percentage_alcohol_fuel,		"Percentage of alcohol fuel mix:", "", 		"0152\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃油中酒精含量
+	{ abs_load_formula,             "Absolute Engine Load:",           "",		"0153\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//绝对蒸发系统蒸汽压力
+	{ eq_ratio_formula,             "Commanded Equivalence Ratio:",    "", 		"0154\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//蒸发系统蒸汽压力
+	{ short_term_seoxygen_1_3,      "Short term sec-oxygen bank 1 3:",    	"", "0155\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK1 BANK3
+	{ long_term_seoxygen_1_3,       "Long term sec-oxygen bank 1 3:",       "", "0156\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//长期次氧传感器燃油修剪-BANK1 BANK3	
+	{ short_term_sec_oxygen_2_4,               "Short term sec-oxygen bank 2 4:",   	"", "0157\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK2 BANK3
+	{ long_term_sec_oxygen_2_4,               "Long term sec-oxygen bank 2  4:",   	"", "0158\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//长期次氧传感器燃油修剪-BANK2 BANK4
+	{ accelerator_pedal_pos_d,               "Accelerator Pedal Position D:",   "", 		"0159\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
+	{ accelerator_pedal_pos_e,               "Accelerator Pedal Position E:",   "", 		"015A\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
+	{ accelerator_pedal_pos_f,               "Accelerator Pedal Position F:",   "", 		"015B\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},
+	{ commanded_tac,              "Comm. Throttle Actuator Cntrl:",  "", 		"015C\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF}, // commanded TAC
+	{ mil_time_while_fil_on,             "Engine running while MIL on:",    "", 		"015D\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF}, // minutes run by the engine while MIL activated
+	{ NULL,             "Time since DTCs cleared:",        "", 		"015E\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//not used
+	{ NULL,             "Time since DTCs cleared:",        "", 		"015F\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//not used
 
 	{ NULL,                          "",                                "", 	"\r",        0,    0 ,200,0xFFFFFFFF,0xFFFFFFFF}
 

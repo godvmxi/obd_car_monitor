@@ -1727,3 +1727,35 @@ src\OBD.c:              obdAtAndWait(cmd,"OK",500);
 src\OBD.c:              ^
 src\OBD.c: src\OBD.c: 2 warnings, 2 errors
 Target not created
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1519): error:  #20: identifier "fuel_type" is undefined
+src\OBD.c:      { fuel_type,                            "Fuel type:",                           "",     "0151\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃料型号？？
+src\OBD.c:        ^
+src\OBD.c(1520): error:  #20: identifier "percentage_alcohol_fuel" is undefined
+src\OBD.c:      { percentage_alcohol_fuel,              "Percentage of alcohol fuel mix:", "",  "0152\r",      1,    2 ,200,0xFFFFFFFF,0xFFFFFFFF},//燃油中酒精含量
+src\OBD.c:        ^
+src\OBD.c(1525): error:  #20: identifier "abs_tp_formula" is undefined
+src\OBD.c:      { abs_tp_formula,               "Short term sec-oxygen bank 2 4:",      "",     "0157\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK2 BANK3
+src\OBD.c:        ^
+src\OBD.c(1552): warning:  #223-D: function "obdAtAndWait" declared implicitly
+src\OBD.c:      obdAtAndWait("","",200);
+src\OBD.c:      ^
+src\OBD.c(1597): warning:  #223-D: function "obdAtAndWait" declared implicitly
+src\OBD.c:              obdAtAndWait(cmd,"OK",500);
+src\OBD.c:              ^
+src\OBD.c: src\OBD.c: 2 warnings, 3 errors
+Target not created
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1549): error:  #20: identifier "abs_tp_formula" is undefined
+src\OBD.c:      { abs_tp_formula,               "Short term sec-oxygen bank 2 4:",      "", "0157\r",      1,    1 ,200,0xFFFFFFFF,0xFFFFFFFF},//短期次氧传感器燃油修剪-BANK2 BANK3
+src\OBD.c:        ^
+src\OBD.c(1576): warning:  #223-D: function "obdAtAndWait" declared implicitly
+src\OBD.c:      obdAtAndWait("","",200);
+src\OBD.c:      ^
+src\OBD.c(1621): warning:  #223-D: function "obdAtAndWait" declared implicitly
+src\OBD.c:              obdAtAndWait(cmd,"OK",500);
+src\OBD.c:              ^
+src\OBD.c: src\OBD.c: 2 warnings, 1 error
+Target not created
