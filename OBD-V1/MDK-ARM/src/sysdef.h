@@ -205,14 +205,18 @@ typedef struct{
 	uint8_t password[20];
 	uint8_t reserved[20];	
 }BLUE_CONFIG;
-
+typedef struct{
+	uint8_t  dataLength;//期望返回的数据长度
+	uint8_t	 timeOut;//命令执行的等待时间
+	uint16_t cmdIndex;
+}OBD_LIST;
 
 typedef struct {
 	uint16_t crc;
 	uint16_t other;
 	uint32_t baudrate;
 	uint32_t cmdNum;
-	uint16_t cmdList[200];
+	OBD_LIST cmdList[200];
 	uint8_t  reserved[20];	
 }OBD_CONFIG;
 

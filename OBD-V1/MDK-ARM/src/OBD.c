@@ -1640,7 +1640,7 @@ uint16_t getBufIndex(uint16_t index)
 		mapIndex[0] = 0;
 		for(i = 0;i<sysCfg.obdConfig.cmdNum;i++)
 		{
-			mapIndex[i+1] += ( ( sysCfg.obdConfig.cmdList[i] & 0xF000 ) >> 12 ) * 4 ;		
+			mapIndex[i+1] += sysCfg.obdConfig.cmdList[index].dataLegth ;		
 		}
 		printf("\r\nINDEX MAP\r\n");
 		for(i = 0 ;i < 200;i++)
@@ -2087,7 +2087,7 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
 {
 	uint16_t i = 0;
 	uint16_t point; 
-	uint16_t size =( ( sysCfg.obdConfig.cmdList[index] & 0xF000 ) >> 12 )*4;
+	uint16_t size = sysCfg.obdConfig.cmdList[index].dataLegth ;
 	printf("\r\nCURRENT INDEX:%d\r\n",index);
 	printf("\r\nlabel :%s\r\n",obdCmdList[index].label);
 	printf("\r\nCMD :%s\r\n",obdCmdList[index].pid);
