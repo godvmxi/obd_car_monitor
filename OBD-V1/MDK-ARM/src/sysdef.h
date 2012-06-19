@@ -46,18 +46,7 @@ typedef enum
 	gpsStartError,//gps故障或者gps供电故障
 
 }SYSTEM_ERROR;
-typedef struct {
-	uint8_t id00[2];
-	uint8_t id01[2];
-	uint8_t id02[2];
-	uint8_t id03[2];
-	uint8_t id04[2];
-	uint8_t id05[2];
-	uint8_t	id06[2];
-	uint8_t id07[2];
 
-
-}OBD_DATA;
 
 typedef struct {
 	uint8_t 	start[2];	  //fill with  '#'
@@ -206,17 +195,22 @@ typedef struct{
 	uint8_t reserved[20];	
 }BLUE_CONFIG;
 typedef struct{
+	uint16_t cmdIndex;//当前命令在命令列表的索引
 	uint8_t  dataLength;//期望返回的数据长度
 	uint8_t	 timeOut;//命令执行的等待时间
-	uint16_t cmdIndex;
+	
 }OBD_LIST;
+
 
 typedef struct {
 	uint16_t crc;
 	uint16_t other;
 	uint32_t baudrate;
+	uint32_t deviceIdHigh;
+	uint32_t deviceIdLow;
+	uint32_t initCmdNum;
 	uint32_t cmdNum;
-	OBD_LIST cmdList[200];
+	OBD_LIST cmdList[150];
 	uint8_t  reserved[20];	
 }OBD_CONFIG;
 
@@ -230,9 +224,12 @@ typedef struct {
 	BLUE_CONFIG		blueConfig;
 	OBD_CONFIG		obdConfig;	
 }FLASH_CONFIG;
+
 typedef struct {
-	uint16_t length;
- 	uint8_t obdBuf[200];
+	uint32_t itemNum;
+	uint32_t deviceIdHigh;
+	uint32_t deviceIdLow;
+ 	uint8_t buf[200];
 }OBD_MSG_BUG;
 
 

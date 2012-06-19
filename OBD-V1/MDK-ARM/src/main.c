@@ -27,6 +27,7 @@ int main(void)
 	flashRead(SYS_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
 	showConfig(&sysCfg); 
 	massProduction();
+	printf("\r\nflash config :%d\r\n",sizeof(FLASH_CONFIG));
 	obdTest();
 	collectAndSend();
 		

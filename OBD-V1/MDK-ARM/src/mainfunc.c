@@ -698,7 +698,16 @@ int16_t str2hex(int8_t *src,uint16_t length,int8_t *des){
 	return j;
 }
 
-
+/*******************************************************************************
+ * 函数名称:setDataHeader                                                                    
+ * 描    述:设置数据头                                                            
+ *                                                                               
+ * 输    入:无                                                          
+ * 输    出:无                                                                    
+ * 返    回:0：正常 非零：校验出错                                                   
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2012年5月9日                                                                    
+ *******************************************************************************/
 void setDataHeader(uint16_t type,int8_t *pointer,int16_t length)
 {
 
@@ -934,17 +943,43 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
  * 作    者:蛋蛋                                                                     
  * 修改日期:2012年3月9日                                                                    
  *******************************************************************************/
-
+extern OBD_MSG_BUG obdBuf;
 void reportObd(SOCKET *soc,int timeout,int flag){
-	printf("\r\nOBD data\r\n");
-	setDataHeader(OBD_REPORT,(int8_t *)(&obdData),sizeof(OBD_DATA));
-	dataSend((int8_t *)(&obdData),sizeof(OBD_DATA),1,0,0,*soc,1);
+	uint32_t msgLength = 0;
+	msgLength =  getBufIndex(sysCfg.obdConfig.cmdNum - 1) + sysCfg.obdConfig.cmdList[].dataLength  + 12;// 最后一条数据的位置+最后一条数据的长度+obd头的长度
+	printf("\r\nOBD data begin length --> %d\r\n",msgLength);
+	setDataHeader(OBD_REPORT,(int8_t *)(&obdBuf),msgLength);
+	dataSend((int8_t *)(&obdBuf),msgLength,1,0,0,*soc,1);
 }
-
+/*******************************************************************************
+ * 函数名称:checkAppState                                                                    
+ * 描    述: 检查OBD程序完整性                                                              
+ *                                                                               
+ * 输    入:无                                                          
+ * 输    出:无                                                                    
+ * 返    回:0：正常 非零：校验出错                                                   
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2012年5月9日                                                                    
+ *******************************************************************************/
 void reportHeart(SOCKET *soc,int timeout,int flag){
 	printf("\r\nHEART BEAT\r\n");
 	setDataHeader(HEARTHEAT_MSG,NULL,0);
 	dataSend(NULL,0,1,0,0,*soc,1); 
+}
+/*******************************************************************************
+ * 函数名称:checkAppState                                                                    
+ * 描    述: 检查OBD程序完整性                                                              
+ *                                                                               
+ * 输    入:无                                                          
+ * 输    出:无                                                                    
+ * 返    回:0：正常 非零：校验出错                                                   
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2012年5月9日                                                                    
+ *******************************************************************************/
+void initSimSms(int type)
+{
+
+
 }
 
 

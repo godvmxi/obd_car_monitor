@@ -746,12 +746,15 @@ Section Cross References
     obd.o(i.obdAtAndWait) refers to sysdef.o(.data) for UART4_RX_buffer_count
     obd.o(i.obdBlue) refers to bluetooth.o(i.blueToothPower) for blueToothPower
     obd.o(i.obdBlue) refers to sysdef.o(.data) for BLUE_OBD
+    obd.o(i.obdIrq) refers to printf8.o(i.__0printf$8) for __2printf
+    obd.o(i.obdIrq) refers to strstr.o(.text) for strstr
     obd.o(i.obdIrq) refers to memseta.o(.text) for __aeabi_memclr
     obd.o(i.obdIrq) refers to stm32f10x_usart.o(i.USART_SendData) for USART_SendData
     obd.o(i.obdIrq) refers to stm32f10x_usart.o(i.USART_GetFlagStatus) for USART_GetFlagStatus
     obd.o(i.obdIrq) refers to sysdef.o(.bss) for sysCfg
     obd.o(i.obdIrq) refers to obd.o(.data) for index
     obd.o(i.obdIrq) refers to obd.o(.constdata) for obdCmdList
+    obd.o(i.obdIrq) refers to sysdef.o(.data) for USART3_RX_buffer_count
     obd.o(i.obdPower) refers to hard_init.o(i.delay_ms) for delay_ms
     obd.o(i.obdPower) refers to printf8.o(i.__0printf$8) for __2printf
     obd.o(i.obdPower) refers to stm32f10x_gpio.o(i.GPIO_WriteBit) for GPIO_WriteBit
@@ -760,12 +763,10 @@ Section Cross References
     obd.o(i.obdReset) refers to stm32f10x_gpio.o(i.GPIO_WriteBit) for GPIO_WriteBit
     obd.o(i.obdReset) refers to hard_init.o(i.delay_ms) for delay_ms
     obd.o(i.obdTest) refers to printf8.o(i.__0printf$8) for __2printf
-    obd.o(i.obdTest) refers to hard_init.o(i.openUsart1) for openUsart1
     obd.o(i.obdTest) refers to stm32f10x_gpio.o(i.GPIO_WriteBit) for GPIO_WriteBit
     obd.o(i.obdTest) refers to hard_init.o(i.delay_ms) for delay_ms
     obd.o(i.obdTest) refers to obd.o(i.obdPower) for obdPower
-    obd.o(i.obdTest) refers to obd.o(i.obdAtAndWait) for obdAtAndWait
-    obd.o(i.obdTest) refers to obd.o(i.execObd) for execObd
+    obd.o(i.obdTest) refers to obd.o(i.obdIrq) for obdIrq
     obd.o(i.obdTest) refers to sysdef.o(.data) for ISP_DIRECTION
     obd.o(i.obd_requirements_formula) refers to strstr.o(.text) for strstr
     obd.o(i.obd_requirements_formula) refers to obd.o(i.checkObdReturn) for checkObdReturn
@@ -1025,9 +1026,12 @@ Section Cross References
     iap.o(i.checkIapType) refers to stm32f10x_gpio.o(i.GPIO_WriteBit) for GPIO_WriteBit
     iap.o(i.iap) refers to iap.o(i.iapHardwareInit) for iapHardwareInit
     iap.o(i.iap) refers to iap.o(i.tcpIap) for tcpIap
+    iap.o(i.setDebugPara) refers to memcpya.o(.text) for __aeabi_memcpy4
     iap.o(i.setDebugPara) refers to strcat.o(.text) for strcat
     iap.o(i.setDebugPara) refers to flash.o(i.calBufCrc) for calBufCrc
+    iap.o(i.setDebugPara) refers to printf8.o(i.__0printf$8) for __2printf
     iap.o(i.setDebugPara) refers to flash.o(i.updateFlashConfig) for updateFlashConfig
+    iap.o(i.setDebugPara) refers to iap.o(.constdata) for .constdata
     iap.o(i.setDebugPara) refers to sysdef.o(.bss) for sysCfg
     iap.o(i.tcpGetData) refers to memseta.o(.text) for __aeabi_memset
     iap.o(i.tcpGetData) refers to flash.o(i.calBufCrc) for calBufCrc
@@ -1947,117 +1951,15 @@ Removing Unused input sections from the image.
     Removing mainfunc.o(i.str2hex), (276 bytes).
     Removing mainfunc.o(.bss), (1312 bytes).
     Removing mainfunc.o(.data), (8 bytes).
-    Removing obd.o(i.abs_evap_system_vapor_press), (64 bytes).
-    Removing obd.o(i.abs_load_formula), (64 bytes).
-    Removing obd.o(i.abs_tp_formula_b), (64 bytes).
-    Removing obd.o(i.abs_tp_formula_c), (64 bytes).
-    Removing obd.o(i.abs_tp_formula_d), (64 bytes).
-    Removing obd.o(i.abs_tp_formula_e), (64 bytes).
-    Removing obd.o(i.abs_tp_formula_f), (64 bytes).
-    Removing obd.o(i.air_flow_rate_formula), (64 bytes).
-    Removing obd.o(i.amb_air_temp_formula), (64 bytes).
-    Removing obd.o(i.baro_pressure_formula), (64 bytes).
-    Removing obd.o(i.cat_temp_formula1), (64 bytes).
-    Removing obd.o(i.cat_temp_formula2), (64 bytes).
-    Removing obd.o(i.cat_temp_formula3), (64 bytes).
-    Removing obd.o(i.cat_temp_formula4), (64 bytes).
-    Removing obd.o(i.checkObdReturn), (128 bytes).
-    Removing obd.o(i.clr_distance_formula), (64 bytes).
-    Removing obd.o(i.clr_time_formula), (64 bytes).
-    Removing obd.o(i.commanded_egr_formula), (64 bytes).
-    Removing obd.o(i.coolant_temp_formula), (64 bytes).
-    Removing obd.o(i.ecu_voltage_formula), (64 bytes).
-    Removing obd.o(i.egr_error_formula), (64 bytes).
-    Removing obd.o(i.emission_requirements), (64 bytes).
-    Removing obd.o(i.engine_load_formula), (64 bytes).
-    Removing obd.o(i.engine_oil_temperature), (64 bytes).
-    Removing obd.o(i.engine_rpm_formula), (64 bytes).
-    Removing obd.o(i.engine_run_time_formula), (64 bytes).
-    Removing obd.o(i.eq_ratio_formula), (64 bytes).
-    Removing obd.o(i.evap_pct_formula), (64 bytes).
-    Removing obd.o(i.evap_system_vapor_press), (64 bytes).
-    Removing obd.o(i.evap_vp_formula), (64 bytes).
-    Removing obd.o(i.external_test_cfg_1), (64 bytes).
-    Removing obd.o(i.external_test_cfg_2), (64 bytes).
-    Removing obd.o(i.fillObdBuf), (296 bytes).
-    Removing obd.o(i.frp_relative_formula), (64 bytes).
-    Removing obd.o(i.frp_widerange_formula), (64 bytes).
-    Removing obd.o(i.fuel_injection_timing), (64 bytes).
-    Removing obd.o(i.fuel_level_formula), (64 bytes).
-    Removing obd.o(i.fuel_pressure_formula), (64 bytes).
-    Removing obd.o(i.fuel_rate), (64 bytes).
-    Removing obd.o(i.fuel_system1_frame_dtc), (52 bytes).
-    Removing obd.o(i.fuel_system1_status_formula), (64 bytes).
+    Removing obd.o(i.execObd), (2 bytes).
     Removing obd.o(i.fuel_system2_status_formula), (16 bytes).
     Removing obd.o(i.fuel_system_status_formula), (240 bytes).
-    Removing obd.o(i.fuel_type), (64 bytes).
-    Removing obd.o(i.fule_rail_pressure), (64 bytes).
-    Removing obd.o(i.getBufIndex), (176 bytes).
-    Removing obd.o(i.get_device_identifier), (42 bytes).
-    Removing obd.o(i.hybrid_battery_pack_remain), (64 bytes).
-    Removing obd.o(i.intake_air_temp_formula), (64 bytes).
-    Removing obd.o(i.intake_pressure_formula), (64 bytes).
-    Removing obd.o(i.long_term_fuel_trim_formula1), (64 bytes).
-    Removing obd.o(i.long_term_fuel_trim_formula2), (64 bytes).
-    Removing obd.o(i.long_term_sec_oxygen_1_3), (64 bytes).
-    Removing obd.o(i.long_term_sec_oxygen_2_4), (64 bytes).
     Removing obd.o(i.long_term_seoxygen_1_3), (64 bytes).
-    Removing obd.o(i.mil_distance_formula), (64 bytes).
-    Removing obd.o(i.mil_time_formula), (64 bytes).
-    Removing obd.o(i.monitior_state_formula), (64 bytes).
-    Removing obd.o(i.numberOftroubleCodes), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula1_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula1_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula1_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula1_4), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula2_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula2_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula2_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_formula2_4), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula1_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula1_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula1_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula1_4), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula2_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula2_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula2_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrc_formula2_4), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula1_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula1_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula1_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula1_4), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula2_1), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula2_2), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula2_3), (64 bytes).
-    Removing obd.o(i.o2_sensor_wrv_formula2_4), (64 bytes).
+    Removing obd.o(i.obdAtAndWait), (100 bytes).
     Removing obd.o(i.obdBlue), (20 bytes).
     Removing obd.o(i.obdExec), (6 bytes).
-    Removing obd.o(i.obdIrq), (216 bytes).
     Removing obd.o(i.obdReset), (132 bytes).
-    Removing obd.o(i.obd_requirements_formula), (64 bytes).
-    Removing obd.o(i.oxygen_sensors_present_1), (64 bytes).
-    Removing obd.o(i.oxygen_sensors_present_2), (64 bytes).
-    Removing obd.o(i.percentage_alcohol_fuel), (64 bytes).
-    Removing obd.o(i.pto_status_formula), (64 bytes).
-    Removing obd.o(i.relative_acc_pedal_pos), (64 bytes).
-    Removing obd.o(i.relative_tp_formula), (64 bytes).
-    Removing obd.o(i.secondary_air_status_formula), (64 bytes).
-    Removing obd.o(i.short_term_fuel_trim_formula1), (64 bytes).
-    Removing obd.o(i.short_term_fuel_trim_formula2), (64 bytes).
-    Removing obd.o(i.short_term_sec_oxygen_1_3), (64 bytes).
-    Removing obd.o(i.short_term_sec_oxygen_2_4), (64 bytes).
     Removing obd.o(i.short_term_seoxygen_1_3), (64 bytes).
-    Removing obd.o(i.support_pid_00_1f), (64 bytes).
-    Removing obd.o(i.support_pid_20_3f), (64 bytes).
-    Removing obd.o(i.support_pid_41_5f), (64 bytes).
-    Removing obd.o(i.tac_pct_formula), (64 bytes).
-    Removing obd.o(i.throttle_position_formula), (64 bytes).
-    Removing obd.o(i.timing_advance_formula), (64 bytes).
-    Removing obd.o(i.vehicle_speed_formula), (64 bytes).
-    Removing obd.o(i.warm_ups_formula), (64 bytes).
-    Removing obd.o(.bss), (602 bytes).
-    Removing obd.o(.constdata), (17640 bytes).
-    Removing obd.o(.data), (8 bytes).
     Removing rtc.o(i.RTC_Get), (280 bytes).
     Removing rtc.o(i.RTC_Get_Week), (120 bytes).
     Removing rtc.o(i.rtcConfig), (272 bytes).
@@ -2119,7 +2021,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (40 bytes).
     Removing depilogue.o(.text), (194 bytes).
 
-643 unused section(s) (total 65775 bytes) removed from the image.
+541 unused section(s) (total 40637 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2129,21 +2031,21 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isalpha_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  ispunct_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isalnum_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isspace_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  ctype_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isprint_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  islower_o.o ABSOLUTE
     ../../microlib/ctype/ctype.c             0x00000000   Number         0  isupper_o.o ABSOLUTE
     ../../microlib/ctype/ctype.c             0x00000000   Number         0  isblank_o.o ABSOLUTE
     ../../microlib/ctype/ctype.c             0x00000000   Number         0  isxdigit_o.o ABSOLUTE
     ../../microlib/ctype/ctype.c             0x00000000   Number         0  isdigit_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  islower_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  iscntrl_o.o ABSOLUTE
     ../../microlib/ctype/ctype.c             0x00000000   Number         0  isgraph_o.o ABSOLUTE
-    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isprint_o.o ABSOLUTE
-    ../../microlib/division.c                0x00000000   Number         0  uldiv.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  iscntrl_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isspace_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  ispunct_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isalpha_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  isalnum_o.o ABSOLUTE
+    ../../microlib/ctype/ctype.c             0x00000000   Number         0  ctype_o.o ABSOLUTE
     ../../microlib/division.c                0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../../microlib/division.c                0x00000000   Number         0  uldiv.o ABSOLUTE
     ../../microlib/errno.c                   0x00000000   Number         0  errno.o ABSOLUTE
     ../../microlib/fpadd.c                   0x00000000   Number         0  dadd.o ABSOLUTE
     ../../microlib/fpdiv.c                   0x00000000   Number         0  ddiv.o ABSOLUTE
@@ -2154,20 +2056,20 @@ Image Symbol Table
     ../../microlib/init/entry.s              0x00000000   Number         0  entry7.o ABSOLUTE
     ../../microlib/init/entry.s              0x00000000   Number         0  entry2.o ABSOLUTE
     ../../microlib/init/entry.s              0x00000000   Number         0  entry5.o ABSOLUTE
+    ../../microlib/longlong.c                0x00000000   Number         0  llshl.o ABSOLUTE
     ../../microlib/longlong.c                0x00000000   Number         0  llsshr.o ABSOLUTE
     ../../microlib/longlong.c                0x00000000   Number         0  llushr.o ABSOLUTE
-    ../../microlib/longlong.c                0x00000000   Number         0  llshl.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf6.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf4.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf3.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf2.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf1.o ABSOLUTE
     ../../microlib/printf/printf.c           0x00000000   Number         0  printf0.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf1.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf2.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf3.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf4.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf5.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printfa.o ABSOLUTE
+    ../../microlib/printf/printf.c           0x00000000   Number         0  printf6.o ABSOLUTE
     ../../microlib/printf/printf.c           0x00000000   Number         0  printfb.o ABSOLUTE
     ../../microlib/printf/printf.c           0x00000000   Number         0  printf7.o ABSOLUTE
     ../../microlib/printf/printf.c           0x00000000   Number         0  printf8.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printfa.o ABSOLUTE
-    ../../microlib/printf/printf.c           0x00000000   Number         0  printf5.o ABSOLUTE
     ../../microlib/printf/stubs.s            0x00000000   Number         0  stubs.o ABSOLUTE
     ../../microlib/stdio/streams.c           0x00000000   Number         0  stdout.o ABSOLUTE
     ../../microlib/string/memcpy.c           0x00000000   Number         0  memcpya.o ABSOLUTE
@@ -2177,10 +2079,10 @@ Image Symbol Table
     ../../microlib/string/strlen.c           0x00000000   Number         0  strlen.o ABSOLUTE
     ../../microlib/string/strstr.c           0x00000000   Number         0  strstr.o ABSOLUTE
     ../../microlib/stubs.s                   0x00000000   Number         0  iusefp.o ABSOLUTE
-    ../../scanf.c                            0x00000000   Number         0  _strtoul.o ABSOLUTE
+    ../../scanf.c                            0x00000000   Number         0  strtol.o ABSOLUTE
     ../../scanf.c                            0x00000000   Number         0  atoi.o ABSOLUTE
     ../../scanf.c                            0x00000000   Number         0  _chval.o ABSOLUTE
-    ../../scanf.c                            0x00000000   Number         0  strtol.o ABSOLUTE
+    ../../scanf.c                            0x00000000   Number         0  _strtoul.o ABSOLUTE
     ..\Libraries\CMSIS\CM3\CoreSupport\core_cm3.c 0x00000000   Number         0  core_cm3.o ABSOLUTE
     ..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm\startup_stm32f10x_hd.s 0x00000000   Number         0  startup_stm32f10x_hd.o ABSOLUTE
     ..\Libraries\CMSIS\system_stm32f10x.c    0x00000000   Number         0  system_stm32f10x.o ABSOLUTE
@@ -2361,41 +2263,142 @@ Image Symbol Table
     _printf_pre_padding                      0x08002a2f   Thumb Code    46  printf8.o(i._printf_pre_padding)
     i._sputc                                 0x08002a5c   Section        0  printf8.o(i._sputc)
     _sputc                                   0x08002a5d   Thumb Code    10  printf8.o(i._sputc)
-    i.blueAtAndWait                          0x08002a68   Section        0  bluetooth.o(i.blueAtAndWait)
-    i.blueToothPower                         0x08002acc   Section        0  bluetooth.o(i.blueToothPower)
-    i.calBufCrc                              0x08002ba0   Section        0  flash.o(i.calBufCrc)
-    i.collectAndSend                         0x08002bf0   Section        0  mainfunc.o(i.collectAndSend)
-    i.delay_ms                               0x08002c94   Section        0  hard_init.o(i.delay_ms)
-    i.execObd                                0x08002cae   Section        0  obd.o(i.execObd)
-    i.flashRead                              0x08002cb0   Section        0  flash.o(i.flashRead)
-    i.flashRollBack                          0x08002cc8   Section        0  flash.o(i.flashRollBack)
-    i.flashWrite                             0x08002cce   Section        0  flash.o(i.flashWrite)
-    i.fputc                                  0x08002d60   Section        0  main.o(i.fputc)
-    i.gpsDataIrq                             0x08002d84   Section        0  gps.o(i.gpsDataIrq)
-    i.hardware_init                          0x08003a3c   Section        0  hard_init.o(i.hardware_init)
-    i.initBlueTooth                          0x08003a68   Section        0  bluetooth.o(i.initBlueTooth)
-    i.initObdMode                            0x08003d80   Section        0  obd.o(i.initObdMode)
-    i.main                                   0x08003da8   Section        0  main.o(i.main)
-    i.massProduction                         0x08003e34   Section        0  sim900.o(i.massProduction)
-    i.obdAtAndWait                           0x08004034   Section        0  obd.o(i.obdAtAndWait)
-    i.obdPower                               0x08004098   Section        0  obd.o(i.obdPower)
-    i.obdTest                                0x08004108   Section        0  obd.o(i.obdTest)
-    i.openUsart1                             0x08004200   Section        0  hard_init.o(i.openUsart1)
-    i.power_sim900                           0x08004244   Section        0  sim900.o(i.power_sim900)
-    i.readImei                               0x08004340   Section        0  sim900.o(i.readImei)
-    i.setDebugPara                           0x0800441c   Section        0  iap.o(i.setDebugPara)
-    i.setReport                              0x080045e0   Section        0  sim900.o(i.setReport)
-    i.showConfig                             0x080047e0   Section        0  sim900.o(i.showConfig)
-    i.sim900_power_on                        0x08004c54   Section        0  sim900.o(i.sim900_power_on)
-    i.updateFlashConfig                      0x08004cb4   Section        0  flash.o(i.updateFlashConfig)
-    i.writeFlashCfg                          0x08004de8   Section        0  flash.o(i.writeFlashCfg)
-    .constdata                               0x08004fbc   Section      512  flash.o(.constdata)
-    .constdata                               0x080051bc   Section       24  rtc.o(.constdata)
-    .constdata                               0x080051d4   Section      116  sim900.o(.constdata)
-    __FUNCTION__                             0x080051d4   Data          13  sim900.o(.constdata)
-    .constdata                               0x08005248   Section      129  ctype_o.o(.constdata)
-    .constdata                               0x080052cc   Section        4  ctype_o.o(.constdata)
-    table                                    0x080052cc   Data           4  ctype_o.o(.constdata)
+    i.abs_evap_system_vapor_press            0x08002a68   Section        0  obd.o(i.abs_evap_system_vapor_press)
+    i.abs_load_formula                       0x08002aa8   Section        0  obd.o(i.abs_load_formula)
+    i.abs_tp_formula_b                       0x08002ae8   Section        0  obd.o(i.abs_tp_formula_b)
+    i.abs_tp_formula_c                       0x08002b28   Section        0  obd.o(i.abs_tp_formula_c)
+    i.abs_tp_formula_d                       0x08002b68   Section        0  obd.o(i.abs_tp_formula_d)
+    i.abs_tp_formula_e                       0x08002ba8   Section        0  obd.o(i.abs_tp_formula_e)
+    i.abs_tp_formula_f                       0x08002be8   Section        0  obd.o(i.abs_tp_formula_f)
+    i.air_flow_rate_formula                  0x08002c28   Section        0  obd.o(i.air_flow_rate_formula)
+    i.amb_air_temp_formula                   0x08002c68   Section        0  obd.o(i.amb_air_temp_formula)
+    i.baro_pressure_formula                  0x08002ca8   Section        0  obd.o(i.baro_pressure_formula)
+    i.blueAtAndWait                          0x08002ce8   Section        0  bluetooth.o(i.blueAtAndWait)
+    i.blueToothPower                         0x08002d4c   Section        0  bluetooth.o(i.blueToothPower)
+    i.calBufCrc                              0x08002e20   Section        0  flash.o(i.calBufCrc)
+    i.cat_temp_formula1                      0x08002e70   Section        0  obd.o(i.cat_temp_formula1)
+    i.cat_temp_formula2                      0x08002eb0   Section        0  obd.o(i.cat_temp_formula2)
+    i.cat_temp_formula3                      0x08002ef0   Section        0  obd.o(i.cat_temp_formula3)
+    i.cat_temp_formula4                      0x08002f30   Section        0  obd.o(i.cat_temp_formula4)
+    i.checkObdReturn                         0x08002f70   Section        0  obd.o(i.checkObdReturn)
+    i.clr_distance_formula                   0x08002ff0   Section        0  obd.o(i.clr_distance_formula)
+    i.clr_time_formula                       0x08003030   Section        0  obd.o(i.clr_time_formula)
+    i.collectAndSend                         0x08003070   Section        0  mainfunc.o(i.collectAndSend)
+    i.commanded_egr_formula                  0x08003114   Section        0  obd.o(i.commanded_egr_formula)
+    i.coolant_temp_formula                   0x08003154   Section        0  obd.o(i.coolant_temp_formula)
+    i.delay_ms                               0x08003194   Section        0  hard_init.o(i.delay_ms)
+    i.ecu_voltage_formula                    0x080031b0   Section        0  obd.o(i.ecu_voltage_formula)
+    i.egr_error_formula                      0x080031f0   Section        0  obd.o(i.egr_error_formula)
+    i.emission_requirements                  0x08003230   Section        0  obd.o(i.emission_requirements)
+    i.engine_load_formula                    0x08003270   Section        0  obd.o(i.engine_load_formula)
+    i.engine_oil_temperature                 0x080032b0   Section        0  obd.o(i.engine_oil_temperature)
+    i.engine_rpm_formula                     0x080032f0   Section        0  obd.o(i.engine_rpm_formula)
+    i.engine_run_time_formula                0x08003330   Section        0  obd.o(i.engine_run_time_formula)
+    i.eq_ratio_formula                       0x08003370   Section        0  obd.o(i.eq_ratio_formula)
+    i.evap_pct_formula                       0x080033b0   Section        0  obd.o(i.evap_pct_formula)
+    i.evap_system_vapor_press                0x080033f0   Section        0  obd.o(i.evap_system_vapor_press)
+    i.evap_vp_formula                        0x08003430   Section        0  obd.o(i.evap_vp_formula)
+    i.external_test_cfg_1                    0x08003470   Section        0  obd.o(i.external_test_cfg_1)
+    i.external_test_cfg_2                    0x080034b0   Section        0  obd.o(i.external_test_cfg_2)
+    i.fillObdBuf                             0x080034f0   Section        0  obd.o(i.fillObdBuf)
+    i.flashRead                              0x08003618   Section        0  flash.o(i.flashRead)
+    i.flashRollBack                          0x08003630   Section        0  flash.o(i.flashRollBack)
+    i.flashWrite                             0x08003636   Section        0  flash.o(i.flashWrite)
+    i.fputc                                  0x080036c8   Section        0  main.o(i.fputc)
+    i.frp_relative_formula                   0x080036ec   Section        0  obd.o(i.frp_relative_formula)
+    i.frp_widerange_formula                  0x0800372c   Section        0  obd.o(i.frp_widerange_formula)
+    i.fuel_injection_timing                  0x0800376c   Section        0  obd.o(i.fuel_injection_timing)
+    i.fuel_level_formula                     0x080037ac   Section        0  obd.o(i.fuel_level_formula)
+    i.fuel_pressure_formula                  0x080037ec   Section        0  obd.o(i.fuel_pressure_formula)
+    i.fuel_rate                              0x0800382c   Section        0  obd.o(i.fuel_rate)
+    i.fuel_system1_frame_dtc                 0x0800386c   Section        0  obd.o(i.fuel_system1_frame_dtc)
+    i.fuel_system1_status_formula            0x080038a0   Section        0  obd.o(i.fuel_system1_status_formula)
+    i.fuel_type                              0x080038e0   Section        0  obd.o(i.fuel_type)
+    i.fule_rail_pressure                     0x08003920   Section        0  obd.o(i.fule_rail_pressure)
+    i.getBufIndex                            0x08003960   Section        0  obd.o(i.getBufIndex)
+    i.get_device_identifier                  0x08003a10   Section        0  obd.o(i.get_device_identifier)
+    i.gpsDataIrq                             0x08003a3c   Section        0  gps.o(i.gpsDataIrq)
+    i.hardware_init                          0x080046f4   Section        0  hard_init.o(i.hardware_init)
+    i.hybrid_battery_pack_remain             0x08004720   Section        0  obd.o(i.hybrid_battery_pack_remain)
+    i.initBlueTooth                          0x08004760   Section        0  bluetooth.o(i.initBlueTooth)
+    i.initObdMode                            0x08004a78   Section        0  obd.o(i.initObdMode)
+    i.intake_air_temp_formula                0x08004aa0   Section        0  obd.o(i.intake_air_temp_formula)
+    i.intake_pressure_formula                0x08004ae0   Section        0  obd.o(i.intake_pressure_formula)
+    i.long_term_fuel_trim_formula1           0x08004b20   Section        0  obd.o(i.long_term_fuel_trim_formula1)
+    i.long_term_fuel_trim_formula2           0x08004b60   Section        0  obd.o(i.long_term_fuel_trim_formula2)
+    i.long_term_sec_oxygen_1_3               0x08004ba0   Section        0  obd.o(i.long_term_sec_oxygen_1_3)
+    i.long_term_sec_oxygen_2_4               0x08004be0   Section        0  obd.o(i.long_term_sec_oxygen_2_4)
+    i.main                                   0x08004c20   Section        0  main.o(i.main)
+    i.massProduction                         0x08004ccc   Section        0  sim900.o(i.massProduction)
+    i.mil_distance_formula                   0x08004ecc   Section        0  obd.o(i.mil_distance_formula)
+    i.mil_time_formula                       0x08004f0c   Section        0  obd.o(i.mil_time_formula)
+    i.monitior_state_formula                 0x08004f4c   Section        0  obd.o(i.monitior_state_formula)
+    i.numberOftroubleCodes                   0x08004f8c   Section        0  obd.o(i.numberOftroubleCodes)
+    i.o2_sensor_formula1_1                   0x08004fcc   Section        0  obd.o(i.o2_sensor_formula1_1)
+    i.o2_sensor_formula1_2                   0x0800500c   Section        0  obd.o(i.o2_sensor_formula1_2)
+    i.o2_sensor_formula1_3                   0x0800504c   Section        0  obd.o(i.o2_sensor_formula1_3)
+    i.o2_sensor_formula1_4                   0x0800508c   Section        0  obd.o(i.o2_sensor_formula1_4)
+    i.o2_sensor_formula2_1                   0x080050cc   Section        0  obd.o(i.o2_sensor_formula2_1)
+    i.o2_sensor_formula2_2                   0x0800510c   Section        0  obd.o(i.o2_sensor_formula2_2)
+    i.o2_sensor_formula2_3                   0x0800514c   Section        0  obd.o(i.o2_sensor_formula2_3)
+    i.o2_sensor_formula2_4                   0x0800518c   Section        0  obd.o(i.o2_sensor_formula2_4)
+    i.o2_sensor_wrc_formula1_1               0x080051cc   Section        0  obd.o(i.o2_sensor_wrc_formula1_1)
+    i.o2_sensor_wrc_formula1_2               0x0800520c   Section        0  obd.o(i.o2_sensor_wrc_formula1_2)
+    i.o2_sensor_wrc_formula1_3               0x0800524c   Section        0  obd.o(i.o2_sensor_wrc_formula1_3)
+    i.o2_sensor_wrc_formula1_4               0x0800528c   Section        0  obd.o(i.o2_sensor_wrc_formula1_4)
+    i.o2_sensor_wrc_formula2_1               0x080052cc   Section        0  obd.o(i.o2_sensor_wrc_formula2_1)
+    i.o2_sensor_wrc_formula2_2               0x0800530c   Section        0  obd.o(i.o2_sensor_wrc_formula2_2)
+    i.o2_sensor_wrc_formula2_3               0x0800534c   Section        0  obd.o(i.o2_sensor_wrc_formula2_3)
+    i.o2_sensor_wrc_formula2_4               0x0800538c   Section        0  obd.o(i.o2_sensor_wrc_formula2_4)
+    i.o2_sensor_wrv_formula1_1               0x080053cc   Section        0  obd.o(i.o2_sensor_wrv_formula1_1)
+    i.o2_sensor_wrv_formula1_2               0x0800540c   Section        0  obd.o(i.o2_sensor_wrv_formula1_2)
+    i.o2_sensor_wrv_formula1_3               0x0800544c   Section        0  obd.o(i.o2_sensor_wrv_formula1_3)
+    i.o2_sensor_wrv_formula1_4               0x0800548c   Section        0  obd.o(i.o2_sensor_wrv_formula1_4)
+    i.o2_sensor_wrv_formula2_1               0x080054cc   Section        0  obd.o(i.o2_sensor_wrv_formula2_1)
+    i.o2_sensor_wrv_formula2_2               0x0800550c   Section        0  obd.o(i.o2_sensor_wrv_formula2_2)
+    i.o2_sensor_wrv_formula2_3               0x0800554c   Section        0  obd.o(i.o2_sensor_wrv_formula2_3)
+    i.o2_sensor_wrv_formula2_4               0x0800558c   Section        0  obd.o(i.o2_sensor_wrv_formula2_4)
+    i.obdIrq                                 0x080055cc   Section        0  obd.o(i.obdIrq)
+    i.obdPower                               0x080057f0   Section        0  obd.o(i.obdPower)
+    i.obdTest                                0x08005860   Section        0  obd.o(i.obdTest)
+    i.obd_requirements_formula               0x08005900   Section        0  obd.o(i.obd_requirements_formula)
+    i.openUsart1                             0x08005940   Section        0  hard_init.o(i.openUsart1)
+    i.oxygen_sensors_present_1               0x08005984   Section        0  obd.o(i.oxygen_sensors_present_1)
+    i.oxygen_sensors_present_2               0x080059c4   Section        0  obd.o(i.oxygen_sensors_present_2)
+    i.percentage_alcohol_fuel                0x08005a04   Section        0  obd.o(i.percentage_alcohol_fuel)
+    i.power_sim900                           0x08005a44   Section        0  sim900.o(i.power_sim900)
+    i.pto_status_formula                     0x08005b40   Section        0  obd.o(i.pto_status_formula)
+    i.readImei                               0x08005b80   Section        0  sim900.o(i.readImei)
+    i.relative_acc_pedal_pos                 0x08005c5c   Section        0  obd.o(i.relative_acc_pedal_pos)
+    i.relative_tp_formula                    0x08005c9c   Section        0  obd.o(i.relative_tp_formula)
+    i.secondary_air_status_formula           0x08005cdc   Section        0  obd.o(i.secondary_air_status_formula)
+    i.setDebugPara                           0x08005d1c   Section        0  iap.o(i.setDebugPara)
+    i.setReport                              0x08005ec0   Section        0  sim900.o(i.setReport)
+    i.short_term_fuel_trim_formula1          0x080060c0   Section        0  obd.o(i.short_term_fuel_trim_formula1)
+    i.short_term_fuel_trim_formula2          0x08006100   Section        0  obd.o(i.short_term_fuel_trim_formula2)
+    i.short_term_sec_oxygen_1_3              0x08006140   Section        0  obd.o(i.short_term_sec_oxygen_1_3)
+    i.short_term_sec_oxygen_2_4              0x08006180   Section        0  obd.o(i.short_term_sec_oxygen_2_4)
+    i.showConfig                             0x080061c0   Section        0  sim900.o(i.showConfig)
+    i.sim900_power_on                        0x08006634   Section        0  sim900.o(i.sim900_power_on)
+    i.support_pid_00_1f                      0x08006694   Section        0  obd.o(i.support_pid_00_1f)
+    i.support_pid_20_3f                      0x080066d4   Section        0  obd.o(i.support_pid_20_3f)
+    i.support_pid_41_5f                      0x08006714   Section        0  obd.o(i.support_pid_41_5f)
+    i.tac_pct_formula                        0x08006754   Section        0  obd.o(i.tac_pct_formula)
+    i.throttle_position_formula              0x08006794   Section        0  obd.o(i.throttle_position_formula)
+    i.timing_advance_formula                 0x080067d4   Section        0  obd.o(i.timing_advance_formula)
+    i.updateFlashConfig                      0x08006814   Section        0  flash.o(i.updateFlashConfig)
+    i.vehicle_speed_formula                  0x08006948   Section        0  obd.o(i.vehicle_speed_formula)
+    i.warm_ups_formula                       0x08006988   Section        0  obd.o(i.warm_ups_formula)
+    i.writeFlashCfg                          0x080069c8   Section        0  flash.o(i.writeFlashCfg)
+    .constdata                               0x08006b9c   Section      512  flash.o(.constdata)
+    .constdata                               0x08006d9c   Section    17640  obd.o(.constdata)
+    .constdata                               0x0800b284   Section       24  rtc.o(.constdata)
+    .constdata                               0x0800b29c   Section      324  iap.o(.constdata)
+    .constdata                               0x0800b3e0   Section      116  sim900.o(.constdata)
+    __FUNCTION__                             0x0800b3e0   Data          13  sim900.o(.constdata)
+    .constdata                               0x0800b454   Section      129  ctype_o.o(.constdata)
+    .constdata                               0x0800b4d8   Section        4  ctype_o.o(.constdata)
+    table                                    0x0800b4d8   Data           4  ctype_o.o(.constdata)
     .data                                    0x20000000   Section       32  sysdef.o(.data)
     .data                                    0x20000020   Section       12  stm32f10x_it.o(.data)
     temp                                     0x20000024   Data           1  stm32f10x_it.o(.data)
@@ -2405,15 +2408,21 @@ Image Symbol Table
     APBAHBPrescTable                         0x2000002c   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x2000003c   Data           4  stm32f10x_rcc.o(.data)
     .data                                    0x20000040   Section       60  gps.o(.data)
-    .data                                    0x2000007c   Section        4  stdout.o(.data)
-    .data                                    0x20000080   Section        4  errno.o(.data)
-    _errno                                   0x20000080   Data           4  errno.o(.data)
-    .bss                                     0x20000084   Section     4200  sysdef.o(.bss)
-    .bss                                     0x200010ec   Section     1300  flash.o(.bss)
-    buf                                      0x200010ec   Data        1300  flash.o(.bss)
-    .bss                                     0x20001600   Section      216  gps.o(.bss)
-    .bss                                     0x200016d8   Section      364  sim900.o(.bss)
-    STACK                                    0x20001848   Section     4096  startup_stm32f10x_hd.o(STACK)
+    .data                                    0x2000007c   Section        9  obd.o(.data)
+    flag                                     0x2000007c   Data           2  obd.o(.data)
+    index                                    0x20000080   Data           4  obd.o(.data)
+    counter                                  0x20000084   Data           1  obd.o(.data)
+    .data                                    0x20000088   Section        4  stdout.o(.data)
+    .data                                    0x2000008c   Section        4  errno.o(.data)
+    _errno                                   0x2000008c   Data           4  errno.o(.data)
+    .bss                                     0x20000090   Section     4412  sysdef.o(.bss)
+    .bss                                     0x200011cc   Section     1300  flash.o(.bss)
+    buf                                      0x200011cc   Data        1300  flash.o(.bss)
+    .bss                                     0x200016e0   Section      216  gps.o(.bss)
+    .bss                                     0x200017b8   Section      612  obd.o(.bss)
+    mapIndex                                 0x200017b8   Data         400  obd.o(.bss)
+    .bss                                     0x20001a1c   Section      364  sim900.o(.bss)
+    STACK                                    0x20001b88   Section     4096  startup_stm32f10x_hd.o(STACK)
 
     Global Symbols
 
@@ -2643,39 +2652,139 @@ Image Symbol Table
     __scatterload_copy                       0x080025c1   Thumb Code    14  handlers.o(i.__scatterload_copy)
     __scatterload_null                       0x080025cf   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080025d1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    blueAtAndWait                            0x08002a69   Thumb Code    86  bluetooth.o(i.blueAtAndWait)
-    blueToothPower                           0x08002acd   Thumb Code   102  bluetooth.o(i.blueToothPower)
-    calBufCrc                                0x08002ba1   Thumb Code    74  flash.o(i.calBufCrc)
-    collectAndSend                           0x08002bf1   Thumb Code   156  mainfunc.o(i.collectAndSend)
-    delay_ms                                 0x08002c95   Thumb Code    26  hard_init.o(i.delay_ms)
-    execObd                                  0x08002caf   Thumb Code     2  obd.o(i.execObd)
-    flashRead                                0x08002cb1   Thumb Code    24  flash.o(i.flashRead)
-    flashRollBack                            0x08002cc9   Thumb Code     6  flash.o(i.flashRollBack)
-    flashWrite                               0x08002ccf   Thumb Code   144  flash.o(i.flashWrite)
-    fputc                                    0x08002d61   Thumb Code    32  main.o(i.fputc)
-    gpsDataIrq                               0x08002d85   Thumb Code  3236  gps.o(i.gpsDataIrq)
-    hardware_init                            0x08003a3d   Thumb Code    40  hard_init.o(i.hardware_init)
-    initBlueTooth                            0x08003a69   Thumb Code   486  bluetooth.o(i.initBlueTooth)
-    initObdMode                              0x08003d81   Thumb Code    14  obd.o(i.initObdMode)
-    main                                     0x08003da9   Thumb Code    86  main.o(i.main)
-    massProduction                           0x08003e35   Thumb Code   384  sim900.o(i.massProduction)
-    obdAtAndWait                             0x08004035   Thumb Code    86  obd.o(i.obdAtAndWait)
-    obdPower                                 0x08004099   Thumb Code    62  obd.o(i.obdPower)
-    obdTest                                  0x08004109   Thumb Code   180  obd.o(i.obdTest)
-    openUsart1                               0x08004201   Thumb Code    62  hard_init.o(i.openUsart1)
-    power_sim900                             0x08004245   Thumb Code   118  sim900.o(i.power_sim900)
-    readImei                                 0x08004341   Thumb Code   144  sim900.o(i.readImei)
-    setDebugPara                             0x0800441d   Thumb Code   408  iap.o(i.setDebugPara)
-    setReport                                0x080045e1   Thumb Code   456  sim900.o(i.setReport)
-    showConfig                               0x080047e1   Thumb Code   458  sim900.o(i.showConfig)
-    sim900_power_on                          0x08004c55   Thumb Code    66  sim900.o(i.sim900_power_on)
-    updateFlashConfig                        0x08004cb5   Thumb Code   208  flash.o(i.updateFlashConfig)
-    writeFlashCfg                            0x08004de9   Thumb Code   302  flash.o(i.writeFlashCfg)
-    table_week                               0x080051bc   Data          12  rtc.o(.constdata)
-    mon_table                                0x080051c8   Data          12  rtc.o(.constdata)
-    __ctype_table                            0x08005248   Data         129  ctype_o.o(.constdata)
-    Region$$Table$$Base                      0x080052d0   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080052f0   Number         0  anon$$obj.o(Region$$Table)
+    abs_evap_system_vapor_press              0x08002a69   Thumb Code    54  obd.o(i.abs_evap_system_vapor_press)
+    abs_load_formula                         0x08002aa9   Thumb Code    54  obd.o(i.abs_load_formula)
+    abs_tp_formula_b                         0x08002ae9   Thumb Code    54  obd.o(i.abs_tp_formula_b)
+    abs_tp_formula_c                         0x08002b29   Thumb Code    54  obd.o(i.abs_tp_formula_c)
+    abs_tp_formula_d                         0x08002b69   Thumb Code    54  obd.o(i.abs_tp_formula_d)
+    abs_tp_formula_e                         0x08002ba9   Thumb Code    54  obd.o(i.abs_tp_formula_e)
+    abs_tp_formula_f                         0x08002be9   Thumb Code    54  obd.o(i.abs_tp_formula_f)
+    air_flow_rate_formula                    0x08002c29   Thumb Code    54  obd.o(i.air_flow_rate_formula)
+    amb_air_temp_formula                     0x08002c69   Thumb Code    54  obd.o(i.amb_air_temp_formula)
+    baro_pressure_formula                    0x08002ca9   Thumb Code    54  obd.o(i.baro_pressure_formula)
+    blueAtAndWait                            0x08002ce9   Thumb Code    86  bluetooth.o(i.blueAtAndWait)
+    blueToothPower                           0x08002d4d   Thumb Code   102  bluetooth.o(i.blueToothPower)
+    calBufCrc                                0x08002e21   Thumb Code    74  flash.o(i.calBufCrc)
+    cat_temp_formula1                        0x08002e71   Thumb Code    54  obd.o(i.cat_temp_formula1)
+    cat_temp_formula2                        0x08002eb1   Thumb Code    54  obd.o(i.cat_temp_formula2)
+    cat_temp_formula3                        0x08002ef1   Thumb Code    54  obd.o(i.cat_temp_formula3)
+    cat_temp_formula4                        0x08002f31   Thumb Code    54  obd.o(i.cat_temp_formula4)
+    checkObdReturn                           0x08002f71   Thumb Code    98  obd.o(i.checkObdReturn)
+    clr_distance_formula                     0x08002ff1   Thumb Code    54  obd.o(i.clr_distance_formula)
+    clr_time_formula                         0x08003031   Thumb Code    54  obd.o(i.clr_time_formula)
+    collectAndSend                           0x08003071   Thumb Code   156  mainfunc.o(i.collectAndSend)
+    commanded_egr_formula                    0x08003115   Thumb Code    54  obd.o(i.commanded_egr_formula)
+    coolant_temp_formula                     0x08003155   Thumb Code    54  obd.o(i.coolant_temp_formula)
+    delay_ms                                 0x08003195   Thumb Code    26  hard_init.o(i.delay_ms)
+    ecu_voltage_formula                      0x080031b1   Thumb Code    54  obd.o(i.ecu_voltage_formula)
+    egr_error_formula                        0x080031f1   Thumb Code    54  obd.o(i.egr_error_formula)
+    emission_requirements                    0x08003231   Thumb Code    54  obd.o(i.emission_requirements)
+    engine_load_formula                      0x08003271   Thumb Code    54  obd.o(i.engine_load_formula)
+    engine_oil_temperature                   0x080032b1   Thumb Code    54  obd.o(i.engine_oil_temperature)
+    engine_rpm_formula                       0x080032f1   Thumb Code    54  obd.o(i.engine_rpm_formula)
+    engine_run_time_formula                  0x08003331   Thumb Code    54  obd.o(i.engine_run_time_formula)
+    eq_ratio_formula                         0x08003371   Thumb Code    54  obd.o(i.eq_ratio_formula)
+    evap_pct_formula                         0x080033b1   Thumb Code    54  obd.o(i.evap_pct_formula)
+    evap_system_vapor_press                  0x080033f1   Thumb Code    54  obd.o(i.evap_system_vapor_press)
+    evap_vp_formula                          0x08003431   Thumb Code    54  obd.o(i.evap_vp_formula)
+    external_test_cfg_1                      0x08003471   Thumb Code    54  obd.o(i.external_test_cfg_1)
+    external_test_cfg_2                      0x080034b1   Thumb Code    54  obd.o(i.external_test_cfg_2)
+    fillObdBuf                               0x080034f1   Thumb Code   174  obd.o(i.fillObdBuf)
+    flashRead                                0x08003619   Thumb Code    24  flash.o(i.flashRead)
+    flashRollBack                            0x08003631   Thumb Code     6  flash.o(i.flashRollBack)
+    flashWrite                               0x08003637   Thumb Code   144  flash.o(i.flashWrite)
+    fputc                                    0x080036c9   Thumb Code    32  main.o(i.fputc)
+    frp_relative_formula                     0x080036ed   Thumb Code    54  obd.o(i.frp_relative_formula)
+    frp_widerange_formula                    0x0800372d   Thumb Code    54  obd.o(i.frp_widerange_formula)
+    fuel_injection_timing                    0x0800376d   Thumb Code    54  obd.o(i.fuel_injection_timing)
+    fuel_level_formula                       0x080037ad   Thumb Code    54  obd.o(i.fuel_level_formula)
+    fuel_pressure_formula                    0x080037ed   Thumb Code    54  obd.o(i.fuel_pressure_formula)
+    fuel_rate                                0x0800382d   Thumb Code    54  obd.o(i.fuel_rate)
+    fuel_system1_frame_dtc                   0x0800386d   Thumb Code    42  obd.o(i.fuel_system1_frame_dtc)
+    fuel_system1_status_formula              0x080038a1   Thumb Code    54  obd.o(i.fuel_system1_status_formula)
+    fuel_type                                0x080038e1   Thumb Code    54  obd.o(i.fuel_type)
+    fule_rail_pressure                       0x08003921   Thumb Code    54  obd.o(i.fule_rail_pressure)
+    getBufIndex                              0x08003961   Thumb Code   126  obd.o(i.getBufIndex)
+    get_device_identifier                    0x08003a11   Thumb Code    42  obd.o(i.get_device_identifier)
+    gpsDataIrq                               0x08003a3d   Thumb Code  3236  gps.o(i.gpsDataIrq)
+    hardware_init                            0x080046f5   Thumb Code    40  hard_init.o(i.hardware_init)
+    hybrid_battery_pack_remain               0x08004721   Thumb Code    54  obd.o(i.hybrid_battery_pack_remain)
+    initBlueTooth                            0x08004761   Thumb Code   486  bluetooth.o(i.initBlueTooth)
+    initObdMode                              0x08004a79   Thumb Code    14  obd.o(i.initObdMode)
+    intake_air_temp_formula                  0x08004aa1   Thumb Code    54  obd.o(i.intake_air_temp_formula)
+    intake_pressure_formula                  0x08004ae1   Thumb Code    54  obd.o(i.intake_pressure_formula)
+    long_term_fuel_trim_formula1             0x08004b21   Thumb Code    54  obd.o(i.long_term_fuel_trim_formula1)
+    long_term_fuel_trim_formula2             0x08004b61   Thumb Code    54  obd.o(i.long_term_fuel_trim_formula2)
+    long_term_sec_oxygen_1_3                 0x08004ba1   Thumb Code    54  obd.o(i.long_term_sec_oxygen_1_3)
+    long_term_sec_oxygen_2_4                 0x08004be1   Thumb Code    54  obd.o(i.long_term_sec_oxygen_2_4)
+    main                                     0x08004c21   Thumb Code    96  main.o(i.main)
+    massProduction                           0x08004ccd   Thumb Code   384  sim900.o(i.massProduction)
+    mil_distance_formula                     0x08004ecd   Thumb Code    54  obd.o(i.mil_distance_formula)
+    mil_time_formula                         0x08004f0d   Thumb Code    54  obd.o(i.mil_time_formula)
+    monitior_state_formula                   0x08004f4d   Thumb Code    54  obd.o(i.monitior_state_formula)
+    numberOftroubleCodes                     0x08004f8d   Thumb Code    54  obd.o(i.numberOftroubleCodes)
+    o2_sensor_formula1_1                     0x08004fcd   Thumb Code    54  obd.o(i.o2_sensor_formula1_1)
+    o2_sensor_formula1_2                     0x0800500d   Thumb Code    54  obd.o(i.o2_sensor_formula1_2)
+    o2_sensor_formula1_3                     0x0800504d   Thumb Code    54  obd.o(i.o2_sensor_formula1_3)
+    o2_sensor_formula1_4                     0x0800508d   Thumb Code    54  obd.o(i.o2_sensor_formula1_4)
+    o2_sensor_formula2_1                     0x080050cd   Thumb Code    54  obd.o(i.o2_sensor_formula2_1)
+    o2_sensor_formula2_2                     0x0800510d   Thumb Code    54  obd.o(i.o2_sensor_formula2_2)
+    o2_sensor_formula2_3                     0x0800514d   Thumb Code    54  obd.o(i.o2_sensor_formula2_3)
+    o2_sensor_formula2_4                     0x0800518d   Thumb Code    54  obd.o(i.o2_sensor_formula2_4)
+    o2_sensor_wrc_formula1_1                 0x080051cd   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula1_1)
+    o2_sensor_wrc_formula1_2                 0x0800520d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula1_2)
+    o2_sensor_wrc_formula1_3                 0x0800524d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula1_3)
+    o2_sensor_wrc_formula1_4                 0x0800528d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula1_4)
+    o2_sensor_wrc_formula2_1                 0x080052cd   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula2_1)
+    o2_sensor_wrc_formula2_2                 0x0800530d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula2_2)
+    o2_sensor_wrc_formula2_3                 0x0800534d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula2_3)
+    o2_sensor_wrc_formula2_4                 0x0800538d   Thumb Code    54  obd.o(i.o2_sensor_wrc_formula2_4)
+    o2_sensor_wrv_formula1_1                 0x080053cd   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula1_1)
+    o2_sensor_wrv_formula1_2                 0x0800540d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula1_2)
+    o2_sensor_wrv_formula1_3                 0x0800544d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula1_3)
+    o2_sensor_wrv_formula1_4                 0x0800548d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula1_4)
+    o2_sensor_wrv_formula2_1                 0x080054cd   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula2_1)
+    o2_sensor_wrv_formula2_2                 0x0800550d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula2_2)
+    o2_sensor_wrv_formula2_3                 0x0800554d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula2_3)
+    o2_sensor_wrv_formula2_4                 0x0800558d   Thumb Code    54  obd.o(i.o2_sensor_wrv_formula2_4)
+    obdIrq                                   0x080055cd   Thumb Code   354  obd.o(i.obdIrq)
+    obdPower                                 0x080057f1   Thumb Code    62  obd.o(i.obdPower)
+    obdTest                                  0x08005861   Thumb Code   100  obd.o(i.obdTest)
+    obd_requirements_formula                 0x08005901   Thumb Code    54  obd.o(i.obd_requirements_formula)
+    openUsart1                               0x08005941   Thumb Code    62  hard_init.o(i.openUsart1)
+    oxygen_sensors_present_1                 0x08005985   Thumb Code    54  obd.o(i.oxygen_sensors_present_1)
+    oxygen_sensors_present_2                 0x080059c5   Thumb Code    54  obd.o(i.oxygen_sensors_present_2)
+    percentage_alcohol_fuel                  0x08005a05   Thumb Code    54  obd.o(i.percentage_alcohol_fuel)
+    power_sim900                             0x08005a45   Thumb Code   118  sim900.o(i.power_sim900)
+    pto_status_formula                       0x08005b41   Thumb Code    54  obd.o(i.pto_status_formula)
+    readImei                                 0x08005b81   Thumb Code   144  sim900.o(i.readImei)
+    relative_acc_pedal_pos                   0x08005c5d   Thumb Code    54  obd.o(i.relative_acc_pedal_pos)
+    relative_tp_formula                      0x08005c9d   Thumb Code    54  obd.o(i.relative_tp_formula)
+    secondary_air_status_formula             0x08005cdd   Thumb Code    54  obd.o(i.secondary_air_status_formula)
+    setDebugPara                             0x08005d1d   Thumb Code   346  iap.o(i.setDebugPara)
+    setReport                                0x08005ec1   Thumb Code   456  sim900.o(i.setReport)
+    short_term_fuel_trim_formula1            0x080060c1   Thumb Code    54  obd.o(i.short_term_fuel_trim_formula1)
+    short_term_fuel_trim_formula2            0x08006101   Thumb Code    54  obd.o(i.short_term_fuel_trim_formula2)
+    short_term_sec_oxygen_1_3                0x08006141   Thumb Code    54  obd.o(i.short_term_sec_oxygen_1_3)
+    short_term_sec_oxygen_2_4                0x08006181   Thumb Code    54  obd.o(i.short_term_sec_oxygen_2_4)
+    showConfig                               0x080061c1   Thumb Code   458  sim900.o(i.showConfig)
+    sim900_power_on                          0x08006635   Thumb Code    66  sim900.o(i.sim900_power_on)
+    support_pid_00_1f                        0x08006695   Thumb Code    54  obd.o(i.support_pid_00_1f)
+    support_pid_20_3f                        0x080066d5   Thumb Code    54  obd.o(i.support_pid_20_3f)
+    support_pid_41_5f                        0x08006715   Thumb Code    54  obd.o(i.support_pid_41_5f)
+    tac_pct_formula                          0x08006755   Thumb Code    54  obd.o(i.tac_pct_formula)
+    throttle_position_formula                0x08006795   Thumb Code    54  obd.o(i.throttle_position_formula)
+    timing_advance_formula                   0x080067d5   Thumb Code    54  obd.o(i.timing_advance_formula)
+    updateFlashConfig                        0x08006815   Thumb Code   208  flash.o(i.updateFlashConfig)
+    vehicle_speed_formula                    0x08006949   Thumb Code    54  obd.o(i.vehicle_speed_formula)
+    warm_ups_formula                         0x08006989   Thumb Code    54  obd.o(i.warm_ups_formula)
+    writeFlashCfg                            0x080069c9   Thumb Code   302  flash.o(i.writeFlashCfg)
+    obdCmdList                               0x08006d9c   Data       17640  obd.o(.constdata)
+    table_week                               0x0800b284   Data          12  rtc.o(.constdata)
+    mon_table                                0x0800b290   Data          12  rtc.o(.constdata)
+    __ctype_table                            0x0800b454   Data         129  ctype_o.o(.constdata)
+    Region$$Table$$Base                      0x0800b4dc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800b4fc   Number         0  anon$$obj.o(Region$$Table)
     USART1_RX_buffer_count                   0x20000000   Data           4  sysdef.o(.data)
     USART2_RX_buffer_count                   0x20000004   Data           4  sysdef.o(.data)
     USART3_RX_buffer_count                   0x20000008   Data           4  sysdef.o(.data)
@@ -2699,20 +2808,21 @@ Image Symbol Table
     satellite_below_20                       0x20000070   Data           4  gps.o(.data)
     satellite_below_30                       0x20000074   Data           4  gps.o(.data)
     satellite_below_40                       0x20000078   Data           4  gps.o(.data)
-    __stdout                                 0x2000007c   Data           4  stdout.o(.data)
-    USART1_RX_buffer                         0x20000084   Data        1300  sysdef.o(.bss)
-    USART2_RX_buffer                         0x20000598   Data        1300  sysdef.o(.bss)
-    USART3_RX_buffer                         0x20000aac   Data         300  sysdef.o(.bss)
-    UART4_RX_buffer                          0x20000bd8   Data         300  sysdef.o(.bss)
-    UART5_RX_buffer                          0x20000d04   Data         300  sysdef.o(.bss)
-    sysCfg                                   0x20000e30   Data         700  sysdef.o(.bss)
-    GPS_RMC_Data                             0x20001600   Data          50  gps.o(.bss)
-    GPS_GGA_Data                             0x20001634   Data          44  gps.o(.bss)
-    GPS_GSV_Data                             0x20001660   Data          56  gps.o(.bss)
-    GPS_DATA                                 0x20001698   Data          64  gps.o(.bss)
-    text                                     0x200016d8   Data         300  sim900.o(.bss)
-    simState                                 0x20001804   Data          64  sim900.o(.bss)
-    __initial_sp                             0x20002848   Data           0  startup_stm32f10x_hd.o(STACK)
+    __stdout                                 0x20000088   Data           4  stdout.o(.data)
+    USART1_RX_buffer                         0x20000090   Data        1300  sysdef.o(.bss)
+    USART2_RX_buffer                         0x200005a4   Data        1300  sysdef.o(.bss)
+    USART3_RX_buffer                         0x20000ab8   Data         300  sysdef.o(.bss)
+    UART4_RX_buffer                          0x20000be4   Data         300  sysdef.o(.bss)
+    UART5_RX_buffer                          0x20000d10   Data         300  sysdef.o(.bss)
+    sysCfg                                   0x20000e3c   Data         912  sysdef.o(.bss)
+    GPS_RMC_Data                             0x200016e0   Data          50  gps.o(.bss)
+    GPS_GGA_Data                             0x20001714   Data          44  gps.o(.bss)
+    GPS_GSV_Data                             0x20001740   Data          56  gps.o(.bss)
+    GPS_DATA                                 0x20001778   Data          64  gps.o(.bss)
+    obdBuf                                   0x20001948   Data         212  obd.o(.bss)
+    text                                     0x20001a1c   Data         300  sim900.o(.bss)
+    simState                                 0x20001b48   Data          64  sim900.o(.bss)
+    __initial_sp                             0x20002b88   Data           0  startup_stm32f10x_hd.o(STACK)
 
 
 
@@ -2722,34 +2832,34 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005374, Max: 0x00040000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000b58c, Max: 0x00040000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000052f0, Max: 0x00040000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000b4fc, Max: 0x00040000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x00000130   Data   RO         3318    RESET               startup_stm32f10x_hd.o
-    0x08000130   0x00000000   Code   RO         4948  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)(mc_w.l)
-    0x08000130   0x00000004   Code   RO         5228    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)(mc_w.l)
-    0x08000134   0x00000004   Code   RO         5231    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)(mc_w.l)
-    0x08000138   0x00000008   Code   RO         5232    .ARM.Collect$$$$00000007  mc_w.l(entry7.o)(mc_w.l)
-    0x08000140   0x00000004   Code   RO         5229    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)(mc_w.l)
+    0x08000130   0x00000000   Code   RO         4949  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)(mc_w.l)
+    0x08000130   0x00000004   Code   RO         5229    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)(mc_w.l)
+    0x08000134   0x00000004   Code   RO         5232    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)(mc_w.l)
+    0x08000138   0x00000008   Code   RO         5233    .ARM.Collect$$$$00000007  mc_w.l(entry7.o)(mc_w.l)
+    0x08000140   0x00000004   Code   RO         5230    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)(mc_w.l)
     0x08000144   0x00000024   Code   RO         3319    .text               startup_stm32f10x_hd.o
-    0x08000168   0x00000024   Code   RO         4951    .text               mc_w.l(memcpya.o)(mc_w.l)
-    0x0800018c   0x00000026   Code   RO         4953    .text               mc_w.l(memseta.o)(mc_w.l)
-    0x080001b2   0x0000001c   Code   RO         4955    .text               mc_w.l(strcat.o)(mc_w.l)
-    0x080001ce   0x0000002c   Code   RO         4957    .text               mc_w.l(strstr.o)(mc_w.l)
-    0x080001fa   0x00000010   Code   RO         4959    .text               mc_w.l(strlen.o)(mc_w.l)
-    0x0800020a   0x00000070   Code   RO         5224    .text               mc_w.l(strtol.o)(mc_w.l)
-    0x0800027a   0x0000001a   Code   RO         5226    .text               mc_w.l(atoi.o)(mc_w.l)
-    0x08000294   0x00000066   Code   RO         5236    .text               mc_w.l(uldiv.o)(mc_w.l)
+    0x08000168   0x00000024   Code   RO         4952    .text               mc_w.l(memcpya.o)(mc_w.l)
+    0x0800018c   0x00000026   Code   RO         4954    .text               mc_w.l(memseta.o)(mc_w.l)
+    0x080001b2   0x0000001c   Code   RO         4956    .text               mc_w.l(strcat.o)(mc_w.l)
+    0x080001ce   0x0000002c   Code   RO         4958    .text               mc_w.l(strstr.o)(mc_w.l)
+    0x080001fa   0x00000010   Code   RO         4960    .text               mc_w.l(strlen.o)(mc_w.l)
+    0x0800020a   0x00000070   Code   RO         5225    .text               mc_w.l(strtol.o)(mc_w.l)
+    0x0800027a   0x0000001a   Code   RO         5227    .text               mc_w.l(atoi.o)(mc_w.l)
+    0x08000294   0x00000066   Code   RO         5237    .text               mc_w.l(uldiv.o)(mc_w.l)
     0x080002fa   0x00000002   PAD
-    0x080002fc   0x00000008   Code   RO         5238    .text               mc_w.l(ctype_o.o)(mc_w.l)
-    0x08000304   0x0000009c   Code   RO         5273    .text               mc_w.l(_strtoul.o)(mc_w.l)
-    0x080003a0   0x00000024   Code   RO         5286    .text               mc_w.l(init.o)(mc_w.l)
-    0x080003c4   0x0000001e   Code   RO         5288    .text               mc_w.l(llshl.o)(mc_w.l)
-    0x080003e2   0x00000020   Code   RO         5290    .text               mc_w.l(llushr.o)(mc_w.l)
-    0x08000402   0x00000020   Code   RO         5294    .text               mc_w.l(_chval.o)(mc_w.l)
+    0x080002fc   0x00000008   Code   RO         5239    .text               mc_w.l(ctype_o.o)(mc_w.l)
+    0x08000304   0x0000009c   Code   RO         5274    .text               mc_w.l(_strtoul.o)(mc_w.l)
+    0x080003a0   0x00000024   Code   RO         5287    .text               mc_w.l(init.o)(mc_w.l)
+    0x080003c4   0x0000001e   Code   RO         5289    .text               mc_w.l(llshl.o)(mc_w.l)
+    0x080003e2   0x00000020   Code   RO         5291    .text               mc_w.l(llushr.o)(mc_w.l)
+    0x08000402   0x00000020   Code   RO         5295    .text               mc_w.l(_chval.o)(mc_w.l)
     0x08000422   0x00000002   PAD
     0x08000424   0x0000002c   Code   RO          125    i.BusFault_Handler  stm32f10x_it.o
     0x08000450   0x000000a8   Code   RO         1133    i.CAN_ClearITPendingBit  stm32f10x_can.o
@@ -2821,7 +2931,7 @@ Memory Map of the image
     0x0800180c   0x00000024   Code   RO         2070    i.RTC_SetCounter    stm32f10x_rtc.o
     0x08001830   0x00000014   Code   RO         2072    i.RTC_WaitForLastTask  stm32f10x_rtc.o
     0x08001844   0x00000028   Code   RO          138    i.SVC_Handler       stm32f10x_it.o
-    0x0800186c   0x0000007c   Code   RO         4785    i.Send_AT_And_Wait  sim900.o
+    0x0800186c   0x0000007c   Code   RO         4786    i.Send_AT_And_Wait  sim900.o
     0x080018e8   0x00000008   Code   RO         3282    i.SetSysClock       system_stm32f10x.o
     0x080018f0   0x000000c8   Code   RO         3283    i.SetSysClockTo72   system_stm32f10x.o
     0x080019b8   0x00000002   Code   RO          139    i.SysTick_Handler   stm32f10x_it.o
@@ -2857,57 +2967,160 @@ Memory Map of the image
     0x08002364   0x000000ec   Code   RO          147    i.USB_LP_CAN1_RX0_IRQHandler  stm32f10x_it.o
     0x08002450   0x0000002c   Code   RO          148    i.UsageFault_Handler  stm32f10x_it.o
     0x0800247c   0x000000f4   Code   RO         3442    i.WriteReadCheck    flash.o
-    0x08002570   0x00000020   Code   RO         5170    i.__0printf$8       mc_w.l(printf8.o)(mc_w.l)
-    0x08002590   0x00000028   Code   RO         5172    i.__0sprintf$8      mc_w.l(printf8.o)(mc_w.l)
-    0x080025b8   0x00000008   Code   RO         5266    i.__aeabi_errno_addr  mc_w.l(errno.o)(mc_w.l)
-    0x080025c0   0x0000000e   Code   RO         5300    i.__scatterload_copy  mc_w.l(handlers.o)(mc_w.l)
-    0x080025ce   0x00000002   Code   RO         5301    i.__scatterload_null  mc_w.l(handlers.o)(mc_w.l)
-    0x080025d0   0x0000000e   Code   RO         5302    i.__scatterload_zeroinit  mc_w.l(handlers.o)(mc_w.l)
+    0x08002570   0x00000020   Code   RO         5171    i.__0printf$8       mc_w.l(printf8.o)(mc_w.l)
+    0x08002590   0x00000028   Code   RO         5173    i.__0sprintf$8      mc_w.l(printf8.o)(mc_w.l)
+    0x080025b8   0x00000008   Code   RO         5267    i.__aeabi_errno_addr  mc_w.l(errno.o)(mc_w.l)
+    0x080025c0   0x0000000e   Code   RO         5301    i.__scatterload_copy  mc_w.l(handlers.o)(mc_w.l)
+    0x080025ce   0x00000002   Code   RO         5302    i.__scatterload_null  mc_w.l(handlers.o)(mc_w.l)
+    0x080025d0   0x0000000e   Code   RO         5303    i.__scatterload_zeroinit  mc_w.l(handlers.o)(mc_w.l)
     0x080025de   0x00000002   PAD
-    0x080025e0   0x00000428   Code   RO         5177    i._printf_core      mc_w.l(printf8.o)(mc_w.l)
-    0x08002a08   0x00000026   Code   RO         5178    i._printf_post_padding  mc_w.l(printf8.o)(mc_w.l)
-    0x08002a2e   0x0000002e   Code   RO         5179    i._printf_pre_padding  mc_w.l(printf8.o)(mc_w.l)
-    0x08002a5c   0x0000000a   Code   RO         5181    i._sputc            mc_w.l(printf8.o)(mc_w.l)
+    0x080025e0   0x00000428   Code   RO         5178    i._printf_core      mc_w.l(printf8.o)(mc_w.l)
+    0x08002a08   0x00000026   Code   RO         5179    i._printf_post_padding  mc_w.l(printf8.o)(mc_w.l)
+    0x08002a2e   0x0000002e   Code   RO         5180    i._printf_pre_padding  mc_w.l(printf8.o)(mc_w.l)
+    0x08002a5c   0x0000000a   Code   RO         5182    i._sputc            mc_w.l(printf8.o)(mc_w.l)
     0x08002a66   0x00000002   PAD
-    0x08002a68   0x00000064   Code   RO         3323    i.blueAtAndWait     bluetooth.o
-    0x08002acc   0x000000d4   Code   RO         3326    i.blueToothPower    bluetooth.o
-    0x08002ba0   0x00000050   Code   RO         3443    i.calBufCrc         flash.o
-    0x08002bf0   0x000000a4   Code   RO         3773    i.collectAndSend    mainfunc.o
-    0x08002c94   0x0000001a   Code   RO         3636    i.delay_ms          hard_init.o
-    0x08002cae   0x00000002   Code   RO         3875    i.execObd           obd.o
-    0x08002cb0   0x00000018   Code   RO         3445    i.flashRead         flash.o
-    0x08002cc8   0x00000006   Code   RO         3446    i.flashRollBack     flash.o
-    0x08002cce   0x00000090   Code   RO         3447    i.flashWrite        flash.o
-    0x08002d5e   0x00000002   PAD
-    0x08002d60   0x00000024   Code   RO          286    i.fputc             main.o
-    0x08002d84   0x00000cb8   Code   RO         3584    i.gpsDataIrq        gps.o
-    0x08003a3c   0x0000002c   Code   RO         3637    i.hardware_init     hard_init.o
-    0x08003a68   0x00000318   Code   RO         3327    i.initBlueTooth     bluetooth.o
-    0x08003d80   0x00000028   Code   RO         3894    i.initObdMode       obd.o
-    0x08003da8   0x0000008c   Code   RO          287    i.main              main.o
-    0x08003e34   0x00000200   Code   RO         4790    i.massProduction    sim900.o
-    0x08004034   0x00000064   Code   RO         3930    i.obdAtAndWait      obd.o
-    0x08004098   0x00000070   Code   RO         3934    i.obdPower          obd.o
-    0x08004108   0x000000f8   Code   RO         3936    i.obdTest           obd.o
-    0x08004200   0x00000044   Code   RO         3639    i.openUsart1        hard_init.o
-    0x08004244   0x000000fc   Code   RO         4792    i.power_sim900      sim900.o
-    0x08004340   0x000000dc   Code   RO         4793    i.readImei          sim900.o
-    0x0800441c   0x000001c4   Code   RO         4713    i.setDebugPara      iap.o
-    0x080045e0   0x00000200   Code   RO         4799    i.setReport         sim900.o
-    0x080047e0   0x00000474   Code   RO         4801    i.showConfig        sim900.o
-    0x08004c54   0x00000060   Code   RO         4806    i.sim900_power_on   sim900.o
-    0x08004cb4   0x00000134   Code   RO         3450    i.updateFlashConfig  flash.o
-    0x08004de8   0x000001d4   Code   RO         3452    i.writeFlashCfg     flash.o
-    0x08004fbc   0x00000200   Data   RO         3454    .constdata          flash.o
-    0x080051bc   0x00000018   Data   RO         4544    .constdata          rtc.o
-    0x080051d4   0x00000074   Data   RO         4810    .constdata          sim900.o
-    0x08005248   0x00000081   Data   RO         5239    .constdata          mc_w.l(ctype_o.o)(mc_w.l)
-    0x080052c9   0x00000003   PAD
-    0x080052cc   0x00000004   Data   RO         5240    .constdata          mc_w.l(ctype_o.o)(mc_w.l)
-    0x080052d0   0x00000020   Data   RO         5298    Region$$Table       anon$$obj.o
+    0x08002a68   0x00000040   Code   RO         3845    i.abs_evap_system_vapor_press  obd.o
+    0x08002aa8   0x00000040   Code   RO         3846    i.abs_load_formula  obd.o
+    0x08002ae8   0x00000040   Code   RO         3847    i.abs_tp_formula_b  obd.o
+    0x08002b28   0x00000040   Code   RO         3848    i.abs_tp_formula_c  obd.o
+    0x08002b68   0x00000040   Code   RO         3849    i.abs_tp_formula_d  obd.o
+    0x08002ba8   0x00000040   Code   RO         3850    i.abs_tp_formula_e  obd.o
+    0x08002be8   0x00000040   Code   RO         3851    i.abs_tp_formula_f  obd.o
+    0x08002c28   0x00000040   Code   RO         3852    i.air_flow_rate_formula  obd.o
+    0x08002c68   0x00000040   Code   RO         3853    i.amb_air_temp_formula  obd.o
+    0x08002ca8   0x00000040   Code   RO         3854    i.baro_pressure_formula  obd.o
+    0x08002ce8   0x00000064   Code   RO         3323    i.blueAtAndWait     bluetooth.o
+    0x08002d4c   0x000000d4   Code   RO         3326    i.blueToothPower    bluetooth.o
+    0x08002e20   0x00000050   Code   RO         3443    i.calBufCrc         flash.o
+    0x08002e70   0x00000040   Code   RO         3855    i.cat_temp_formula1  obd.o
+    0x08002eb0   0x00000040   Code   RO         3856    i.cat_temp_formula2  obd.o
+    0x08002ef0   0x00000040   Code   RO         3857    i.cat_temp_formula3  obd.o
+    0x08002f30   0x00000040   Code   RO         3858    i.cat_temp_formula4  obd.o
+    0x08002f70   0x00000080   Code   RO         3859    i.checkObdReturn    obd.o
+    0x08002ff0   0x00000040   Code   RO         3860    i.clr_distance_formula  obd.o
+    0x08003030   0x00000040   Code   RO         3861    i.clr_time_formula  obd.o
+    0x08003070   0x000000a4   Code   RO         3773    i.collectAndSend    mainfunc.o
+    0x08003114   0x00000040   Code   RO         3862    i.commanded_egr_formula  obd.o
+    0x08003154   0x00000040   Code   RO         3863    i.coolant_temp_formula  obd.o
+    0x08003194   0x0000001a   Code   RO         3636    i.delay_ms          hard_init.o
+    0x080031ae   0x00000002   PAD
+    0x080031b0   0x00000040   Code   RO         3864    i.ecu_voltage_formula  obd.o
+    0x080031f0   0x00000040   Code   RO         3865    i.egr_error_formula  obd.o
+    0x08003230   0x00000040   Code   RO         3866    i.emission_requirements  obd.o
+    0x08003270   0x00000040   Code   RO         3867    i.engine_load_formula  obd.o
+    0x080032b0   0x00000040   Code   RO         3868    i.engine_oil_temperature  obd.o
+    0x080032f0   0x00000040   Code   RO         3869    i.engine_rpm_formula  obd.o
+    0x08003330   0x00000040   Code   RO         3870    i.engine_run_time_formula  obd.o
+    0x08003370   0x00000040   Code   RO         3871    i.eq_ratio_formula  obd.o
+    0x080033b0   0x00000040   Code   RO         3872    i.evap_pct_formula  obd.o
+    0x080033f0   0x00000040   Code   RO         3873    i.evap_system_vapor_press  obd.o
+    0x08003430   0x00000040   Code   RO         3874    i.evap_vp_formula   obd.o
+    0x08003470   0x00000040   Code   RO         3876    i.external_test_cfg_1  obd.o
+    0x080034b0   0x00000040   Code   RO         3877    i.external_test_cfg_2  obd.o
+    0x080034f0   0x00000128   Code   RO         3878    i.fillObdBuf        obd.o
+    0x08003618   0x00000018   Code   RO         3445    i.flashRead         flash.o
+    0x08003630   0x00000006   Code   RO         3446    i.flashRollBack     flash.o
+    0x08003636   0x00000090   Code   RO         3447    i.flashWrite        flash.o
+    0x080036c6   0x00000002   PAD
+    0x080036c8   0x00000024   Code   RO          286    i.fputc             main.o
+    0x080036ec   0x00000040   Code   RO         3879    i.frp_relative_formula  obd.o
+    0x0800372c   0x00000040   Code   RO         3880    i.frp_widerange_formula  obd.o
+    0x0800376c   0x00000040   Code   RO         3881    i.fuel_injection_timing  obd.o
+    0x080037ac   0x00000040   Code   RO         3882    i.fuel_level_formula  obd.o
+    0x080037ec   0x00000040   Code   RO         3883    i.fuel_pressure_formula  obd.o
+    0x0800382c   0x00000040   Code   RO         3884    i.fuel_rate         obd.o
+    0x0800386c   0x00000034   Code   RO         3885    i.fuel_system1_frame_dtc  obd.o
+    0x080038a0   0x00000040   Code   RO         3886    i.fuel_system1_status_formula  obd.o
+    0x080038e0   0x00000040   Code   RO         3889    i.fuel_type         obd.o
+    0x08003920   0x00000040   Code   RO         3890    i.fule_rail_pressure  obd.o
+    0x08003960   0x000000b0   Code   RO         3891    i.getBufIndex       obd.o
+    0x08003a10   0x0000002a   Code   RO         3892    i.get_device_identifier  obd.o
+    0x08003a3a   0x00000002   PAD
+    0x08003a3c   0x00000cb8   Code   RO         3584    i.gpsDataIrq        gps.o
+    0x080046f4   0x0000002c   Code   RO         3637    i.hardware_init     hard_init.o
+    0x08004720   0x00000040   Code   RO         3893    i.hybrid_battery_pack_remain  obd.o
+    0x08004760   0x00000318   Code   RO         3327    i.initBlueTooth     bluetooth.o
+    0x08004a78   0x00000028   Code   RO         3894    i.initObdMode       obd.o
+    0x08004aa0   0x00000040   Code   RO         3895    i.intake_air_temp_formula  obd.o
+    0x08004ae0   0x00000040   Code   RO         3896    i.intake_pressure_formula  obd.o
+    0x08004b20   0x00000040   Code   RO         3897    i.long_term_fuel_trim_formula1  obd.o
+    0x08004b60   0x00000040   Code   RO         3898    i.long_term_fuel_trim_formula2  obd.o
+    0x08004ba0   0x00000040   Code   RO         3899    i.long_term_sec_oxygen_1_3  obd.o
+    0x08004be0   0x00000040   Code   RO         3900    i.long_term_sec_oxygen_2_4  obd.o
+    0x08004c20   0x000000ac   Code   RO          287    i.main              main.o
+    0x08004ccc   0x00000200   Code   RO         4791    i.massProduction    sim900.o
+    0x08004ecc   0x00000040   Code   RO         3902    i.mil_distance_formula  obd.o
+    0x08004f0c   0x00000040   Code   RO         3903    i.mil_time_formula  obd.o
+    0x08004f4c   0x00000040   Code   RO         3904    i.monitior_state_formula  obd.o
+    0x08004f8c   0x00000040   Code   RO         3905    i.numberOftroubleCodes  obd.o
+    0x08004fcc   0x00000040   Code   RO         3906    i.o2_sensor_formula1_1  obd.o
+    0x0800500c   0x00000040   Code   RO         3907    i.o2_sensor_formula1_2  obd.o
+    0x0800504c   0x00000040   Code   RO         3908    i.o2_sensor_formula1_3  obd.o
+    0x0800508c   0x00000040   Code   RO         3909    i.o2_sensor_formula1_4  obd.o
+    0x080050cc   0x00000040   Code   RO         3910    i.o2_sensor_formula2_1  obd.o
+    0x0800510c   0x00000040   Code   RO         3911    i.o2_sensor_formula2_2  obd.o
+    0x0800514c   0x00000040   Code   RO         3912    i.o2_sensor_formula2_3  obd.o
+    0x0800518c   0x00000040   Code   RO         3913    i.o2_sensor_formula2_4  obd.o
+    0x080051cc   0x00000040   Code   RO         3914    i.o2_sensor_wrc_formula1_1  obd.o
+    0x0800520c   0x00000040   Code   RO         3915    i.o2_sensor_wrc_formula1_2  obd.o
+    0x0800524c   0x00000040   Code   RO         3916    i.o2_sensor_wrc_formula1_3  obd.o
+    0x0800528c   0x00000040   Code   RO         3917    i.o2_sensor_wrc_formula1_4  obd.o
+    0x080052cc   0x00000040   Code   RO         3918    i.o2_sensor_wrc_formula2_1  obd.o
+    0x0800530c   0x00000040   Code   RO         3919    i.o2_sensor_wrc_formula2_2  obd.o
+    0x0800534c   0x00000040   Code   RO         3920    i.o2_sensor_wrc_formula2_3  obd.o
+    0x0800538c   0x00000040   Code   RO         3921    i.o2_sensor_wrc_formula2_4  obd.o
+    0x080053cc   0x00000040   Code   RO         3922    i.o2_sensor_wrv_formula1_1  obd.o
+    0x0800540c   0x00000040   Code   RO         3923    i.o2_sensor_wrv_formula1_2  obd.o
+    0x0800544c   0x00000040   Code   RO         3924    i.o2_sensor_wrv_formula1_3  obd.o
+    0x0800548c   0x00000040   Code   RO         3925    i.o2_sensor_wrv_formula1_4  obd.o
+    0x080054cc   0x00000040   Code   RO         3926    i.o2_sensor_wrv_formula2_1  obd.o
+    0x0800550c   0x00000040   Code   RO         3927    i.o2_sensor_wrv_formula2_2  obd.o
+    0x0800554c   0x00000040   Code   RO         3928    i.o2_sensor_wrv_formula2_3  obd.o
+    0x0800558c   0x00000040   Code   RO         3929    i.o2_sensor_wrv_formula2_4  obd.o
+    0x080055cc   0x00000224   Code   RO         3933    i.obdIrq            obd.o
+    0x080057f0   0x00000070   Code   RO         3934    i.obdPower          obd.o
+    0x08005860   0x000000a0   Code   RO         3936    i.obdTest           obd.o
+    0x08005900   0x00000040   Code   RO         3937    i.obd_requirements_formula  obd.o
+    0x08005940   0x00000044   Code   RO         3639    i.openUsart1        hard_init.o
+    0x08005984   0x00000040   Code   RO         3938    i.oxygen_sensors_present_1  obd.o
+    0x080059c4   0x00000040   Code   RO         3939    i.oxygen_sensors_present_2  obd.o
+    0x08005a04   0x00000040   Code   RO         3940    i.percentage_alcohol_fuel  obd.o
+    0x08005a44   0x000000fc   Code   RO         4793    i.power_sim900      sim900.o
+    0x08005b40   0x00000040   Code   RO         3941    i.pto_status_formula  obd.o
+    0x08005b80   0x000000dc   Code   RO         4794    i.readImei          sim900.o
+    0x08005c5c   0x00000040   Code   RO         3942    i.relative_acc_pedal_pos  obd.o
+    0x08005c9c   0x00000040   Code   RO         3943    i.relative_tp_formula  obd.o
+    0x08005cdc   0x00000040   Code   RO         3944    i.secondary_air_status_formula  obd.o
+    0x08005d1c   0x000001a4   Code   RO         4713    i.setDebugPara      iap.o
+    0x08005ec0   0x00000200   Code   RO         4800    i.setReport         sim900.o
+    0x080060c0   0x00000040   Code   RO         3945    i.short_term_fuel_trim_formula1  obd.o
+    0x08006100   0x00000040   Code   RO         3946    i.short_term_fuel_trim_formula2  obd.o
+    0x08006140   0x00000040   Code   RO         3947    i.short_term_sec_oxygen_1_3  obd.o
+    0x08006180   0x00000040   Code   RO         3948    i.short_term_sec_oxygen_2_4  obd.o
+    0x080061c0   0x00000474   Code   RO         4802    i.showConfig        sim900.o
+    0x08006634   0x00000060   Code   RO         4807    i.sim900_power_on   sim900.o
+    0x08006694   0x00000040   Code   RO         3950    i.support_pid_00_1f  obd.o
+    0x080066d4   0x00000040   Code   RO         3951    i.support_pid_20_3f  obd.o
+    0x08006714   0x00000040   Code   RO         3952    i.support_pid_41_5f  obd.o
+    0x08006754   0x00000040   Code   RO         3953    i.tac_pct_formula   obd.o
+    0x08006794   0x00000040   Code   RO         3954    i.throttle_position_formula  obd.o
+    0x080067d4   0x00000040   Code   RO         3955    i.timing_advance_formula  obd.o
+    0x08006814   0x00000134   Code   RO         3450    i.updateFlashConfig  flash.o
+    0x08006948   0x00000040   Code   RO         3956    i.vehicle_speed_formula  obd.o
+    0x08006988   0x00000040   Code   RO         3957    i.warm_ups_formula  obd.o
+    0x080069c8   0x000001d4   Code   RO         3452    i.writeFlashCfg     flash.o
+    0x08006b9c   0x00000200   Data   RO         3454    .constdata          flash.o
+    0x08006d9c   0x000044e8   Data   RO         3959    .constdata          obd.o
+    0x0800b284   0x00000018   Data   RO         4544    .constdata          rtc.o
+    0x0800b29c   0x00000144   Data   RO         4718    .constdata          iap.o
+    0x0800b3e0   0x00000074   Data   RO         4811    .constdata          sim900.o
+    0x0800b454   0x00000081   Data   RO         5240    .constdata          mc_w.l(ctype_o.o)(mc_w.l)
+    0x0800b4d5   0x00000003   PAD
+    0x0800b4d8   0x00000004   Data   RO         5241    .constdata          mc_w.l(ctype_o.o)(mc_w.l)
+    0x0800b4dc   0x00000020   Data   RO         5299    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00002848, Max: 0x0000c000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00002b88, Max: 0x0000c000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2915,14 +3128,16 @@ Memory Map of the image
     0x20000020   0x0000000c   Data   RW          149    .data               stm32f10x_it.o
     0x2000002c   0x00000014   Data   RW          660    .data               stm32f10x_rcc.o
     0x20000040   0x0000003c   Data   RW         3589    .data               gps.o
-    0x2000007c   0x00000004   Data   RW         5233    .data               mc_w.l(stdout.o)(mc_w.l)
-    0x20000080   0x00000004   Data   RW         5269    .data               mc_w.l(errno.o)(mc_w.l)
-    0x20000084   0x00001068   Zero   RW            1    .bss                sysdef.o
-    0x200010ec   0x00000514   Zero   RW         3453    .bss                flash.o
-    0x20001600   0x000000d8   Zero   RW         3588    .bss                gps.o
-    0x200016d8   0x0000016c   Zero   RW         4809    .bss                sim900.o
-    0x20001844   0x00000004   PAD
-    0x20001848   0x00001000   Zero   RW         3316    STACK               startup_stm32f10x_hd.o
+    0x2000007c   0x00000009   Data   RW         3960    .data               obd.o
+    0x20000085   0x00000003   PAD
+    0x20000088   0x00000004   Data   RW         5234    .data               mc_w.l(stdout.o)(mc_w.l)
+    0x2000008c   0x00000004   Data   RW         5270    .data               mc_w.l(errno.o)(mc_w.l)
+    0x20000090   0x0000113c   Zero   RW            1    .bss                sysdef.o
+    0x200011cc   0x00000514   Zero   RW         3453    .bss                flash.o
+    0x200016e0   0x000000d8   Zero   RW         3588    .bss                gps.o
+    0x200017b8   0x00000264   Zero   RW         3958    .bss                obd.o
+    0x20001a1c   0x0000016c   Zero   RW         4810    .bss                sim900.o
+    0x20001b88   0x00001000   Zero   RW         3316    STACK               startup_stm32f10x_hd.o
 
 
 ==============================================================================
@@ -2937,11 +3152,11 @@ Image component sizes
       1318        410        512          0       1300          0   flash.o
       3256        206          0         60        216          0   gps.o
       2526         72          0          0          0          0   hard_init.o
-       452         44          0          0          0          0   iap.o
-       176         58          0          0          0          0   main.o
+       420         74        324          0          0          0   iap.o
+       208         80          0          0          0          0   main.o
        164          8          0          0          0          0   mainfunc.o
        152         24          0          0          0          0   misc.o
-       502        158          0          0          0          0   obd.o
+      7634       1492      17640          9        612          0   obd.o
        250         16         24          0          0          0   rtc.o
       2856       1124        116          0        364          0   sim900.o
         36          8        304          0       4096          0   startup_stm32f10x_hd.o
@@ -2955,13 +3170,13 @@ Image component sizes
        212         62          0          0          0          0   stm32f10x_rtc.o
        276         42          0          0          0          0   stm32f10x_tim.o
        460          6          0          0          0          0   stm32f10x_usart.o
-         0          0          0         32       4200          0   sysdef.o
+         0          0          0         32       4412          0   sysdef.o
        304         26          0          0          0          0   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     18116       3286        988        124      10180          0   Object Totals
+     25252       4672      18952        136      11000          0   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        28          0          0          0          4          2   (incl. Padding)
+        32          0          0          3          0          1   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3010,15 +3225,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     20108       3370       1124        132      10180     378696   Grand Totals
-     20108       3370       1124        132      10180     378696   ELF Image Totals
-     20108       3370       1124        132          0          0   ROM Totals
+     27244       4756      19088        144      11000     428400   Grand Totals
+     27244       4756      19088        144      11000     428400   ELF Image Totals
+     27244       4756      19088        144          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                21232 (  20.73kB)
-    Total RW  Size (RW Data + ZI Data)             10312 (  10.07kB)
-    Total ROM Size (Code + RO Data + RW Data)      21364 (  20.86kB)
+    Total RO  Size (Code + RO Data)                46332 (  45.25kB)
+    Total RW  Size (RW Data + ZI Data)             11144 (  10.88kB)
+    Total ROM Size (Code + RO Data + RW Data)      46476 (  45.39kB)
 
 ==============================================================================
 

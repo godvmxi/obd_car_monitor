@@ -388,23 +388,90 @@ int16_t		checkAppCrc(IAP_BRIFE brife){
 }
 
 void  setDebugPara(void){
-	OBD_LIST temp[] = {
-		{0	,0	,	},
-		{1	,0	,	},
-		{2	,0	,	},
-		{3	,0	,	},
-		{4	,0	,	},
-		{5	,0	,	},
-		{6	,0	,	},
-		{7	,0	,	},
-		{8	,0	,	},
-		{9	,0	,	},
-		{10	,0	,	},
-		{11	,0	,	},
-		{12	,0	,	},
-		{13	,0	,	},
-		{14	,0	,	},
-		{15	,0	,	},
+	int i = 0;
+	const OBD_LIST temp[] = {
+		{0	,0	,5	},
+		{1	,0	,5	},
+		{2	,0	,5	},
+		{3	,0	,5	},
+		{4	,0	,5	},
+		{5	,0	,5	},
+		{6	,0	,5	},
+		{7	,0	,5	},
+		{8	,0	,5	},
+		{9	,0	,5	},
+		{10	,0	,5	},
+		{11	,0	,5	},
+		{12	,0	,5	},
+		{13	,0	,5	},
+		{14	,0	,5	},
+		{15	,0	,5	},
+		{16	,0	,5	},
+		{17	,0	,5	},
+		{18	,0	,5	},
+		{19	,0	,5	},
+		{20	,0	,5	},
+		{21	,0	,5	},
+		{22	,0	,5	},
+		{23	,0	,5	},
+		{24	,0	,5	},
+		{50	,0	,5	},
+		{51	,0	,5	},
+		{52	,0	,5	},
+		{53	,0	,5	},
+		{54	,0	,5	},
+		{55	,0	,5	},
+		{56	,0	,5	},
+		{57	,0	,5	},
+		{58	,0	,5	},
+		{59	,0	,5	},
+		{60	,0	,5	},
+		{61	,0	,5	},
+		{62	,0	,5	},
+		{63	,0	,5	},
+		{64	,0	,5	},
+		{65	,0	,5	},
+		{66	,0	,5	},
+		{67	,0	,5	},
+		{68	,0	,5	},
+		{69	,0	,5	},
+		{70	,0	,5	},
+		{71	,0	,5	},
+		{72	,0	,5	},
+		{73	,0	,5	},
+		{74	,0	,5	},
+		{75	,0	,5	},
+		{76	,0	,5	},
+		{77	,0	,5	},
+		{78	,0	,5	},
+		{79	,0	,5	},
+		{80	,0	,5	},
+		{81	,0	,5	},
+		{82	,0	,5	},
+		{83	,0	,5	},
+		{84	,0	,5	},
+		{85	,0	,5	},
+		{86	,0	,5	},
+		{87	,0	,5	},
+		{88	,0	,5	},
+		{89	,0	,5	},
+		{90	,0	,5	},
+		{91	,0	,5	},
+		{92	,0	,5	},
+		{93	,0	,5	},
+		{94	,0	,5	},
+		{95	,0	,5	},
+		{96	,0	,5	},
+		{97	,0	,5	},
+		{98	,0	,5	},
+		{99	,0	,5	},
+		{100	,0	,5	},
+		{101	,0	,5	},
+		{102	,0	,5	},
+		{103	,0	,5	},
+		{104	,0	,5	},
+		{105	,0	,5	},
+
 	};
 	sysCfg.iapConfig.flag = 0x5555;
 	strcat(sysCfg.iapConfig.ipUrl,"in.phonewingstech.com");
@@ -430,40 +497,14 @@ void  setDebugPara(void){
 
 
 	sysCfg.obdConfig.baudrate = 38400;
-	sysCfg.obdConfig.cmdNum = 20;
-//	sysCfg.obdConfig.cmdList[ 0].cmdIndex =	2; sysCfg.obdConfig.cmdlist[0].dataLength = 500; sysCfg.obdConfig.cmdlist[0].timeOut = 0;
-//	sysCfg.obdConfig.cmdList[ 1] =  1   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 2] =  1   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 3] =  3   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 4] =  4   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 5] =  5   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 6] =  6   & 0x0000; //at@1
-//	sysCfg.obdConfig.cmdList[ 7] =  7   & 0x4000; //at@2
-//	sysCfg.obdConfig.cmdList[ 8] =  0   & 0x0000;
-//	sysCfg.obdConfig.cmdList[ 9] =  0   & 0x0000;
-//	sysCfg.obdConfig.cmdList[10] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[11] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[12] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[13] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[14] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[15] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[16] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[17] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[18] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[19] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[20] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[21] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[22] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[23] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[24] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[25] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[26] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[27] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[28] =  0   & 0x1000;
-//	sysCfg.obdConfig.cmdList[29] =  0   & 0x1000;
-////	sysCfg.obdConfig.cmdList[30] =  0   & 0x1000;
-////	sysCfg.obdConfig.cmdList[20] =  0   & 0x1000;
-////	sysCfg.obdConfig.cmdList[20] =  0   & 0x1000;	
+	sysCfg.obdConfig.cmdNum =  sizeof(temp)/sizeof(OBD_LIST);
+	for(i =0;i<sysCfg.obdConfig.cmdNum;i++)
+	{
+		sysCfg.obdConfig.cmdList[i] = temp[i];
+	}
+	
+ 	printf("\r\ncmd num :%d\r\n",sysCfg.obdConfig.cmdNum);
+
 	sysCfg.obdConfig.crc = calBufCrc(sysCfg.obdConfig.reserved-6,sizeof(OBD_CONFIG)-2);
 
 	sysCfg.crc = 0x5555;

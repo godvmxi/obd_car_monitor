@@ -71,7 +71,7 @@ int	initObdMode(int type);
 int16_t obdExec(int16_t cmdNum);
 void execObd(int index);
 void obdBlue(void);
-void obdIrq(void);
+int32_t obdIrq(void);
 int checkObdReturn(char *buf ,uint16_t type);
 uint16_t getBufIndex(uint16_t index);
 int16_t fillObdBuf(uint16_t index,char *buf,int value);

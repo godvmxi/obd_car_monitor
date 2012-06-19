@@ -1640,7 +1640,7 @@ uint16_t getBufIndex(uint16_t index)
 		mapIndex[0] = 0;
 		for(i = 0;i<sysCfg.obdConfig.cmdNum;i++)
 		{
-			mapIndex[i+1] += sysCfg.obdConfig.cmdList[index].dataLegth ;		
+			mapIndex[i+1] += sysCfg.obdConfig.cmdList[index].dataLength ;		
 		}
 		printf("\r\nINDEX MAP\r\n");
 		for(i = 0 ;i < 200;i++)
@@ -1889,22 +1889,20 @@ void obdTest(void) {
 	
 	printf("\r\ncmd :%s\r\n",cmd);
 	ISP_DIRECTION=USART_OBD;
-	openUsart1();
+//	openUsart1();
 
 	printf("\r\nOBD test+++++++++++++++++++++++++++\r\n");
 
 	OBD_EN(Bit_RESET);
-//	while(1){
-//		printf("\r\nOBD test+++++++++++++++++++++++++++\r\n");
-//		OBD_EN(Bit_SET);
-//		delay_ms(5000);
-//		printf("\r\nOBD test---------------------------\r\n");
-//		OBD_EN(Bit_RESET);
-//		delay_ms(5000);
-//	}
 	delay_ms(1000);
 	obdPower(1);
 	delay_ms(1000);
+	delay_ms(1000);
+	while(1){
+		obdIrq();
+		delay_ms(400);
+	}
+	
 	
 	while(1)
 	{
@@ -2061,33 +2059,57 @@ int	obdReset(int type){
 	return 1; 
 
 }
-void obdIrq(void){
+int32_t obdIrq(void){
 	static uint32_t index  = 0;
 	uint32_t i = 0;
-	uint16_t dataBytes= (sysCfg.obdConfig.cmdList[index] & 0xF000) >> 12;
+	uint16_t dataBytes = sysCfg.obdConfig.cmdList[index].dataLength;
+	static uint8_t counter = 0;
+	if(counter <= sysCfg.obdConfig.cmdList[index].timeOut){
+		counter++;
+		return 0;
+	}
+	else{
+		counter = 0;
+	}
+	printf("\r\ndeal --> %d --> %d  -->%d --> %d  -->%s \r\n",index,dataBytes,counter,sysCfg.obdConfig.cmdList[index].timeOut,obdCmdList[index].pid);
+
 	if( dataBytes != 0 && obdCmdList[index].formula != NULL){
-//		if(strstr(OBD_BUF,"NO DATA"))
+		if(strstr(OBD_BUF,"UNABLE")){
+			printf("\r\ndevice lose,reinit device\r\n");
+			//re init device
+			index = 0;
+			return -1;
+		}
 	 	obdCmdList[index].formula(index,OBD_BUF);
 	}
-	memset(SIM_BUF,'\0',300);
+	memset(OBD_BUF,'\0',300);
+	OBD_COUNT = 0;
 	index++;
-	if(index > sysCfg.obdConfig.cmdNum)
-		index = 0;
+	if(index > sysCfg.obdConfig.cmdNum){
+		printf("\r\n\nCURRENT CIRCLE OVER,begin next timer\n");
+		index = sysCfg.obdConfig.initCmdNum;//
+		
+
+	}
+	printf("\r\n\t\t\t\t index :%d ,cmd :",sysCfg.obdConfig.cmdNum);
 	for(i = 0;;i++){
 		
-		USART_SendData(OBD,obdCmdList[sysCfg.obdConfig.cmdList[index] & 0x0FFF].pid[i]);	
+		USART_SendData(OBD,obdCmdList[sysCfg.obdConfig.cmdList[index].cmdIndex].pid[i]);
+		USART_SendData(ISP,obdCmdList[sysCfg.obdConfig.cmdList[index].cmdIndex].pid[i]);	
 		while( USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET );
-		if(obdCmdList[sysCfg.obdConfig.cmdList[index] & 0x0FFF].pid[i] == '\r'){
+		if(obdCmdList[sysCfg.obdConfig.cmdList[index].cmdIndex].pid[i] == '\r'){
 			break;
 		}
 	}
+//	printf("\r\nend\r\n");
+	return 1;
 }
 
 int16_t fillObdBuf(uint16_t index,char *buf,int value)
-{
+{															\
 	uint16_t i = 0;
 	uint16_t point; 
-	uint16_t size = sysCfg.obdConfig.cmdList[index].dataLegth ;
+	uint16_t size = sysCfg.obdConfig.cmdList[index].dataLength ;
 	printf("\r\nCURRENT INDEX:%d\r\n",index);
 	printf("\r\nlabel :%s\r\n",obdCmdList[index].label);
 	printf("\r\nCMD :%s\r\n",obdCmdList[index].pid);
@@ -2105,15 +2127,15 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
  	//copy data
 	if(value){
 		for(i=0;i<size;i++)
-			obdBuf.obdBuf[point+i] = buf[i];
+			obdBuf.buf[point+i] = buf[i];
 	}
 	else
 	{
 		for(i=0;i<size;i++)
-			obdBuf.obdBuf[point+i] = 0;
+			obdBuf.buf[point+i] = 0;
 	}
 
-	return size;
+	return/ size;
 }
 
 

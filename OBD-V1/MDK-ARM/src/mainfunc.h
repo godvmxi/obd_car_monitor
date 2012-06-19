@@ -42,6 +42,7 @@ void reportPos(SOCKET *soc,int timeout,int flag);
 void reportObd(SOCKET *soc,int timeout,int flag);
 void reportCan(SOCKET *soc,int timeout,int flag);
 void reportHeart(SOCKET *soc,int timeout,int flag);
+void initSimSms(int type);
 
 #endif
 
