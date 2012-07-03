@@ -3,7 +3,7 @@
 DATA_HEAD obdHeader;
 GPS_DATA_REPORT gpsDataReport;
 SOCKET socket;
-OBD_DATA obdData;
+//OBD_DATA obdData;
 ///*GPS*/
 extern stru_GPSRMC  	GPS_RMC_Data; 
 extern stru_GPSGGA  	GPS_GGA_Data; 
@@ -34,6 +34,12 @@ extern SIM_STRUCT simState;
 //	uint32_t socketNum;
 //	int32_t localPort;
 //	int32_t	desPort; 
+//+MIPRUDP
+
+int checkAckMsg(int type)
+{
+	
+}
 int16_t	collectAndSend(void){
 	int i = 0;
 	int8_t temp[20];
@@ -42,48 +48,36 @@ int16_t	collectAndSend(void){
 	int failCounter = 0;
 
 	BLUE_OBD = 0;
-//	gpsPowerOn();
+	printf("\r\n system begin\r\n");
+	gpsPowerOn();
 	
-	
-	blueToothPower(1);
-	initBlueTooth(1);
+//	
+//	blueToothPower(1);
+//	initBlueTooth(1);
 	delay_ms(2000);
-	for(i = 0;i<100;i++){
-		USART_SendData(BLUE,'\r');	
-		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-		USART_SendData(BLUE,'\n');	
-		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-		USART_SendData(BLUE,'A');	
-		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-		USART_SendData(BLUE,'B');	
-		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-		delay_ms(30);
-	}
+//	for(i = 0;i<100;i++){
+//		USART_SendData(BLUE,'\r');	
+//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
+//		USART_SendData(BLUE,'\n');	
+//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
+//		USART_SendData(BLUE,'A');	
+//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
+//		USART_SendData(BLUE,'B');	
+//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
+//		delay_ms(30);
+//	}
 //	blueTest();
+	
+	initData();
+
+	TIM_Cmd(TIM3, DISABLE);
 	BLUE_OBD = 1;
-	
-	obdPower(1);
-	initObdMode(1);
-//		
-	
-	while(1);
-//	obdTest();
-	
-
-	blueToothPower(1);
-	printf("\r\nclear setting\r\n");
-	GPIO_WriteBit(GPIOB,GPIO_Pin_9,Bit_SET);
-	delay_ms(5000);
-	GPIO_WriteBit(GPIOB,GPIO_Pin_9,Bit_RESET);
-	delay_ms(1000);
-
-	printf("\r\nclear setting\r\n");
+	obdMode = 0;
+	obdInitChip();
+//	TIM_Cmd(TIM3, ENABLE);
 
   	blueToothPower(0);
 	blueToothPower(1);
-	initBlueTooth(1);
-	BLUE_OBD = 1;
-	while(1);
 
 	failCounter++;
 	ISP_DIRECTION = USART_SIM;
@@ -93,10 +87,6 @@ int16_t	collectAndSend(void){
 	sim900_power_on();
 	Send_AT_And_Wait("AT\r","OK",500);
 	Send_AT_And_Wait("AT\r","OK",500);
-//	Send_AT_And_Wait("AT\r","OK",500);
-//	Send_AT_And_Wait("AT\r","OK",500);
-//	Send_AT_And_Wait("AT\r","OK",500);
-
 
 	if(strstr(SIM_BUF,"NOT INSERTED") || strstr(SIM_BUF,"REMOVE"))// || GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_10) == 1)
 	{
@@ -108,19 +98,17 @@ int16_t	collectAndSend(void){
 
 	while(1){
 	   	timeCounter = RTC_GetCounter();
+		printf("\r\nprepare gps\r\n");
 		gpsDataInit();//初始化gps数据
 		if(establishConnect(sysCfg.netConfig) == 0){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
 		}
-
-		reportObd(&sysCfg.netConfig,0,1);
-
+		
+		reportObd(&sysCfg.netConfig,0,1,0);
 		reportPos(&sysCfg.netConfig,0,1);
 
-		reportHeart(&sysCfg.netConfig,0,1);
-
-		printf("\r\nTIME USED :%d\r\n",RTC_GetCounter() - timeCounter);
+		printf("\r\nTIME USED :%d->%d-->%d\r\n",RTC_GetCounter(),timeCounter,RTC_GetCounter() - timeCounter);
 
 		delay_ms(3000);
 	   
@@ -328,22 +316,47 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	char *temp;
 	TIME time;
 	static uint32_t timeCounter = 0;
-	for(i = 0;i<timeout;i++){
-		if(GPS_RMC_DINGWEI_OK && GPS_GGA_DINGWEI_OK)
-		{
-			#ifdef PRINTF_DEBUG
-			printf("\r\nBegin GPS Message\r\n");
-			#endif
-		}
-		else
-		{
-			#ifdef PRINTF_DEBUG
-			printf("\r\nGPS未定位，暂时不发gps数据\r\n");
-			#endif
-			
-			return;
-		}
+	static int32_t rtcModifyCounter = 0;
+	i = 0;
+	
+	if(GPS_RMC_DINGWEI_OK && GPS_GGA_DINGWEI_OK)
+	{
+		#ifdef PRINTF_DEBUG
+		printf("\r\nBegin GPS Message\r\n");
+		#endif
+		rtcModifyCounter++;
 	}
+	else
+	{
+		#ifdef PRINTF_DEBUG
+		printf("\r\nGPS未定位\r\n");
+		#endif
+		rtcModifyCounter = 0;
+	}
+	//连续定位三次（大约3分钟）并且rtc没有被配置过，重新配置rtc
+	//或者rtc每连续定位30次，重新修正一下
+	if((rtcModifyFlag == 0 && rtcModifyCounter > 3) || rtcModifyCounter % 30 == 0 && rtcModifyCounter > 3){
+		
+		rtcModifyFlag = 1;
+		printf("\r\nmodify rtc timer-------\r\n");
+		timer.year = (GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
+		timer.month = (GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
+		timer.date = (GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
+		timer.hour = (GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0');
+		timer.minute = (GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
+		timer.second = (GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
+		RTC_Set(timer.year,timer.month,timer.date,timer.hour,timer.second,timer.second);
+	}
+
+	if(rtcModifyFlag != 0){
+		RTC_Get();
+		gpsDataReport.time = timer;	
+	}
+	else{
+		memset((char *)&gpsDataReport.time ,sizeof(TIME),0);
+	}
+	showTime(&gpsDataReport.time);
+
 	
 		
 	gpsDataReport.voltage = simState.voltage;
@@ -393,49 +406,48 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 
 		gpsDataReport.posState = 1;
 		//get time;
-		gpsDataReport.timeYY = 0;//(GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
-		gpsDataReport.timemm = 0;//(GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
-		gpsDataReport.timeDD = 0;//(GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
-		gpsDataReport.timeHH = 0;//(GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0') + 8;
-		gpsDataReport.timeMM = 0;//(GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
-		gpsDataReport.timeSS = 0;//(GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
+//		gpsDataReport.timeYY = 0;//(GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
+//		gpsDataReport.timemm = 0;//(GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
+//		gpsDataReport.timeDD = 0;//(GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
+//		gpsDataReport.timeHH = 0;//(GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0') + 8;
+//		gpsDataReport.timeMM = 0;//(GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
+//		gpsDataReport.timeSS = 0;//(GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
 		#ifdef PRINTF_DEBUG
 		printf("\r\ndate:%s\r\n",GPS_RMC_Data.UTCDate);
 		printf("\r\ntime:%s\r\n",GPS_RMC_Data.UTCTime);
 		printf("\r\nhight:%s\r\n",GPS_GGA_Data.HEIGHT);
 		#endif
 		
-		if(timeCounter % 10 == 0)
-		{
-			#ifdef PRINTF_DEBUG
-			printf("\r\nmodify rtc\r\n");
-			#endif
-			time.year = (GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
-			time.month = (GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
-			time.date = (GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
-			time.hour = (GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0')+8;
-			time.minute = (GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
-			time.second = (GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
-			time.week = 0;
-			#ifdef PRINTF_DEBUG
-			printf("\r\ncurrent time: %d  %3d-%3d-%3d  %3d-%3d-%3d\r\n",\
-							time.week,\
-							time.year,\
-							time.month,\
-							time.date,\
-							time.hour,\
-							time.minute,\
-							time.second );
-			#endif
-//			modifyTime(&time);
-//			setDs1302(time);
-//			showTime();
-			RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
+//		if(timeCounter % 10 == 0)
+//		{
+//			#ifdef PRINTF_DEBUG
+//			printf("\r\nmodify rtc\r\n");
+//			#endif
+//			time.year = (GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
+//			time.month = (GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
+//			time.date = (GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
+//			time.hour = (GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0');
+//			time.minute = (GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
+//			time.second = (GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
+//			#ifdef PRINTF_DEBUG
+//			printf("\r\ncurrent time:  %3d-%3d-%3d  %3d-%3d-%3d\r\n",\
+//
+//							time.year,\
+//							time.month,\
+//							time.date,\
+//							time.hour,\
+//							time.minute,\
+//							time.second );
+//			#endif
+////			modifyTime(&time);
+////			setDs1302(time);
+////			showTime();
+//			RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
+//
+//		}
 
-		}
 
-
-		timeCounter++;
+//		timeCounter++;
 
 		//get height
 		gpsDataReport.height = atoi(GPS_GGA_Data.HEIGHT);
@@ -608,7 +620,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	printf("\r\nangle    ：%10d",gpsDataReport.angle);
 	printf("\r\nstars    ：%10d",gpsDataReport.stars);
 	printf("\r\nstate    ：%10d",gpsDataReport.posState);
-	printf("\r\nTime: %2d%2d%2d%2d%2d%2d\r\n",gpsDataReport.timeYY,gpsDataReport.timemm,gpsDataReport.timeDD,gpsDataReport.timeHH,gpsDataReport.timeMM,gpsDataReport.timeSS);
+//	printf("\r\nTime: %2d%2d%2d%2d%2d%2d\r\n",gpsDataReport.timeYY,gpsDataReport.timemm,gpsDataReport.timeDD,gpsDataReport.timeHH,gpsDataReport.timeMM,gpsDataReport.timeSS);
 	#endif	 
 //	//get others;
 //	gpsDataReport.others = 9;	 	
@@ -714,37 +726,38 @@ void setDataHeader(uint16_t type,int8_t *pointer,int16_t length)
 	uint16_t i = 0;
 	int8_t buf[300];
 
-	
-
-	obdHeader.MSG_TAG[0] = '*';
-	obdHeader.MSG_TAG[1] = '*';
 
 
-	if(type == DEV_ONLINE) //first send
-		obdHeader.MSG_ID = 0;
-	else
-		obdHeader.MSG_ID++;//
 
 
 	obdHeader.MSG_TYPE = type;	
 
-	obdHeader.DEV_ID_H = simState.imeiHigh;
-	obdHeader.DEV_ID_L = simState.imeiLow;
+	obdHeader.IMEI_H = simState.imeiHigh;
+	obdHeader.IMEI_L = simState.imeiLow;
+
+	obdHeader.DEV_ID_H = 0;
+	obdHeader.DEV_ID_L = 0;
+
 	printf("\r\nIMEI :%d-%d\r\n",simState.imeiHigh,simState.imeiLow);
-	printf("\r\nIMEI :%d-%d\r\n",obdHeader.DEV_ID_H,obdHeader.DEV_ID_L);
+	printf("\r\nIMEI :%d-%d\r\n",obdHeader.IMEI_H,obdHeader.IMEI_L);
+	printf("\r\nVID :%d-%d\r\n",obdHeader.DEV_ID_H,obdHeader.DEV_ID_L);
+
+	if(POWER_STATE != 0){
+		obdHeader.IMEI_H = obdHeader.IMEI_H & 0x80000000;//最高位置一
+	}
 
 	//not set data length 
 	obdHeader.MSG_LENGTH = length;
 
-	memcpy(buf,obdHeader.MSG_TAG,sizeof(DATA_HEAD));
-	memcpy(buf+sizeof(DATA_HEAD),pointer,length);
-	printf("\r\nDATA HEADER :\r\n");
-	for(i = 0;i < length+sizeof(DATA_HEAD);i++){
-   		printf("%3X",buf[i]);
+	obdHeader.MSG_CRC = calBufsCrc((char *)(&obdHeader) +2,sizeof(DATA_HEAD)-2,pointer,length,NULL,0);
+
+	printf("\r\nCRC :%X  ->DATA HEADER :\r\n",obdHeader.MSG_CRC);
+	for(i = 0;i < sizeof(DATA_HEAD);i++){
+   		printf("%3X",((char *)(&obdHeader))[i]);
 	}
 	printf("\r\n");
 
-	obdHeader.MSG_CRC = calBufCrc(buf+4,sizeof(DATA_HEAD)+length-4);
+//	obdHeader.MSG_CRC = calBufCrc(buf+4,sizeof(DATA_HEAD)+length-4);
 }
 																																		  
 int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKET socket,int reConnect)//type 0:不自动发送数据包头 1：自动发送  gpsFlag :发送gps数据包
@@ -943,13 +956,55 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
  * 作    者:蛋蛋                                                                     
  * 修改日期:2012年3月9日                                                                    
  *******************************************************************************/
-extern OBD_MSG_BUG obdBuf;
-void reportObd(SOCKET *soc,int timeout,int flag){
+//extern OBD_MSG_BUG obdBuf;
+//typedef struct 
+//{
+//	int8_t week;
+//	int16_t year;
+//
+//	int8_t month;
+//	int8_t date;
+//	int8_t hour;
+//	int8_t minute;
+//	int8_t second;
+//		
+//}TIME;
+void reportObd(SOCKET *soc,int timeout,int flag,int mode){
 	uint32_t msgLength = 0;
-	msgLength =  getBufIndex(sysCfg.obdConfig.cmdNum - 1) + sysCfg.obdConfig.cmdList[].dataLength  + 12;// 最后一条数据的位置+最后一条数据的长度+obd头的长度
-	printf("\r\nOBD data begin length --> %d\r\n",msgLength);
-	setDataHeader(OBD_REPORT,(int8_t *)(&obdBuf),msgLength);
-	dataSend((int8_t *)(&obdBuf),msgLength,1,0,0,*soc,1);
+	TIM_Cmd(TIM3, DISABLE);
+	if(mode ==0){
+		if(rtcModifyFlag != 0){
+	   		RTC_Get();
+			obdFastBuf.time = timer;
+		}
+		else{
+			memset((uint8_t *)&obdFastBuf.time ,sizeof(TIME),0);
+		}
+		obdNormalBuf.itemNum = sysCfg.obdConfig.normalEnd - sysCfg.obdConfig.normalEnd;
+		showTime(&obdNormalBuf.time);
+		msgLength =  getBufIndex(sysCfg.obdConfig.normalEnd,0) + sysCfg.obdConfig.cmdList[sysCfg.obdConfig.normalEnd].dataLength  + 8;// 最后一条数据的位置+最后一条数据的长度+obd头的长度
+		printf("\r\nOBD normal data begin length --> %d\r\n",msgLength);
+		
+		setDataHeader(OBD_COMMON_REPORT,(int8_t *)(&obdNormalBuf),msgLength);
+		dataSend((int8_t *)(&obdNormalBuf),msgLength,1,0,0,*soc,1);
+	}
+	if(mode == 1){
+		if(rtcModifyFlag != 0){
+	   		RTC_Get();
+			obdFastBuf.time = timer;
+		}
+		else{
+			memset((uint8_t *)&obdFastBuf.time ,sizeof(TIME),0);
+		}
+		obdFastBuf.itemNum = sysCfg.obdConfig.fastEnd - sysCfg.obdConfig.fastStart;
+		showTime(&obdFastBuf.time);
+		msgLength =  getBufIndex(sysCfg.obdConfig.fastEnd,0) + sysCfg.obdConfig.cmdList[sysCfg.obdConfig.fastEnd].dataLength  + 8;// 最后一条数据的位置+最后一条数据的长度+obd头的长度
+		printf("\r\nOBD normal data begin length --> %d\r\n",msgLength);
+		
+		setDataHeader(OBD_FAST_REPORT,(int8_t *)(&obdFastBuf),msgLength);
+		dataSend((int8_t *)(&obdFastBuf),msgLength,1,0,0,*soc,1);
+	}
+	TIM_Cmd(TIM3, ENABLE);
 }
 /*******************************************************************************
  * 函数名称:checkAppState                                                                    
@@ -963,7 +1018,7 @@ void reportObd(SOCKET *soc,int timeout,int flag){
  *******************************************************************************/
 void reportHeart(SOCKET *soc,int timeout,int flag){
 	printf("\r\nHEART BEAT\r\n");
-	setDataHeader(HEARTHEAT_MSG,NULL,0);
+//	setDataHeader(HEARTHEAT_MSG,NULL,0);
 	dataSend(NULL,0,1,0,0,*soc,1); 
 }
 /*******************************************************************************

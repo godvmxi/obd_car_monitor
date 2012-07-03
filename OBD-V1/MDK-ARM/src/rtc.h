@@ -4,20 +4,9 @@
 #define RTC_H_H
 
 
-typedef struct 
-{
-	int8_t week;
-	int16_t year;
 
-	int8_t month;
-	int8_t date;
-	int8_t hour;
-	int8_t minute;
-	int8_t second;
-		
-}TIME;
 
-extern TIME timer;
+
 /*******************************************************************************
  * 函数名称:rtcConfig                                                                     
  * 描    述:建立TCP连接                                                               

@@ -1,0 +1,96 @@
+#ifndef __SYSDEF_H
+#define __SYSDEF_H
+
+
+#include <ctype.h> 
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <math.h>
+//#include <mem.h>
+#include <setjmp.h>
+
+
+#include "stm32f10x_it.h"
+#include "stm32f10x.h"
+#include "hard_init.h"
+#include "sim900.h"
+#include "flash.h"
+#include "gps.h"
+
+
+
+
+#define		REPORT_TIME		90//平均系统上报时间
+//#define		PRINTF_DEBUG //printf调试开关，注销掉便可以去掉所有的打印语句
+#define 	POWER_LACK	3900
+#define 	POWER_EMPTY		3700
+#define 	EMPTY_COUNTER 40000
+#define 	GPS_COUNTER  3
+
+
+#define	NO_ERROR	0
+#define	SIM_CARD_ERROR	1
+#define	SYS_PARA_ERROR	2  
+
+#define		LED2_OFF		GPIO_WriteBit(GPIOA,GPIO_Pin_8,Bit_SET);
+#define		LED2_ON			GPIO_WriteBit(GPIOA,GPIO_Pin_8,Bit_RESET);
+#define		LED3_OFF		GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_SET);   //红灯
+#define		LED3_ON			GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_RESET);
+#define		LED4_OFF		GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_SET);
+#define		LED4_ON			GPIO_WriteBit(GPIOA,GPIO_Pin_6,Bit_RESET);
+
+#define		SIM900_IGT_ON	GPIO_WriteBit(GPIOA,GPIO_Pin_5,Bit_SET);
+#define		SIM900_IGT_OFF	GPIO_WriteBit(GPIOA,GPIO_Pin_5,Bit_RESET);
+
+#define		SIM900_DTR_ON	GPIO_WriteBit(GPIOB,GPIO_Pin_9,Bit_SET);
+#define		SIM900_DTR_OFF	GPIO_WriteBit(GPIOB,GPIO_Pin_9,Bit_RESET);
+
+#define		GPS_SELANT_ON	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_SET);
+#define		GPS_SELANT_OFF	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_RESET);		
+
+
+
+
+#define ENRECHARGE()	 GPIO_WriteBit(GPIOC,GPIO_Pin_13,Bit_SET)
+#define DISRECHARGE()	 GPIO_WriteBit(GPIOC,GPIO_Pin_13,Bit_RESET)
+
+
+
+typedef enum   
+{
+	working,   //0:未休眠获停机
+	powerOff,  //1：关电源停机
+	dtrSleep,	//3：DTR管脚休眠
+	unsure,
+} SLEEP_TYPE;
+
+
+
+
+
+extern unsigned char	V_warn;
+extern int voltage;
+extern void  voltage_Process(void);
+extern uint8_t error_code;
+extern char USART1_buffer[300];
+extern char G_CODE[8];		 
+extern char IP[15];
+extern char PORT[5];
+
+//#define		SIM900_GP1_ON do{GPIO_InitTypeDef GPIO_InitStructure;\
+//								GPIO_InitStructure.GPIO_Pin=GPIO_Pin_14;\
+//								GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;\
+//								GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;\
+//								GPIO_Init(GPIOA,&GPIO_InitStructure);\
+//								GPIO_WriteBit(GPIOA,GPIO_Pin_14,Bit_RESET);}while(0) 
+//
+//#define		SIM900_GP1_OFF do{GPIO_InitTypeDef GPIO_InitStructure;\
+//								GPIO_InitStructure.GPIO_Pin=GPIO_Pin_14;\
+//								GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AIN;\
+//								GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;\
+//								GPIO_Init(GPIOA,&GPIO_InitStructure);}while(0)
+ 
+
+#endif

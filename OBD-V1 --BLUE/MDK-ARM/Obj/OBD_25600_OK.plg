@@ -1,0 +1,498 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\work\code\OBD-V1\MDK-ARM\Project.uvproj
+Project File Date:  06/07/2012
+
+<h2>Output:</h2>
+Build target 'OBD'
+compiling mainfunc.c...
+src\mainfunc.c(73): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         blueToothPower(1);
+src\mainfunc.c:         ^
+src\mainfunc.c(88): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         failCounter++;
+src\mainfunc.c:         ^
+src\mainfunc.c(39): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t temp[20];
+src\mainfunc.c:                ^
+src\mainfunc.c(185): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketCmd,"AT+MIPOPEN=%d,%d,\"%s\",%d,%d\r",socket.socketNum,socket.localPort,socket.ipUrl,socket.desPort,socket.udpTcp);
+src\mainfunc.c:                         ^
+src\mainfunc.c(187): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketState,"+MIPOPEN: %d,%d",socket.socketNum,1);
+src\mainfunc.c:                         ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                  ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                            ^
+src\mainfunc.c(433): warning:  #223-D: function "RTC_Set" declared implicitly
+src\mainfunc.c:                         RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
+src\mainfunc.c:                         ^
+src\mainfunc.c(627): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8_t *"
+src\mainfunc.c:         setDataHeader(DEV_POS_REPORT,(char *)(&gpsDataReport),sizeof(DEV_POS_REPORT));  
+src\mainfunc.c:                                      ^
+src\mainfunc.c(644): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(cmd,"AT+ MIPCLOSE=%d\r",soc->socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(645): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(cmd,"OK",500);
+src\mainfunc.c:                          ^
+src\mainfunc.c(679): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(tmp,"%2X",(uint8_t)(src[i]));
+src\mainfunc.c:                         ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                        ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                            ^
+src\mainfunc.c(660): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t tmp[2],temp = '0';
+src\mainfunc.c:                       ^
+src\mainfunc.c(740): warning:  #223-D: function "calBufsCrc" declared implicitly
+src\mainfunc.c:         obdHeader.MSG_CRC = calBufsCrc((char *)(&obdHeader) +2,sizeof(DATA_HEAD)-2,pointer,length,NULL,0);
+src\mainfunc.c:                             ^
+src\mainfunc.c(715): warning:  #177-D: variable "buf" was declared but never referenced
+src\mainfunc.c:         int8_t buf[300];
+src\mainfunc.c:                ^
+src\mainfunc.c(835): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:                 dataLength = str2hex((int8_t *)pointer,length,sendBuf+strlen(sendBuf)) + dataLength;
+src\mainfunc.c:                                                                              ^
+src\mainfunc.c(844): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(setSocket,"AT+MIPSETS=1,%d,500\r",dataLength/2);
+src\mainfunc.c:                 ^
+src\mainfunc.c(847): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(setSocket,"OK",500); 
+src\mainfunc.c:                          ^
+src\mainfunc.c(855): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(sendCmd,"AT+MIPSEND=%d,\"",socket.socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                         ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                                         ^
+src\mainfunc.c(876): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         for(i=0;i<strlen(sendCmd);i++)//cmd
+src\mainfunc.c:                          ^
+src\mainfunc.c(952): error:  #20: identifier "OBD_REPORT" is undefined
+src\mainfunc.c:         setDataHeader(OBD_REPORT,(int8_t *)(&obdBuf),msgLength);
+src\mainfunc.c:                       ^
+src\mainfunc.c(953): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         dataSend((int8_t *)(&obdBuf),msgLength,1,0,0,*soc,1);
+src\mainfunc.c:                  ^
+src\mainfunc.c(967): error:  #20: identifier "HEARTHEAT_MSG" is undefined
+src\mainfunc.c:         setDataHeader(HEARTHEAT_MSG,NULL,0);
+src\mainfunc.c:                       ^
+src\mainfunc.c: src\mainfunc.c: 25 warnings, 2 errors
+Target not created
+Build target 'OBD'
+compiling mainfunc.c...
+src\mainfunc.c(73): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         blueToothPower(1);
+src\mainfunc.c:         ^
+src\mainfunc.c(88): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         failCounter++;
+src\mainfunc.c:         ^
+src\mainfunc.c(39): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t temp[20];
+src\mainfunc.c:                ^
+src\mainfunc.c(185): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketCmd,"AT+MIPOPEN=%d,%d,\"%s\",%d,%d\r",socket.socketNum,socket.localPort,socket.ipUrl,socket.desPort,socket.udpTcp);
+src\mainfunc.c:                         ^
+src\mainfunc.c(187): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketState,"+MIPOPEN: %d,%d",socket.socketNum,1);
+src\mainfunc.c:                         ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                  ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                            ^
+src\mainfunc.c(433): warning:  #223-D: function "RTC_Set" declared implicitly
+src\mainfunc.c:                         RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
+src\mainfunc.c:                         ^
+src\mainfunc.c(627): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8_t *"
+src\mainfunc.c:         setDataHeader(DEV_POS_REPORT,(char *)(&gpsDataReport),sizeof(DEV_POS_REPORT));  
+src\mainfunc.c:                                      ^
+src\mainfunc.c(644): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(cmd,"AT+ MIPCLOSE=%d\r",soc->socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(645): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(cmd,"OK",500);
+src\mainfunc.c:                          ^
+src\mainfunc.c(679): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(tmp,"%2X",(uint8_t)(src[i]));
+src\mainfunc.c:                         ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                        ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                            ^
+src\mainfunc.c(660): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t tmp[2],temp = '0';
+src\mainfunc.c:                       ^
+src\mainfunc.c(740): warning:  #223-D: function "calBufsCrc" declared implicitly
+src\mainfunc.c:         obdHeader.MSG_CRC = calBufsCrc((char *)(&obdHeader) +2,sizeof(DATA_HEAD)-2,pointer,length,NULL,0);
+src\mainfunc.c:                             ^
+src\mainfunc.c(715): warning:  #177-D: variable "buf" was declared but never referenced
+src\mainfunc.c:         int8_t buf[300];
+src\mainfunc.c:                ^
+src\mainfunc.c(835): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:                 dataLength = str2hex((int8_t *)pointer,length,sendBuf+strlen(sendBuf)) + dataLength;
+src\mainfunc.c:                                                                              ^
+src\mainfunc.c(844): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(setSocket,"AT+MIPSETS=1,%d,500\r",dataLength/2);
+src\mainfunc.c:                 ^
+src\mainfunc.c(847): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(setSocket,"OK",500); 
+src\mainfunc.c:                          ^
+src\mainfunc.c(855): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(sendCmd,"AT+MIPSEND=%d,\"",socket.socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                         ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                                         ^
+src\mainfunc.c(876): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         for(i=0;i<strlen(sendCmd);i++)//cmd
+src\mainfunc.c:                          ^
+src\mainfunc.c(952): error:  #20: identifier "OBD_REPORT" is undefined
+src\mainfunc.c:         setDataHeader(OBD_REPORT,(int8_t *)(&obdBuf),msgLength);
+src\mainfunc.c:                       ^
+src\mainfunc.c(953): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         dataSend((int8_t *)(&obdBuf),msgLength,1,0,0,*soc,1);
+src\mainfunc.c:                  ^
+src\mainfunc.c: src\mainfunc.c: 25 warnings, 1 error
+Target not created
+Build target 'OBD'
+compiling mainfunc.c...
+src\mainfunc.c(73): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         blueToothPower(1);
+src\mainfunc.c:         ^
+src\mainfunc.c(88): warning:  #111-D: statement is unreachable
+src\mainfunc.c:         failCounter++;
+src\mainfunc.c:         ^
+src\mainfunc.c(39): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t temp[20];
+src\mainfunc.c:                ^
+src\mainfunc.c(185): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketCmd,"AT+MIPOPEN=%d,%d,\"%s\",%d,%d\r",socket.socketNum,socket.localPort,socket.ipUrl,socket.desPort,socket.udpTcp);
+src\mainfunc.c:                         ^
+src\mainfunc.c(187): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(socketState,"+MIPOPEN: %d,%d",socket.socketNum,1);
+src\mainfunc.c:                         ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                  ^
+src\mainfunc.c(252): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:                                 Send_AT_And_Wait(socketCmd,socketState,2000);
+src\mainfunc.c:                                                            ^
+src\mainfunc.c(433): warning:  #223-D: function "RTC_Set" declared implicitly
+src\mainfunc.c:                         RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
+src\mainfunc.c:                         ^
+src\mainfunc.c(627): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "int8_t *"
+src\mainfunc.c:         setDataHeader(DEV_POS_REPORT,(char *)(&gpsDataReport),sizeof(DEV_POS_REPORT));  
+src\mainfunc.c:                                      ^
+src\mainfunc.c(644): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(cmd,"AT+ MIPCLOSE=%d\r",soc->socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(645): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(cmd,"OK",500);
+src\mainfunc.c:                          ^
+src\mainfunc.c(679): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 sprintf(tmp,"%2X",(uint8_t)(src[i]));
+src\mainfunc.c:                         ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                        ^
+src\mainfunc.c(689): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *restrict"
+src\mainfunc.c:                 strcat(des,tmp);
+src\mainfunc.c:                            ^
+src\mainfunc.c(660): warning:  #177-D: variable "temp" was declared but never referenced
+src\mainfunc.c:         int8_t tmp[2],temp = '0';
+src\mainfunc.c:                       ^
+src\mainfunc.c(740): warning:  #223-D: function "calBufsCrc" declared implicitly
+src\mainfunc.c:         obdHeader.MSG_CRC = calBufsCrc((char *)(&obdHeader) +2,sizeof(DATA_HEAD)-2,pointer,length,NULL,0);
+src\mainfunc.c:                             ^
+src\mainfunc.c(715): warning:  #177-D: variable "buf" was declared but never referenced
+src\mainfunc.c:         int8_t buf[300];
+src\mainfunc.c:                ^
+src\mainfunc.c(835): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:                 dataLength = str2hex((int8_t *)pointer,length,sendBuf+strlen(sendBuf)) + dataLength;
+src\mainfunc.c:                                                                              ^
+src\mainfunc.c(844): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(setSocket,"AT+MIPSETS=1,%d,500\r",dataLength/2);
+src\mainfunc.c:                 ^
+src\mainfunc.c(847): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         Send_AT_And_Wait(setSocket,"OK",500); 
+src\mainfunc.c:                          ^
+src\mainfunc.c(855): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *restrict"
+src\mainfunc.c:         sprintf(sendCmd,"AT+MIPSEND=%d,\"",socket.socketNum);
+src\mainfunc.c:                 ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                         ^
+src\mainfunc.c(870): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
+src\mainfunc.c:                                                                         ^
+src\mainfunc.c(876): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "const char *"
+src\mainfunc.c:         for(i=0;i<strlen(sendCmd);i++)//cmd
+src\mainfunc.c:                          ^
+src\mainfunc.c(953): warning:  #167-D: argument of type "int8_t *" is incompatible with parameter of type "char *"
+src\mainfunc.c:         dataSend((int8_t *)(&obdBuf),msgLength,1,0,0,*soc,1);
+src\mainfunc.c:                  ^
+src\mainfunc.c: src\mainfunc.c: 25 warnings, 0 errors
+linking...
+Program Size: Code=22308 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 25 Warning(s).
+Build target 'OBD'
+linking...
+Program Size: Code=22308 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22300 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22300 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22300 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22300 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22300 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22296 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+linking...
+Program Size: Code=22296 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2191): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22296 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2192): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=22296 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+compiling main.c...
+linking...
+Program Size: Code=21808 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+linking...
+Program Size: Code=21808 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+compiling main.c...
+linking...
+Program Size: Code=22296 RO-data=18000 RW-data=140 ZI-data=9356  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+compiling main.c...
+src\main.c(25): warning:  #223-D: function "flashRead" declared implicitly
+src\main.c:     flashRead(IAP_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
+src\main.c:     ^
+src\main.c: src\main.c: 1 warning, 0 errors
+linking...
+Program Size: Code=27704 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 1 Warning(s).
+Build target 'OBD'
+compiling main.c...
+src\main.c(25): warning:  #223-D: function "flashRead" declared implicitly
+src\main.c:     flashRead(IAP_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
+src\main.c:     ^
+src\main.c: src\main.c: 1 warning, 0 errors
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2193): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=27728 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 3 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(1984): warning:  #223-D: function "obdpower" declared implicitly
+src\OBD.c:      obdpower(1);
+src\OBD.c:      ^
+src\OBD.c(2197): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 3 warnings, 0 errors
+linking...
+.\Obj\OBD_ALL_DATA.axf: Error: L6218E: Undefined symbol obdpower (referred from obd.o).
+.\Obj\OBD_ALL_DATA.axf: Not enough information to list image symbols.
+.\Obj\OBD_ALL_DATA.axf: Finished: 1 information, 0 warning and 1 error messages.
+Target not created
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(1985): warning:  #223-D: function "obdpower" declared implicitly
+src\OBD.c:      obdpower(1);
+src\OBD.c:      ^
+src\OBD.c(2198): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 3 warnings, 0 errors
+linking...
+.\Obj\OBD_ALL_DATA.axf: Error: L6218E: Undefined symbol obdpower (referred from obd.o).
+.\Obj\OBD_ALL_DATA.axf: Not enough information to list image symbols.
+.\Obj\OBD_ALL_DATA.axf: Finished: 1 information, 0 warning and 1 error messages.
+Target not created
+Build target 'OBD'
+linking...
+.\Obj\OBD_ALL_DATA.axf: Error: L6218E: Undefined symbol obdpower (referred from obd.o).
+.\Obj\OBD_ALL_DATA.axf: Not enough information to list image symbols.
+.\Obj\OBD_ALL_DATA.axf: Finished: 1 information, 0 warning and 1 error messages.
+Target not created
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2198): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=27756 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_ALL_DATA.axf" - 0 Error(s), 2 Warning(s).
+Build target 'OBD'
+linking...
+Program Size: Code=27756 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_BLUE.axf" - 0 Error(s), 0 Warning(s).
+Build target 'OBD'
+compiling main.c...
+src\main.c(25): warning:  #223-D: function "flashRead" declared implicitly
+src\main.c:     flashRead(IAP_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
+src\main.c:     ^
+src\main.c: src\main.c: 1 warning, 0 errors
+linking...
+Program Size: Code=27764 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_BLUE.axf" - 0 Error(s), 1 Warning(s).
+Build target 'OBD'
+compiling OBD.c...
+src\OBD.c(1913): warning:  #128-D: loop is not reachable from preceding code
+src\OBD.c:      while(1)
+src\OBD.c:      ^
+src\OBD.c(2199): warning:  #111-D: statement is unreachable
+src\OBD.c:      obdAtAndWait("",NULL,500);
+src\OBD.c:      ^
+src\OBD.c: src\OBD.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=27776 RO-data=19600 RW-data=144 ZI-data=11024  
+FromELF: creating hex file...
+".\Obj\OBD_BLUE.axf" - 0 Error(s), 2 Warning(s).

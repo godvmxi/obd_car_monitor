@@ -46,7 +46,16 @@ typedef enum
 	gpsStartError,//gps故障或者gps供电故障
 
 }SYSTEM_ERROR;
-
+typedef struct 
+{
+//	int8_t week;
+	int16_t year;
+	int8_t month;
+	int8_t date;
+	int8_t hour;
+	int8_t minute;
+	int8_t second;			
+}TIME;
 
 typedef struct {
 	uint8_t 	start[2];	  //fill with  '#'
@@ -109,13 +118,20 @@ typedef struct {
 }APP_CFG;
 //数据发送结构体定义
 typedef struct {
-	uint8_t		MSG_TAG[2];
 	uint16_t	MSG_CRC;
+	uint16_t 	MSG_TYPE;
+
+	uint32_t	IMEI_H;//第一个字节是power mode
+	uint32_t	IMEI_L;
+
+	uint16_t 	MSG_LENGTH;
+	uint8_t		hv;
+	uint8_t		sv;
+
 	uint32_t 	DEV_ID_H;//imei 高32位
 	uint32_t 	DEV_ID_L;//imei 低32位
-	uint16_t 	MSG_TYPE;
-	uint16_t 	MSG_LENGTH;
-	uint32_t	MSG_ID;
+	uint32_t	CELL_ID;
+	
 }DATA_HEAD;	
 typedef struct{	
 	uint32_t	longitude; //经度
@@ -128,14 +144,7 @@ typedef struct{
 
 	uint16_t	angle;
 	
-	uint8_t		timeYY;
-	uint8_t 	timemm;
-
-
-	uint8_t		timeDD;
-	uint8_t		timeHH;
-	uint8_t		timeMM;
-	uint8_t		timeSS;
+	TIME		time;
 
 	uint8_t		signal;
 	uint8_t		stars;
@@ -149,15 +158,7 @@ typedef struct{
 
 }GPS_DATA_REPORT;
 
-typedef struct{
-	u16 canNum;	//can data numbers of the package
-	u8 timeYY;
-	u8 timemm;
-	u8 timeDD;
-	u8 timeHH;
-	u8 timeMM;
-	u8 timeSS;
-} OBD_DATA_REPORT;
+
 //应用设计结构体定义
 typedef struct {
 	char imei[18]; //
@@ -178,6 +179,7 @@ typedef struct {
 	uint32_t socketNum;
 	int32_t localPort;
 	int32_t	desPort;
+	int32_t desPort2;
 	uint8_t reserved[20]; 
 }SOCKET;   
 
@@ -208,10 +210,15 @@ typedef struct {
 	uint32_t baudrate;
 	uint32_t deviceIdHigh;
 	uint32_t deviceIdLow;
-	uint32_t initCmdNum;
 	uint32_t cmdNum;
-	OBD_LIST cmdList[150];
-	uint8_t  reserved[20];	
+	uint16_t initStart;
+	uint16_t initEnd;
+	uint16_t normalStart;
+	uint16_t normalEnd;
+	uint16_t fastStart;
+	uint16_t fastEnd;
+	OBD_LIST cmdList[200];
+	uint8_t reserved[20];	
 }OBD_CONFIG;
 
 typedef struct {
@@ -226,11 +233,13 @@ typedef struct {
 }FLASH_CONFIG;
 
 typedef struct {
-	uint32_t itemNum;
-	uint32_t deviceIdHigh;
-	uint32_t deviceIdLow;
- 	uint8_t buf[200];
+	TIME time;
+	uint16_t itemNum;
+ 	uint8_t buf[400];
 }OBD_MSG_BUG;
+
+
+
 
 
 
@@ -331,11 +340,14 @@ typedef struct {
 		BLUE_HSW			PB9	
 */
 #define		BLUE_EN(X)		GPIO_WriteBit(GPIOA,GPIO_Pin_1,X)
-#define		BLUE_STATE		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7,X)
+#define		BLUE_STATE		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)
 #define		BLUE_CLR(X)		GPIO_WriteBit(GPIOB,GPIO_Pin_7,X)
 
 #define		BLUE_MS(X)		GPIO_WriteBit(GPIOB,GPIO_Pin_8,X)
 #define		BLUE_HSW(X)		GPIO_WriteBit(GPIOB,GPIO_Pin_9,X)
+
+
+#define		POWER_STATE		GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)
 
 
 	
@@ -401,9 +413,14 @@ extern	unsigned int UART5_RX_buffer_count; //串口5接收缓存位置变量
 #define	GPS				UART5
 
 
-extern FLASH_CONFIG  sysCfg;
-extern int	BLUE_OBD;
-extern SIM_STRUCT simState;
+extern 		FLASH_CONFIG  sysCfg;
+extern 		int	BLUE_OBD;
+extern 		SIM_STRUCT simState;
+extern		OBD_MSG_BUG obdNormalBuf;
+extern		OBD_MSG_BUG obdFastBuf;
+extern int32_t rtcModifyFlag;
+extern TIME timer;
+extern int32_t obdMode;
 
 
 /////*GPS*/
@@ -518,7 +535,7 @@ extern SIM_STRUCT simState;
 #include "flash.h"
 #include "gps.h"
 
-#include "fifo.h"
+#include "simfifo.h"
 #include "flashFifo.h"
 #include "blueTooth.h" 
 #include "obd.h"

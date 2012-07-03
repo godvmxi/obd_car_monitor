@@ -671,12 +671,12 @@ void EXTI_Configuration(void)
   	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   	EXTI_Init(&EXTI_InitStructure);	
 
-//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, GPIO_PinSource9);	 
-// 	EXTI_ClearITPendingBit(EXTI_Line9);
-//  	EXTI_InitStructure.EXTI_Line = EXTI_Line9;
+//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource10);	 
+// 	EXTI_ClearITPendingBit(EXTI_Line10);
+//  	EXTI_InitStructure.EXTI_Line = EXTI_Line10;
 //  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 //  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//下降沿触发中断
-//  	EXTI_InitStructure.EXTI_LineCmd = DISABLE;
+//  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 //  	EXTI_Init(&EXTI_InitStructure);	
 
 
@@ -747,7 +747,7 @@ void NVIC_Configuration(void)
 
 //*************************KEY2*******************************************************************
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
-	NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;  
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;  
   	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; 
   	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
@@ -779,11 +779,11 @@ void NVIC_Configuration(void)
 
 //---------------------Can 总线-------------------------------------------
 		/* CAN-RX*/
-//	NVIC_InitStructure.NVIC_IRQChannel=USB_LP_CAN1_RX0_IRQn;
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_Init(&NVIC_InitStructure);	
+	NVIC_InitStructure.NVIC_IRQChannel=USB_LP_CAN1_RX0_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);	
 //
 //	/* Enable the RTC Interrupt */
 //	NVIC_InitStructure.NVIC_IRQChannel = RTC_IRQn;
@@ -904,7 +904,46 @@ void TIM_Configuration(void)
 	TIM_Cmd(TIM3, ENABLE);
 }
 
-
+void CAN_Interrupt(void)
+{
+	CAN_InitTypeDef        CAN_InitStructure;
+	CAN_FilterInitTypeDef  CAN_FilterInitStructure;
+//	CanTxMsg TxMessage;
+	
+	/* CAN register init */
+	CAN_DeInit(CAN1);
+	CAN_StructInit(&CAN_InitStructure);
+	
+	/* CAN cell init */
+	/* CAN cell init */
+	CAN_InitStructure.CAN_TTCM=ENABLE;		//时间触发
+	CAN_InitStructure.CAN_ABOM=ENABLE;		//自动离线管理
+	CAN_InitStructure.CAN_AWUM=ENABLE;		//自动唤醒
+	CAN_InitStructure.CAN_NART=ENABLE;		//ENABLE:错误不自动重传 DISABLE:重传
+	CAN_InitStructure.CAN_RFLM=ENABLE;
+	CAN_InitStructure.CAN_TXFP=ENABLE;
+	CAN_InitStructure.CAN_Mode=CAN_Mode_Normal;		//正常传输模式
+	CAN_InitStructure.CAN_SJW=CAN_SJW_4tq;			//1-4
+	CAN_InitStructure.CAN_BS1=CAN_BS1_9tq;			//1-16
+	CAN_InitStructure.CAN_BS2=CAN_BS2_6tq;			//1-8
+	CAN_InitStructure.CAN_Prescaler=8;				//波特率为 8M/(4*(1+1+2))=500k
+	CAN_Init(CAN1,&CAN_InitStructure);
+	
+	/* CAN 过滤器设置 */
+	CAN_FilterInitStructure.CAN_FilterNumber=0;
+	CAN_FilterInitStructure.CAN_FilterMode=CAN_FilterMode_IdMask;
+	CAN_FilterInitStructure.CAN_FilterScale=CAN_FilterScale_32bit;
+	CAN_FilterInitStructure.CAN_FilterIdHigh=0x0000;
+	CAN_FilterInitStructure.CAN_FilterIdLow=0x0000;
+	CAN_FilterInitStructure.CAN_FilterMaskIdHigh=0x0000;
+	CAN_FilterInitStructure.CAN_FilterMaskIdLow=0x0000;
+	CAN_FilterInitStructure.CAN_FilterFIFOAssignment=CAN_FIFO0;
+	CAN_FilterInitStructure.CAN_FilterActivation=ENABLE;
+	CAN_FilterInit(&CAN_FilterInitStructure);
+	
+	/* 允许FMP0中断   FIFO消息挂号*/ 
+	CAN_ITConfig(CAN1,CAN_IT_FMP0|CAN_IT_FOV0|CAN_IT_FMP1|CAN_IT_FOV1, ENABLE);
+}
 
 void hardware_init(void)
 {	
@@ -917,7 +956,9 @@ void hardware_init(void)
 	EXTI_Configuration();
 //	CAN_Interrupt();
 	NVIC_Configuration();
-	RTC_Set();//set rtc
+	
+
+//	rtcConfig();
 
 
 	TIM_Configuration();

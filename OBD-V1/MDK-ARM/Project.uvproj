@@ -571,11 +571,6 @@
               <FilePath>.\src\blueTooth.c</FilePath>
             </File>
             <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\fifo.c</FilePath>
-            </File>
-            <File>
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\flash.c</FilePath>
@@ -624,6 +619,11 @@
               <FileName>sim900.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\sim900.c</FilePath>
+            </File>
+            <File>
+              <FileName>simfifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\simfifo.c</FilePath>
             </File>
           </Files>
         </Group>

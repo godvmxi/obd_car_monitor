@@ -241,7 +241,7 @@ void USART2_IRQHandler(void)   //SIM
 		}
 		#endif
 		
-
+//		simDataIrq(temp);
 		SIM_BUF[SIM_COUNT++]=temp;
 		SIM_BUF[SIM_COUNT]='\0';
 
@@ -276,11 +276,11 @@ void USART3_IRQHandler(void) //OBD
 		if(OBD_COUNT>300)
 			OBD_COUNT=0;
 		if(BLUE_OBD){//蓝牙和OBD直通//转发给BLUE
-			USART_SendData(ISP,'X');
+//			USART_SendData(ISP,'X');
 			USART_SendData(BLUE,temp);
 			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);	
-			USART_SendData(ISP,temp);
-			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
+//			USART_SendData(ISP,temp);
+//			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
 	
 		}
 		
@@ -298,10 +298,10 @@ void UART4_IRQHandler(void){ //blue
 	{ 								
 		temp = USART_ReceiveData(UART4);
 
-//		BLUE_BUF[BLUE_COUNT++]=temp;
-//		BLUE_BUF[BLUE_COUNT]='\0';
-//		if(BLUE_COUNT>300)
-//			BLUE_COUNT=0; 
+		BLUE_BUF[BLUE_COUNT++]=temp;
+		BLUE_BUF[BLUE_COUNT]='\0';
+		if(BLUE_COUNT>300)
+			BLUE_COUNT=0; 
 
 		if(ISP_DIRECTION==USART_BLUE)
 		{
@@ -309,11 +309,8 @@ void UART4_IRQHandler(void){ //blue
 //			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);			
 		} 
 		if(BLUE_OBD){//转发给OBD
-			USART_SendData(ISP,'Y');
+
 			USART_SendData(OBD,temp);
-			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
-			USART_SendData(ISP,temp);
-			while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
 				
 //			while(USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET);	  
 		}			
@@ -390,7 +387,11 @@ void EXTI3_IRQHandler(void)	//PE3
 //		} 
 	}
 }
+void EXTI15_10_IRQHandler(void)
+{
 
+	printf("\r\ntest\r\n");
+}
 void RTCAlarm_IRQHandler(void)
 {
 
@@ -451,6 +452,7 @@ void TIM3_IRQHandler(void)
 	{ 
 
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+		obdIrq();
 		if(state == 0){
 			LED2(Bit_SET);
 			state = 1;
@@ -498,7 +500,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 	
 		CAN_Receive(CAN1,CAN_FIFO0, &RxMessage);
 		//CanBuffer(&RxMessage);
-//		printf("\r\nCAN ok!!\r\n");
+		printf("\r\nCAN ok!!\r\n");
 
 
 		CAN_ClearITPendingBit(CAN1,CAN_IT_FMP0);

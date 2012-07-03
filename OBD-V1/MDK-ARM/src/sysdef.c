@@ -20,10 +20,16 @@ unsigned int UART5_RX_buffer_count=0; //串口5接收缓存位置变量
 int ISP_DIRECTION	= 0;	//ISP串口数据转发控制
 int BLUE_DIRECTION  = 0;	//蓝牙串口数据转发控制
 
+OBD_MSG_BUG obdNormalBuf;
+OBD_MSG_BUG obdFastBuf;
+int32_t rtcModifyFlag = 0;
+
 
 int	BLUE_OBD		= 0;
 
 FLASH_CONFIG  sysCfg;
+TIME timer;
+int32_t obdMode = 0; //0:normal mode 1:fast mode 2 :init mode
 
 
 

@@ -6,26 +6,27 @@
 
 //Message type
 ////Treminal --> host
-#define   	REGISTER_MSG  		0x0000
-#define   	HEARTHEAT_MSG  		0x0010
-#define		DEV_ONLINE			0x0011
-#define		DEV_OFFLINE			0x0012
-#define		DEV_POS_REPORT		0x0020
-#define		CAN_REPORT			0x0030
-#define		OBD_REPORT			0x0040
+#define   	REGISTER_MSG  						0x0000
+#define   	REQUEST_PHONE_MSG  					0x0010
+#define		DEV_POS_REPORT						0x0020
+#define		DEV_POS_REPORT_RESEND				0x0021
+#define		OBD_COMMON_REPORT					0x0030
+#define		OBD_COMMON_REPORT_RESEND			0x0031
+#define		OBD_FAST_REPORT						0x0032
+#define		OBD_FAST_REPORT_RESEND				0x0033
+#define		REQUEST_OBD_PROFILE					0x0040
 //
 //Host --> terminal	
 #define		SET_IAP_PARA		0x0110
 #define		SET_NET_PARA	 	0x0111
 #define		SET_WORK_PARA		0x0112
 #define		SET_BLUE_PARA		0x0113
-#define		SET_OBD_PARA		0x0114
 
-#define		EXEC_CAN			0x0120
+#define		SET_OBD_MODE		0x0120
 
-#define		EXEC_OBD			0x0130
 
 #define		SET_PHONE			0x0140
+#define		SET_OBD_PROFILE		0x0150
 
 int16_t	collectAndSend(void);
 int		checkConnectState(uint32_t socketNum);
@@ -39,10 +40,13 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 
 
 void reportPos(SOCKET *soc,int timeout,int flag);
-void reportObd(SOCKET *soc,int timeout,int flag);
+void reportObd(SOCKET *soc,int timeout,int flag,int mode);
 void reportCan(SOCKET *soc,int timeout,int flag);
 void reportHeart(SOCKET *soc,int timeout,int flag);
 void initSimSms(int type);
+int checkAckMsg(int type);
+
+
 
 #endif
 

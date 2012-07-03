@@ -73,8 +73,10 @@ void execObd(int index);
 void obdBlue(void);
 int32_t obdIrq(void);
 int checkObdReturn(char *buf ,uint16_t type);
-uint16_t getBufIndex(uint16_t index);
+uint16_t getBufIndex(uint16_t index,int32_t mode);
 int16_t fillObdBuf(uint16_t index,char *buf,int value);
+void obdGetAllData(void);
+void obdInitChip(void);
 
 
 

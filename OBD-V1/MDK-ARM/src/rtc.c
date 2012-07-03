@@ -1,6 +1,6 @@
 #include "rtc.h"
 
-TIME timer;
+
 
 /*******************************************************************************
  * 函数名称:rtcConfig                                                                     
@@ -17,6 +17,7 @@ void rtcConfig(void){
 	//我们在BKP的后备寄存器1中，存了一个特殊字符0xA5A5
 	//第一次上电或后备电源掉电后，该寄存器数据丢失，
 	//表明RTC数据丢失，需要重新配置
+	printf("\r\nset rtc\r\n");
 	if (BKP_ReadBackupRegister(BKP_DR1) != 0x5A5A)
 	{
 		//重新配置RTC
@@ -68,6 +69,8 @@ void rtcConfig(void){
 	else
 	{
         printf("\r\nno need to config rtc\r\n");
+		rtcModifyFlag = 1;
+
 		//若后备寄存器没有掉电，则无需重新配置RTC
         //这里我们可以利用RCC_GetFlagStatus()函数查看本次复位类型
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
@@ -242,8 +245,8 @@ int8_t RTC_Get(void)
 	timer.hour = temp/3600;     //小时 		
 	timer.minute = (temp%3600)/60; //分钟  	
 	timer.second = (temp%3600)%60; //秒钟 	
-	timer.week = RTC_Get_Week(timer.year,timer.month,timer.date);//获取星期  	
-	return 0; 
+//	timer.week = RTC_Get_Week(timer.year,timer.month,timer.date);//获取星期  	
+	return 1; 
 	
 }     
 	
@@ -315,6 +318,15 @@ void rtcTest(void){
 		RTC_Get();
 		printf("\r\nTIME:%d-%d-%d-%d-%d-%d\r\n",timer.year,timer.month,timer.date,timer.hour,timer.minute,timer.second);
 		delay_ms(2000);
+	}
+
+}
+void showTime(TIME *t){
+	if(t != NULL){
+		printf("\r\nTIME:%d-%d-%d  -->  %d-%d-%d\r\n",t->year,t->month,t->date,t->hour,t->minute,t->second);
+	}
+	else{
+		printf("\r\nTIME:%d-%d-%d  -->  %d-%d-%d\r\n",timer.year,timer.month,timer.date,timer.hour,timer.minute,timer.second);	
 	}
 
 }
