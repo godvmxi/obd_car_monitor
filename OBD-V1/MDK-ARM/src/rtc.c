@@ -28,15 +28,19 @@ void rtcConfig(void){
 		
 		/* Reset Backup Domain */
 		BKP_DeInit();
+		RCC_LSICmd(ENABLE);
 		
 		/* Enable LSE */
 //		RCC_LSEConfig(RCC_LSE_ON);
-		RCC_LSEConfig(RCC_LSE_OFF);
+//		RCC_LSEConfig(RCC_LSE_OFF);
+//		RCC_LSEConfig(RCC_LSE_Bypass);
+		
 		for(int16_t_WaitForOscSource=0;int16_t_WaitForOscSource<5000;int16_t_WaitForOscSource++)
 		{
 		}
 		/* Wait till LSE is ready */
 //		while (RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET);
+		printf("\r\nwait for lsi ready\r\n");
 		while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);
 		/* Select LSE as RTC Clock Source */
 //		RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);	

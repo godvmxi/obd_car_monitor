@@ -48,8 +48,17 @@ int16_t	collectAndSend(void){
 	int failCounter = 0;
 
 	BLUE_OBD = 0;
-	printf("\r\n system begin\r\n");
 	gpsPowerOn();
+//	ISP_DIRECTION=USART_SIM;
+//	while(1);
+
+
+	blueToothPower(0);
+	blueToothPower(1);
+	initBlueTooth(0);
+
+	printf("\r\n system begin\r\n");
+	
 	
 //	
 //	blueToothPower(1);
@@ -76,8 +85,7 @@ int16_t	collectAndSend(void){
 	obdInitChip();
 //	TIM_Cmd(TIM3, ENABLE);
 
-  	blueToothPower(0);
-	blueToothPower(1);
+  	
 
 	failCounter++;
 	ISP_DIRECTION = USART_SIM;
