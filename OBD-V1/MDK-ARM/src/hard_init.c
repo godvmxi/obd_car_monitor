@@ -958,7 +958,7 @@ void hardware_init(void)
 	NVIC_Configuration();
 	
 
-//	rtcConfig();
+	rtcConfig();
 
 
 	TIM_Configuration();

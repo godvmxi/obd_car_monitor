@@ -1,0 +1,27 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hideDotFiles = dotGitOnly
+[remote "phone"]
+	url = git@phonewings:carphone.git
+	fetch = +refs/heads/*:refs/remotes/phone/*
+	puttykeyfile = 
+[remote "bitbucket_1"]
+	url = git@bitbucket.org:godvmxi/git_1.git
+	fetch = +refs/heads/*:refs/remotes/bitbucket_1/*
+[remote "git_1"]
+	url = git@github.com:godvmxi/git_1.git
+	fetch = +refs/heads/*:refs/remotes/git_1/*
+	puttykeyfile = 
+[user]
+	name = godvmxi
+	email = godvmxi@gmail.com
+[tgit]
+	commitshowpatch = true
+[gui]
+	wmstate = normal
+	geometry = 775x427+484+280 139 192

@@ -61,7 +61,7 @@ void rtcConfig(void){
 		RTC_WaitForLastTask();
 		
 		/* Set RTC prescaler: set RTC period to 1sec */
-		RTC_SetPrescaler(32767); /* RTC period = RTCCLK/RTC_PR = (32.768 KHz)/(32767+1) */
+		RTC_SetPrescaler(40000); /* RTC period = RTCCLK/RTC_PR = (32.768 KHz)/(32767+1) */
 		
 		/* Wait until last write operation on RTC registers has finished */
 		RTC_WaitForLastTask();
@@ -69,6 +69,7 @@ void rtcConfig(void){
 		BKP_WriteBackupRegister(BKP_DR1, 0x5A5A);
 		printf("\r\nset rtc over\r\n");
 //        RTC_Set(2011,01,01,0,0,0);//默认时间
+
 	}
 	else
 	{
@@ -78,25 +79,28 @@ void rtcConfig(void){
 		//若后备寄存器没有掉电，则无需重新配置RTC
         //这里我们可以利用RCC_GetFlagStatus()函数查看本次复位类型
         RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
-            for(int16_t_WaitForOscSource=0;int16_t_WaitForOscSource<5000;int16_t_WaitForOscSource++);
+        for(int16_t_WaitForOscSource=0;int16_t_WaitForOscSource<5000;int16_t_WaitForOscSource++);
         if (RCC_GetFlagStatus(RCC_FLAG_PORRST) != RESET)
         {
 
 			//这是上电复位
+			printf("\r\nPower reset\r\n");
 
 
 		}
 		else if (RCC_GetFlagStatus(RCC_FLAG_PINRST) != RESET)
 		{
 		//这是外部RST管脚复位
+			printf("\r\nRST reset\r\n");
 		}
 		//清除RCC中复位标志
 		RCC_ClearFlag();
+		RCC_LSICmd(ENABLE);
 		//虽然RTC模块不需要重新配置，且掉电后依靠后备电池依然运行
 		//但是每次上电后，还是要使能RTCCLK
-		//RCC_RTCCLKCmd(ENABLE);
+		RCC_RTCCLKCmd(ENABLE);
 		//等待RTC时钟与APB1时钟同步
-		//RTC_WaitForSynchro();
+		RTC_WaitForSynchro();
 		//使能秒中断
 		RTC_ITConfig(RTC_IT_SEC, ENABLE);
 		//等待操作完成
@@ -139,7 +143,6 @@ int8_t const table_week[12]={0,3,3,6,1,4,6,2,5,0,3,5}; //月修正数据表
 const int8_t mon_table[12]={31,28,31,30,31,30,31,31,30,31,30,31}; 
 
 int8_t RTC_Set(int16_t syear,int8_t smon,int8_t sday,int8_t hour,int8_t min,int8_t sec) 
-
 { 
 	
 	int16_t t;
@@ -169,10 +172,12 @@ int8_t RTC_Set(int16_t syear,int8_t smon,int8_t sday,int8_t hour,int8_t min,int8
 	RCC->APB1ENR | 1<<27;//使能备份时钟 
 	PWR->CR | 1<<8;    //取消备份区写保护 
 	//上面三步是必须的!*/ 
+	printf("\r\nI am ok\r\n");
 	PWR_BackupAccessCmd(ENABLE);	
 	RTC_WaitForLastTask (); 
 	RTC_SetCounter (seccount); 
 	RTC_WaitForLastTask (); 
+	printf("\r\nI am ok2\r\n");
 	return 0;      
 	} 
 //得到当前的时间 
@@ -317,7 +322,12 @@ void setTime(void);
  *******************************************************************************/
 void rtcTest(void){
 	rtcConfig();
-	RTC_Set(2012,6,4,5,15,0);
+//	if (BKP_ReadBackupRegister(BKP_DR1) == 0x5A5A)
+//	{
+//		printf("\r\nset rtc ok\r\n");
+//		RTC_Set(2012,6,4,5,15,0);
+//		printf("\r\nset rtc ok2\r\n");
+//	}	
 	while(1){
 		RTC_Get();
 		printf("\r\nTIME:%d-%d-%d-%d-%d-%d\r\n",timer.year,timer.month,timer.date,timer.hour,timer.minute,timer.second);

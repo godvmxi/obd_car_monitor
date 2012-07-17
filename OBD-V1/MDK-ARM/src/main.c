@@ -19,6 +19,9 @@ int main(void)
 	hardware_init();
 	TIM_Cmd(TIM3, DISABLE);
 //	rtcTest();
+//	gpsPowerOn();
+//	ISP_DIRECTION=USART_GPS;
+//	while(1);
 	
 	setDebugPara();	 
 	ISP_DIRECTION=USART_SIM;
