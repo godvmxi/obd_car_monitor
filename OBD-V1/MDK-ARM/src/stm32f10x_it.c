@@ -391,6 +391,15 @@ void EXTI15_10_IRQHandler(void)
 {
 
 	printf("\r\ntest\r\n");
+	if ( EXTI_GetITStatus(EXTI_Line11) != RESET ) 
+	{
+		EXTI_ClearITPendingBit(EXTI_Line11);	
+
+		#ifdef PRINTF_DEBUG
+		printf("\r\n进入CAN状态变化中断！！！\r\n");
+		#endif	
+		CAN_DETECTER++;
+	}
 }
 void RTCAlarm_IRQHandler(void)
 {
@@ -447,12 +456,25 @@ void TIM2_IRQHandler(void)
 
 void TIM3_IRQHandler(void)
 {		
-	static int state = 0;
+	static int state = 0,counter = 0;
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{ 
 
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-		obdIrq();
+//		obdIrq();
+		counter++;
+		if(counter == 20)
+		{//enable can exti
+			printf("\r\nenable can exti\r\n");
+			enableCanExti(1);
+			CAN_DETECTER = 0;
+		}
+		if(counter == 25 ){
+			DEVICE_STATE = DEVICE_STATE > 2? 1 :0;
+			printf("\r\nDEVICE STATE--->%d \r\n",DEVICE_STATE);	////0:STOP 1:RUNNING
+			counter = 0;
+			CAN_DETECTER = 0;	 
+		}
 		if(state == 0){
 			LED2(Bit_SET);
 			state = 1;

@@ -7,7 +7,7 @@ void delay_ms(unsigned int time)
 	unsigned int x,y;
 //	feedDog();
 	for(x=0;x<time;x++)
-		for(y=0;y<13000;y++);	
+		for(y=0;y<9000;y++);	
 }
 
 //void RCC_Configuration(void)
@@ -671,13 +671,14 @@ void EXTI_Configuration(void)
   	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   	EXTI_Init(&EXTI_InitStructure);	
 
-//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource10);	 
-// 	EXTI_ClearITPendingBit(EXTI_Line10);
-//  	EXTI_InitStructure.EXTI_Line = EXTI_Line10;
-//  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-//  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//下降沿触发中断
-//  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-//  	EXTI_Init(&EXTI_InitStructure);	
+//can exit test
+	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource11);	 
+ 	EXTI_ClearITPendingBit(EXTI_Line11);
+  	EXTI_InitStructure.EXTI_Line = EXTI_Line11;
+  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;	//下降沿触发中断
+  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  	EXTI_Init(&EXTI_InitStructure);	
 
 
 
@@ -791,6 +792,13 @@ void NVIC_Configuration(void)
 //	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 //	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 //	NVIC_Init(&NVIC_InitStructure);
+
+//can modify exit modify
+	NVIC_InitStructure.NVIC_IRQChannel=EXTI15_10_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);	
 
 
 } 
@@ -1176,6 +1184,23 @@ void close_sys(void)
 //	RED_ON;
 //	delay_ms(2000);
 //	RED_OFF;
+
+}
+void enableCanExti(int32_t mode){
+	NVIC_InitTypeDef NVIC_InitStructure; 
+
+//--------------------------------打开串口中断 ---------------------
+	if(mode == 0)
+		NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
+	else
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+  	NVIC_InitStructure.NVIC_IRQChannel = EXTI15_10_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  	
+  	NVIC_Init(&NVIC_InitStructure);
 
 }
 

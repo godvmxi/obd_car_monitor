@@ -17,7 +17,9 @@ int fputc(int ch, FILE *f){//printf
 int main(void)
 {	
 	hardware_init();
+//	rtcTest();
 	TIM_Cmd(TIM3, DISABLE);
+
 //	rtcTest();
 //	gpsPowerOn();
 //	ISP_DIRECTION=USART_GPS;
