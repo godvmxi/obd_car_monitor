@@ -81,7 +81,7 @@ int16_t	collectAndSend(void){
 
 	TIM_Cmd(TIM3, DISABLE);
 	BLUE_OBD = 1;
-	obdMode = 0;
+	OBD_MODE = 0;
 	obdInitChip();
 //	TIM_Cmd(TIM3, ENABLE);
 
@@ -112,8 +112,11 @@ int16_t	collectAndSend(void){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
 		}
-		
-		reportObd(&sysCfg.netConfig,0,1,0);
+//		if(DEVICE_STATE != 0)//running
+		{		
+			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
+		}
+
 		reportPos(&sysCfg.netConfig,0,1);
 
 		printf("\r\nTIME USED :%d->%d-->%d\r\n",RTC_GetCounter(),timeCounter,RTC_GetCounter() - timeCounter);

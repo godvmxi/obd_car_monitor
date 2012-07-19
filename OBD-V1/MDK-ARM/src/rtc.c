@@ -55,7 +55,7 @@ void rtcConfig(void){
 		RTC_WaitForLastTask();
 		
 		/* Enable the RTC Second */
-		RTC_ITConfig(RTC_IT_SEC, ENABLE);
+//		RTC_ITConfig(RTC_IT_SEC, ENABLE);
 		
 		/* Wait until last write operation on RTC registers has finished */
 		RTC_WaitForLastTask();
@@ -102,7 +102,7 @@ void rtcConfig(void){
 		//等待RTC时钟与APB1时钟同步
 		RTC_WaitForSynchro();
 		//使能秒中断
-		RTC_ITConfig(RTC_IT_SEC, ENABLE);
+//		RTC_ITConfig(RTC_IT_SEC, ENABLE);
 		//等待操作完成
 		RTC_WaitForLastTask();
 	}

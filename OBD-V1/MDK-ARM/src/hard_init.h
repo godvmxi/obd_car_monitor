@@ -62,6 +62,7 @@ void	feedDog(void);
 void	watchDogInit(void);
 
 void	checkDns(void);
+void enableCanExti(int32_t mode);
 
 
 #endif

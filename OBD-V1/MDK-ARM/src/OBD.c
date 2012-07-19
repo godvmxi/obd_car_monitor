@@ -2141,7 +2141,8 @@ int32_t obdIrq(void){
 		fastIndex = sysCfg.obdConfig.fastStart-1;
 	}
 
-	if(obdMode == 0){
+	if(OBD_MODE == 0)
+	{
 //		printf("\r\nOBD in mormal mode++\r\n");
 		//clear another process state
 		fastIndex  = sysCfg.obdConfig.fastStart-1;
@@ -2149,8 +2150,7 @@ int32_t obdIrq(void){
 		
 		if(normalCounter <= sysCfg.obdConfig.cmdList[normalIndex].timeOut){
 		//	printf("\r\ntime left --> %d\r\n",sysCfg.obdConfig.cmdList[normalIndex].timeOut-normalCounter);
-			normalCounter++;
-			
+			normalCounter++;  			
 			return 0;
 		}
 		else{
@@ -2182,7 +2182,7 @@ int32_t obdIrq(void){
 			}
 		}	
 	}
-	if(obdMode == 1){
+	if(OBD_MODE == 1){
 		printf("\r\nOBD in fast mode++\r\n");
 		normalIndex = sysCfg.obdConfig.normalStart-1;
 		normalCounter = 0;
@@ -2194,6 +2194,32 @@ int32_t obdIrq(void){
 		else{
 			fastCounter = 0;
 		}
+
+		dataBytes = sysCfg.obdConfig.cmdList[fastIndex].dataLength;
+
+		if( dataBytes != 0 && obdCmdList[fastIndex].formula != NULL){
+			if(fastIndex >= sysCfg.obdConfig.fastStart)
+		 		obdCmdList[fastIndex].formula(fastIndex,OBD_BUF);
+		}
+		memset(OBD_BUF,'\0',300);
+		OBD_COUNT = 0;
+		fastIndex++;
+		if(fastIndex > sysCfg.obdConfig.fastEnd){
+//			printf("\r\n\nnormal obd  CIRCLE OVER,start next timer\n");
+			fastIndex = sysCfg.obdConfig.fastStart;//	
+		}
+//		printf("\r\nCMD-->%d --> %d  -->%d --> %d\r\n",normalIndex,dataBytes,counter,sysCfg.obdConfig.cmdList[normalIndex].timeOut);
+//		printf("\r\n normal index :%d ,cmd :%s\r\n\r\n",normalIndex,obdCmdList[sysCfg.obdConfig.cmdList[normalIndex].cmdIndex].pid);
+//		printf("\r\ncmd :");
+		for(i = 0;;i++){
+			tmp =  obdCmdList[sysCfg.obdConfig.cmdList[fastIndex].cmdIndex].pid[i];
+			USART_SendData(OBD,obdCmdList[sysCfg.obdConfig.cmdList[fastIndex].cmdIndex].pid[i]);
+			USART_SendData(ISP,obdCmdList[sysCfg.obdConfig.cmdList[fastIndex].cmdIndex].pid[i]);	
+			while( USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET );
+			if(obdCmdList[sysCfg.obdConfig.cmdList[fastIndex].cmdIndex].pid[i] == '\r'){
+				break;
+			}
+		}	
 	}
 //	printf("\r\nend\r\n");
 	return 1;
@@ -2221,9 +2247,9 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
 	{
 		return size;
 	}
-	if(obdMode == 0){
+	if(OBD_MODE == 0){
 		//normal mode
-		point = getBufIndex(index,obdMode);	
+		point = getBufIndex(index,OBD_MODE);	
 		printf("\r\nneed data size-->%d  index-->%d value-->%d\r\n",size,point,value);
 		for(i=0;i<size;i++){
 			printf("%3X",buf[i]);
@@ -2244,7 +2270,7 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
 
 
 	}
-	if(obdMode == 1){
+	if(OBD_MODE == 1){
 
 
 	}
@@ -2261,6 +2287,7 @@ void obdGetAllData(void){
 	obdPower(0);
 	delay_ms(1000);
 	obdPower(1);
+
 	delay_ms(1000);
 	ISP_DIRECTION=USART_OBD;
 
@@ -2317,13 +2344,14 @@ void obdGetAllData(void){
 //	obdAtAndWait("09E0\r",NULL,5000);
 //	obdAtAndWait("09F0\r",NULL,5000);
 //	obdAtAndWait("09\r",NULL,5000);
-
-	for(i4 = 0;i4 < 30;i4++){
-		printf("%3X",OBD_BUF[i4]);
-	}
-	obdAtAndWait("ati\r",NULL,500);
-
-
+//	obdAtAndWait("03\r",NULL,5000);
+//
+//	for(i4 = 0;i4 < 30;i4++){
+//		printf("%3X",OBD_BUF[i4]);
+//	}
+//	obdAtAndWait("ati\r",NULL,500);
+//
+//
 //	for(i1 = 9;i1 < 10;i1++){
 //		for(i2=0;i2<16;i2++)
 //		{

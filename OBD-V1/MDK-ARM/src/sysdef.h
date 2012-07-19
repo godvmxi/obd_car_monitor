@@ -412,15 +412,26 @@ extern	unsigned int UART5_RX_buffer_count; //串口5接收缓存位置变量
 #define	BLUE			UART4
 #define	GPS				UART5
 
-
+//全局变量区域
+//全局参数表
 extern 		FLASH_CONFIG  sysCfg;
+//蓝牙状态检测
 extern 		int	BLUE_OBD;
+//SIM状态参数表
 extern 		SIM_STRUCT simState;
+//OBD普通上报缓冲区
 extern		OBD_MSG_BUG obdNormalBuf;
+//OBD快速上报缓冲区
 extern		OBD_MSG_BUG obdFastBuf;
-extern int32_t rtcModifyFlag;
-extern TIME timer;
-extern int32_t obdMode;
+//RTC修正标志
+extern 		int32_t rtcModifyFlag;
+//全局时钟，需要获取时间后有效
+extern 		TIME timer;
+//OBD工作模式 0：普通模式 1:快速模式，通过时钟检测，每5秒检测一次
+extern 		int32_t OBD_MODE;
+//CAN总线检测功能计数器
+extern 		int32_t CAN_DETECTER;
+extern		int32_t DEVICE_STATE;
 
 
 /////*GPS*/

@@ -388,9 +388,28 @@ void EXTI3_IRQHandler(void)	//PE3
 	}
 }
 void EXTI15_10_IRQHandler(void)
-{
-
-	printf("\r\ntest\r\n");
+{	
+	static int i = 0;
+	if ( EXTI_GetITStatus(EXTI_Line11) != RESET ) 
+	{
+		EXTI_ClearITPendingBit(EXTI_Line11);	
+//		if(i%10000 == 0) {
+//		#ifdef PRINTF_DEBUG
+//		printf("\r\nline 11\r\n");
+//		#endif
+//		}	
+		CAN_DETECTER++;
+	}
+	if ( EXTI_GetITStatus(EXTI_Line12) != RESET ) 
+	{
+		EXTI_ClearITPendingBit(EXTI_Line12);	
+//		if(i%10000 == 0) {
+//		#ifdef PRINTF_DEBUG
+//		printf("\r\nline12\r\n");
+//		#endif	
+//		}
+		CAN_DETECTER++;
+	}
 }
 void RTCAlarm_IRQHandler(void)
 {
@@ -408,19 +427,14 @@ void RTC_IRQHandler(void)
   if (RTC_GetITStatus(RTC_IT_SEC) != RESET)
   {
     /* Clear the RTC Second interrupt */
-    RTC_ClearITPendingBit(RTC_IT_SEC);
-
-    /* Toggle LED1 */
-
-
+    RTC_ClearITPendingBit(RTC_IT_SEC); 
+    /* Toggle LED1 */				   
     /* Enable time update */
-//	rtc();
-
+//	rtc();							   
     /* Wait until last write operation on RTC registers has finished */
     RTC_WaitForLastTask();
     /* Reset RTC Counter when Time is 23:59:59 */
-    if (RTC_GetCounter() == 0x00015180)
-    {
+    if (RTC_GetCounter() == 0x00015180)    {
       RTC_SetCounter(0x0);
       /* Wait until last write operation on RTC registers has finished */
       RTC_WaitForLastTask();
@@ -434,25 +448,36 @@ void TIM2_IRQHandler(void)
 	 
 	 if (TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
 	{
-		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-
+		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	 
 		TIM_Cmd(TIM2, DISABLE);
-		TIM2->CNT=0;
-
-		
-
+		TIM2->CNT=0;  
 	}
 }
 
 
 void TIM3_IRQHandler(void)
 {		
-	static int state = 0;
+	static int state = 0,counter = 0;
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{ 
 
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-		obdIrq();
+//		obdIrq();
+		counter++;
+		if(counter == 5)
+		{//enable can exti
+			printf("\r\nenable can exti\r\n");
+			enableCanExti(1);
+			CAN_DETECTER = 0;
+		}
+		if(counter > 5 )
+		{
+			DEVICE_STATE = CAN_DETECTER > 10? 1 :0;
+			printf("\r\nDEVICE STATE--->%d -->%d\r\n",DEVICE_STATE,CAN_DETECTER);	////0:STOP 1:RUNNING
+			counter = 0;
+			CAN_DETECTER = 0;	
+			enableCanExti(0); 
+		}
 		if(state == 0){
 			LED2(Bit_SET);
 			state = 1;
