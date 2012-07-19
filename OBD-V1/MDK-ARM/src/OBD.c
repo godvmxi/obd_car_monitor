@@ -2287,6 +2287,7 @@ void obdGetAllData(void){
 	obdPower(0);
 	delay_ms(1000);
 	obdPower(1);
+
 	delay_ms(1000);
 	ISP_DIRECTION=USART_OBD;
 
@@ -2343,13 +2344,14 @@ void obdGetAllData(void){
 //	obdAtAndWait("09E0\r",NULL,5000);
 //	obdAtAndWait("09F0\r",NULL,5000);
 //	obdAtAndWait("09\r",NULL,5000);
-
-	for(i4 = 0;i4 < 30;i4++){
-		printf("%3X",OBD_BUF[i4]);
-	}
-	obdAtAndWait("ati\r",NULL,500);
-
-
+//	obdAtAndWait("03\r",NULL,5000);
+//
+//	for(i4 = 0;i4 < 30;i4++){
+//		printf("%3X",OBD_BUF[i4]);
+//	}
+//	obdAtAndWait("ati\r",NULL,500);
+//
+//
 //	for(i1 = 9;i1 < 10;i1++){
 //		for(i2=0;i2<16;i2++)
 //		{

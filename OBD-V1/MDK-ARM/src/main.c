@@ -18,7 +18,17 @@ int main(void)
 {	
 	hardware_init();
 //	rtcTest();
-	TIM_Cmd(TIM3, DISABLE);
+	enableCanExti(1);
+	obdPower(1);
+//	while(1);
+//	TIM_Cmd(TIM3, DISABLE);
+//	while(1);
+//	enableCanExti(0);
+//	obdGetAllData();
+//	while(1){
+//		printf("\r\nI am runing\r\n");
+//		delay_ms(1000);
+//	}
 
 //	rtcTest();
 //	gpsPowerOn();
