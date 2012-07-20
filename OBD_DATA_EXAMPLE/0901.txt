@@ -1,0 +1,1459 @@
+
+AT--->ATM0
+
+OK>
+AT--->ATL0
+
+OK>
+AT--->ATS0
+
+OK>
+AT--->AT@1
+
+SCANTOOL.NET LLC>
+AT--->ATI
+
+ELM327 v1.3a>
+AT--->STI
+
+STN1110 v2.1.3>
+AT--->ATPP 0E OFF
+
+OK>
+AT--->ST SL off,on
+
+?>
+AT--->ST SLU off,on
+
+OK>
+AT--->ST SLVL off,on
+
+OK>
+AT--->ST SLVG off
+
+OK>
+AT--->ATAT1
+
+OK>
+AT--->ATSP0
+
+OK>
+AT--->0100
+
+SEARCHING...4100BE1FB811>
+AT--->ATDPN
+
+A3>
+AT--->0902
+
+NO DATA>
+AT--->09025
+
+NO DATA>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222> 53 53 53 53 32 32 32 32 32 32 32 32  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+AT--->ATE0
+
+OK>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222> 53 53 53 53 32 32 32 32 32 32 32 32  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+
+CMD :0100;
+
+AT--->0100;
+
+4100BE1FB811STOPPED>BUF DATA:  34 31 30 30 42 45 31 46 42 38 31 31  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0
+
+CMD :0101;
+
+AT--->0101;
+
+410100076100STOPPED>BUF DATA:  34 31 30 31 30 30 30 37 36 31 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0
+
+CMD :0102;
+
+AT--->0102;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0103;
+
+AT--->0103;
+
+41030200STOPPED>BUF DATA:  34 31 30 33 30 32 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0104;
+
+AT--->0104;
+
+410451STOPPED>BUF DATA:  34 31 30 34 35 31  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0105;
+
+AT--->0105;
+
+410580STOPPED>BUF DATA:  34 31 30 35 38 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0106;
+
+AT--->0106;
+
+41067ESTOPPED>BUF DATA:  34 31 30 36 37 45  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0107;
+
+AT--->0107;
+
+41077BSTOPPED>BUF DATA:  34 31 30 37 37 42  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0108;
+
+AT--->0108;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0109;
+
+AT--->0109;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010A;
+
+AT--->010A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010B;
+
+AT--->010B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010C;
+
+AT--->010C;
+
+410C0D48STOPPED>BUF DATA:  34 31 30 43 30 44 34 38  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010D;
+
+AT--->010D;
+
+410D00STOPPED>BUF DATA:  34 31 30 44 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010E;
+
+AT--->010E;
+
+410E92STOPPED>BUF DATA:  34 31 30 45 39 32  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :010F;
+
+AT--->010F;
+
+410F6ESTOPPED>BUF DATA:  34 31 30 46 36 45  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0110;
+
+AT--->0110;
+
+411001C9STOPPED>BUF DATA:  34 31 31 30 30 31 43 39  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0111;
+
+AT--->0111;
+
+411109STOPPED>BUF DATA:  34 31 31 31 30 39  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0112;
+
+AT--->0112;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0113;
+
+AT--->0113;
+
+411303STOPPED>BUF DATA:  34 31 31 33 30 33  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0114;
+
+AT--->0114;
+
+4114107FSTOPPED>BUF DATA:  34 31 31 34 31 30 37 46  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0115;
+
+AT--->0115;
+
+411526FFSTOPPED>BUF DATA:  34 31 31 35 32 36 46 46  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0116;
+
+AT--->0116;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0117;
+
+AT--->0117;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0118;
+
+AT--->0118;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0119;
+
+AT--->0119;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011A;
+
+AT--->011A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011B;
+
+AT--->011B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011C;
+
+AT--->011C;
+
+411C06STOPPED>BUF DATA:  34 31 31 43 30 36  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011D;
+
+AT--->011D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011E;
+
+AT--->011E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :011F;
+
+AT--->011F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0120;
+
+AT--->0120;
+
+412080000000STOPPED>BUF DATA:  34 31 32 30 38 30 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0
+
+CMD :0121;
+
+AT--->0121;
+
+41210000STOPPED>BUF DATA:  34 31 32 31 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0122;
+
+AT--->0122;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0123;
+
+AT--->0123;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0124;
+
+AT--->0124;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0125;
+
+AT--->0125;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0126;
+
+AT--->0126;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0127;
+
+AT--->0127;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0128;
+
+AT--->0128;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0129;
+
+AT--->0129;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012A;
+
+AT--->012A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012B;
+
+AT--->012B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012C;
+
+AT--->012C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012D;
+
+AT--->012D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012E;
+
+AT--->012E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :012F;
+
+AT--->012F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0130;
+
+AT--->0130;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0131;
+
+AT--->0131;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0132;
+
+AT--->0132;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0133;
+
+AT--->0133;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0134;
+
+AT--->0134;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0135;
+
+AT--->0135;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0136;
+
+AT--->0136;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0137;
+
+AT--->0137;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0138;
+
+AT--->0138;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0139;
+
+AT--->0139;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013A;
+
+AT--->013A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013B;
+
+AT--->013B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013C;
+
+AT--->013C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013D;
+
+AT--->013D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013E;
+
+AT--->013E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :013F;
+
+AT--->013F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0140;
+
+AT--->0140;
+
+414000000000STOPPED>BUF DATA:  34 31 34 30 30 30 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0
+
+CMD :0141;
+
+AT--->0141;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0142;
+
+AT--->0142;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0143;
+
+AT--->0143;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0144;
+
+AT--->0144;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0145;
+
+AT--->0145;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0146;
+
+AT--->0146;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0147;
+
+AT--->0147;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0148;
+
+AT--->0148;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0149;
+
+AT--->0149;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014A;
+
+AT--->014A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014B;
+
+AT--->014B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014C;
+
+AT--->014C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014D;
+
+AT--->014D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014E;
+
+AT--->014E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :014F;
+
+AT--->014F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0150;
+
+AT--->0150;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0151;
+
+AT--->0151;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0152;
+
+AT--->0152;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0153;
+
+AT--->0153;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0154;
+
+AT--->0154;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0155;
+
+AT--->0155;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0156;
+
+AT--->0156;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0157;
+
+AT--->0157;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0158;
+
+AT--->0158;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0159;
+
+AT--->0159;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015A;
+
+AT--->015A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015B;
+
+AT--->015B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015C;
+
+AT--->015C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015D;
+
+AT--->015D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015E;
+
+AT--->015E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :015F;
+
+AT--->015F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0160;
+
+AT--->0160;
+
+416000000000STOPPED>BUF DATA:  34 31 36 30 30 30 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0
+
+CMD :0161;
+
+AT--->0161;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0162;
+
+AT--->0162;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0163;
+
+AT--->0163;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0164;
+
+AT--->0164;
+
+
+AT--->AT@1
+
+SCANTOOL.NET LLC>
+AT--->ATI
+
+ELM327 v1.3a>
+AT--->STI
+
+STN1110 v2.1.3>
+AT--->ATPP 0E OFF
+
+OK>
+AT--->ST SL off,on
+
+?>
+AT--->ST SLU off,on
+
+OK>
+AT--->ST SLVL off,on
+
+OK>
+AT--->ST SLVG off
+
+OK>
+AT--->ATAT1
+
+OK>
+AT--->ATSP0
+
+OK>
+AT--->0100
+
+SEARCHING...4100BE1FB811>
+AT--->ATDPN
+
+A3>
+AT--->0902
+
+NO DATA>
+AT--->09025
+
+NO DATA>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222> 53 53 53 53 32 32 32 32 32 32 32 32  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+AT--->ATE0
+
+OK>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222> 53 53 53 53 32 32 32 32 32 32 32 32  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+
+CMD :0900;
+
+AT--->0900;
+
+4900013C000000STOPPED>BUF DATA:  34 39 30 30 30 31 33 43 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0901;
+
+AT--->0901;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0902;
+
+AT--->0902;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0903;
+
+AT--->0903;
+
+490308STOPPED>BUF DATA:  34 39 30 33 30 38  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0904;
+
+AT--->0904;
+
+49040131455838STOPPED>BUF DATA:  34 39 30 34 30 31 33 31 34 35 35 38 33 38  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0905;
+
+AT--->0905;
+
+490502STOPPED>BUF DATA:  34 39 30 35 30 32  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0906;
+
+AT--->0906;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0907;
+
+AT--->0907;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0908;
+
+AT--->0908;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0909;
+
+AT--->0909;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090A;
+
+AT--->090A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090B;
+
+AT--->090B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090C;
+
+AT--->090C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090D;
+
+AT--->090D;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090E;
+
+AT--->090E;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090F;
+
+AT--->090F;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0910;
+
+AT--->0910;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0911;
+
+AT--->0911;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0912;
+
+AT--->0912;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0913;
+
+AT--->0913;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0914;
+
+AT--->0914;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0915;
+
+AT--->0915;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0916;
+
+AT--->0916;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0917;
+
+AT--->0917;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0918;
+
+AT--->0918;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0919;
+
+AT--->0919;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091A;
+
+AT--->091A;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091B;
+
+AT--->091B;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091C;
+
+AT--->091C;
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091D;
+
+AT--->091D;
+
+NO DATA>
+AT--->ATE0
+
+OK>
+AT--->ATM0
+
+OK>
+AT--->ATL0
+
+OK>
+AT--->ATS0
+
+OK>
+AT--->AT@1
+
+SCANTOOL.NET LLC>
+AT--->ATI
+
+ELM327 v1.3a>
+AT--->STI
+
+STN1110 v2.1.3>
+AT--->ATPP 0E OFF
+
+OK>
+AT--->ST SL off,on
+
+?>
+AT--->ST SLU off,on
+
+OK>
+AT--->ST SLVL off,on
+
+OK>
+AT--->ST SLVG off
+
+OK>
+AT--->ATAT1
+
+OK>
+AT--->ATSP0
+
+OK>
+AT--->0100
+
+SEARCHING...4100BE1FB811>
+AT--->ATDPN
+
+A3>
+AT--->0902
+
+NO DATA>
+AT--->09025
+
+NO DATA>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222> 53 53 53 53 32 32 32 32 32 32 32 32  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+AT--->ATE0
+
+OK>
+AT--->at@1
+
+SCANTOOL.NET LLC>
+AT--->at@2
+
+SSSS22222222>
+AT--->0900
+
+4900013C000000>
+AT--->0910
+
+NO DATA>
+AT--->0920
+
+49200100000000>
+AT--->0930
+
+NO DATA>
+AT--->0940
+
+49400100000000>
+AT--->0950
+
+NO DATA>
+AT--->0960
+
+49600100000000>
+AT--->0970
+
+NO DATA>
+AT--->0980
+
+49800100000000>
+AT--->0990
+
+NO DATA>
+AT--->09A0
+
+49A00100000000>
+AT--->09B0
+
+NO DATA>
+AT--->09C0
+
+49C00100000000>
+AT--->09D0
+
+NO DATA>
+AT--->09E0
+
+49E00100000000>
+AT--->09F0
+
+NO DATA>
+AT--->09
+
+NO DATA>
+AT--->03
+
+43000000000000> 34 33 30 30 30 30 30 30 30 30 30 30 30 30  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+AT--->ati
+
+ELM327 v1.3a>
+
+CMD :0900<
+
+AT--->0900<
+
+4900013C000000STOPPED>BUF DATA:  34 39 30 30 30 31 33 43 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0901<
+
+AT--->0901<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0902<
+
+AT--->0902<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0903<
+
+AT--->0903<
+
+490308STOPPED>BUF DATA:  34 39 30 33 30 38  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0904<
+
+AT--->0904<
+
+49040131455838STOPPED>BUF DATA:  34 39 30 34 30 31 33 31 34 35 35 38 33 38  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0905<
+
+AT--->0905<
+
+490502STOPPED>BUF DATA:  34 39 30 35 30 32  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0906<
+
+AT--->0906<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0907<
+
+AT--->0907<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0908<
+
+AT--->0908<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0909<
+
+AT--->0909<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090A<
+
+AT--->090A<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090B<
+
+AT--->090B<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090C<
+
+AT--->090C<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090D<
+
+AT--->090D<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090E<
+
+AT--->090E<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :090F<
+
+AT--->090F<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0910<
+
+AT--->0910<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0911<
+
+AT--->0911<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0912<
+
+AT--->0912<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0913<
+
+AT--->0913<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0914<
+
+AT--->0914<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0915<
+
+AT--->0915<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0916<
+
+AT--->0916<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0917<
+
+AT--->0917<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0918<
+
+AT--->0918<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0919<
+
+AT--->0919<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091A<
+
+AT--->091A<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091B<
+
+AT--->091B<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091C<
+
+AT--->091C<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091D<
+
+AT--->091D<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091E<
+
+AT--->091E<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :091F<
+
+AT--->091F<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0920<
+
+AT--->0920<
+
+49200100000000STOPPED>BUF DATA:  34 39 32 30 30 31 30 30 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0921<
+
+AT--->0921<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0922<
+
+AT--->0922<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0923<
+
+AT--->0923<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0924<
+
+AT--->0924<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0925<
+
+AT--->0925<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0926<
+
+AT--->0926<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0927<
+
+AT--->0927<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0928<
+
+AT--->0928<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0929<
+
+AT--->0929<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092A<
+
+AT--->092A<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092B<
+
+AT--->092B<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092C<
+
+AT--->092C<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092D<
+
+AT--->092D<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092E<
+
+AT--->092E<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :092F<
+
+AT--->092F<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0930<
+
+AT--->0930<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0931<
+
+AT--->0931<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0932<
+
+AT--->0932<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0933<
+
+AT--->0933<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0934<
+
+AT--->0934<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0935<
+
+AT--->0935<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0936<
+
+AT--->0936<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0937<
+
+AT--->0937<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0938<
+
+AT--->0938<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0939<
+
+AT--->0939<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093A<
+
+AT--->093A<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093B<
+
+AT--->093B<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093C<
+
+AT--->093C<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093D<
+
+AT--->093D<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093E<
+
+AT--->093E<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :093F<
+
+AT--->093F<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0940<
+
+AT--->0940<
+
+49400100000000STOPPED>BUF DATA:  34 39 34 30 30 31 30 30 30 30 30 30 30 30  D 53 54 4F 50 50 45 44  D  D 3E  0  0  0  0  0
+
+CMD :0941<
+
+AT--->0941<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0942<
+
+AT--->0942<
+
+NO DATA>BUF DATA:  4E 4F 20 44 41 54 41  D  D 3E  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+CMD :0943<
+
+AT--->0943<
+
+NO DATA>
