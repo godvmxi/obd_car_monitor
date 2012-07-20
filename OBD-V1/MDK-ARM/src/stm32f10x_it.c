@@ -462,17 +462,19 @@ void TIM3_IRQHandler(void)
 	{ 
 
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-//		obdIrq();
+		if(OBD_START){
+			obdIrq();
+		}
 		counter++;
-		if(counter == 5)
+		if(counter == 3)
 		{//enable can exti
-			printf("\r\nenable can exti\r\n");
+		//	printf("\r\nenable can exti\r\n");
 			enableCanExti(1);
 			CAN_DETECTER = 0;
 		}
-		if(counter > 5 )
+		if(counter > 3 )
 		{
-			DEVICE_STATE = CAN_DETECTER > 10? 1 :0;
+			DEVICE_STATE = CAN_DETECTER > 2000? 1 :0;
 			printf("\r\nDEVICE STATE--->%d -->%d\r\n",DEVICE_STATE,CAN_DETECTER);	////0:STOP 1:RUNNING
 			counter = 0;
 			CAN_DETECTER = 0;	

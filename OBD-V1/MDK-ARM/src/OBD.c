@@ -2134,13 +2134,37 @@ int32_t obdIrq(void){
 	static uint16_t switchFlag = 0;
 	static uint16_t normalIndex  = 0;
 	static uint16_t fastIndex = 0;
+	static uint16_t obdErrorFlag = 1;
+	static uint16_t initIndex =  0 ;//sysCfg.obdConfig.initStart;
 	char tmp = 0;
+	
+	if(obdErrorFlag == 1){
+		if(initIndex == 0){
+			initIndex = sysCfg.obdConfig.initStart;
+//			memset("");
+		}
+		for(i = 0;;i++){
+			tmp =  obdCmdList[sysCfg.obdConfig.cmdList[initIndex].cmdIndex].pid[i];
+			USART_SendData(OBD,obdCmdList[sysCfg.obdConfig.cmdList[initIndex].cmdIndex].pid[i]);
+			USART_SendData(ISP,obdCmdList[sysCfg.obdConfig.cmdList[initIndex].cmdIndex].pid[i]);	
+			while( USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET );
+			if(obdCmdList[sysCfg.obdConfig.cmdList[initIndex].cmdIndex].pid[i] == '\r'){
+				break;
+			}
+		}
+		initIndex++;
+		if(initIndex > sysCfg.obdConfig.initEnd){
+			obdErrorFlag = 0;
+		}
+		return ;		
+	}
+	
 	if(initFlag == 0){
 		initFlag = 1;
 		normalIndex  = sysCfg.obdConfig.normalStart-1;
 		fastIndex = sysCfg.obdConfig.fastStart-1;
-	}
-
+	}					
+	
 	if(OBD_MODE == 0)
 	{
 //		printf("\r\nOBD in mormal mode++\r\n");
@@ -2271,10 +2295,25 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
 
 	}
 	if(OBD_MODE == 1){
+		point = getBufIndex(index,OBD_MODE);	
+		printf("\r\nneed data size-->%d  index-->%d value-->%d\r\n",size,point,value);
+		for(i=0;i<size;i++){
+			printf("%3X",buf[i]);
+		}
 
-
-	}
+	 	//copy data
+		if(value){
+			for(i=0;i<size;i++)
+				obdFastBuf.buf[point+i] = buf[i];
+		}
+		else
+		{
+			for(i=0;i<size;i++)
+				obdFastBuf.buf[point+i] = '?';
+		}
 	
+		return size;	
+	}						
 }
 void obdGetAllData(void){
 	char cmd[10];
@@ -2415,6 +2454,7 @@ void obdInitChip(void){
 	obdPower(1);
 	delay_ms(1000);
 	ISP_DIRECTION=USART_OBD;
+	return ;
 //	for();
 
 	obdAtAndWait("at\r",NULL,500);

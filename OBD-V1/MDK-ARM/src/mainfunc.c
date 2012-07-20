@@ -46,7 +46,6 @@ int16_t	collectAndSend(void){
 	uint32_t timeCounter = 0; 	
 
 	int failCounter = 0;
-
 	BLUE_OBD = 0;
 	gpsPowerOn();
 //	ISP_DIRECTION=USART_SIM;
@@ -58,40 +57,27 @@ int16_t	collectAndSend(void){
 	initBlueTooth(0);
 
 	printf("\r\n system begin\r\n");
-	
-	
-//	
-//	blueToothPower(1);
-//	initBlueTooth(1);
+
 	delay_ms(2000);
-//	for(i = 0;i<100;i++){
-//		USART_SendData(BLUE,'\r');	
-//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-//		USART_SendData(BLUE,'\n');	
-//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-//		USART_SendData(BLUE,'A');	
-//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-//		USART_SendData(BLUE,'B');	
-//		while(USART_GetFlagStatus(BLUE,USART_FLAG_TC)==RESET);
-//		delay_ms(30);
-//	}
-//	blueTest();
-	
 	initData();
-
-	TIM_Cmd(TIM3, DISABLE);
-	BLUE_OBD = 1;
-	OBD_MODE = 0;
-	obdInitChip();
-//	TIM_Cmd(TIM3, ENABLE);
-
-  	
+	
+	
 
 	failCounter++;
 	ISP_DIRECTION = USART_SIM;
 	printf("\r\nBEGIN SEND MSG\r\n");
 	
 	ERROR_ENTRY:
+
+	TIM_Cmd(TIM3, DISABLE);
+	OBD_START = 0;
+	BLUE_OBD = 1;
+	OBD_MODE = 0;
+	obdInitChip();
+	TIM_Cmd(TIM3, ENABLE);
+	OBD_START = 1;
+
+
 	sim900_power_on();
 	Send_AT_And_Wait("AT\r","OK",500);
 	Send_AT_And_Wait("AT\r","OK",500);
@@ -112,17 +98,24 @@ int16_t	collectAndSend(void){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
 		}
-//		if(DEVICE_STATE != 0)//running
+		if(DEVICE_STATE != 0)//running
 		{		
 			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
+			reportPos(&sysCfg.netConfig,0,1);
+			delay_ms(10000);
 		}
-
-		reportPos(&sysCfg.netConfig,0,1);
-
+		else
+		{
+			reportPos(&sysCfg.netConfig,0,1);
+			for(i = 0; i < 60 ;i++){
+				if(DEVICE_STATE != 0){
+					break;
+					printf("\r\ncar start\r\n");
+				}
+				delay_ms(1000);
+			}
+		}
 		printf("\r\nTIME USED :%d->%d-->%d\r\n",RTC_GetCounter(),timeCounter,RTC_GetCounter() - timeCounter);
-
-		delay_ms(3000);
-	   
 	}
 }
 /*******************************************************************************
@@ -329,7 +322,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	static uint32_t timeCounter = 0;
 	static int32_t rtcModifyCounter = 0;
 	i = 0;
-	
+	printf("\r\nREPORT OBD MESSAGE++++\r\n");
 	if(GPS_RMC_DINGWEI_OK && GPS_GGA_DINGWEI_OK)
 	{
 		#ifdef PRINTF_DEBUG
@@ -982,6 +975,7 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 //}TIME;
 void reportObd(SOCKET *soc,int timeout,int flag,int mode){
 	uint32_t msgLength = 0;
+	printf("\r\nREPORT OBD MESSAGE++++\r\n");
 	TIM_Cmd(TIM3, DISABLE);
 	if(mode ==0){
 		if(rtcModifyFlag != 0){

@@ -32,6 +32,7 @@ TIME timer;
 int32_t OBD_MODE = 0; //0:normal mode 1:fast mode 2 :init mode
 int32_t CAN_DETECTER = 0;
 int32_t DEVICE_STATE = 0;//0:STOP 1:RUNNING
+int32_t OBD_START = 0;
 
 
 

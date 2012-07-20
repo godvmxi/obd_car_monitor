@@ -432,6 +432,7 @@ extern 		int32_t OBD_MODE;
 //CAN总线检测功能计数器
 extern 		int32_t CAN_DETECTER;
 extern		int32_t DEVICE_STATE;
+extern		int32_t OBD_START ;
 
 
 /////*GPS*/
