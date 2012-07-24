@@ -16,8 +16,13 @@ int fputc(int ch, FILE *f){//printf
 
 int main(void)
 {	
+	
 	hardware_init();
 //	rtcTest();
+	while(1){
+		printf("\r\ntimer : %d \r\n",TIM_GetCounter(TIM2));
+		delay_ms(10);
+	}
 	enableCanExti(1);
 	obdPower(1);
 //	while(1);
@@ -32,7 +37,7 @@ int main(void)
 
 //	rtcTest();
 //	gpsPowerOn();
-//	ISP_DIRECTION=USART_GPS;
+//	ISP_DIRECTION=USART_GPS;								    
 //	while(1);
 	
 	setDebugPara();	 

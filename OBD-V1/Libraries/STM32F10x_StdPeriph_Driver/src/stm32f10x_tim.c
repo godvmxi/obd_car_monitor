@@ -1214,7 +1214,7 @@ void TIM_CounterModeConfig(TIM_TypeDef* TIMx, uint16_t TIM_CounterMode)
   * @param  TIMx: where x can be  1, 2, 3, 4, 5, 8, 9, 12 or 15 to select the TIM peripheral.
   * @param  TIM_InputTriggerSource: The Input Trigger source.
   *   This parameter can be one of the following values:
-  *     @arg TIM_TS_ITR0: Internal Trigger 0
+  *     @arg TIM_TS_'0: Internal Trigger 0
   *     @arg TIM_TS_ITR1: Internal Trigger 1
   *     @arg TIM_TS_ITR2: Internal Trigger 2
   *     @arg TIM_TS_ITR3: Internal Trigger 3

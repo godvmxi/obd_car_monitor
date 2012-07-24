@@ -123,7 +123,7 @@ void RCC_Configuration(void) //内部
 							   RCC_APB2Periph_GPIOC|RCC_APB2Periph_GPIOD|RCC_APB2Periph_GPIOE|RCC_APB2Periph_AFIO, ENABLE );
 	   	
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2|RCC_APB1Periph_USART3|RCC_APB1Periph_UART4|RCC_APB1Periph_UART5|RCC_APB1Periph_PWR | RCC_APB1Periph_BKP|
-							   RCC_APB1Periph_TIM3|RCC_APB1Periph_CAN1, ENABLE );
+							   RCC_APB1Periph_TIM2|RCC_APB1Periph_TIM3|RCC_APB1Periph_CAN1, ENABLE );
 							   
 }
 
@@ -322,7 +322,13 @@ FLASH
 	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;
+//	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_1;
+////	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;
+//	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;
+//	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+//	GPIO_Init(GPIOA,&GPIO_InitStructure);
+
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_1;
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;
 //	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;
 	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
@@ -407,12 +413,12 @@ FLASH
 		BLUE_MS				PB8
 		BLUE_HSW			PB9
 ************************************************************************************/
-
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_1;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA,&GPIO_InitStructure);
-	GPIO_WriteBit(GPIOA,GPIO_Pin_1,Bit_RESET);
+//
+//	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_1;
+//	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+//	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+//	GPIO_Init(GPIOA,&GPIO_InitStructure);
+//	GPIO_WriteBit(GPIOA,GPIO_Pin_1,Bit_RESET);
 
 	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_7;
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;	  //输入
@@ -650,23 +656,23 @@ void EXTI_Configuration(void)
   	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   	EXTI_Init(&EXTI_InitStructure);	
 	//--------------------------------外部key1中断----PA0-----------------------------	
-	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
-
- 	EXTI_ClearITPendingBit(EXTI_Line0);
-  	EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//上升沿触发中断
-  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-  	EXTI_Init(&EXTI_InitStructure);	
+//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
+//
+// 	EXTI_ClearITPendingBit(EXTI_Line0);
+//  	EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+//  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//上升沿触发中断
+//  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//  	EXTI_Init(&EXTI_InitStructure);	
 	//--------------------------------外部key1中断----PA1-----------------------------
-	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
-
- 	EXTI_ClearITPendingBit(EXTI_Line1);
-  	EXTI_InitStructure.EXTI_Line = EXTI_Line1;
-  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//上升沿触发中断
-  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-  	EXTI_Init(&EXTI_InitStructure);	
+//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource1);
+//
+// 	EXTI_ClearITPendingBit(EXTI_Line1);
+//  	EXTI_InitStructure.EXTI_Line = EXTI_Line1;
+//  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;	//上升沿触发中断
+//  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//  	EXTI_Init(&EXTI_InitStructure);	
 	
 	//--------------------------------蓝牙状态中断--------PE3-------------------------	
 	GPIO_EXTILineConfig(GPIO_PortSourceGPIOE, GPIO_PinSource3);	
@@ -777,12 +783,12 @@ void NVIC_Configuration(void)
  
 //-----------------------------------定时器中断------------------------------------
 	/* Timer2中断*/
-//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-//	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//	NVIC_Init(&NVIC_InitStructure);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
 
 	/* Timer3中断*/
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
@@ -892,38 +898,51 @@ void TIM_Configuration(void)
 {
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
  /************************************************定时器2设置********************************************************/
-//	/* 基础设置*/
+	/* 基础设置*/
 //	TIM_TimeBaseStructure.TIM_Period = 20000;		//计数值   
 //	TIM_TimeBaseStructure.TIM_Prescaler = 800;    	//预分频
 //	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  	
 //	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
 //	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
-//	
+//
+//	TIM_ETRClockMode2Config(TIM2, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0);
+	TIM_DeInit(TIM2);
+	TIM_TimeBaseStructure.TIM_Period = 0xFFFF;		//计数值   
+	TIM_TimeBaseStructure.TIM_Prescaler = 4;    	//预分频
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV4;  	
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+
+	TIM_ITRxExternalClockConfig(TIM2,TIM_TS_ETRF);
+	TIM_ETRClockMode2Config(TIM2, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0);
+//	TIM_ETRClockMode1Config(TIM2, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0);
+	
 //	/*使能预装载*/
 //	TIM_ARRPreloadConfig(TIM2, ENABLE);
 //	/*预先清除所有中断位*/
 //	TIM_ClearITPendingBit(TIM2,TIM_IT_Update);	
 //	/* 4个通道和溢出都配置中断*/
 //	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
-//	/* 允许TIM2开始计数 */
-//	TIM_Cmd(TIM2, DISABLE);
+//	TIM_SetCounter(TIM2, 65530);
+	/* 允许TIM2开始计数 */
+	TIM_Cmd(TIM2, ENABLE);
 
  /************************************************定时器3设置********************************************************/
 	/* 基础设置*/
-	TIM_TimeBaseStructure.TIM_Period = 10000;		//计数值   			1s
-	TIM_TimeBaseStructure.TIM_Prescaler = 7200;    	//预分频
-	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  	
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-	
-	/*使能预装载*/
-	TIM_ARRPreloadConfig(TIM3, ENABLE);
-	/*预先清除所有中断位*/
-	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	
-	/*溢出都配置中断*/
-	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
-	/* 允许TIM2开始计数 */
-	TIM_Cmd(TIM3, ENABLE);
+//	TIM_TimeBaseStructure.TIM_Period = 10000;		//计数值   			1s
+//	TIM_TimeBaseStructure.TIM_Prescaler = 7200;    	//预分频
+//	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  	
+//	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
+//	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+//	
+//	/*使能预装载*/
+//	TIM_ARRPreloadConfig(TIM3, ENABLE);
+//	/*预先清除所有中断位*/
+//	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	
+//	/*溢出都配置中断*/
+//	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+//	/* 允许TIM2开始计数 */
+//	TIM_Cmd(TIM3, ENABLE);
 }
 
 void CAN_Interrupt(void)
@@ -980,7 +999,7 @@ void hardware_init(void)
 	NVIC_Configuration();
 	
 
-	rtcConfig();
+//	rtcConfig();
 
 
 	TIM_Configuration();
