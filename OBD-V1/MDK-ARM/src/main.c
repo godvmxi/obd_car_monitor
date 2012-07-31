@@ -19,12 +19,12 @@ int main(void)
 	
 	hardware_init();
 //	rtcTest();
-	while(1){
-		printf("\r\ntimer : %d \r\n",TIM_GetCounter(TIM2));
-		delay_ms(10);
-	}
-	enableCanExti(1);
-	obdPower(1);
+//	while(1){
+//		printf("\r\ntimer : %d \r\n",TIM_GetCounter(TIM2));
+//		delay_ms(10);
+//	}
+//	enableCanExti(1);
+//	obdPower(1);
 //	while(1);
 //	TIM_Cmd(TIM3, DISABLE);
 //	while(1);

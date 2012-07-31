@@ -98,6 +98,11 @@ int16_t	collectAndSend(void){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
 		}
+		while(1){
+
+			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
+			delay_ms(3000);
+		}
 		if(DEVICE_STATE != 0)//running
 		{		
 			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);

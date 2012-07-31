@@ -925,7 +925,7 @@ void TIM_Configuration(void)
 //	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 //	TIM_SetCounter(TIM2, 65530);
 	/* 允许TIM2开始计数 */
-	TIM_Cmd(TIM2, ENABLE);
+//	TIM_Cmd(TIM2, ENABLE);
 
  /************************************************定时器3设置********************************************************/
 	/* 基础设置*/
@@ -999,7 +999,7 @@ void hardware_init(void)
 	NVIC_Configuration();
 	
 
-//	rtcConfig();
+	rtcConfig();
 
 
 	TIM_Configuration();
@@ -1007,10 +1007,7 @@ void hardware_init(void)
 
 void open_sys(void)	  //LED2没有
 {
-//	RED_OFF;
-//	GREEN_ON;
-//	delay_ms(500);
-//	GREEN_OFF;
+
 }
 
 
