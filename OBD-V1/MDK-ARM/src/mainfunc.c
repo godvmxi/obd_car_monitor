@@ -77,6 +77,12 @@ int16_t	collectAndSend(void){
 	TIM_Cmd(TIM3, ENABLE);
 	OBD_START = 1;
 
+//	while(1){
+//	 	delay_ms(1000);
+//		printf("can counter :%d\n",CAN_DETECTER);
+//	
+//	}
+
 
 	sim900_power_on();
 	Send_AT_And_Wait("AT\r","OK",500);
@@ -98,11 +104,11 @@ int16_t	collectAndSend(void){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
 		}
-		while(1){
-
-			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
-			delay_ms(3000);
-		}
+//		while(1){
+//
+//			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
+//			delay_ms(3000);
+//		}
 		if(DEVICE_STATE != 0)//running
 		{		
 			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);

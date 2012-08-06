@@ -56,7 +56,7 @@ typedef struct
 	char EW;                 //¾­¶È°ëÇòE(¶«¾­)»òW(Î÷¾­)
 	char Speed[5];           //µØÃæËÙÂÊ(000.0~999.9½Ú£¬Ç°ÃæµÄ0Ò²½«±»´«Êä) 
 	char Course[5];          //µØÃæº½Ïò(000.0~359.9¶È 
-	char UTCDate[6];         //UTCÈÕÆÚ£¬ddmmyy(ÈÕÔÂÄê)¸ñ½
+	char UTCDate[6];         //UTCÈÕÆÚ£¬
 }stru_GPSRMC; 
 
 /*

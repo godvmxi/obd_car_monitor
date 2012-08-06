@@ -1662,9 +1662,9 @@ uint16_t getBufIndex(uint16_t index,int32_t mode)
 		printf("\r\nNORMAL INDEX MAP\r\n");
 		for(i = 0 ;i < 200;i++)
 		{
-		 	if(i %10 == 0)
+		 	if(i %5 == 0)
 				printf("\r\n");
-			printf("%4d->%4d->%4d  ",i,sysCfg.obdConfig.cmdList[i + sysCfg.obdConfig.normalStart].dataLength,mapNormalIndex[i]);
+			printf(":::%d->%d-->%d->%d   ",i,sysCfg.obdConfig.normalStart+i,sysCfg.obdConfig.cmdList[i + sysCfg.obdConfig.normalStart].dataLength,mapNormalIndex[i]);
 		}
 
 		mapFastIndex[0] = 0;
@@ -1675,9 +1675,9 @@ uint16_t getBufIndex(uint16_t index,int32_t mode)
 		printf("\r\nFAST INDEX MAP:\r\n");
 		for(i = 0 ;i < 200;i++)
 		{
-		 	if(i %10 == 0)
+		 	if(i %5 == 0)
 				printf("\r\n");
-			printf("%4d->%4d->%4d  ",i,sysCfg.obdConfig.cmdList[i + sysCfg.obdConfig.fastStart].dataLength,mapFastIndex[i]);
+			printf(":::%d->%d-->%d->%d\t",i,sysCfg.obdConfig.fastStart+i,sysCfg.obdConfig.cmdList[i + sysCfg.obdConfig.fastStart].dataLength,mapFastIndex[i]);
 		}
 
 

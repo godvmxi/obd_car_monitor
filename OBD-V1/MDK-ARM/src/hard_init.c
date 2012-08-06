@@ -929,20 +929,20 @@ void TIM_Configuration(void)
 
  /************************************************定时器3设置********************************************************/
 	/* 基础设置*/
-//	TIM_TimeBaseStructure.TIM_Period = 10000;		//计数值   			1s
-//	TIM_TimeBaseStructure.TIM_Prescaler = 7200;    	//预分频
-//	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  	
-//	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
-//	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-//	
-//	/*使能预装载*/
-//	TIM_ARRPreloadConfig(TIM3, ENABLE);
-//	/*预先清除所有中断位*/
-//	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	
-//	/*溢出都配置中断*/
-//	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
-//	/* 允许TIM2开始计数 */
-//	TIM_Cmd(TIM3, ENABLE);
+	TIM_TimeBaseStructure.TIM_Period = 10000;		//计数值   			1s
+	TIM_TimeBaseStructure.TIM_Prescaler = 7200;    	//预分频
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  	
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; 	//向上计数
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+	
+	/*使能预装载*/
+	TIM_ARRPreloadConfig(TIM3, ENABLE);
+	/*预先清除所有中断位*/
+	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);	
+	/*溢出都配置中断*/
+	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+	/* 允许TIM2开始计数 */
+	TIM_Cmd(TIM3, ENABLE);
 }
 
 void CAN_Interrupt(void)
