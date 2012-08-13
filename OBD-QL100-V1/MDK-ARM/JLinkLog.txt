@@ -1,0 +1,28 @@
+
+T2418 000:589 SEGGER J-Link V4.15n (beta) Log File (0001ms, 0583ms total)
+T2418 000:589 DLL Compiled: Jun 18 2010 19:55:09 (0001ms, 0583ms total)
+T2418 000:589 Logging started @ 2012-07-31 15:38 (0001ms, 0583ms total)
+T2418 000:590 JLINK_SetWarnOutHandler(...) (0000ms, 0584ms total)
+T2418 000:590 JLINK_OpenEx(...)
+Firmware: J-Link ARM V8 compiled Sep 24 2010 15:58:02
+Hardware: V8.00
+S/N: 20100214
+Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFull  returns O.K. (0219ms, 0584ms total)
+T2418 000:809 JLINK_SetErrorOutHandler(...) (0000ms, 0803ms total)
+T2418 000:812 JLINK_ExecCommand("ProjectFile = "D:\work\code\OBD-V1\MDK-ARM\JLinkSettings.ini"", ...)  returns 0x00 (0001ms, 0803ms total)
+T2418 000:817 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x00 (0000ms, 0804ms total)
+T2418 000:825 JLINK_TIF_Select(JLINKARM_TIF_JTAG)  returns 0x00 (0000ms, 0804ms total)
+T2418 000:825 JLINK_SetSpeed(50) (0003ms, 0804ms total)
+T2418 000:828 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetDLLVersion()  returns 41514 (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetFirmwareString(...) (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetDLLVersion()  returns 41514 (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetCompileDateTime() (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetFirmwareString(...) (0000ms, 0807ms total)
+T2418 000:828 JLINK_GetHardwareVersion()  returns 0x13880 (0000ms, 0807ms total)
+T2418 000:828 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)  returns JLINKARM_RESET_TYPE_NORMAL (0000ms, 0807ms total)
+T2418 000:828 JLINK_Reset()
+  ***** Error: Supply voltage too low (1 Volt is required, Measured: 0.0 Volt).
+Please check target power.No matching core found. (0007ms, 0807ms total)
+T2418 000:835 JLINK_GetIdData(...) (0000ms, 0814ms total)
+T2418 000:837 JLINK_GetCompileDateTime() (0000ms, 0814ms total)
