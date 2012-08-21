@@ -1,0 +1,708 @@
+
+set rtc
+
+reconfig rtc
+
+wait for lsi ready
+
+set rtc over
+
+begin obd test
+0x  D  0x  A  0x  D  0x  A  0x  D  0x  A  0x  D  0x  A  0x  D  0x  A  
+OBD power off
+
+OBD power on
+þQL100 v1.1 Receiving CMD...
+
+AT--->BT+RDTC
+
+BT+RDTC
+
+RDTC:000
+Error:006
+
+AT--->BT+EDTC
+
+BT+EDTC
+
+CLEAR:UNSUCCESS
+EDTC:000
+Error:006
+
+AT--->BT+MIL
+
+BT+MIL
+
+MIL:OFF
+Error:004
+
+AT--->BT+PIDS
+
+BT+PIDS
+
+PIDS:025,&01&03&04&05&06&07&0B&0C&0D&0E&0F&11&13&14&15&1C&20&21&40&47&90&93&94&95&96
+Error:004
+
+AT--->BT+DATA.VSS
+
+BT+DATA.VSS
+
+VSS: 0km/h
+Error:004
+
+AT--->BT+MUL=&01&02&03&04&25
+
+BT+MUL=&01&02&03&04&25
+
+MUL:&N/A&N/A&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 54.5%&N/A
+Error:004
+
+AT--->BT+INFO.VIN
+
+BT+INFO.VIN
+
+INFO.VIN:Unknown
+Error:006
+
+AT--->BT+INFO.EID
+
+BT+INFO.EID
+
+INFO.EID:9666754899      
+Error:004
+
+AT--->BT+SPWR
+
+BT+SPWR
+
+SPWR:15.10V
+Error:004
+
+AT--->BT+PMIL=12345
+
+BT+PMIL=12345
+
+MIL:OFF
+Error:006
+
+AT--->BT+DATA.ECT
+
+BT+DATA.ECT
+
+ECT: 79ßC
+Error:004
+
+AT--->BT+DATA.SHRTFT1
+
+BT+DATA.SHRTFT1
+
+SHRTFT1: -2.3%
+Error:006
+
+AT--->BT+DATA.LOAD
+
+BT+DATA.LOAD
+
+Error:004
+
+AT--->BT+DATA.RPM
+
+BT+DATA.RPM
+
+RPM: 790
+Error:004
+
+AT--->BT+DATA.OBDSUP
+
+BT+DATA.OBDSUP
+
+OBDSUP: EOBD
+Error:004
+
+AT--->BT+DATA.RUNTIME
+
+BT+DATA.RUNTIME
+
+Error:002
+
+AT--->BT+DATA.Fuel Sys1
+
+BT+DATA.Fuel Sys1
+
+Fuel Sys1: CL,Fuel Sys2: N/A
+Error:006
+
+AT--->BT+DATA.Fuel Sys2
+
+BT+DATA.Fuel Sys2
+
+Fuel Sys1: CL,Fuel Sys2: N/A
+Error:004
+
+AT--->BT+DATA.load
+
+BT+DATA.load
+
+Error:002
+
+AT--->BT+DATA.ECT
+
+BT+DATA.ECT
+
+ECT: 80ßC
+Error:004
+
+AT--->BT+DATA.SHRTFT1
+
+BT+DATA.SHRTFT1
+
+Error:005
+
+AT--->BT+DATA.SHRTFT2
+
+BT+DATA.SHRTFT2
+
+Error:005
+
+AT--->BT+DATA.SHRTFT3
+
+BT+DATA.SHRTFT3
+
+SHRTFT1: -1.6%
+Error:004
+
+AT--->BT+DATA.SHRTFT4
+
+BT+DATA.SHRTFT4
+
+Error:005
+
+AT--->BT+DATA.LONGFT1
+
+BT+DATA.LONGFT1
+
+LONGFT1: -1.6%
+Error:006
+
+AT--->BT+DATA.LONGFT2
+
+BT+DATA.LONGFT2
+
+Error:005
+
+AT--->BT+DATA.LONGFT3
+
+BT+DATA.LONGFT3
+
+LONGFT1: -1.6%
+Error:004
+
+AT--->BT+DATA.LONGFT4
+
+BT+DATA.LONGFT4
+
+Error:005
+
+AT--->BT+DATA.Fuel P
+
+BT+DATA.Fuel P
+
+Error:005
+
+AT--->BT+DATA.MAP
+
+BT+DATA.MAP
+
+MAP: 61.0kPa
+Error:004
+
+AT--->BT+DATA.RPM
+
+BT+DATA.RPM
+
+RPM: 800
+Error:004
+
+AT--->BT+DATA.VSS
+
+BT+DATA.VSS
+
+VSS: 0km/h
+Error:004
+
+AT--->BT+DATA.Spark Adv
+
+BT+DATA.Spark Adv
+
+Spark Adv: -1.0
+Error:004
+
+AT--->BT+DATA.IAT
+
+BT+DATA.IAT
+
+IAT: 52ßC
+Error:004
+
+AT--->BT+DATA.MAF
+
+BT+DATA.MAF
+
+Error:005
+
+AT--->BT+DATA.TPS
+
+BT+DATA.TPS
+
+TPS: 16.5%
+Error:006
+
+AT--->BT+DATA.Air Stat
+
+BT+DATA.Air Stat
+
+Error:005
+
+AT--->BT+DATA.O2 B1S1
+
+BT+DATA.O2 B1S1
+
+Error:005
+
+AT--->BT+DATA.O2 B1S2
+
+BT+DATA.O2 B1S2
+
+O2 B1S2: 0.715V,O2 B1S2: 99.2%
+Error:006
+
+AT--->BT+DATA.O2 B1S3
+
+BT+DATA.O2 B1S3
+
+Error:005
+
+AT--->BT+DATA.O2 B1S4
+
+BT+DATA.O2 B1S4
+
+Error:005
+
+AT--->BT+DATA.O2 B2S1
+
+BT+DATA.O2 B2S1
+
+Error:005
+
+AT--->BT+DATA.O2 B2S2
+
+BT+DATA.O2 B2S2
+
+Error:005
+
+AT--->BT+DATA.O2 B2S3
+
+BT+DATA.O2 B2S3
+
+Error:005
+
+AT--->BT+DATA.O2 B2S4
+
+BT+DATA.O2 B2S4
+
+Error:005
+
+AT--->BT+DATA.OBDSUP
+
+BT+DATA.OBDSUP
+
+OBDSUP: EOBD
+Error:004
+
+AT--->BT+DATA.PTO_STAT
+
+BT+DATA.PTO_STAT
+
+Error:005
+
+AT--->BT+DATA.RunTime
+
+BT+DATA.RunTime
+
+Error:005
+
+AT--->BT+DATA.Mil_Dist
+
+BT+DATA.Mil_Dist
+
+Error:002
+
+AT--->BT+DATA.FRP_mv
+
+BT+DATA.FRP_mv
+
+Error:005
+
+AT--->BT+DATA.FRP
+
+BT+DATA.FRP
+
+Error:005
+
+AT--->BT+DATA.EQ_RAT11
+
+BT+DATA.EQ_RAT11
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT12
+
+BT+DATA.EQ_RAT12
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT13
+
+BT+DATA.EQ_RAT13
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT14
+
+BT+DATA.EQ_RAT14
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT21
+
+BT+DATA.EQ_RAT21
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT22
+
+BT+DATA.EQ_RAT22
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT23
+
+BT+DATA.EQ_RAT23
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT24
+
+BT+DATA.EQ_RAT24
+
+Error:005
+
+AT--->BT+DATA.EGR
+
+BT+DATA.EGR
+
+Error:005
+
+AT--->BT+DATA.EGR_ERR
+
+BT+DATA.EGR_ERR
+
+Error:005
+
+AT--->BT+DATA.EVAP
+
+BT+DATA.EVAP
+
+Error:005
+
+AT--->BT+DATA.Fuel Lvl
+
+BT+DATA.Fuel Lvl
+
+Error:005
+
+AT--->BT+DATA.Warm ups
+
+BT+DATA.Warm ups
+
+Error:005
+
+AT--->BT+DATA.Clear Dist
+
+BT+DATA.Clear Dist
+
+Error:005
+
+AT--->BT+DATA.EVAP P
+
+BT+DATA.EVAP P
+
+Error:005
+
+AT--->BT+DATA.BARO
+
+BT+DATA.BARO
+
+Error:005
+
+AT--->BT+DATA.EQ_RAT11
+
+BT+DATA.EQ_RAT11
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT12
+
+BT+DATA.EQ_RAT12
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT13
+
+BT+DATA.EQ_RAT13
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT14
+
+BT+DATA.EQ_RAT14
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT21
+
+BT+DATA.EQ_RAT21
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT22
+
+BT+DATA.EQ_RAT22
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT23
+
+BT+DATA.EQ_RAT23
+
+Error:002
+
+AT--->BT+DATA.EQ_RAT24
+
+BT+DATA.EQ_RAT24
+
+Error:005
+
+AT--->BT+DATA.CAT TEMP11
+
+BT+DATA.CAT TEMP11
+
+Error:005
+
+AT--->BT+DATA.CAT TEMP21
+
+BT+DATA.CAT TEMP21
+
+Error:005
+
+AT--->BT+DATA.CAT TEMP12
+
+BT+DATA.CAT TEMP12
+
+Error:005
+
+AT--->BT+DATA.CAT TEMP22
+
+BT+DATA.CAT TEMP22
+
+Error:005
+
+AT--->BT+DATA.VPWR
+
+BT+DATA.VPWR
+
+Error:005
+
+AT--->BT+DATA.LOAD ABS
+
+BT+DATA.LOAD ABS
+
+Error:005
+
+AT--->BT+DATA.EQ_RAT
+
+BT+DATA.EQ_RAT
+
+Error:005
+
+AT--->BT+DATA.TP_R
+
+BT+DATA.TP_R
+
+Error:005
+
+AT--->BT+DATA.AAT
+
+BT+DATA.AAT
+
+Error:005
+
+AT--->BT+DATA.TPS_B
+
+BT+DATA.TPS_B
+
+TPS_B: 16.1%
+Error:004
+
+AT--->BT+DATA.TPS_C
+
+BT+DATA.TPS_C
+
+Error:005
+
+AT--->BT+DATA.APP_D
+
+BT+DATA.APP_D
+
+Error:005
+
+AT--->BT+DATA.APP_E
+
+BT+DATA.APP_E
+
+Error:005
+
+AT--->BT+DATA.APP_F
+
+BT+DATA.APP_F
+
+Error:005
+
+AT--->BT+DATA.TAC_PCT
+
+BT+DATA.TAC_PCT
+
+Error:005
+
+AT--->BT+DATA.MIL_TIME
+
+BT+DATA.MIL_TIME
+
+Error:005
+
+AT--->BT+DATA.CLR_TIME
+
+BT+DATA.CLR_TIME
+
+Error:005
+
+AT--->BT+DATA.ALCH_PCT
+
+BT+DATA.ALCH_PCT
+
+Error:002
+
+AT--->BT+DATA.EVAP_VPA
+
+BT+DATA.EVAP_VPA
+
+Error:002
+
+AT--->BT+DATA.EVAP_VP
+
+BT+DATA.EVAP_VP
+
+Error:002
+
+AT--->BT+DATA.STSO2FT1
+
+BT+DATA.STSO2FT1
+
+Error:002
+
+AT--->BT+DATA.STSO2FT2
+
+BT+DATA.STSO2FT2
+
+Error:002
+
+AT--->BT+DATA.STSO2FT3
+
+BT+DATA.STSO2FT3
+
+Error:002
+
+AT--->BT+DATA.STSO2FT4
+
+BT+DATA.STSO2FT4
+
+Error:002
+
+AT--->BT+DATA.LGSO2FT1
+
+BT+DATA.LGSO2FT1
+
+Error:002
+
+AT--->BT+DATA.LGSO2FT2
+
+BT+DATA.LGSO2FT2
+
+Error:002
+
+AT--->BT+DATA.LGSO2FT3
+
+BT+DATA.LGSO2FT3
+
+Error:002
+
+AT--->BT+DATA.LGSO2FT4
+
+BT+DATA.LGSO2FT4
+
+Error:002
+
+AT--->BT+DATA.FRPA
+
+BT+DATA.FRPA
+
+Error:002
+
+AT--->BT+DATA.APP_R
+
+BT+DATA.APP_R
+
+Error:002
+
+AT--->BT+DATA.IFE
+
+BT+DATA.IFE
+
+IFE: 0.546ml/s
+Error:004
+
+AT--->BT+DATA.WHP
+
+BT+DATA.WHP
+
+Error:005
+
+AT--->BT+DATA.AD_Mil
+
+BT+DATA.AD_Mil
+
+AD_Mil: 0.0km
+Error:004
+
+AT--->BT+DATA.AD_Accel
+
+BT+DATA.AD_Accel
+
+AD_Accel: 0.0m/(s*s)
+Error:006
+
+AT--->BT+DATA.AD_FEH
+
+BT+DATA.AD_FEH
+
+Error:005
