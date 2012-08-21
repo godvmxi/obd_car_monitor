@@ -2056,10 +2056,12 @@ int obdAtAndWait(char *at,char *key,int ms){
 	{
 //		printf("%3X",*(at+x));
 		USART_SendData(OBD,*(at+x));
-//		USART_SendData(ISP,*(at+x));
+		USART_SendData(ISP,*(at+x));
 			
 		while( USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET ); 
 	}
+//	USART_SendData(OBD,0X0A);
+//	while( USART_GetFlagStatus(OBD,USART_FLAG_TC)==RESET );
 	printf("\r\n");
 	
 	delay_ms(ms);
@@ -2317,24 +2319,139 @@ int16_t fillObdBuf(uint16_t index,char *buf,int value)
 }
 void obdGetAllData(void){
 	char cmd[10];
-	int i1,i2,i3,i4;
-	char table[] = "0123456789ABCDEF";
+	int i1,i2,i3,i4,timeout=10000;
+	char table[] = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
 	BLUE_OBD = 0;
 	again:
-
+	ISP_DIRECTION=USART_OBD;
 	printf("\r\nbegin obd test\r\n");
+	for(i1 = 0;i1<10;i1++) {
+		printf("0x%3X  ",table[i1]);
+	}
 	obdPower(0);
-	delay_ms(1000);
+	delay_ms(3000);
 	obdPower(1);
 
-	delay_ms(1000);
-	ISP_DIRECTION=USART_OBD;
+	delay_ms(5000);
 
-	obdAtAndWait("at\r",NULL,500);
-	obdAtAndWait("ATE0\r",NULL,500);
-	obdAtAndWait("ATE0\r",NULL,500);
-	obdAtAndWait("ATM0\r",NULL,500);
-	obdAtAndWait("ATL0\r",NULL,500);
+
+	while(1)
+	{
+		
+		obdAtAndWait("BT+RDTC\r\n",NULL,timeout);
+		obdAtAndWait("BT+EDTC\r\n",NULL,timeout);
+		obdAtAndWait("BT+MIL\r\n",NULL,timeout);
+		obdAtAndWait("BT+PIDS\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.VSS\r\n",NULL,timeout);
+		obdAtAndWait("BT+MUL=&01&03&04&05&06&07&0B&0C&0D&0E\r\n",NULL,timeout);
+		obdAtAndWait("BT+MUL=&0F&11&13&14&15&1C&20&21&40&47\r\n",NULL,timeout);
+		obdAtAndWait("BT+MUL=&90&93&94&95&96\r\n",NULL,timeout);
+		obdAtAndWait("BT+INFO.VIN\r\n",NULL,timeout);
+		obdAtAndWait("BT+INFO.EID\r\n",NULL,timeout);
+		obdAtAndWait("BT+SPWR\r\n",NULL,timeout);
+		obdAtAndWait("BT+PMIL=12345\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.ECT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.SHRTFT1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LOAD\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.RPM\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.OBDSUP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.RUNTIME\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Fuel Sys1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Fuel Sys2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.load\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.ECT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.SHRTFT1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.SHRTFT2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.SHRTFT3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.SHRTFT4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LONGFT1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LONGFT2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LONGFT3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LONGFT4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Fuel P\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.MAP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.RPM\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.VSS\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Spark Adv\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.IAT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.MAF\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.TPS\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Air Stat\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B1S1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B1S2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B1S3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B1S4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B2S1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B2S2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B2S3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.O2 B2S4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.OBDSUP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.PTO_STAT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.RunTime\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Mil_dist\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.FRP_mv\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.FRP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT11\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT12\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT13\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT14\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT21\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT22\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT23\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT24\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EGR\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EGR_ERR\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EVAP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Fuel Lvl\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Warm ups\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.Clear Dist\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EVAP P\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.BARO\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT11\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT12\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT13\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT14\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT21\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT22\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT23\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT24\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.CAT TEMP11\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.CAT TEMP21\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.CAT TEMP12\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.CAT TEMP22\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.VPWR\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LOAD ABS\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EQ_RAT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.TP_R\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.AAT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.TPS_B\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.TPS_C\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.APP_D\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.APP_E\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.APP_F\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.TAC_PCT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.MIL_TIME\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.CLR_TIME\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.ALCH_PCT\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EVAP_VPA\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.EVAP_VP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.STSO2FT1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.STSO2FT2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.STSO2FT3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.STSO2FT4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LGSO2FT1\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LGSO2FT2\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LGSO2FT3\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.LGSO2FT4\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.FRPA\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.APP_R\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.IFE\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.WHP\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,timeout);
+		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,timeout);
+	}
 	obdAtAndWait("ATS0\r",NULL,500);
 	obdAtAndWait("AT@1\r",NULL,500);
 	obdAtAndWait("ATI\r",NULL,500);
@@ -2422,6 +2539,7 @@ void obdGetAllData(void){
 				cmd[2] = table[i2];
 				cmd[3] = table[i3];
 				cmd[4] = '\r' ;
+				cmd[5] = '\n' ;
 
 				printf("\r\n\r\nCMD :%s\r\n",cmd);
 				obdAtAndWait(cmd,NULL,1500);

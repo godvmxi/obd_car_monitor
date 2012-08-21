@@ -246,7 +246,7 @@ typedef struct {
 
 
 
-#define		PRINTF_DEBUG //printf调试开关，注销掉便可以去掉所有的打印语句
+#define		PRINTF_DEBUG  1//printf调试开关，注销掉便可以去掉所有的打印语句
 #define		DEBUF_SIM
 #define		DEBUF_GPS
 #define		DEBUF_OBD
@@ -416,10 +416,10 @@ extern	unsigned int UART5_RX_buffer_count; //串口5接收缓存位置变量
 #define	GPS_COUNT		UART5_RX_buffer_count
 
 #define	ISP				USART1
-#define	OBD				USART3
-#define	SIM				USART2
+#define	OBD				USART2
+#define	GPS				USART3
 #define	BLUE			UART4
-#define	GPS				UART5
+#define	SIM				UART5
 
 //全局变量区域
 //全局参数表

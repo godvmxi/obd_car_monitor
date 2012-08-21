@@ -498,16 +498,16 @@ void sim900Test(void){
 	printf("\r\nSIM Start----------------------------\r\n");
 	SIM_DTR(Bit_RESET);
 
-	printf("\r\npower\r\n");
+	printf("\r\npower1\r\n");
 	SIM_EN(Bit_SET);
 	delay_ms(3000);
-	printf("\r\npower\r\n");
+	printf("\r\npower2\r\n");
 	SIM_EN(Bit_RESET);
 	delay_ms(3000);
-	printf("\r\npower\r\n");
+	printf("\r\npower3\r\n");
 	SIM_EN(Bit_SET);
 	delay_ms(3000);
-	printf("\r\npower\r\n");
+	printf("\r\npower4\r\n");
 	SIM_EN(Bit_RESET);
 	delay_ms(3000);
 	while(1){
@@ -570,7 +570,7 @@ void sim900Test(void){
 			Send_AT_And_Wait("AT+MIPCALL?\r","OK",500);
 			Send_AT_And_Wait("AT+MIPOPEN?\r","OK",500);
 //			Send_AT_And_Wait("AT+MPING=1,\"www.baidu.com\"\r","OK",8000);
-			Send_AT_And_Wait("AT+MIPOPEN=1,5000,\"in.phonewingstech.com\",9000,1\r","OK",3000);
+			Send_AT_And_Wait("AT+MIPOPEN=1,5000,\"in.phonewingstech.com\",9001,1\r","OK",3000);
 //			Send_AT_And_Wait("AT+MIPOPEN=1,4000,\"114.91.113.28\",80,1\r","OK",3000);
 //			Send_AT_And_Wait("AT+MSDNS?\r","OK",5000);
 			Send_AT_And_Wait("AT+MIPOPEN?\r","OK",500);

@@ -396,32 +396,39 @@ POW
 	GPIO_WriteBit(GPIOB,GPIO_Pin_1,Bit_RESET);
 
 /**************************OBD*******************************************************
-		OBD_EN				PB12
+		OBD_EN				PB0
 
 //		OBD_RST				PB15
 //		OBD_NVM				PB14
+		CAN_ETR				PA0
 
 ************************************************************************************/
 
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_12;
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB,&GPIO_InitStructure);
-	GPIO_WriteBit(GPIOB,GPIO_Pin_12,Bit_RESET);
+	GPIO_WriteBit(GPIOB,GPIO_Pin_0,Bit_RESET);
+
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IN_FLOATING;
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA,&GPIO_InitStructure);
+//	GPIO_WriteBit(GPIOA,GPIO_Pin_0,Bit_RESET);
 
 	
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_15;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB,&GPIO_InitStructure);
-	GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_SET); 
-	
-		
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_14;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB,&GPIO_InitStructure);
-	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_SET); 		
+//	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_15;
+//	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+//	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+//	GPIO_Init(GPIOB,&GPIO_InitStructure);
+//	GPIO_WriteBit(GPIOB,GPIO_Pin_15,Bit_SET); 
+//	
+//		
+//	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_14;
+//	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_Out_PP;
+//	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+//	GPIO_Init(GPIOB,&GPIO_InitStructure);
+//	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_SET); 		
 						 
 /**************************BLUE_TOOCH*******************************************************
 
@@ -587,7 +594,7 @@ void USART_Configuration(void)
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-  USART_InitStructure.USART_BaudRate = 115200;
+  USART_InitStructure.USART_BaudRate = 256000;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1;
   USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -648,7 +655,7 @@ void USART_Configuration(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-	USART_InitStructure.USART_BaudRate = 9600;
+	USART_InitStructure.USART_BaudRate = 38400;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	USART_InitStructure.USART_StopBits = USART_StopBits_1;
 	USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -1003,7 +1010,7 @@ void TIM_Configuration(void)
 //	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 //	TIM_SetCounter(TIM2, 65530);
 	/* 允许TIM2开始计数 */
-//	TIM_Cmd(TIM2, ENABLE);
+	TIM_Cmd(TIM2, ENABLE);
 
  /************************************************定时器3设置********************************************************/
 	/* 基础设置*/
@@ -1020,7 +1027,7 @@ void TIM_Configuration(void)
 	/*溢出都配置中断*/
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 	/* 允许TIM2开始计数 */
-	TIM_Cmd(TIM3, DISABLE);
+	TIM_Cmd(TIM3, ENABLE);
 }
 
 void CAN_Interrupt(void)

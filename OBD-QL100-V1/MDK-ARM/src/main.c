@@ -18,6 +18,13 @@ int main(void)
 {	
 	
 	hardware_init();
+//	while(1){
+//		delay_ms(1000);
+//		printf("\r\nETR : %d\r\n",TIM_GetCounter(TIM2));
+//
+//	}
+	obdGetAllData();
+
 //	rtcTest();
 //	while(1){
 //		printf("\r\ntimer : %d \r\n",TIM_GetCounter(TIM2));
@@ -36,12 +43,13 @@ int main(void)
 //	}
 
 //	rtcTest();
-	gpsPowerOn();
-	ISP_DIRECTION=USART_GPS;								    
-	while(1);
-	
-	setDebugPara();	 
-	ISP_DIRECTION=USART_SIM;
+//	gpsPowerOn();
+//	ISP_DIRECTION=USART_GPS;								    
+//	while(1);
+//	
+//	setDebugPara();	 
+//	blueTest();
+//	ISP_DIRECTION=USART_SIM;
 
 //	TIM_Cmd(TIM3, ENABLE);
 //	while(1);
@@ -51,12 +59,14 @@ int main(void)
 
 	
 //	delay_ms(2000);
+//	OBD_START = 0;
+//	sim900Test();
 	
 //	printf("\r\nREAD SYSTEM CONFIG :%10X %10X\r\n",IAP_PARAMETER,SYS_PARAMETER);
-	flashRead(IAP_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
-	showConfig(&sysCfg);
-	flashRead(SYS_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
-	showConfig(&sysCfg); 
+//	flashRead(IAP_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
+//	showConfig(&sysCfg);
+//	flashRead(SYS_PARAMETER,(uint8_t *)&sysCfg,sizeof(FLASH_CONFIG));
+//	showConfig(&sysCfg); 
 //	massProduction();
 //	printf("\r\nflash config :%d\r\n",sizeof(FLASH_CONFIG));
 
@@ -65,7 +75,7 @@ int main(void)
 // 	obdBlue();
 //	obdGetAllData();
 //	obdTest();
-	collectAndSend();
+//	collectAndSend();
 		
 }
 

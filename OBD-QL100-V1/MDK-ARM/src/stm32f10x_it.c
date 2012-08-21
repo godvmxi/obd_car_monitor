@@ -43,6 +43,7 @@ extern int shuiyin_counter;
 void NMI_Handler(void)
 {
 	printf("\r\nERROR_NMI\r\n");
+	while(1);
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -67,6 +68,7 @@ void HardFault_Handler(void)
   while (1)
   {
   		printf("\r\nERROR_HARD_FAULT\r\n");
+		while(1);
 		__disable_irq();//关总中断
 		__disable_fault_irq();
 		delay_ms(2000);
@@ -88,6 +90,7 @@ void MemManage_Handler(void)
   while (1)
   {
 	printf("\r\nERROR_MEM\r\n");
+	while(1);
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -109,6 +112,8 @@ void BusFault_Handler(void)
   while (1)
   {
   	printf("\r\nERROR_BUS\r\n");
+		while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -129,6 +134,8 @@ void UsageFault_Handler(void)
   while (1)
   {
   	printf("\r\nERROR_USAGE\r\n");
+		while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -146,6 +153,8 @@ void UsageFault_Handler(void)
 void SVC_Handler(void)
 {
 	printf("\r\nERROR_SVC\r\n");
+		while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -160,6 +169,8 @@ void SVC_Handler(void)
 void PRINTF_DEBUGMon_Handler(void)
 {
 	printf("\r\nERROR_PRINTF_DEBUG\r\n");
+		while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -174,6 +185,8 @@ void PRINTF_DEBUGMon_Handler(void)
 void PendSV_Handler(void)
 {
 	printf("\r\nERROR_PENDSV\r\n");
+		while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -477,24 +490,29 @@ void TIM3_IRQHandler(void)
 		if(counter == 3)
 		{//enable can exti
 		//	printf("\r\nenable can exti\r\n");
-			enableCanExti(1);
+		//	enableCanExti(1);
+			TIM_SetCounter(TIM2, 0);
 			CAN_DETECTER = 0;
 		}
 		if(counter > 3 )
 		{
 			CAN_DETECTER = TIM_GetCounter(TIM2);
 			DEVICE_STATE = CAN_DETECTER > 2000? 1 :0;
-			printf("\r\nDEVICE STATE--->%d -->%d\r\n",DEVICE_STATE,CAN_DETECTER);	////0:STOP 1:RUNNING
+		//	printf("\r\nDEVICE STATE--->%d -->%d\r\n",DEVICE_STATE,CAN_DETECTER);	////0:STOP 1:RUNNING
 			counter = 0;	; 
 		}
 		counter++;
 		//CHECK CAR STATE END
 		if(state == 0){
-			LED2(Bit_SET);
+			LED1(Bit_SET);
+			LED2(Bit_RESET);
+			LED3(Bit_RESET);
 			state = 1;
 		}
 		else{
-			LED2(Bit_RESET);
+			LED1(Bit_RESET);
+			LED2(Bit_SET);
+			LED3(Bit_SET);
 			state = 0;
 		} 
 	}
