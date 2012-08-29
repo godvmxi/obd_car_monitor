@@ -1,0 +1,92 @@
+
+OBD power on
+þQL100 v1.2 Receiving CMD...
+
+AT--->BT+RDTC
+
+
+
+AT--->BT+EDTC
+
+
+RDTC:001,&U1000
+
+AT--->BT+MIL
+
+
+MIL:ON
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+current str len : index2  :    D -->    A
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+cmd 2  --> BT+MUL=&93&94&95&96&97
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 33.3%&ECT: 90ßC&SHRTFT1: 3.9%&LONGFT1: -7.0%&RPM: 838
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+&VSS: 0km/h&Spark Adv: 8.0&IAT: 77ßC
+Error:008
+
+AT--->BT+MUL=&93&94&95&96&97
+
+
+Error:008
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 33.3%&ECT: 90ßC&SHRTFT1: 3.1%&LONGFT1: -7.0%&RPM: 838
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+&VSS: 0km/h&Spark Adv: 8.0&IAT: 78ßC
+Error:008
+
+AT--->BT+MUL=&93&94&95&96&97
+
+
+Error:008
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 33.7%&ECT: 90ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 838
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+&VSS: 0km/h&Spark Adv: 8.0&IAT: 78ßC
+Error:008
+
+AT--->BT+MUL=&93&94&95&96&97
+
+
+Error:008

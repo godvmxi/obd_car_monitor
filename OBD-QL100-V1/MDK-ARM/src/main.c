@@ -43,9 +43,9 @@ int main(void)
 //	}
 
 //	rtcTest();
-//	gpsPowerOn();
-//	ISP_DIRECTION=USART_GPS;								    
-//	while(1);
+	gpsPowerOn();
+	ISP_DIRECTION=USART_GPS;								    
+	while(1);
 //	
 //	setDebugPara();	 
 //	blueTest();
