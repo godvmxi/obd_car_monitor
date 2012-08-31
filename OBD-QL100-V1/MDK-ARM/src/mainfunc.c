@@ -44,24 +44,21 @@ int16_t	collectAndSend(void){
 	int i = 0;
 	int8_t temp[20];
 	uint32_t timeCounter = 0; 	
-
+	uint32_t obdType = 0;
 	int failCounter = 0;
 	BLUE_OBD = 0;
-	gpsPowerOn();
-//	ISP_DIRECTION=USART_SIM;
-//	while(1);
-
-
-	blueToothPower(0);
-	blueToothPower(1);
-	initBlueTooth(0);
-
+	
 	printf("\r\n system begin\r\n");
 
-	delay_ms(2000);
 	initData();
-	
-	
+
+	ISP_DIRECTION=USART_OBD;
+	obdPower(0);
+	delay_ms(1000);
+	obdPower(1);
+
+	gpsPowerOn();
+	ISP_DIRECTION=USART_SIM;
 
 	failCounter++;
 	ISP_DIRECTION = USART_SIM;
@@ -71,11 +68,31 @@ int16_t	collectAndSend(void){
 
 	TIM_Cmd(TIM3, DISABLE);
 	OBD_START = 0;
-	BLUE_OBD = 1;
-	OBD_MODE = 0;
-	obdInitChip();
+//	BLUE_OBD = 1;
 	TIM_Cmd(TIM3, ENABLE);
-	OBD_START = 1;
+
+
+
+
+	
+//	while(1);
+
+
+	blueToothPower(0);
+	blueToothPower(1);
+	initBlueTooth(0);
+	sim900_power_on();
+
+	Send_AT_And_Wait("AT\r","OK",500);
+	Send_AT_And_Wait("AT\r","OK",500);
+	ISP_DIRECTION=USART_OBD;
+	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
+	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+	obdAtAndWait("BT+MIL\r\n",NULL,5000);
+	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+
+	OBD_START = getObdPids() > 0 ?1:0;
+	ISP_DIRECTION=USART_SIM;
 
 //	while(1){
 //	 	delay_ms(1000);
@@ -84,9 +101,7 @@ int16_t	collectAndSend(void){
 //	}
 
 
-	sim900_power_on();
-	Send_AT_And_Wait("AT\r","OK",500);
-	Send_AT_And_Wait("AT\r","OK",500);
+	
 
 	if(strstr(SIM_BUF,"NOT INSERTED") || strstr(SIM_BUF,"REMOVE"))// || GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_10) == 1)
 	{
@@ -109,16 +124,19 @@ int16_t	collectAndSend(void){
 //			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
 //			delay_ms(3000);
 //		}
+
 		if(DEVICE_STATE != 0)//running
 		{		
-			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
+			printf("\r\ncar running ---------------------\r\n");
+			reportQL100(&sysCfg.netConfig,0,1,obdType++);
 			reportPos(&sysCfg.netConfig,0,1);
-			delay_ms(10000);
+			delay_ms(30000);
 		}
 		else
 		{
+			printf("\r\ncat stopped++++++++++++++++++++++\r\n");
 			reportPos(&sysCfg.netConfig,0,1);
-			for(i = 0; i < 60 ;i++){
+			for(i = 0; i < 120 ;i++){
 				if(DEVICE_STATE != 0){
 					break;
 					printf("\r\ncar start\r\n");
@@ -984,6 +1002,68 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 //	int8_t second;
 //		
 //}TIME;
+char ql100Buf[1024];
+void reportQL100(SOCKET *soc,int timeout,int flag,int mode){
+	int32_t len = 0,i = 0,msgLength = 0;
+
+	printf("\r\nreport ql100 data_+_+_+_+_+_+_+_+_\r\n");
+	TIM_Cmd(TIM3, DISABLE);
+	delay_ms(100);
+	if(rtcModifyFlag != 0){
+	   		RTC_Get();
+			obdFastBuf.time = timer;
+	}
+	else{
+		memset((uint8_t *)&obdFastBuf.time ,sizeof(TIME),0);
+	}
+	showTime(&obdNormalBuf.time);
+	memset(ql100Buf,0,1024);
+	if(mode % 5 != 0){
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.vin);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.eid);
+		for(i = 0 ;i<pidBuf.cmdNum;i++){ //accel data and pids data
+			printf("pid buf %d -->%s",i,pidBuf.mulCmd[i].buf);
+			strcat(ql100Buf,pidBuf.mulCmd[i].buf);
+		}
+		msgLength = strlen(ql100Buf);
+		printf("\r\nobd fast --> %s\r\n",ql100Buf);
+		setDataHeader(OBD_FAST_REPORT,(int8_t *)(ql100Buf),msgLength);
+	}
+	else{
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.vin);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.eid);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.rdtc);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.edtc);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.mil);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.spwr);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.ife);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.whp);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.ehp);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.ad_mil);
+		strcat(ql100Buf,"&");
+		strcat(ql100Buf,obdInfo.ad_feh);
+		msgLength = strlen(ql100Buf);
+		printf("\r\nobd normal --> %s\r\n",ql100Buf);
+		setDataHeader(OBD_COMMON_REPORT,(int8_t *)(ql100Buf),msgLength);
+	}	
+	TIM_Cmd(TIM3, ENABLE);
+	dataSend((int8_t *)ql100Buf,msgLength,1,0,0,*soc,1);
+}
+
+
+
 void reportObd(SOCKET *soc,int timeout,int flag,int mode){
 	uint32_t msgLength = 0;
 	printf("\r\nREPORT OBD MESSAGE++++\r\n");

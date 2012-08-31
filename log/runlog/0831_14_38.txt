@@ -1,0 +1,4342 @@
+
+write read check flash ok+++++
+
+config write ok £∫800F000
+
+write read check flash ok+++++
+
+config write ok £∫800F400
+
+config renew ok
+
+parameter update success
+
+flash now be
+
+
+
+CONFIG DATA++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+CRC	     	:91F2
+
+FLAG     	:0
+
+
+NET SOCKET
+
+CRC     	:	FFFFD079
+
+FLAG     	:	5555
+
+IP       	:	in.phonewingstech.com
+
+UDPTCP  	:	1
+
+SOCKET 		:	1
+
+LPORT		:	5000
+
+DPORT		:	9001
+
+RESERVED DATA:
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+IAP SOCKET
+
+CRC 		:	776A
+
+FLAG		:	5555
+
+IP			:	in.phonewingstech.com
+
+UDPTCP   	:	0
+
+SOCKET  	:	1
+
+LPORT    	:	1388
+
+DPORT    	:	2328
+
+RESERVED DATA:
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+IAP BRIFE
+
+START  		:	**‚
+
+CRC   		:	FE2
+
+HV    		:	1
+
+SV   		:	1
+
+PACK_NUM	:	255
+
+CRC_APP  	:	5555
+
+SIZE_APP	:	3039
+
+
+BLUE CONFIG
+
+CRC     	:	0
+
+OTHER   	:	0
+
+NAME   		:	OBD_2
+
+PASS   		:	0000
+
+baudrate 	:	9600
+
+RESERVED DATA:
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+OBD CONFIG
+
+CRC   		:	0
+
+FLAG    	:	0
+
+BAUDRATE 	:	9600
+
+RESERVED DATA:
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ system begin
+
+OBD power off
+
+OBD power on
+QL100 v1.2 Receiving CMD...
+
+STATE--->1 -->6335-->0
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+BEGIN SEND MSG
+
+blue tooth pwoer off
+
+blue tooth pwoer on
+
+*** BOLUTEK SPP Bluetooth Module V2.43 Init OK in SLAVE mode!***
+*** Please input AT+HELP <cr><lf> to get commands list.      ***
+*** For more information, please visit http://www.bolutek.cn ***
+
++READY
++PAIRABLE
+OK
+
+STATE--->1 -->6413-->0
+
+blue start ok
+
+set bluetooth mode
+OK
+OK
+set blue name cmd :AT+NAMEOBD_2
++NAME=OBD_2
+OK
++NAME=OBD_2
+set blue pass cmd :AT+PIN0000
++PIN=0000
+OK
++PIN=0000
+baud cmd :AT+BAUD6
++BAUD=6
+OK
++PIN=0000
+
+STATE--->1 -->6295-->0
+
+OPEN SIM900....
+
+STATE--->1 -->6292-->0
+
+AT--->BT+RDTC
+
+
+RDTC:000
+
+STATE--->1 -->6270-->0
+
+AT--->BT+EDTC
+
+
+
+STATE--->1 -->6314-->0
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+MIL
+
+
+
+STATE--->1 -->6285-->0
+MIL:OFF
+
+STATE--->1 -->6294-->0
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+STATE--->1 -->6301-->0
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+STATE--->1 -->6373-->0
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+
+skip pid  : &90 left :24
+
+skip pid  : &91 left :23
+
+skip pid  : &93 left :22
+
+skip pid  : &94 left :21
+
+skip pid  : &95 left :20
+
+skip pid  : &96 left :19
+
+skip pid  : &97 left :18
+
+change buf
+
+modified pid num is :18 --> 3 
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+cmd 2  --> BT+DATA.AD_Accel
+
+AT+CGSN
+353551040522802
+
+OK
+
+AT--->BT+SPWR
+
+
+
+imei:353551040522802
+
+iemi :3535510  40522802
+
+prepare gps
+
+GPS Init------
+
+socket cmd :AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
+
+socket state:+MIPOPEN: 1,1
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 1,2,3,4
+
+OK
+can not find the socket:1
+Net Error,reConnect
+
+establish network
+
+name:power_sim900
+AT
+OK
+
+STATE--->1 -->6338-->1
+AT+CREG?
++CREG: 0,1
+
+OK
+AT+CREG=2
+OK
+AT+CREG?
++CREG: 2,1,"1877","03D3"
+
+OK
+AT+CREG=0
+OK
+
+cellid is :187703D3
+AT+CSQ
++CSQ: 30,99
+
+OK
+
+csq	:30
+AT+CIMI
+460022404727102
+
+OK
+
+cimi	:46002
+AT+MIPCALL?
++MIPCALL: 0
+
+OK
+
+spwr : SPWR:13.82V
+
+AT--->BT+RDTC
+
+
+
+STATE--->1 -->6372-->1
+
+cimi:46002
+
+sim type:cmcc
+
+set apn cmwap
+AT+MIPCALL=1,"CMWAP"
+OK
+AT
+OK
+AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
++MIPOPEN: 1,0
+
+OK
+
++MIPCALL: 1
+
+waiting net
+
+open cmd over,begin check state
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 1,2,3,4
+
+OK
+can not find the socket:1
+
+STATE--->1 -->6299-->1
+AT
+OK
+AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
++MIPOPEN: 1,1
+
+OK
+
+waiting net
+
+open cmd over,begin check state
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+
+scoket ok
+
+SIM900 reconnect OK
+
+SEND ONLINE MESSAGE
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+
+obd normal --> SPWR:13.82V
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :BB2A  ->DATA HEADER :
+ 2A BB 30  0  0  0  0  0 32 54 6A  2  B  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  42  187   48    0    0    0    0    0   50   84  106    2   11    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : *ª0
+
+des string : 2ABB30000000000032546A020B000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  83   80   87   82   58   49   51   46   56   50   86 
+
+src string : SPWR:13.82V
+
+des string : 535057523A31332E383256
+
+src len :11
+
+des len :22
+
+set socket cmd:AT+MIPSETS=1,39,500
+AT+MIPSETS=1,39,500
++MIPSETS: 0
+
+OK
+
+data  :2ABB30000000000032546A020B000000000000000000000000000000535057523A31332E383256
+
+send cmd :AT+MIPSEND=1,"2ABB30000000000032546A020B000000000000000000000000000000535057523A31332E383256"
+
+cmd:14  buf:78  data:78
+
+RDTC Error : RDTC:000
+
+AT--->BT+EDTC
+
+
+
+STATE--->1 -->6392-->1
+
+cmd size :20
+
+buf size :78
+2ABB30000000000032546A020B000000000000000000000000000000535057523A31332E383256
+AT+MIPSEND=1,"2ABB30000000000032546A020B000000000000000000000000000000535057523A31332E383256"
++MIPPUSH: 1,0,39
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-4-9
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063611.00xA3110.4439N12123.5948E1.434xxxxx310812
+
+hight:65.4
+
+GPS high£∫65
+
+GPS DATA£∫
+
+longitude£∫ 121235954
+latitude £∫  31104426
+height   £∫         0
+speed    £∫         1
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :3C1B  ->DATA HEADER :
+ 1B 3C 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  27   60   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : < 
+
+des string : 1B3C20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 242  233   57    7  170  157  218    1  178  179    0    0  211    3  119   24    0    0    1    0    0    0    0    0    0    0    0    4    9    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : ÚÈ9™ù⁄≤≥
+
+des string : F2E93907AA9DDA01B2B30000D303771800000100000000000000000409001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :1B3C20000000000032546A0204000000000000000000000000000000F2E93907AA9DDA01B2B30000D303771800000100000000000000000409001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"1B3C20000000000032546A0204000000000000000000000000000000F2E93907AA9DDA01B2B30000D303771800000100000000000000000409001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+1B3C20000000000032546A0204000000000000000000000000000000F2E93907AA9DDA01B2B30000D303771800000100000000000000000409001E0601000000000A0T+0MI0P0SE0ND=1
+,"1B3C20000000000032546A0204000000000000000000000000000000F2E93907AA9DDA01B2B30000D303771800000100000000000000000409001E060100000000000000"
++MIPPUSH: 1,0,107
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6370-->1
+
+EDTC Error : EDTC:000
+
+AT--->BT+PIDS
+
+
+
+STATE--->1 -->6428-->1
+
+STATE--->1 -->6386-->1
+
+TIME USED :263->234-->29
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+   0  160   50    0    0    0    0    0   50   84  106    2    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 
+
+des string : 00A032000000000032546A0200000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+set socket cmd:AT+MIPSETS=1,28,500
+AT+MIPSETS=1,28,500
++MIPSETS: 0
+
+OK
+
+data  :00A032000000000032546A0200000000000000000000000000000000
+
+send cmd :AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
+
+cmd:14  buf:56  data:56
+
+cmd size :20
+
+buf size :56
+00A032000000000032546A0200000000000000000000000000000000
+AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
++MIPPUSH: 1,0,135
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-4-25
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063627.00xA3110.4457N12123.5930E0.653xxxxx310812
+
+hight:60.7
+
+GPS high£∫60
+
+PIDS: PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+AT--->BT+MIL
+
+
+
+STATE--->1 -->6418-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235922
+latitude £∫  31104458
+height   £∫         0
+speed    £∫         1
+angle    £∫         0
+stars    £∫         4
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :B55  ->DATA HEADER :
+ 55  B 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  85   11   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : U 
+
+des string : 550B20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 210  233   57    7  202  157  218    1  178  179    0    0  211    3  119   24    0    0    1    0    0    0    0    0    0    0    0    4   25    0   30    4    1    0    0    0    0    0    0    0 
+
+src string : “È9 ù⁄≤≥
+
+des string : D2E93907CA9DDA01B2B30000D303771800000100000000000000000419001E040100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :550B20000000000032546A0204000000000000000000000000000000D2E93907CA9DDA01B2B30000D303771800000100000000000000000419001E040100000000000000
+
+send cmd :AT+MIPSEND=1,"550B20000000000032546A0204000000000000000000000000000000D2E93907CA9DDA01B2B30000D303771800000100000000000000000419001E040100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+550B20000000000032546A0204000000000000000000000000000000D2E93907CA9DDA01B2B30000D303771800000100000000000000000419001E040100000000000000
+AT+MIPSEND=1,"550B20000000000032546A0204000000000000000000000000000000D2E93907CA9DDA01B2B30000D303771800000100000000000000000419001E040100000000000000"
++MIPPUSH: 1,0,203
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6356-->1
+
+MIL : MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+
+STATE--->1 -->6374-->1
+
+TIME USED :278->263-->15
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+STATE--->1 -->7038-->1
+find the socket:1
+network ok
+
+data length : 0
+
+   0  160   50    0    0    0    0    0   50   84  106    2    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 
+
+des string : 00A032000000000032546A0200000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+set socket cmd:AT+MIPSETS=1,28,500
+AT+MIPSETS=1,28,500
++MIPSETS: 0
+
+OK
+
+data  :00A032000000000032546A0200000000000000000000000000000000
+
+send cmd :AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
+
+cmd:14  buf:56  data:56
+
+cmd size :20
+
+buf size :56
+00A032000000000032546A0200000000000000000000000000000000
+AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
++MIPPUSH: 1,0,231
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-4-41
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063644.00xA3110.4500N12123.5926E0.605xxxxx310812
+
+hight:36.5
+
+GPS high£∫36
+
+RDTC Error : IFE: 0.442ml/s
+
+AT--->BT+DATA.WHP
+
+
+
+GPS DATA£∫
+
+longitude£∫ 121235946
+latitude £∫  31104504
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         4
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A27F  ->DATA HEADER :
+ 7F A2 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 127  162   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ¢ 
+
+des string : 7FA220000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 234  233   57    7  248  157  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    4   41    0   30    4    1    0    0    0    0    0    0    0 
+
+src string : ÍÈ9¯ù⁄≤≥
+
+des string : EAE93907F89DDA01B2B30000D303771800000000000000000000000429001E040100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+STATE--->1 -->6399-->1
+
+data  :7FA220000000000032546A0204000000000000000000000000000000EAE93907F89DDA01B2B30000D303771800000000000000000000000429001E040100000000000000
+
+send cmd :AT+MIPSEND=1,"7FA220000000000032546A0204000000000000000000000000000000EAE93907F89DDA01B2B30000D303771800000000000000000000000429001E040100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+7FA220000000000032546A0204000000000000000000000000000000EAE93907F89DDA01B2B30000D303771800000000000000000000000429001E040100000000000000
+AT+MIPSEND=1,"7FA220000000000032546A0204000000000000000000000000000000EAE93907F89DDA01B2B30000D303771800000000000000000000000429001E040100000000000000"
++MIPPUSH: 1,0,299
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6334-->1
+
+RDTC Error : WHP: 1.545HP
+
+AT--->BT+DATA.AD_Mil
+
+
+
+STATE--->1 -->6344-->1
+
+TIME USED :294->278-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+   0  160   50    0    0    0    0    0   50   84  106    2    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 
+
+des string : 00A032000000000032546A0200000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+set socket cmd:AT+MIPSETS=1,28,500
+AT+MIPSETS=1,28,500
++MIPSETS: 0
+
+OK
+
+data  :00A032000000000032546A0200000000000000000000000000000000
+
+send cmd :AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
+
+cmd:14  buf:56  data:56
+
+cmd size :20
+
+buf size :56
+00A032000000000032546A0200000000000000000000000000000000
+AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
++MIPPUSH: 1,0,327
+
++MIPSEND: 1,0,1460
+
+STATE--->1 -->6355-->1
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-4-57
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063700.00xA3110.4504N12123.5933E1.439xxxxx310812
+
+hight:36.5
+
+GPS high£∫36
+
+GPS DATA£∫
+
+longitude£∫ 121235934
+latitude £∫  31104504
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         4
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :4467  ->DATA HEADER :
+ 67 44 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+ad_mil : AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_FEH
+
+
+find the socket:1
+network ok
+
+data length : 0
+
+ 103   68   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : gD 
+
+des string : 674420000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 222  233   57    7  248  157  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    4   57    0   30    4    1    0    0    0    0    0    0    0 
+
+src string : ﬁÈ9¯ù⁄≤≥
+
+des string : DEE93907F89DDA01B2B30000D303771800000000000000000000000439001E040100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :674420000000000032546A0204000000000000000000000000000000DEE93907F89DDA01B2B30000D303771800000000000000000000000439001E040100000000000000
+
+send cmd :AT+MIPSEND=1,"674420000000000032546A0204000000000000000000000000000000DEE93907F89DDA01B2B30000D303771800000000000000000000000439001E040100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+674420000000000032546A0204000000000000000000000000000000DEE93907F89DDA01B2B30000D303771800000000000000000000000439001E040100000000000000
+AT+MIPSEND=1,"674420000000000032546A0204000000000000000000000000000000DEE93907F89DDA01B2B30000D303771800000000000000000000000439001E040100000000000000"
++MIPPUSH: 1,0,395
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6336-->1
+
+STATE--->1 -->6330-->1
+
+ad_feh : AD_FEH: 0.000l/100km
+
+STATE--->1 -->6343-->1
+
+TIME USED :310->294-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+   0  160   50    0    0    0    0    0   50   84  106    2    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 
+
+des string : 00A032000000000032546A0200000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+set socket cmd:AT+MIPSETS=1,28,500
+AT+MIPSETS=1,28,500
++MIPSETS: 0
+
+OK
+
+data  :00A032000000000032546A0200000000000000000000000000000000
+
+send cmd :AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
+
+cmd:14  buf:56  data:56
+
+cmd size :20
+
+buf size :56
+00A032000000000032546A0200000000000000000000000000000000
+AT+MIPSEND=1,"00A032000000000032546A0200000000000000000000000000000000"
++MIPPUSH: 1,0,423
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-5-12
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063717.00xA3110.4497N12123.5875E0.729xxxxx310812
+
+hight:36.6
+
+GPS high£∫36
+
+STATE--->1 -->6323-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235875
+latitude £∫  31104497
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         5
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :3F94  ->DATA HEADER :
+ 94 3F 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 148   63   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : î? 
+
+des string : 943F20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 163  233   57    7  241  157  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    5   12    0   30    5    1    0    0    0    0    0    0    0 
+
+src string : £È9Òù⁄≤≥
+
+des string : A3E93907F19DDA01B2B30000D30377180000000000000000000000050C001E050100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :943F20000000000032546A0204000000000000000000000000000000A3E93907F19DDA01B2B30000D30377180000000000000000000000050C001E050100000000000000
+
+send cmd :AT+MIPSEND=1,"943F20000000000032546A0204000000000000000000000000000000A3E93907F19DDA01B2B30000D30377180000000000000000000000050C001E050100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+943F20000000000032546A0204000000000000000000000000000000A3E93907F19DDA01B2B30000D30377180000000000000000000000050C001E0501000000000A0T+0MI0PS0E0ND=
+1,"943F20000000000032546A0204000000000000000000000000000000A3E93907F19DDA01B2B30000D30377180000000000000000000000050C001E050100000000000000"
++MIPPUSH: 1,0,491
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6284-->1
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+STATE--->1 -->6296-->1
+
+TIME USED :326->310-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+
+obd normal --> RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :E997  ->DATA HEADER :
+ 97 E9 30  0  0  0  0  0 32 54 6A  2 5D  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 151  233   48    0    0    0    0    0   50   84  106    2   93    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : óÈ0
+
+des string : 97E930000000000032546A025D000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  82   68   84   67   58   48   48   48   69   68   84   67   58   48   48   48   77   73   76   58   79   70   70   83   80   87   82   58   49   51   46   56   50   86   73   70   69   58   32   48   46   52   52   50  109  108   47  115   87   72   80   58   32   49   46   53   52   53   72   80   65   68   95   77  105  108   58   32   48   46   48  107  109   65   68   95   70   69   72   58   32   48   46   48   48   48  108   47   49   48   48  107  109 
+
+src string : RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+des string : 524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+src len :93
+
+des len :186
+
+set socket cmd:AT+MIPSETS=1,121,500
+AT+MIPSETS=1,121,500
++MIPSETS: 0
+
+OK
+
+STATE--->1 -->6928-->1
+
+data  :97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+send cmd :AT+MIPSEND=1,"97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
+
+cmd:14  buf:242  data:242
+
+cmd size :20
+
+buf size :242
+97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A2AT0+M3IP0S2ENED3=14,"3974E933020600D0600C0200F073235456A70245D8050000300A00200003010020E0003005003004003050040852544054441343A430530F30445D4465494363AC30330A3024D0302E306B6D41445F464544948C33A4AF2460436503250E57352033A30133320E3683C25264F943641533A20033020E3643B43626DD6
+C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
++MIPPUSH: 1,0,612
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-5-28
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:310812
+
+time:063733.00xA3110.4504N12123.5964E0.190xxxxx310812
+
+hight:36.5
+
+GPS high£∫36
+
+GPS DATA£∫
+
+longitude£∫ 121235965
+latitude £∫  31104504
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         5
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :E8F5  ->DATA HEADER :
+ F5 E8 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 245  232   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ıË 
+
+des string : F5E820000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 253  233   57    7  248  157  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    5   28    0   30    5    1    0    0    0    0    0    0    0 
+
+src string : ˝È9¯ù⁄≤≥
+
+des string : FDE93907F89DDA01B2B30000D30377180000000000000000000000051C001E050100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :F5E820000000000032546A0204000000000000000000000000000000FDE93907F89DDA01B2B30000D30377180000000000000000000000051C001E050100000000000000
+
+send cmd :AT+MIPSEND=1,"F5E820000000000032546A0204000000000000000000000000000000FDE93907F89DDA01B2B30000D30377180000000000000000000000051C001E050100000000000000"
+
+cmd:14  buf:136  data:136
+
+STATE--->1 -->6302-->1
+
+cmd size :20
+
+buf size :136
+F5E820000000000032546A0204000000000000000000000000000000FDE93907F89DDA01B2B30000D30377180000000000000000000000051C001E050100000000000000
+AT+MIPSEND=1,"F5E820000000000032546A0204000000000000000000000000000000FDE93907F89DDA01B2B30000D30377180000000000000000000000051C001E050100000000000000"
++MIPPUSH: 1,0,680
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+STATE--->1 -->6302-->1
+
+STATE--->1 -->6272-->1
+
+TIME USED :342->326-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂCpid buf 1 -->pid buf 2 -->
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂC
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :BE88  ->DATA HEADER :
+ 88 BE 32  0  0  0  0  0 32 54 6A  2 82  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 136  190   50    0    0    0    0    0   50   84  106    2  130    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : àæ2
+
+des string : 88BE32000000000032546A0282000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   56   57  223   67   38   83   72   82   84   70   84   49   58   32   49   46   54   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   56  223   67 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂC
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF43
+
+src len :130
+
+des len :260
+
+set socket cmd:AT+MIPSETS=1,158,500
+AT+MIPSETS=1,158,500
++MIPSETS: 0
+
+OK
+
+data  :88BE32000000000032546A02820000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF43
+
+send cmd :AT+MIPSEND=1,"88BE32000000000032546A02820000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF43"
+
+cmd:14  buf:316  data:316
+
+cmd size :20
+
+buf size :316
+88BE32000000000032546A02820000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6A1T+6MI4P3SEAND2=10,"3883BE332100200E0030040023255426A602482500400300500400300A00200000300800300900D00F0044D35524C63A52632644687556526C524054376975334133A2103A20312E3625264C4F4E47465434314C32CA462705625D6C3260523E79373332235A22064E52F241520644CD6F361A62430A320833335132E0324265526645543355433A32A0328309D3F403626B563D48252F6826537061726B204164763A20392E3052446654439134A210531423E3A6225023647C34F84DE4F74463543
+13A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF43"
++MIPPUSH: 1,0,838
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-5-44
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063750.00xA3110.4508N12123.5967E0.055xxxxx31081259
+
+hight:36.5
+
+GPS high£∫36
+
+STATE--->1 -->6301-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235969
+latitude £∫  31104509
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         5
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :61DA  ->DATA HEADER :
+ DA 61 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+find the socket:1
+network ok
+
+data length : 0
+
+ 218   97   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ⁄a 
+
+des string : DA6120000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+   1  234   57    7  253  157  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    5   44    0   30    5    1    0    0    0    0    0    0    0 
+
+src string : Í9˝ù⁄≤≥
+
+des string : 01EA3907FD9DDA01B2B30000D30377180000000000000000000000052C001E050100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :DA6120000000000032546A020400000000000000000000000000000001EA3907FD9DDA01B2B30000D30377180000000000000000000000052C001E050100000000000000
+
+send cmd :AT+MIPSEND=1,"DA6120000000000032546A020400000000000000000000000000000001EA3907FD9DDA01B2B30000D30377180000000000000000000000052C001E050100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+DA6120000000000032546A020400000000000000000000000000000001EA3907FD9DDA01B2B30000D30377180000000000000000000000052C001E050100000000000000
+AT+MIPSEND=1,"DA6120000000000032546A020400000000000000000000000000000001EA3907FD9DDA01B2B30000D30377180000000000000000000000052C001E050100000000000000"
++MIPPUSH: 1,0,906
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6303-->1
+
+STATE--->1 -->6328-->1
+
+STATE--->1 -->6286-->1
+
+TIME USED :358->342-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂCpid buf 1 -->MUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂCMUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :1225  ->DATA HEADER :
+ 25 12 32  0  0  0  0  0 32 54 6A  2 F7  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  37   18   50    0    0    0    0    0   50   84  106    2  247    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : %2
+
+des string : 251232000000000032546A02F7000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   56   57  223   67   38   83   72   82   84   70   84   49   58   32   49   46   54   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   56  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   54  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   56   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 78ﬂCMUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D
+
+src len :247
+
+des len :494
+
+set socket cmd:AT+MIPSETS=1,275,500
+AT+MIPSETS=1,275,500
++MIPSETS: 0
+
+OK
+
+data  :251232000000000032546A02F70000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D
+
+send cmd :AT+MIPSEND=1,"251232000000000032546A02F70000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203738DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D"
+
+cmd:14  buf:550  data:550
+
+check accel
+
+buf 2 --> AD_Accel: 0.0m/(s*s) 
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+cmd size :20
+
+buf size :550
+251232000000000032546A02F70000000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6164A3T+AMI2P0SE3ND3=13,"125212E3230040020050020063245456A4023F7500400300A00200000300800300900D00F0040030020064D55534C43A82652624657546546C62055347937313133AA2020312E3625264C4F4E474654341343C2AC246075265D6C320653279E7333233A22054E22F64152624C56F061464D3A320A3323102E33482532654534305423A6205386359D3F453236353A4285023506B6D2F6826537061726B204164763A20392E30442656434139A420131524E336A2522604C34F74E34874D65F434133A420D25D35624EC3332A5226562450D44D31A42063383A5320206536543253E3A320533066B6672F73265450533A20332E352526264F3220D42F26832165533703611732A6B2200431064276E33A20033928E3302064594615243CA2403F7338D2F42340D54542C33A21645D43143631A2303A422E305336602E3825264F3220423153323A20302E313830562C4F732F2732260544520353135A23033322E33A522502632694F3392220E42332152335123A62403F042E2340348530355625C54F03322A024203415533413FA240230424E328265264D494C5F646973743A20306B6D
+264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D"
++MIPPUSH: 1,0,1181
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-6-0
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063807.00xA3110.4515N12123.5985E0.286xxxxx31081259
+
+hight:35.4
+
+GPS high£∫35
+
+STATE--->1 -->6326-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235991
+latitude £∫  31104515
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         5
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :5DE4  ->DATA HEADER :
+ E4 5D 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 228   93   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ‰] 
+
+des string : E45D20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  23  234   57    7    3  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    6    0    0   30    5    1    0    0    0    0    0    0    0 
+
+src string : Í9û⁄≤≥
+
+des string : 17EA3907039EDA01B2B30000D303771800000000000000000000000600001E050100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :E45D20000000000032546A020400000000000000000000000000000017EA3907039EDA01B2B30000D303771800000000000000000000000600001E050100000000000000
+
+send cmd :AT+MIPSEND=1,"E45D20000000000032546A020400000000000000000000000000000017EA3907039EDA01B2B30000D303771800000000000000000000000600001E050100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+E45D20000000000032546A020400000000000000000000000000000017EA3907039EDA01B2B30000D303771800000000000000000000000600001E050100000000000000
+AT+MIPSEND=1,"E45D20000000000032546A020400000000000000000000000000000017EA3907039EDA01B2B30000D303771800000000000000000000000600001E050100000000000000"
++MIPPUSH: 1,0,1249
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6313-->1
+
+STATE--->1 -->6325-->1
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+TIME USED :374->358-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :2F12  ->DATA HEADER :
+ 12 2F 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  18   47   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : /2
+
+des string : 122F32000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   56   57  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   56   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   54  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   56   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.56g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+STATE--->1 -->6993-->1
+
+OK
+
+data  :122F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"122F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3536672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+122F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6164AT3+MAIP2SE0N3D=313,"11222EF33240020500206004050342354564A0320AB2010030080300900D0F00403002006050030400800500205044D456545C34A2362164367A562560C2305037297E333138A2205264C4F4E47465434314C32CA4627506526CD230563279E7333233A225042E62F542125604C46DF631A6423A020338333125E334025226645546355433A5230338A392D0F43302665B3648D52254F6826537061726B204164763A203824E653430132A620439024E31825542634CA4F24E04734675433193AD20F2D43632E433D25526552450C4D33AA20238635430D2645615345363A320A30260342E3536672F73265450533A20332E352526264F32204B62D23F6185263533710631A72260B2304016247E633A023038823E0305266429C4145F433A2202370349D2F34314D553543C13A326A4D240143603A220E34328E3255362664F3220423153323A20302E313830562C4F723F72322650454052333A21035323E335225326A2624F033229034293125E333123A225032062E43F0348230454625C34F5352250042331A52330134A2503402FE348224426264D494C5F646973743A20306B6D41445F4163636552664FC3232A042230153330223AE23030026ED31238F30256827C43F232A270432321593323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,1544
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-6-16
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063823.00xA3110.4524N12123.6003E0.136xxxxx31081259
+
+hight:30.6
+
+GPS high£∫30
+
+GPS DATA£∫
+
+longitude£∫ 121236003
+latitude £∫  31104526
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :BBFC  ->DATA HEADER :
+ FC BB 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 252  187   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ¸ª 
+
+des string : FCBB20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  35  234   57    7   14  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    6   16    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : #Í9û⁄≤≥
+
+des string : 23EA39070E9EDA01B2B30000D303771800000000000000000000000610001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+STATE--->1 -->6280-->1
+
+data  :FCBB20000000000032546A020400000000000000000000000000000023EA39070E9EDA01B2B30000D303771800000000000000000000000610001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"FCBB20000000000032546A020400000000000000000000000000000023EA39070E9EDA01B2B30000D303771800000000000000000000000610001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+FCBB20000000000032546A020400000000000000000000000000000023EA39070E9EDA01B2B30000D303771800000000000000000000000610001E06010000000000AT0+M0IP0SE0ND=
+1,"FCBB20000000000032546A020400000000000000000000000000000023EA39070E9EDA01B2B30000D303771800000000000000000000000610001E060100000000000000"
++MIPPUSH: 1,0,1612
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6290-->1
+
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+
+STATE--->1 -->6296-->1
+
+TIME USED :390->374-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :9530  ->DATA HEADER :
+ 30 95 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  48  149   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 0ï2
+
+des string : 309532000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   56   57  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   56   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   57  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   56   48   86   44   79   50   32   66   49   83   49   58   32   48   46   48   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 89ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :309532000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"309532000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203839DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+STATE--->1 -->6295-->1
+
+cmd size :20
+
+buf size :590
+309532000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61AT6+MIP3SAE2ND0=31,3"33019253E2030040200502006034255446A302504B031A00200003008030090D00F0400302006005003040080054D25554C43A426625644673561563C2A052370973330132A2E03825264C4F4E474654341343C2AC42607526D563C62025E3739373235232A26045E22F45120644CD63F6A162403A328033353132E03242655266455433554333A2A02380393DF04632B6653D48252F546826537061726B204164763A20382E43650432136A420930421E35842532A642C04F347E437946D5F434133A420D2D536524E3C3235A2652256044DD34A21043863353A02260563543523E3A325033069B672F73265450533A20332E352526264F322046D22F3681265533730611372A62B200431604276E33A20033882E3300256649241C5443FA2302372390DF442343D155543C33A12634DA41240633A02023E423E03523592664F3220423153323A20302E313830562C4F32722F073426254351055333A32023332AE325025329623694F232E230422231552336134A2F0430224E340358330555625C40F332A22040243155433F143A224034022E3602264D494C5F646973743A20306B6D414524645F3F2240412631356333236A250630C23E3A1328030350622CE4F33022604D2321F53238237A230239A3972E3322259264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,1907
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-6-32
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063840.00xA3110.4534N12123.5996E0.208xxxxx31081259
+
+hight:25.8
+
+GPS high£∫25
+
+GPS DATA£∫
+
+longitude£∫ 121235998
+latitude £∫  31104535
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         5
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :AE93  ->DATA HEADER :
+ 93 AE 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 147  174   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ìÆ 
+
+des string : 93AE20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  30  234   57    7   23  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    6   32    0   30    5    1    0    0    0    0    0    0    0 
+
+src string : Í9û⁄≤≥
+
+des string : 1EEA3907179EDA01B2B30000D303771800000000000000000000000620001E050100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :93AE20000000000032546A02040000000000000000000000000000001EEA3907179EDA01B2B30000D303771800000000000000000000000620001E050100000000000000
+
+send cmd :AT+MIPSEND=1,"93AE20000000000032546A02040000000000000000000000000000001EEA3907179EDA01B2B30000D303771800000000000000000000000620001E050100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+93AE20000000000032546A02040000000000000000000000000000001EEA3907179EDA01B2B30000D303771800000000000000000000000620001E0501000000000000A0T+0MIP
+SEND=1,"93AE20000000000032546A02040000000000000000000000000000001EEA3907179EDA01B2B30000D303771800000000000000000000000620001E050100000000000000"
++MIPPUSH: 1,0,1975
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6294-->1
+
+check accel
+
+buf 2 --> AD_Accel: 0.0m/(s*s) 
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+STATE--->1 -->6382-->1
+
+STATE--->1 -->6326-->1
+
+TIME USED :406->390-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+
+obd normal --> RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :E997  ->DATA HEADER :
+ 97 E9 30  0  0  0  0  0 32 54 6A  2 5D  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 151  233   48    0    0    0    0    0   50   84  106    2   93    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : óÈ0
+
+des string : 97E930000000000032546A025D000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  82   68   84   67   58   48   48   48   69   68   84   67   58   48   48   48   77   73   76   58   79   70   70   83   80   87   82   58   49   51   46   56   50   86   73   70   69   58   32   48   46   52   52   50  109  108   47  115   87   72   80   58   32   49   46   53   52   53   72   80   65   68   95   77  105  108   58   32   48   46   48  107  109   65   68   95   70   69   72   58   32   48   46   48   48   48  108   47   49   48   48  107  109 
+
+src string : RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+des string : 524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+src len :93
+
+des len :186
+
+set socket cmd:AT+MIPSETS=1,121,500
+AT+MIPSETS=1,121,500
++MIPSETS: 0
+
+OK
+
+data  :97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+send cmd :AT+MIPSEND=1,"97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
+
+cmd:14  buf:242  data:242
+
+cmd size :20
+
+buf size :242
+97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453AA2T+0MI3P0SE2NDE=31,4"9374E93320060D0060C0020F00732354567A04258D0500000300A00200000300100200E003005003004003055244458445330A340310430445544F54443D3A630930630C4D3A20302E306B6D41445F4645448943C3AA24F04634605325E0537052330A33103362CE328F32351643940643530A2603B062ED3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
++MIPPUSH: 1,0,2096
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-6-48
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063857.00xA3110.4544N12123.5996E0.359xxxxx31081259
+
+hight:18.4
+
+GPS high£∫18
+
+STATE--->1 -->6351-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235997
+latitude £∫  31104545
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :354F  ->DATA HEADER :
+ 4F 35 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  79   53   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : O5 
+
+des string : 4F3520000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  29  234   57    7   33  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    6   48    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : Í9!û⁄≤≥
+
+des string : 1DEA3907219EDA01B2B30000D303771800000000000000000000000630001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :4F3520000000000032546A02040000000000000000000000000000001DEA3907219EDA01B2B30000D303771800000000000000000000000630001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"4F3520000000000032546A02040000000000000000000000000000001DEA3907219EDA01B2B30000D303771800000000000000000000000630001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+cmd size :20
+
+buf size :136
+4F3520000000000032546A02040000000000000000000000000000001DEA3907219EDA01B2B30000D303771800000000000000000000000630001E060100000000000000
+AT+MIPSEND=1,"4F3520000000000032546A02040000000000000000000000000000001DEA3907219EDA01B2B30000D303771800000000000000000000000630001E060100000000000000"
++MIPPUSH: 1,0,2164
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6353-->1
+
+STATE--->1 -->6323-->1
+
+TIME USED :422->406-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :41D9  ->DATA HEADER :
+ D9 41 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+STATE--->1 -->7089-->1
+find the socket:1
+network ok
+
+data length : 0
+
+ 217   65   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ŸA2
+
+des string : D94132000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   56   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   56   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   57  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   56   48   86   44   79   50   32   66   49   83   49   58   32   48   46   48   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.59g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :D94132000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"D94132000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3539672F73265450533A20332E352526264F3220423153313A20302E303830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+D94132000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6A1T+6MI4PS3ENAD=210,"3D934133210020E0030080200532256464A502403B0510400300A020000030090030000D00F0040300206005043D455845C32A524624646675564563C2105337A972330133A2002E3825264C4F4E474645344C23C146375A6526C020253D7937363223AE2034E32F24152624C66F56126453A020433D3132EA3822502634584335453A3200392306DF54362655334855233A20306B6D2F6826537061726B204164763A2038254E46354031236A240930421E35842532A642C40F34E747346954D31F3A42032D436D2E533525426C52350A4D23A620438D35430126456653353A3A220030342E3539672F73265450533A20332E352526264F3220462B63D21F658236533710361A72260B32004216E473630A23038832E0350266429C4145F433A2202307349D2F343145D53534C133A2A624D04134603A22E033402E2355329664F3220423153323A20302E313830562C472FF733226254054052333A120533323E325325A26220643F39223094223E153332123A52023062E430F3843025642C44F53232054253155303133AA2023002E430524F424426264D494C5F646973743A20306B6D41524644F3522F04421361533632336A250630C2E33A1328030350622CE4F332020642D3125F332238A72033293A927E332229526
+4F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,2459
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-7-4
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063913.00xA3110.4559N12123.5994E0.183xxxxx31081259
+
+hight:11.1
+
+GPS high£∫11
+
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+
+GPS DATA£∫
+
+longitude£∫ 121235994
+latitude £∫  31104560
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :6462  ->DATA HEADER :
+ 62 64 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  98  100   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : bd 
+
+des string : 626420000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  26  234   57    7   48  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    7    4    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : Í90û⁄≤≥
+
+des string : 1AEA3907309EDA01B2B30000D303771800000000000000000000000704001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+STATE--->1 -->6298-->1
+
+data  :626420000000000032546A02040000000000000000000000000000001AEA3907309EDA01B2B30000D303771800000000000000000000000704001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"626420000000000032546A02040000000000000000000000000000001AEA3907309EDA01B2B30000D303771800000000000000000000000704001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+626420000000000032546A02040000000000000000000000000000001AEA3907309EDA01B2B30000D303771800000000000000000000000704001E0601000000000A0T+0MI0PS0EN0D=1,"626420000000000032546A02040000000000000000000000000000001AEA3907309EDA01B2B30000D303771800000000000000000000000704001E060100000000000000"
++MIPPUSH: 1,0,2527
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6320-->1
+
+STATE--->1 -->6349-->1
+
+check accel
+
+buf 2 --> AD_Accel: 0.0m/(s*s) 
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+TIME USED :438->422-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :FC4A  ->DATA HEADER :
+ 4A FC 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  74  252   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : J¸2
+
+des string : 4AFC32000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   56   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   56   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   51   53  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   57   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 8.0&IAT: 79ﬂCMUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :4AFC32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"4AFC32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3825264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20382E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+STATE--->1 -->6333-->1
+
+cmd size :20
+
+buf size :590
+4AFC32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6A1T+6MI4P3SEAN2D=013,"34A3FC13220E03008002005020362454564A03205B041300A02000003009030000D00F0040030020060500304048D55542C35A42642664657546536C120353A7927303133A0202E3825264C4F4E4746544343C21C346A72560526CD230563279E73333232A25024E625F42152604C46DF631A64230A230833335123E0382265256645543355433A320A329300D3F4032665B364D8522F6826537061726B204164763A20382E354046254634139A24031025E3482352A642C40F43E4774365943D13FA24023D3462DE3532552465C25304AD32A2603483D53402165465635333AA22030063B42E3335672F73265450533A20332E352526264F322046D22F36812655337036117236BA2024106437603A220E3832E03032694934105453A620237C394DFF4334D25524C03A42624D34114653A32033412E333A35260302E3825264F3220423153323A20302E313830562C4F3722F723206544520353135A230333223E3A5225026329643F392220E42332152335132A260430F24E32034934055632C545F35202034A2321053435134AF20432024E4382256264D494C5F646973743A20306B6D41445F416326643F3622504623C15333A223A023030022E3E1338030656D22C4FF2328270432231A57333223A92039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,2822
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-7-20
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:2xxxxx59
+
+time:063930.00x4Nxxxxxxxx8Exxxxxxxxx0xxxxx310812xxxxx59
+
+hight:5.13
+
+GPS high£∫5
+
+GPS DATA£∫
+
+longitude£∫ 121235989
+latitude £∫  31104564
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :B08C  ->DATA HEADER :
+ 8C B0 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 140  176   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : å∞ 
+
+des string : 8CB020000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  21  234   57    7   52  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    7   20    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : Í94û⁄≤≥
+
+des string : 15EA3907349EDA01B2B30000D303771800000000000000000000000714001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :8CB020000000000032546A020400000000000000000000000000000015EA3907349EDA01B2B30000D303771800000000000000000000000714001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"8CB020000000000032546A020400000000000000000000000000000015EA3907349EDA01B2B30000D303771800000000000000000000000714001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+STATE--->1 -->6331-->1
+
+cmd size :20
+
+buf size :136
+8CB020000000000032546A020400000000000000000000000000000015EA3907349EDA01B2B30000D303771800000000000000000000000714001E060100000000000AT0+M0IP0SEN
+D=1,"8CB020000000000032546A020400000000000000000000000000000015EA3907349EDA01B2B30000D303771800000000000000000000000714001E060100000000000000"
++MIPPUSH: 1,0,2890
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6304-->1
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+STATE--->1 -->6326-->1
+
+TIME USED :454->438-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :3F52  ->DATA HEADER :
+ 52 3F 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  82   63   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : R?2
+
+des string : 523F32000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   49   46   54   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   51   56   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   51   53  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   57   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.35g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :523F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"523F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3335672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20302E3825264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+523F32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F616A4T+3MIAPS2EN0D3=13,3"51223FE3320402005020060400534253465A04230BA021000030900300000D00F0400302006005030040800502045D455446C35A2462364167356A562C2005337197233E133A26025264C4F4E47465443341C23C4A672506526DC230563279E73333223A522046E52F245120644CD63F6A126403A320833333123E8342256265465453354533A230A392300D3F04362B6563D48252F546826537061726B204164763A20392E43650432136A42093142E1365245236A4C24F043E47734695D43F143A32042DD35652E43C3235A2625625404DD34A1204368333A382260536543253E33A23033056B672F73265450533A20332E352526264F3220462D23F61825635337106317A262B02034106247E633A200339923E30052664294C1544F3A32203270394D2F43341D55543C33A12634AD42140633A200324E2E3383325562764F3220423153323A20302E313830562C42FF73326254250053432A23013352E3353225236A2624F033229043293125E333123A225032062E430F349320456425C43F35225054203315A332103A4250340F2E432824426264D494C5F646973743A20306B6D41524644F3522F0442136153336233A62503602CE3313A8230053620C42FE323200462D3125F332283A72033293A972E33222952
+64F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,3185
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-7-37
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:063947.00xA3110.4569N12123.5980E0.250xxxxx31081259
+
+hight:0.75
+
+GPS high£∫0
+
+STATE--->1 -->6320-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235980
+latitude £∫  31104569
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :585C  ->DATA HEADER :
+ 5C 58 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  92   88   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : \X 
+
+des string : 5C5820000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  12  234   57    7   57  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    7   37    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : Í99û⁄≤≥
+
+des string : 0CEA3907399EDA01B2B30000D303771800000000000000000000000725001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :5C5820000000000032546A02040000000000000000000000000000000CEA3907399EDA01B2B30000D303771800000000000000000000000725001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"5C5820000000000032546A02040000000000000000000000000000000CEA3907399EDA01B2B30000D303771800000000000000000000000725001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+5C5820000000000032546A02040000000000000000000000000000000CEA3907399EDA01B2B30000D303771800000000000000000000000725001E06010000000000AT0+M0IP0SE0ND=
+1,"5C5820000000000032546A02040000000000000000000000000000000CEA3907399EDA01B2B30000D303771800000000000000000000000725001E060100000000000000"
++MIPPUSH: 1,0,3253
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6344-->1
+
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+
+STATE--->1 -->6339-->1
+
+TIME USED :470->454-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+STATE--->1 -->6323-->1
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :8358  ->DATA HEADER :
+ 58 83 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  88  131   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : XÉ2
+
+des string : 588332000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   49   46   54   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   51   56   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   49  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   57   48   86   44   79   50   32   66   49   83   49   58   32   50   46   51   37   38   79   50   32   66   49   83   50   58   32   48   46   49   55   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 1.6%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :588332000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"588332000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20312E3625264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+588332000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6164A3T+AMI2PS0EN3D=31,3"5188233E20304002005020060432554463A50240B301A0200000300900300000D00F004003002006005003044D58545C32A25624644667556546C320153379A7323103A32012E3625264C4F4E474654341343C2AC426705265D6C320653279E7333233A22054E22F64152624C56F061464D3A320A3323102E33482532634534385423A62503693503DF5433236A532408532056B6D2F6826537061726B204164763A20392E3440652436143A924031152E436325A26240C43F74E34794D65F443133A42D025D35642EC3332A522665245D044D31A240368333A3822065365435233AE20335063B1672F73265450533A20332E352526264F32260D24F62823651357036137261B320A42164076330A220E39320E33029643940155463A22C0347F393D2F42304D452543C31A52634D34114633AA22003432E325231E3325264F3220423153323A20302E3137305626C724F7F323652452050343A220333125E3352352262364AF3220203429331593231E33A22023052E2360349F30452624C44F53232054253155303133AA2023220E34354F424426264D494C5F646973743A20306B62D524641F342240542F34151363233A623036025E631C37330A52620C4F33022204E233105633D232AF20238937932E23A227532624F9424
+45355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,3548
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-7-53
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:064004.00xA3110.4575N12123.5975E0.422xxxxx31081259
+
+hight:-3.4
+
+GPS high£∫-3
+
+GPS DATA£∫
+
+longitude£∫ 121235978
+latitude £∫  31104576
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :7FC5  ->DATA HEADER :
+ C5 7F 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+
+STATE--->1 -->6340-->1
+find the socket:1
+network ok
+
+data length : 0
+
+ 197  127   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ≈ 
+
+des string : C57F20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  10  234   57    7   64  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    7   53    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : 
+Í9@û⁄≤≥
+
+des string : 0AEA3907409EDA01B2B30000D303771800000000000000000000000735001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :C57F20000000000032546A02040000000000000000000000000000000AEA3907409EDA01B2B30000D303771800000000000000000000000735001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"C57F20000000000032546A02040000000000000000000000000000000AEA3907409EDA01B2B30000D303771800000000000000000000000735001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+C57F20000000000032546A02040000000000000000000000000000000AEA3907409EDA01B2B30000D303771800000000000000000000000735001E0601000000000000A0T+0MIPSEND=1,"C57F20000000000032546A02040000000000000000000000000000000AEA3907409EDA01B2B30000D303771800000000000000000000000735001E060100000000000000"
++MIPPUSH: 1,0,3616
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+check accel
+
+buf 2 --> AD_Accel: 0.0m/(s*s) 
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+STATE--->1 -->6357-->1
+
+STATE--->1 -->6345-->1
+
+TIME USED :486->470-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+
+obd normal --> RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :E997  ->DATA HEADER :
+ 97 E9 30  0  0  0  0  0 32 54 6A  2 5D  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 151  233   48    0    0    0    0    0   50   84  106    2   93    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : óÈ0
+
+des string : 97E930000000000032546A025D000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  82   68   84   67   58   48   48   48   69   68   84   67   58   48   48   48   77   73   76   58   79   70   70   83   80   87   82   58   49   51   46   56   50   86   73   70   69   58   32   48   46   52   52   50  109  108   47  115   87   72   80   58   32   49   46   53   52   53   72   80   65   68   95   77  105  108   58   32   48   46   48  107  109   65   68   95   70   69   72   58   32   48   46   48   48   48  108   47   49   48   48  107  109 
+
+src string : RDTC:000EDTC:000MIL:OFFSPWR:13.82VIFE: 0.442ml/sWHP: 1.545HPAD_Mil: 0.0kmAD_FEH: 0.000l/100km
+
+des string : 524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+src len :93
+
+des len :186
+
+set socket cmd:AT+MIPSETS=1,121,500
+AT+MIPSETS=1,121,500
++MIPSETS: 0
+
+OK
+
+data  :97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D
+
+send cmd :AT+MIPSEND=1,"97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A20302E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
+
+cmd:14  buf:242  data:242
+
+STATE--->1 -->6289-->1
+
+cmd size :20
+
+buf size :242
+97E930000000000032546A025D000000000000000000000000000000524454433A303030454454433A3030304D494C3A4F4646535057523A31332E3832564946453A203AT0+M2IPES3EN4D3=14,3"927E693D0600C0020F0070030532754468A502053D0A02000030010200E0300503004030050040800500004010045424545F44433DA3603903604C54345A442330A3303003204ED306B6D41445F4645483A2043940C32A4EF43640653350053705263CA3213F332E13383025364094664B536AD203
+02E3434326D6C2F735748503A20312E353435485041445F4D696C3A20302E306B6D41445F4645483A20302E3030306C2F3130306B6D"
++MIPPUSH: 1,0,3737
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-8-9
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:064020.00xA3110.4581N12123.5973E0.084xxxxx31081259
+
+hight:-9.0
+
+GPS high£∫-9
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+GPS DATA£∫
+
+longitude£∫ 121235973
+latitude £∫  31104582
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :AB2B  ->DATA HEADER :
+ 2B AB 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  43  171   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : +´ 
+
+des string : 2BAB20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+   5  234   57    7   70  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    8    9    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : Í9Fû⁄≤≥
+
+des string : 05EA3907469EDA01B2B30000D303771800000000000000000000000809001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :2BAB20000000000032546A020400000000000000000000000000000005EA3907469EDA01B2B30000D303771800000000000000000000000809001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"2BAB20000000000032546A020400000000000000000000000000000005EA3907469EDA01B2B30000D303771800000000000000000000000809001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+STATE--->1 -->6278-->1
+
+cmd size :20
+
+buf size :136
+2BAB20000000000032546A020400000000000000000000000000000005EA3907469EDA01B2B30000D303771800000000000000000000000809001E060100000000000000
+AT+MIPSEND=1,"2BAB20000000000032546A020400000000000000000000000000000005EA3907469EDA01B2B30000D303771800000000000000000000000809001E060100000000000000"
++MIPPUSH: 1,0,3805
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6291-->1
+
+STATE--->1 -->6294-->1
+
+TIME USED :502->486-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :8075  ->DATA HEADER :
+ 75 80 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 117  128   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : uÄ2
+
+des string : 758032000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   48   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   53   49  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   57   48   86   44   79   50   32   66   49   83   49   58   32   50   46   51   37   38   79   50   32   66   49   83   50   58   32   48   46   49   55   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+15   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.51g/s&TPS: 3.5%&&O2 B1S1: 0.090V,O2 B1S1: 2.3%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :758032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"758032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3531672F73265450533A20332E352526264F3220423153313A20302E303930562C4F3220423153313A20322E3325264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+758032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61AT6+M4IP3SEAND2=10,"3753803312020E00300000205032265446A502403B05140030A002000003009030000D00F00403002060050300448D55542C53A424626645674563561C2305A372970333130A220E3825264C4F4E4746544334C12C34A627506256DC230563279E73333223A520246E25F241520644CD6F36A162403A320833335132E0320265256465453354533A2303A92300D3F403626B653D48252F56826537061726B204164763A203924E46354032136A42093042E1358245326A4C24F04E3477436954D31F3A420324D3D652E53432C5326A52256044DD34A21043863353A022650653354332A2E03305631672F73265450533A20332E352526264F322B60D24F628236153573063117236AB22004136047263EA230039329E33020645964125C434AF203327329D0F44324D351545C33A23614D34A142630A23023422EE3353325264F3220423153323A20302E313730562C1467F2F3723226054450253331A520333322E335A22520623649F3322904223E153332132A250230624E3F0439234054652C345F35225004233A1523031435A240F32422E343426264D494C5F646973743A20306B6D41445F416363656C3A2023520642FE32320042631D53232F3A22083072E331237A3075632C24F93220
+423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,4100
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-8-25
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:064037.00xA3110.4589N12123.5962E0.400xxxxx31081259
+
+hight:-12.4
+
+GPS high£∫-12
+
+STATE--->1 -->6288-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235963
+latitude £∫  31104590
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :CF6C  ->DATA HEADER :
+ 6C CF 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 108  207   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : lœ 
+
+des string : 6CCF20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 251  233   57    7   78  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    8   25    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : ˚È9Nû⁄≤≥
+
+des string : FBE939074E9EDA01B2B30000D303771800000000000000000000000819001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :6CCF20000000000032546A0204000000000000000000000000000000FBE939074E9EDA01B2B30000D303771800000000000000000000000819001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"6CCF20000000000032546A0204000000000000000000000000000000FBE939074E9EDA01B2B30000D303771800000000000000000000000819001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+6CCF20000000000032546A0204000000000000000000000000000000FBE939074E9EDA01B2B30000D303771800000000000000000000000819001E06010000000000AT0+M0IP0SE0ND=1,"6CCF20000000000032546A0204000000000000000000000000000000FBE939074E9EDA01B2B30000D303771800000000000000000000000819001E060100000000000000"
++MIPPUSH: 1,0,4168
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6271-->1
+
+STATE--->1 -->6292-->1
+
+check accel
+
+buf 2 --> AD_Accel: 0.0m/(s*s) 
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+
+STATE--->1 -->6335-->1
+
+TIME USED :518->502-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCpid buf 1 -->MUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :7033  ->DATA HEADER :
+ 33 70 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  51  112   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : 3p2
+
+des string : 337032000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   48   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   53   48   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   55   57  223   67   77   85   76   58   38   77   65   70   58   32   52   46   52   53  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   55   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   55   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.0%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 850&VSS: 0km/h&Spark Adv: 9.0&IAT: 79ﬂCMUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :337032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"337032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3025264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383530265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203739DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+337032000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F6A1T+6MI4PS3EAND2=01,3"33337013220E030000002005032256464A05204B03150040300A00200003090030000D00F00403002060050034D458545C23A524624646675564563C21053379A7323103A32002E3825264C4F4E4746544334C12C346A7526506C22D0533679273E32333A22054E22F641526245C60F6416D433AA20233033128E330525326042546355436A5203395330D3F4A32265034380526B6D2F6826537061726B204164763A205344965243E133A200230624E398425125644C43FA4E247043657433193AD2F024D33624ED3352552465C2350A42D36A420D384351340266356A53250333A4202E3435672F73265450533A20332E35252626430F6B36D22F268024652373061175236B32014316A472603A32003292EE330026347943150435A260327C394DFF43342D25504C432A23614D54134633A12303A422E0302E3825264F3220423153323A20302E313733403556762F273C2645F453025323A024032332E135523532622364AF232023049233195233E133A220230522E360437F30452624C44F533225045253105333A123A0420534F424426264D494C5F646973743A203060B2E638D25421644F3422504F2341153632336A23036052E63C13373A052602C340F3222E034203615D33223FA220389739322E3A2275326249F42
+445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,4463
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-8-41
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:064054.00xA3110.4598N12123.5950E0.496xxxxx31081259
+
+hight:-16.8
+
+GPS high£∫-16
+
+STATE--->1 -->6330-->1
+
+GPS DATA£∫
+
+longitude£∫ 121235950
+latitude £∫  31104598
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :688E  ->DATA HEADER :
+ 8E 68 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 142  104   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : éh 
+
+des string : 8E6820000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 238  233   57    7   86  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    8   41    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : ÓÈ9Vû⁄≤≥
+
+des string : EEE93907569EDA01B2B30000D303771800000000000000000000000829001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :8E6820000000000032546A0204000000000000000000000000000000EEE93907569EDA01B2B30000D303771800000000000000000000000829001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"8E6820000000000032546A0204000000000000000000000000000000EEE93907569EDA01B2B30000D303771800000000000000000000000829001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+8E6820000000000032546A0204000000000000000000000000000000EEE93907569EDA01B2B30000D303771800000000000000000000000829001E06010000000000AT0+M0IP0S0END
+=1,"8E6820000000000032546A0204000000000000000000000000000000EEE93907569EDA01B2B30000D303771800000000000000000000000829001E060100000000000000"
++MIPPUSH: 1,0,4531
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+STATE--->1 -->6328-->1
+
+check pids :BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+buf 0 --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂC 
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+
+STATE--->1 -->6320-->1
+
+TIME USED :534->518-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCpid buf 1 -->MUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCMUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :EB23  ->DATA HEADER :
+ 23 EB 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+  35  235   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : #Î2
+
+des string : 23EB32000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   51   56   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   56   48  223   67   77   85   76   58   38   77   65   70   58   32   52   46   52   53  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   48   55   48   86   44   79   50   32   66   49   83   49   58   32   48   46   56   37   38   79   50   32   66   49   83   50   58   32   48   46   49   55   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCMUL:&MAF: 4.45g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.8%&O2 B1S2: 0.170V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+STATE--->1 -->7121-->1
+
+data  :23EB32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"23EB32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3435672F73265450533A20332E352526264F3220423153313A20302E303730562C4F3220423153313A20302E3825264F3220423153323A20302E313730562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590
+
+cmd size :20
+
+buf size :590
+23EB32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61A6T+4MI3PSAE2ND0=31,3"3231E2B3E2300400205002060043255446A305204B301A00200003090030000D0F004030020060050300408005024D554544C36A2562464367156356AC2205037397033213EA230825264C4F4E474654314334AC22C4067256D563C2605237E9373332235A22064E522F45102644DC63F6A162430A320833333123E384225626546545353453A32303A92300D3F403266B5634D8525F46826537061726B204164763A203924E653430132A26034092E431825524643CA4F240E43784635043D13FA24032D43D625E53342C52365A252064D43DA24013843363382A6256053354323AE203340635672F73265450533A20332E352526264F3220B64D22F63821655337036117326AB22040163407623EA230039327E3300265469421C5443FA2302382300D4F42343D51554C333A21643DA41246033A200234E23E3842355264F3220423153323A20302E313730562C6472FF733226524050452333A21035323E335225326A22640F3329230492231E53332132A520236024EF30432734054625C34F53522504023315A3231034A250430F24E3284426264D494C5F646973743A20306B6D42512644F43522F0442136153363233A62053062CE331A37230053620C24FE332200462D3125F332283A72303293A972E3322295264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
++MIPPUSH: 1,0,4826
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-8-57
+
+Voltage£∫0
+
+CSQ£∫30
+
+CIMI£∫46002
+
+CELLID£∫410452947
+
+GPS DATA READY
+
+GPS RMC
+ Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç Ç
+GPS RMC
+ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂ ∂
+date:31081259
+
+time:064111.00xA3110.4609N12123.5933E0.326xxxxx31081259
+
+hight:
+
+GPS high£∫0
+
+GPS DATA£∫
+
+longitude£∫ 121235933
+latitude £∫  31104608
+height   £∫         0
+speed    £∫         0
+angle    £∫         0
+stars    £∫         6
+state    £∫         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :DFBB  ->DATA HEADER :
+ BB DF 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 187  223   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ªﬂ 
+
+des string : BBDF20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+ 221  233   57    7   96  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    8   57    0   30    6    1    0    0    0    0    0    0    0 
+
+src string : ›È9`û⁄≤≥
+
+des string : DDE93907609EDA01B2B30000D303771800000000000000000000000839001E060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :BBDF20000000000032546A0204000000000000000000000000000000DDE93907609EDA01B2B30000D303771800000000000000000000000839001E060100000000000000
+
+send cmd :AT+MIPSEND=1,"BBDF20000000000032546A0204000000000000000000000000000000DDE93907609EDA01B2B30000D303771800000000000000000000000839001E060100000000000000"
+
+cmd:14  buf:136  data:136
+
+STATE--->1 -->6358-->1
+
+cmd size :20
+
+buf size :136
+BBDF20000000000032546A0204000000000000000000000000000000DDE93907609EDA01B2B30000D303771800000000000000000000000839001E06010000000000AT0+M0IP0SE0ND=1
+,"BBDF20000000000032546A0204000000000000000000000000000000DDE93907609EDA01B2B30000D303771800000000000000000000000839001E060100000000000000"
++MIPPUSH: 1,0,4894
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+check pids :BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+buf 1 --> MUL:&MAF: 4.44g/s&TPS: 3.5%&&O2 B1S1: 0.780V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km 
+
+AT--->BT+DATA.AD_Accel
+
+
+
+STATE--->1 -->6316-->1
+
+STATE--->1 -->6275-->1
+
+TIME USED :550->534-->16
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCpid buf 1 -->MUL:&MAF: 4.44g/s&TPS: 3.5%&&O2 B1S1: 0.780V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmpid buf 2 -->AD_Accel: 0.0m/(s*s)
+obd fast --> MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCMUL:&MAF: 4.44g/s&TPS: 3.5%&&O2 B1S1: 0.780V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :FA66  ->DATA HEADER :
+ 66 FA 32  0  0  0  0  0 32 54 6A  2  B  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+ºÏ≤ÈÕ¯¬Á «∑Ò–Ë“™÷ÿ¡¨
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 102  250   50    0    0    0    0    0   50   84  106    2   11    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : f˙2
+
+des string : 66FA32000000000032546A020B010000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  77   85   76   58   38   38   70  117  101  108   32   83  121  115   49   58   32   67   76   44   70  117  101  108   32   83  121  115   50   58   32   78   47   65   38   76  111   97  100   58   32   51   49   46   52   37   38   69   67   84   58   32   57   48  223   67   38   83   72   82   84   70   84   49   58   32   48   46   56   37   38   76   79   78   71   70   84   49   58   32   45   54   46   51   37   38   82   80   77   58   32   56   51   56   38   86   83   83   58   32   48  107  109   47  104   38   83  112   97  114  107   32   65  100  118   58   32   57   46   48   38   73   65   84   58   32   56   48  223   67   77   85   76   58   38   77   65   70   58   32   52   46   52   52  103   47  115   38   84   80   83   58   32   51   46   53   37   38   38   79   50   32   66   49   83   49   58   32   48   46   55   56   48   86   44   79   50   32   66   49   83   49   58   32   48   46   48   37   38   79   50   32   66   49   83   50   58   32   48   46   49   56   48   86   44   79   50   32   66   49   83   50   58   32   57   57   46   50   37   38   79   66   68   83   85   80   58   32   69   79   66   68   38   38   77   73   76   95  100  105  115  116   58   32   48  107  109   65   68   95   65   99   99  101  108   58   32   48   46   48  109   47   40  115   42  115   41 
+
+src string : MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.4%&ECT: 90ﬂC&SHRTFT1: 0.8%&LONGFT1: -6.3%&RPM: 838&VSS: 0km/h&Spark Adv: 9.0&IAT: 80ﬂCMUL:&MAF: 4.44g/s&TPS: 3.5%&&O2 B1S1: 0.780V,O2 B1S1: 0.0%&O2 B1S2: 0.180V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0kmAD_Accel: 0.0m/(s*s)
+
+des string : 4D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3434672F73265450533A20332E352526264F3220423153313A20302E373830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+src len :267
+
+des len :534
+
+set socket cmd:AT+MIPSETS=1,295,500
+AT+MIPSETS=1,295,500
++MIPSETS: 0
+
+OK
+
+data  :66FA32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3434672F73265450533A20332E352526264F3220423153313A20302E373830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329
+
+send cmd :AT+MIPSEND=1,"66FA32000000000032546A020B0100000000000000000000000000004D554C3A26264675656C20537973313A20434C2C4675656C20537973323A204E2F41264C6F61643A2033312E3425264543543A203930DF4326534852544654313A20302E3825264C4F4E474654313A202D362E33252652504D3A20383338265653533A20306B6D2F6826537061726B204164763A20392E30264941543A203830DF434D554C3A264D41463A20342E3434672F73265450533A20332E352526264F3220423153313A20302E373830562C4F3220423153313A20302E3025264F3220423153323A20302E313830562C4F3220423153323A2039392E3225264F42445355503A20454F424426264D494C5F646973743A20306B6D41445F416363656C3A20302E306D2F28732A7329"
+
+cmd:14  buf:590  data:590

@@ -2322,6 +2322,7 @@ void obdGetAllData(void){
 	int i1,i2,i3,i4,timeout=10000;
 	char table[] = "\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
 	BLUE_OBD = 0;
+	
 	again:
 	ISP_DIRECTION=USART_OBD;
 	printf("\r\nbegin obd test\r\n");
@@ -2337,24 +2338,37 @@ void obdGetAllData(void){
 	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 	obdAtAndWait("BT+MIL\r\n",NULL,5000);
 	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
-	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
-	obdAtAndWait("BT+INFO.VIN\r\n",NULL,5000);
-	obdAtAndWait("BT+INFO.EID\r\n",NULL,5000);
-	obdAtAndWait("BT+PMIL=10000\r\n",NULL,5000);
-	getObdPids();
+
+	OBD_START = getObdPids() > 0 ?1:0;
+//	while(1);
+//	delay_ms(2000);
 	while(1){
-		obdAtAndWait("BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F\r\n",NULL,timeout);
-		obdAtAndWait("BT+MUL=&10&11&13&14&15&1C&20&21\r\n",NULL,timeout);
-
-obdAtAndWait("BT+PMIL=10000\r\n",NULL,3000);
-	
-		obdAtAndWait("BT+DATA.IFE\r\n",NULL,3000);
-		obdAtAndWait("BT+DATA.WHP\r\n",NULL,3000);
-		obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,3000);
-		obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,3000);
-		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,3000);
-
+//		obdGetPidDatas(1);
+		obdCollectData();
+		delay_ms(1000);
 	}
+//	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+MIL\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+INFO.VIN\r\n",NULL,5000);
+//	obdAtAndWait("BT+INFO.EID\r\n",NULL,5000);
+//	obdAtAndWait("BT+PMIL=10000\r\n",NULL,5000);
+//	getObdPids();
+//	while(1){
+//		obdAtAndWait("BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F\r\n",NULL,timeout);
+//		obdAtAndWait("BT+MUL=&10&11&13&14&15&1C&20&21\r\n",NULL,timeout);
+//
+//obdAtAndWait("BT+PMIL=10000\r\n",NULL,3000);
+//	
+//		obdAtAndWait("BT+DATA.IFE\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.WHP\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,3000);
+//
+//	}
 	while(1){
 		obdGetPidDatas(1);
 		delay_ms(10000);
@@ -2586,7 +2600,7 @@ void obdInitData(void){
 	memset(obdFastBuf.buf,'#',400);
 }
 void obdInitChip(void){
-	char cmd[10];
+//	char cmd[10];
 	obdInitData();
 
 
@@ -2645,35 +2659,37 @@ AT--->BT+PIDS
 //	uint32_t cmdNum;
 //	OBD_PID mulCmd[9];
 //}NUL_PIDS;
-NUL_PIDS pidBuf;
+MUL_PIDS pidBuf;
 int32_t getObdPids(void){
 	char *point = NULL;
 	char tmp[5];
+	char test[] = "PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97\r\n";
 	 
-	uint32_t i = 0,j = 0,cmdTeam = 0;
+	uint32_t i = 0,j = 0;
 	int32_t index = -1,index2 = 0;
 	
 	obdAtAndWait("BT+PIDS\r\n",NULL,6000);
 	point = strstr(OBD_BUF,"PIDS:");
+//	point = strstr(test,"PIDS:"  );
 	if(point == NULL )
 	{
 		printf("\r\nobd can't get pids\r\n");
 		return -1;
 	}
+	memset(&pidBuf,0,sizeof(MUL_PIDS));
 	point+=5;
 	tmp[0] = *point++;
 	tmp[1] = *point++;
 	tmp[2] = *point++;
 	point++;
 	pidBuf.pidNum = atoi(tmp);
-	cmdTeam = pidBuf.pidNum / 10;
+	pidBuf.cmdNum = pidBuf.pidNum / 10;
 	if(pidBuf.pidNum % 10 != 0)
-		cmdTeam++;
-	pidBuf.cmdNum = cmdTeam;
-	printf("\r\npid num is :%d --> %d \r\n",pidBuf.pidNum,cmdTeam);
-	for(i = 0;i< cmdTeam;i++){
-		strcat(pidBuf.mulCmd[i].cmd,"BT+MUL=");
-		
+		pidBuf.cmdNum++;
+
+	printf("\r\npid num is :%d --> %d \r\n",pidBuf.pidNum,pidBuf.cmdNum);
+	for(i = 0;i< pidBuf.cmdNum;i++){
+		strcat(pidBuf.mulCmd[i].cmd,"BT+MUL=");		
 	}
 		
 	//get obd cmd data	
@@ -2681,29 +2697,32 @@ int32_t getObdPids(void){
 	for(i = 0;i< 300;i++){
 		
 		if(point[i] == '&'){
+			if(point[i+1] == '9')
+			{
+				printf("\r\nskip pid  : %c%c%c left :%d\r\n",point[i],point[i+1],point[i+2],pidBuf.pidNum-1);
+				pidBuf.pidNum--;
+				i+=2;//except i++;
+				continue;
+			}			
+			if((index+1) % 10 == 0)
+				j = 0;
 			index++;
-			if(index % 10 == 0){
-				pidBuf.mulCmd[(index)/10].cmd[j+7] = '\r';
-				j++;
-				pidBuf.mulCmd[(index)/10].cmd[j+7] = '\n';
-				j=0;
-			}
-//			printf("\r\nindex :%d \r\n",index);
 		}
+
 		
 		if(point[i]== 0x0d){
+			break;
 		 	strcat(pidBuf.mulCmd[index].cmd,"\r\n");
 			continue;			
-		//	break;
 		}
 		if(point[i] == 0x0a){
+			break;
 			index2 = strlen(pidBuf.mulCmd[index].cmd);
 			printf("current str len : index2  :  %3X -->  %3X\r\n",pidBuf.mulCmd[index].cmd[index2-2],pidBuf.mulCmd[index].cmd[index2-1]);
 			if(pidBuf.mulCmd[index].cmd[index2-2] != '\r' || pidBuf.mulCmd[index].cmd[index2-1] != '\n') {
 				strcat(pidBuf.mulCmd[index].cmd,"\r\n");
 				printf("\r\ninsert rn\r\n");
-			}
-			
+			}			
 		 	continue;
 			//strcat(pidBuf.mulCmd[index].cmd,"\r\n");			
 		//	break;
@@ -2711,22 +2730,41 @@ int32_t getObdPids(void){
 		pidBuf.mulCmd[(index)/10].cmd[j+7] = point[i];
 		j++;		
 	}
-	for(i = 0;i< cmdTeam;i++){
-		//strcat(pidBuf.mulCmd[i].cmd,"BT+MUL=");
-		printf("\r\ncmd %d  --> %s\r\n",i,pidBuf.mulCmd[i].cmd);
-		
-	}					
+	pidBuf.cmdNum = pidBuf.pidNum / 10;
+	if(pidBuf.pidNum % 10 != 0){
+		printf("\r\nchange buf\r\n");
+		pidBuf.cmdNum++;
+	}
+	strcpy(pidBuf.mulCmd[pidBuf.cmdNum++].cmd,"BT+DATA.AD_Accel");
+	printf("\r\nmodified pid num is :%d --> %d \r\n",pidBuf.pidNum,pidBuf.cmdNum);
+	for(i = 0;i< pidBuf.cmdNum;i++){
+		strcat(pidBuf.mulCmd[i].cmd,"\r\n");
+		printf("\r\ncmd %d  --> %s\r\n",i,pidBuf.mulCmd[i].cmd);		
+	}
+	return 1;					
 }
 
-typedef struct {
-	char obdErrorCode[32];
-	char obdErrorCode2[32];
-	char obdVinCode[32];
-	char obdEidCode[32]; 
-	char mil[12];
-	char voltage[12];
-}OBD_INFO;
-
+//typedef struct {
+//	char rdtc[32];
+//	char edtc[32];
+//	char vin[32];
+//	char eid[32]; 
+//	char mil[20];
+//	char spwr[20];
+//	char ife[20];
+//	char ehp[20];
+//	char whp[20];
+//	char ad_mil[20];
+//	char ad_feh[20];
+//	char pids[160];
+//}OBD_INFO;
+///*
+//		obdAtAndWait("BT+DATA.IFE\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.WHP\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,3000);
+//		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,3000);
+//*/
 OBD_INFO obdInfo,obdInfoFlash;
 
 int32_t obdCollectInfo(void){
@@ -2742,7 +2780,7 @@ int32_t obdCollectInfo(void){
 		printf("EID: %s",point);
 		point+=10;
 		for(i = 0;point[i]!=0xd;i++){
-			obdInfo.obdEidCode[i] = point[i];
+			obdInfo.eid[i] = point[i];
 		} 
 	}
 
@@ -2754,7 +2792,7 @@ int32_t obdCollectInfo(void){
 		printf("EID: %s",point);
 //		point+=10;
 		for(i = 0;point[i]!=0xd;i++){
-			obdInfo.obdVinCode[i] = point[i];
+			obdInfo.vin[i] = point[i];
 		} 
 	}
 
@@ -2779,7 +2817,7 @@ int32_t obdCollectInfo(void){
 		printf("EID: %s",point);
 //		point+=10;
 		for(i = 0;point[i]!=0xd;i++){
-			obdInfo.obdErrorCode[i] = point[i];
+			obdInfo.rdtc[i] = point[i];
 		} 
 	}
 
@@ -2791,7 +2829,7 @@ int32_t obdCollectInfo(void){
 		printf("EID: %s",point);
 //		point+=10;
 		for(i = 0;point[i]!=0xd;i++){
-			obdInfo.obdErrorCode2[i] = point[i];
+			obdInfo.edtc[i] = point[i];
 		} 
 	}
 
@@ -2803,7 +2841,7 @@ int32_t obdCollectInfo(void){
 		printf("EID: %s",point);
 //		point+=10;
 		for(i = 0;point[i]!=0xd;i++){
-			obdInfo.voltage[i] = point[i];
+			obdInfo.spwr[i] = point[i];
 		} 
 	}									
 }
@@ -2812,51 +2850,253 @@ BT+SWPR
 BT+RDTC
 BT+EDTC
 BT+MIL
+obdAtAndWait("BT+DATA.IFE\r\n",NULL,3000);
+obdAtAndWait("BT+DATA.WHP\r\n",NULL,3000);
+obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,3000);
+obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,3000);
+obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,3000);
 typedef struct {
-	char obdErrorCode[32];
-	char obdErrorCode2[32];
-	char obdVinCode[32];
-	char obdEidCode[32]; 
-	char mil[12];
-	char voltage[12];
+	char rdtc[32];
+	char edtc[32];
+	char vin[32];
+	char eid[32]; 
+	char mil[20];
+	char spwr[20];
+	char ife[20];
+	char ehp[20];
+	char whp[20];
+	char ad_mil[20];
+	char ad_feh[32];
+	char pids[160];
 }OBD_INFO;
 */
+#define DELAY_10S		10
+#define DELAY_5S		5
+#define DELAY_3S		3
+#define DELAY_2S		2
+#define DELAY_1S		1
+
 void obdCollectData(void){
 	static int index = 0;
+	static int timeOut = 0;
 	int i =  0;
 	char *point = NULL;
+//	if(DEVICE_STATE == 0){ //engine stopped ,come on
+//		printf("\r\nstop\r\n");
+//		return ;
+//	}
 	switch(index){
-		case 0://get error code
-			obdAtAndWait("BT+INFO.SPWR\r\n",NULL,0);  
+		case 0://get nothing
+
+			obdAtAndWait("BT+SPWR\r\n",NULL,0);
+			index++;  
 			break;
 
-		case 1:	//get
+		case 1:	//1 get spwr
+			if(timeOut++ < DELAY_2S)
+				break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			
 			point  =  strstr(OBD_BUF,"SPWR:");
-			memset(obdInfo.voltage,0,12);
+			memset(obdInfo.spwr,0,20);
 			if(point != NULL){
 				//point+=9;	 				
 				for(i = 0;point[i] != 0x0D;i++){
-					obdInfo.voltage[i] = point[i];	
+					obdInfo.spwr[i] = point[i];	
 				}
-//				 printf("\r\nVIN : %s\r\n",obdVinCode);
+				printf("\r\nspwr : %s\r\n",obdInfo.spwr);
 			}	
 			obdAtAndWait("BT+RDTC\r\n",NULL,0);
 			break;
 
-		case 2:
+		case 2:	  //2 get rdtc
+			if(timeOut++ < DELAY_3S)
+				break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+
 			point  =  strstr(OBD_BUF,"RDTC:");
-			memset(obdInfo.obdErrorCode,0,32);
+			memset(obdInfo.rdtc,0,32);
 			if(point != NULL){
 //				point+=9;				
 				for(i = 0;point[i] != 0x0D;i++){
-					obdInfo.obdErrorCode[i] = point[i];
+					obdInfo.rdtc[i] = point[i];
 				}
-				 printf("\r\nRDTC Error : %s\r\n",obdInfo.obdErrorCode);
+				 printf("\r\nRDTC Error : %s\r\n",obdInfo.rdtc);
 			}
-			obdAtAndWait("BT+RDTC\r\n",NULL,0);
+			obdAtAndWait("BT+EDTC\r\n",NULL,0);
 			break;
-		default :
+		case 3:	  //3 get Edtc
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+
+			point  =  strstr(OBD_BUF,"EDTC:");
+			memset(obdInfo.edtc,0,32);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.edtc[i] = point[i];
+				}
+				 printf("\r\nEDTC Error : %s\r\n",obdInfo.edtc);
+			}
+			obdAtAndWait("BT+PIDS\r\n",NULL,0);
+			break;
+		case 4:	  //4 get pids
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
 			
+			point  =  strstr(OBD_BUF,"PIDS:");
+			memset(obdInfo.pids,0,160);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.pids[i] = point[i];
+				}
+				 printf("\r\nPIDS: %s\r\n",obdInfo.pids);
+			}
+			obdAtAndWait("BT+MIL\r\n",NULL,0);
+			break;
+		case 5:	  //5 get MIL
+			if(timeOut++ < DELAY_2S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			
+			point  =  strstr(OBD_BUF,"MIL:");
+			memset(obdInfo.mil,0,20);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.mil[i] = point[i];
+				}
+				 printf("\r\nMIL : %s\r\n",obdInfo.mil);
+			}
+			obdAtAndWait("BT+DATA.IFE\r\n",NULL,0);
+
+			break;
+		case 6:	  //6 get ife
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			
+			point  =  strstr(OBD_BUF,"IFE:");
+			memset(obdInfo.ife,0,20);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.ife[i] = point[i];
+				}
+				 printf("\r\nRDTC Error : %s\r\n",obdInfo.ife);
+			}
+
+obdAtAndWait("BT+DATA.WHP\r\n",NULL,0);
+
+			break;
+		case 7:	  // 7 get Edtc
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			
+			point  =  strstr(OBD_BUF,"WHP:");
+			memset(obdInfo.whp,0,20);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.whp[i] = point[i];
+				}
+				 printf("\r\nRDTC Error : %s\r\n",obdInfo.whp);
+			}
+
+obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,0);
+
+			break;
+		case 8:	  //8 get ad_mil
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			
+			point  =  strstr(OBD_BUF,"AD_Mil:");
+			memset(obdInfo.ad_mil,0,20);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.ad_mil[i] = point[i];
+				}
+				 printf("\r\nad_mil : %s\r\n",obdInfo.ad_mil);
+			}
+
+
+obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,0);
+
+			break;
+
+		case 9:	  // 9 get ad_feh
+			if(timeOut++ < DELAY_3S)
+					break;
+			else
+			{
+				timeOut = 0;
+				index++;
+			}
+			point  =  strstr(OBD_BUF,"AD_FEH:");
+			memset(obdInfo.ad_feh,0,32);
+			if(point != NULL){
+//				point+=9;				
+				for(i = 0;point[i] != 0x0D;i++){
+					obdInfo.ad_feh[i] = point[i];
+				}
+				 printf("\r\nad_feh : %s\r\n",obdInfo.ad_feh);
+			}
+			break;
+
+
+		default :
+			if(timeOut++ < DELAY_5S)
+						break;
+			else
+			{
+				timeOut = 0;
+//				index++;
+			}
+			if( obdGetPidDatas(1) > 0 ){//collect accel data				
+				
+				if(obdGetPidDatas(1) > 0 )//complete pids
+				{
+					index = index > 50 ? 0:(index+1);
+				}  
+			}					
 			break;
 
 	}
@@ -2865,28 +3105,46 @@ void obdCollectData(void){
 int32_t obdGetPidDatas(uint32_t index){
 	uint32_t i = 0;
 	char *point = NULL;
-	static uint32_t currentIndex = 0;
-	if(currentIndex != 0){
-		point = strstr(OBD_BUF,"MUL:");
+	static int32_t flag = 1;
+	static uint32_t currentIndex =  0;
+	if(flag == 1){
+		currentIndex = pidBuf.cmdNum;
+		flag = -1;
+	}
+
+	if(currentIndex != pidBuf.cmdNum){
+		if(currentIndex == pidBuf.cmdNum-1){
+			printf("\r\ncheck accel\r\n");
+			point = strstr(OBD_BUF,"AD_Accel:");
+		}
+		else{
+			printf("\r\ncheck pids :%s\r\n",pidBuf.mulCmd[currentIndex].cmd);
+			point = strstr(OBD_BUF,"MUL:");
+		}		
+		memset(pidBuf.mulCmd[currentIndex].buf,0,120);
 		if(point != NULL){
 			for(i = 0;point[i] != 0x0D;i++){
 				pidBuf.mulCmd[currentIndex].buf[i] = point[i];
 			} 
 			printf("\r\nbuf %d --> %s \r\n",currentIndex,pidBuf.mulCmd[currentIndex].buf);
-		}		
+		}
+		currentIndex++;	
+		if(currentIndex == pidBuf.cmdNum){
+			flag = 1;
+		}	
 	}
-//	currentIndex++;
-	if(currentIndex >= pidBuf.cmdNum-1){
+	else
+	{
 		currentIndex = 0;
-		return 1;
 	}
-	else{
-		
-		obdAtAndWait(pidBuf.mulCmd[currentIndex].cmd,NULL,0);
-		currentIndex++;
-	 	return 0;
-	}
+	if(currentIndex != pidBuf.cmdNum)
+		obdAtAndWait(pidBuf.mulCmd[currentIndex].cmd,NULL,0); 
+	return flag;
+	
 }
+
+
+
 
 
 

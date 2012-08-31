@@ -1,0 +1,1140 @@
+
+OBD power off
+
+OBD power on
+þQL100 v1.2 Receiving CMD...
+
+AT--->BT+RDTC
+
+
+
+AT--->BT+EDTC
+
+
+RDTC:000
+
+AT--->BT+MIL
+
+
+MIL:OFF
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+INFO.VIN
+
+
+
+AT--->BT+INFO.EID
+
+
+INFO.EID:1EX84A          
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+current str len : index2  :    D -->    A
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+cmd 2  --> BT+MUL=&93&94&95&96&97
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 87ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 688&VSS: 0km/h&Spark Adv: 8.0&IAT: 60ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 3.60g/s&TPS: 3.9%&&O2 B1S1: 0.100V,O2 B1S1: 1.6%&O2 B1S2: 0.250V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.346ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 0.677HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.FEH
+
+
+Error:002
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 32.5%&ECT: 87ßC&SHRTFT1: 0.8%&LONGFT1: -7.0%&RPM: 688&VSS: 0km/h&Spark Adv: 8.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 3.72g/s&TPS: 3.9%&&O2 B1S1: 0.770V,O2 B1S1: -0.8%&O2 B1S2: 0.250V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.351ml/s
+
+OBD power on
+þQL100 v1.2 Receiving CMD...
+
+AT--->BT+RDTC
+
+
+
+AT--->BT+EDTC
+
+
+RDTC:000
+
+AT--->BT+MIL
+
+
+MIL:OFF
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+INFO.VIN
+
+
+
+AT--->BT+INFO.EID
+
+
+INFO.EID:1EX84A          
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+current str len : index2  :    D -->    A
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+cmd 2  --> BT+MUL=&93&94&95&96&97
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 32.2%&ECT: 87ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 688&VSS: 0km/h&Spark Adv: 7.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 3.65g/s&TPS: 3.9%&&O2 B1S1: 0.590V,O2 B1S1: -0.8%&O2 B1S2: 0.240V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.372ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 0.889HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 31.8%&ECT: 87ßC&SHRTFT1: 0.8%&LONGFT1: -7.0%&RPM: 675&VSS: 0km/h&Spark Adv: 8.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 3.66g/s&TPS: 3.9%&&O2 B1S1: 0.800V,O2 B1S1: 0.0%&O2 B1S2: 0.240V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.396ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.707HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 43.9%&ECT: 87ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 713&VSS: 0km/h&Spark Adv: 3.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 5.60g/s&TPS: 3.1%&&O2 B1S1: 0.710V,O2 B1S1: 0.8%&O2 B1S2: 0.230V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.521ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 2.434HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 88ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 738&VSS: 0km/h&Spark Adv: 8.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.07g/s&TPS: 3.9%&&O2 B1S1: 0.080V,O2 B1S1: 1.6%&O2 B1S2: 0.240V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.394ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.151HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 88ßC&SHRTFT1: 3.1%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.07g/s&TPS: 3.9%&&O2 B1S1: 0.390V,O2 B1S1: 0.8%&O2 B1S2: 0.230V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.392ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.111HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 88ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 61ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.10g/s&TPS: 3.9%&&O2 B1S1: 0.090V,O2 B1S1: 0.8%&O2 B1S2: 0.230V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.378ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.242HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+OBD power on
+þQL100 v1.2 Receiving CMD...
+
+AT--->BT+RDTC
+
+
+
+AT--->BT+EDTC
+
+
+RDTC:000
+
+AT--->BT+MIL
+
+
+MIL:OFF
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+INFO.VIN
+
+
+
+AT--->BT+INFO.EID
+
+
+INFO.EID:1EX84A          
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+current str len : index2  :    D -->    A
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+cmd 2  --> BT+MUL=&93&94&95&96&97
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 88ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 63ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.29g/s&TPS: 3.5%&&O2 B1S1: 0.660V,O2 B1S1: -0.8%&O2 B1S2: 0.220V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.407ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.323HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 88ßC&SHRTFT1: 0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 64ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.25g/s&TPS: 3.9%&&O2 B1S1: 0.330V,O2 B1S1: 0.0%&O2 B1S2: 0.220V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.378ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.222HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.1%&ECT: 88ßC&SHRTFT1: 3.1%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 7.0&IAT: 65ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.16g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 1.6%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.405ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.091HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 35.3%&ECT: 88ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 65ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.19g/s&TPS: 3.5%&&O2 B1S1: 0.750V,O2 B1S1: -0.8%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.395ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.222HP
+
+OBD power on
+þQL100 v1.2 Receiving CMD...
+
+AT--->BT+RDTC
+
+
+
+AT--->BT+EDTC
+
+
+RDTC:000
+
+AT--->BT+MIL
+
+
+MIL:OFF
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+AT--->BT+INFO.VIN
+
+
+
+AT--->BT+INFO.EID
+
+
+INFO.EID:1EX84A          
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+PIDS
+
+
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+current str len : index2  :    D -->    A
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21&90&91
+
+
+cmd 2  --> BT+MUL=&93&94&95&96&97
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.1%&ECT: 88ßC&SHRTFT1: 0.8%&LONGFT1: -7.0%&RPM: 713&VSS: 0km/h&Spark Adv: 8.0&IAT: 67ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.14g/s&TPS: 3.9%&&O2 B1S1: 0.090V,O2 B1S1: 1.6%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.399ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.263HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 89ßC&SHRTFT1: 0.8%&LONGFT1: -7.0%&RPM: 738&VSS: 0km/h&Spark Adv: 7.0&IAT: 67ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.16g/s&TPS: 3.5%&&O2 B1S1: 0.340V,O2 B1S1: 0.0%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.399ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 0.939HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: 2.3%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 68ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.15g/s&TPS: 3.5%&&O2 B1S1: 0.120V,O2 B1S1: 1.6%&O2 B1S2: 0.220V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+HhQµ-->BT+DATA.IFE
+
+
+IFE?`0.3Î8ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.242HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 68ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.28g/s&TPS: 3.5%ûO: ÃÌþÎ? 0¿¸ï¸ÿ¾ÿ² ÂÌÿî¿°Î¿¿ú·ÿ» ãîÿ»?°¸¿3°8ÿ>ÿ»0ãìÿ»¿ Ïï¿»û·OÂÆÿð>°þÿçÆ&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OÇFÃ
+p¿KÉT'~TP)ËC¡HøHøÒFE> 0.æ81û|/îÃ
+H(Q©©ÉQ­DATA.WHP
+
+
+WHP: 1.263HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: -1.6%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 68ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.25g/s&TPS: 3.5%&&O2 B1S1: 0.760V,O2 B1S1: -0.8%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.393ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.081HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: 0.0%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 7.0&IAT: 68ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.20g/s&TPS: 3.5%&&O2 B1S1: 0.100V,O2 B1S1: 0.0%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.381ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.202HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 69ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.13g/s&TPS: 3.5%&&O2 B1S1: 0.070V,O2 B1S1: 0.0%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.409ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.162HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.5%&ECT: 89ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 69ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.12g/s&TPS: 3.5%&&O2 B1S1: 0.120V,O2 B1S1: 2.3%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.398ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.273HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 713&VSS: 0km/h&Spark Adv: 8.0&IAT: 69ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.36g/s&TPS: 3.5%&&O2 B1S1: 0.080V,O2 B1S1: 0.8%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.378ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.162HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 35.3%&ECT: 89ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 69ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.18g/s&TPS: 3.5%&&O2 B1S1: 0.760V,O2 B1S1: -0.8%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.390ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.303HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 35.3%&ECT: 89ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 70ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.25g/s&TPS: 3.5%&&O2 B1S1: 0.710V,O2 B1S1: -0.8%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.395ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.283HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: 1.6%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 7.0&IAT: 70ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.20g/s&TPS: 3.9%&&O2 B1S1: 0.180V,O2 B1S1: 1.6%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.396ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.313HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 35.3%&ECT: 89ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 70ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.09g/s&TPS: 3.9%&&O2 B1S1: 0.100V,O2 B1S1: 0.8%&O2 B1S2: 0.210V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km
+
+AT--->BT+PMIL=10000
+
+
+MIL:OFF
+
+AT--->BT+DATA.IFE
+
+
+IFE: 0.399ml/s
+
+AT--->BT+DATA.WHP
+
+
+WHP: 1.172HP
+
+AT--->BT+DATA.AD_Mil
+
+
+AD_Mil: 0.0km
+
+AT--->BT+DATA.AD_Accel
+
+
+AD_Accel: 0.0m/(s*s)
+
+AT--->BT+DATA.AD_FEH
+
+
+AD_FEH: 0.000l/100km
+
+AT--->BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+MUL:&&Fuel Sys1: CL,Fuel Sys2: N/A&Load: 34.9%&ECT: 89ßC&SHRTFT1: -0.8%&LONGFT1: -7.0%&RPM: 725&VSS: 0km/h&Spark Adv: 8.0&IAT: 70ßC
+
+AT--->BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+MUL:&MAF: 4.05g/s&TPS: 3.9%&&O2 B1S1: 0.750V,O2 B1S1: 0.0%&O2 B1S2: 0.200V,O2 B1S2: 99.2%&OBDSUP: EOBD&&MIL_dist: 0km

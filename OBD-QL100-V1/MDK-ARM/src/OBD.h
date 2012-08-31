@@ -4,15 +4,15 @@
 
 #define OBD_H_H
 
-typedef struct {
-	char cmd[60];
-	char buf[120];
-}OBD_PID;
-typedef struct {
-	uint32_t pidNum;
-	uint32_t cmdNum;
-	OBD_PID mulCmd[9];
-}NUL_PIDS;
+//typedef struct {
+//	char cmd[60];
+//	char buf[120];
+//}OBD_PID;
+//typedef struct {
+//	uint32_t pidNum;
+//	uint32_t cmdNum;
+//	OBD_PID mulCmd[9];
+//}MUL_PIDS;
 //NUL_PIDS pidBuf;
 
 typedef struct
@@ -89,6 +89,7 @@ void obdInitChip(void);
 
 int32_t getObdPids(void);
 int32_t obdGetPidDatas(uint32_t index);
+void obdCollectData(void);
 
 
 

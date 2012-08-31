@@ -16,14 +16,20 @@ int fputc(int ch, FILE *f){//printf
 
 int main(void)
 {	
-	
 	hardware_init();
+//	getObdPids();
+//	DEVICE_STATE = 1;
+//	while(1){
+////		obdGetPidDatas(1);
+//		obdCollectData();
+//		delay_ms(100);
+//	}
 //	while(1){
 //		delay_ms(1000);
 //		printf("\r\nETR : %d\r\n",TIM_GetCounter(TIM2));
 //
 //	}
-	obdGetAllData();
+//	obdGetAllData();
 
 //	rtcTest();
 //	while(1){
@@ -43,11 +49,11 @@ int main(void)
 //	}
 
 //	rtcTest();
-	gpsPowerOn();
-	ISP_DIRECTION=USART_GPS;								    
-	while(1);
+//	gpsPowerOn();
+//	ISP_DIRECTION=USART_GPS;								    
+//	while(1);
 //	
-//	setDebugPara();	 
+	setDebugPara();	 
 //	blueTest();
 //	ISP_DIRECTION=USART_SIM;
 
@@ -75,8 +81,9 @@ int main(void)
 // 	obdBlue();
 //	obdGetAllData();
 //	obdTest();
-//	collectAndSend();
+	collectAndSend();
 		
 }
+
 
 

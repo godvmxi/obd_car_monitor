@@ -237,6 +237,28 @@ typedef struct {
 	uint16_t itemNum;
  	uint8_t buf[400];
 }OBD_MSG_BUG;
+typedef struct {
+	char rdtc[32];
+	char edtc[32];
+	char vin[32];
+	char eid[32]; 
+	char mil[20];
+	char spwr[20];
+	char ife[20];
+	char ehp[20];
+	char whp[20];
+	char ad_mil[20];
+	char ad_feh[20];
+	char pids[160];
+}OBD_INFO;
+/*
+		obdAtAndWait("BT+DATA.IFE\r\n",NULL,3000);
+		obdAtAndWait("BT+DATA.WHP\r\n",NULL,3000);
+		obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,3000);
+		obdAtAndWait("BT+DATA.AD_Accel\r\n",NULL,3000);
+		obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,3000);
+*/
+
 
 
 
@@ -247,9 +269,9 @@ typedef struct {
 
 
 #define		PRINTF_DEBUG  1//printf调试开关，注销掉便可以去掉所有的打印语句
-#define		DEBUF_SIM
-#define		DEBUF_GPS
-#define		DEBUF_OBD
+#define		DEBUG_SIM
+#define		DEBUG_GPS
+#define		DEBUG_OBD     
 
 
 			
@@ -442,6 +464,17 @@ extern 		int32_t OBD_MODE;
 extern 		int32_t CAN_DETECTER;
 extern		int32_t DEVICE_STATE;
 extern		int32_t OBD_START ;
+typedef struct {
+	char cmd[60];
+	char buf[200];
+}OBD_PID;
+typedef struct {
+	uint32_t pidNum;
+	uint32_t cmdNum;
+	OBD_PID mulCmd[9];
+}MUL_PIDS;
+extern MUL_PIDS pidBuf;
+extern OBD_INFO obdInfo,obdInfoFlash;
 
 
 /////*GPS*/

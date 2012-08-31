@@ -471,20 +471,23 @@ void TIM2_IRQHandler(void)
 	{
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);	 
 //		TIM_Cmd(TIM2, DISABLE);
-		TIM2->CNT=65530;  
+//		TIM2->CNT=65530;  
 	}
 }
 
 
 void TIM3_IRQHandler(void)
 {		
-	static int state = 0,counter = 0;
+	static int state = 0,counter = 0,i = 0;
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{ 
 
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-		if(OBD_START){
-			obdIrq();
+		if(OBD_START && ((i++)%2 == 0))
+	//	if(OBD_START)
+		{
+		//	obdIrq();
+			obdCollectData();
 		}
 		//CHECK CAR STATE START		
 		if(counter == 3)
@@ -498,7 +501,7 @@ void TIM3_IRQHandler(void)
 		{
 			CAN_DETECTER = TIM_GetCounter(TIM2);
 			DEVICE_STATE = CAN_DETECTER > 2000? 1 :0;
-		//	printf("\r\nDEVICE STATE--->%d -->%d\r\n",DEVICE_STATE,CAN_DETECTER);	////0:STOP 1:RUNNING
+			printf("\r\nSTATE--->%d -->%d-->%d\r\n",DEVICE_STATE,CAN_DETECTER,OBD_START);	////0:STOP 1:RUNNING
 			counter = 0;	; 
 		}
 		counter++;

@@ -1,0 +1,680 @@
+
+STATE--->1 -->6270-->0
+
+OBD power on
+QL100 v1.2 Receiving CMD...
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+OPEN GPS Power........
+
+BEGIN SEND MSG
+
+blue tooth pwoer off
+
+blue tooth pwoer on
+
+STATE--->1 -->6329-->0
+
+*** BOLUTEK SPP Bluetooth Module V2.43 Init OK in SLAVE mode!***
+*** Please input AT+HELP <cr><lf> to get commands list.      ***
+*** For more information, please visit http://www.bolutek.cn ***
+
++READY
++PAIRABLE
+OK
+
+blue start ok
+
+set bluetooth mode
+OK
+OK
+
+STATE--->1 -->6350-->0
+set blue name cmd :AT+NAMEOBD_2
++NAME=OBD_2
+OK
++NAME=OBD_2
+set blue pass cmd :AT+PIN0000
++PIN=0000
+OK
++PIN=0000
+baud cmd :AT+BAUD6
++BAUD=6
+OK
++PIN=0000
+
+STATE--->1 -->6349-->0
+
+OPEN SIM900....
+
+STATE--->1 -->6318-->0
+
+STATE--->1 -->6366-->0
+
+AT--->BT+RDTC
+
+
+RDTC:000
+
+STATE--->1 -->6340-->0
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+STATE--->1 -->6318-->0
+
+AT--->BT+MIL
+
+
+
+STATE--->1 -->6320-->0
+MIL:OFF
+
+STATE--->1 -->6284-->0
+
+AT--->BT+EDTC
+
+
+CLEAR:SUCCESS
+EDTC:000
+
+STATE--->1 -->6340-->0
+
+AT--->BT+PIDS
+
+
+
+STATE--->1 -->6337-->0
+PIDS:025,&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+STATE--->1 -->6335-->0
+
+pid num is :25 --> 3 
+
+buf :&01&03&04&05&06&07&0C&0D&0E&0F&10&11&13&14&15&1C&20&21&90&91&93&94&95&96&97
+
+
+skip pid  : &90 left :24
+
+skip pid  : &91 left :23
+
+skip pid  : &93 left :22
+
+skip pid  : &94 left :21
+
+skip pid  : &95 left :20
+
+skip pid  : &96 left :19
+
+skip pid  : &97 left :18
+
+change buf
+
+modified pid num is :18 --> 3 
+
+cmd 0  --> BT+MUL=&01&03&04&05&06&07&0C&0D&0E&0F
+
+
+cmd 1  --> BT+MUL=&10&11&13&14&15&1C&20&21
+
+
+cmd 2  --> BT+DATA.AD_Accel
+
+AT+CGSN
+353551040522802
+
+OK
+
+AT--->BT+SPWR
+
+
+
+imei:353551040522802
+
+iemi :3535510  40522802
+
+prepare gps
+
+GPS Init------
+
+STATE--->1 -->6292-->1
+
+socket cmd :AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
+
+socket state:+MIPOPEN: 1,1
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 1,2,3,4
+
+OK
+can not find the socket:1
+Net Error,reConnect
+
+establish network
+
+name:power_sim900
+AT
+OK
+AT+CREG?
++CREG: 0,1
+
+OK
+AT+CREG=2
+OK
+AT+CREG?
++CREG: 2,1,"1877","03D3"
+
+OK
+AT+CREG=0
+OK
+
+spwr : SPWR:13.94V
+
+AT--->BT+RDTC
+
+
+
+STATE--->1 -->6371-->1
+
+cellid is :187703D3
+AT+CSQ
++CSQ: 28,99
+
+OK
+
+csq	:28
+AT+CIMI
+460022404727102
+
+OK
+
+cimi	:46002
+AT+MIPCALL?
++MIPCALL: 0
+
+OK
+
+cimi:46002
+
+sim type:cmcc
+
+set apn cmwap
+AT+MIPCALL=1,"CMWAP"
+OK
+AT
+OK
+AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
++MIPOPEN: 1,0
+
+OK
+
++MIPCALL: 1
+
+STATE--->1 -->6299-->1
+
+waiting net
+
+open cmd over,begin check state
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 1,2,3,4
+
+OK
+can not find the socket:1
+AT
+OK
+AT+MIPOPEN=1,5000,"in.phonewingstech.com",9001,1
+RDTC Error : RDTC:000
+
+AT--->BT+EDTC
+
+
+
+STATE--->1 -->6295-->1
+
++MIPOPEN: 1,1
+
+OK
+
+waiting net
+
+open cmd over,begin check state
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+
+scoket ok
+
+SIM900 reconnect OK
+
+SEND ONLINE MESSAGE
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+
+obd normal --> RDTC:000SPWR:13.94V
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :E6C  ->DATA HEADER :
+ 6C  E 30  0  0  0  0  0 32 54 6A  2 13  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-0-0
+
+Voltage£º0
+
+CSQ£º28
+
+CIMI£º46002
+
+CELLID£º410452947
+
+GPS DATA READY
+
+GPS RMC
+ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚
+GPS RMC
+ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶
+date:310812
+
+time:062729.00xA3110.4523N12123.6007E0.139xxxxx310812
+
+hight:2.48
+
+GPS high£º2
+
+GPS DATA£º
+
+longitude£º 121236004
+latitude £º  31104525
+height   £º         0
+speed    £º         0
+angle    £º         0
+stars    £º         6
+state    £º         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :EAD1  ->DATA HEADER :
+ D1 EA 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+¼ì²éÍøÂçÊÇ·ñÐèÒªÖØÁ¬
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 209  234   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : Ñê 
+
+des string : D1EA20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  36  234   57    7   13  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    0    0    0   28    6    1    0    0    0    0    0    0    0 
+
+src string : $ê9žÚ²³
+
+des string : 24EA39070D9EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :D1EA20000000000032546A020400000000000000000000000000000024EA39070D9EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+send cmd :AT+MIPSEND=1,"D1EA20000000000032546A020400000000000000000000000000000024EA39070D9EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+D1EA20000000000032546A020400000000000000000000000000000024EA39070D9EDA01B2B30000D303771800000000000000000000000000001C06010000000000A0T+0MI0P0SEN
+D=1,"D1EA20000000000032546A020400000000000000000000000000000024EA39070D9EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
++MIPPUSH: 1,0,68
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+TIME USED :0->0-->0
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-0-0
+
+Voltage£º0
+
+CSQ£º28
+
+CIMI£º46002
+
+CELLID£º410452947
+
+GPS DATA READY
+
+GPS RMC
+ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚
+GPS RMC
+ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶
+date:310812
+
+time:062751.00xA3110.4534N12123.5997E0.391xxxxx310812
+
+hight:-1.9
+
+GPS high£º-1
+
+GPS DATA£º
+
+longitude£º 121235996
+latitude £º  31104534
+height   £º         0
+speed    £º         0
+angle    £º         0
+stars    £º         6
+state    £º         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :43FB  ->DATA HEADER :
+ FB 43 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+¼ì²éÍøÂçÊÇ·ñÐèÒªÖØÁ¬
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 251   67   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : ûC 
+
+des string : FB4320000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  28  234   57    7   22  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    0    0    0   28    6    1    0    0    0    0    0    0    0 
+
+src string : ê9žÚ²³
+
+des string : 1CEA3907169EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :FB4320000000000032546A02040000000000000000000000000000001CEA3907169EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+send cmd :AT+MIPSEND=1,"FB4320000000000032546A02040000000000000000000000000000001CEA3907169EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+FB4320000000000032546A02040000000000000000000000000000001CEA3907169EDA01B2B30000D303771800000000000000000000000000001C06010000000000AT0+M0IP0S0END
+=1,"FB4320000000000032546A02040000000000000000000000000000001CEA3907169EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
++MIPPUSH: 1,0,136
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+TIME USED :0->0-->0
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
+
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :A000  ->DATA HEADER :
+  0 A0 32  0  0  0  0  0 32 54 6A  2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+REPORT OBD MESSAGE++++
+
+Begin GPS Message
+
+TIME:0-0-0  -->  0-0-0
+
+Voltage£º0
+
+CSQ£º28
+
+CIMI£º46002
+
+CELLID£º410452947
+
+GPS DATA READY
+
+GPS RMC
+ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚
+GPS RMC
+ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶ ¶
+date:310812
+
+time:062813.00xA3110.4530N12123.6002E0.229xxxxx310812
+
+hight:-2.0
+
+GPS high£º-2
+
+GPS DATA£º
+
+longitude£º 121236004
+latitude £º  31104528
+height   £º         0
+speed    £º         0
+angle    £º         0
+stars    £º         6
+state    £º         1
+IMEI :3535510-40522802
+
+IMEI :3535510-40522802
+
+VID :0-0
+
+CRC :EAD1  ->DATA HEADER :
+ D1 EA 20  0  0  0  0  0 32 54 6A  2  4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+
+¼ì²éÍøÂçÊÇ·ñÐèÒªÖØÁ¬
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+data length : 0
+
+ 209  234   32    0    0    0    0    0   50   84  106    2    4    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0 
+
+src string : Ñê 
+
+des string : D1EA20000000000032546A0204000000000000000000000000000000
+
+src len :28
+
+des len :56
+
+  36  234   57    7   16  158  218    1  178  179    0    0  211    3  119   24    0    0    0    0    0    0    0    0    0    0    0    0    0    0   28    6    1    0    0    0    0    0    0    0 
+
+src string : $ê9žÚ²³
+
+des string : 24EA3907109EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+src len :40
+
+des len :80
+
+set socket cmd:AT+MIPSETS=1,68,500
+AT+MIPSETS=1,68,500
++MIPSETS: 0
+
+OK
+
+data  :D1EA20000000000032546A020400000000000000000000000000000024EA3907109EDA01B2B30000D303771800000000000000000000000000001C060100000000000000
+
+send cmd :AT+MIPSEND=1,"D1EA20000000000032546A020400000000000000000000000000000024EA3907109EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
+
+cmd:14  buf:136  data:136
+
+cmd size :20
+
+buf size :136
+D1EA20000000000032546A020400000000000000000000000000000024EA3907109EDA01B2B30000D303771800000000000000000000000000001C06010000000000A0T+0MI0P0SEN
+D=1,"D1EA20000000000032546A020400000000000000000000000000000024EA3907109EDA01B2B30000D303771800000000000000000000000000001C060100000000000000"
++MIPPUSH: 1,0,204
+
++MIPSEND: 1,0,1460
+
+OK
+
+FIND SEND OK,CONTINUE
+
+TIME USED :0->0-->0
+
+prepare gps
+
+GPS Init------
+
+check socket 1 state+++++++++++++
+AT+MIPOPEN?
++MIPOPEN: 2,3,4
+
+OK
+find the socket:1
+network ok
+
+car running ---------------------
+
+report ql100 data_+_+_+_+_+_+_+_+_
+
+TIME:0-0-0  -->  0-0-0
+pid buf 0 -->pid buf 1 -->pid buf 2 -->
+obd fast --> 
