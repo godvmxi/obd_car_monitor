@@ -508,14 +508,12 @@ void TIM3_IRQHandler(void)
 		//CHECK CAR STATE END
 		if(state == 0){
 			LED1(Bit_SET);
-			LED2(Bit_RESET);
-			LED3(Bit_RESET);
+
 			state = 1;
 		}
 		else{
 			LED1(Bit_RESET);
-			LED2(Bit_SET);
-			LED3(Bit_SET);
+
 			state = 0;
 		} 
 	}

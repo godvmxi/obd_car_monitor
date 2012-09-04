@@ -81,6 +81,30 @@ int main(void)
 // 	obdBlue();
 //	obdGetAllData();
 //	obdTest();
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	delay_ms(1000);
+	LED2(Bit_RESET);
+	LED2(Bit_RESET);
+	LED2(Bit_RESET);
+	delay_ms(1000);
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	delay_ms(1000);
+	LED2(Bit_RESET);
+	LED2(Bit_RESET);
+	LED2(Bit_RESET);
+	delay_ms(1000);
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	LED2(Bit_SET);
+	delay_ms(1000);
+	
+
+
+
 	collectAndSend();
 		
 }
