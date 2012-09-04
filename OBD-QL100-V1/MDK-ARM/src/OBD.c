@@ -2881,10 +2881,10 @@ void obdCollectData(void){
 	static int timeOut = 0;
 	int i =  0;
 	char *point = NULL;
-//	if(DEVICE_STATE == 0){ //engine stopped ,come on
-//		printf("\r\nstop\r\n");
-//		return ;
-//	}
+	if(DEVICE_STATE == 0){ //engine stopped ,come on
+		printf("\r\nstop\r\n");
+		return ;
+	}
 	switch(index){
 		case 0://get nothing
 

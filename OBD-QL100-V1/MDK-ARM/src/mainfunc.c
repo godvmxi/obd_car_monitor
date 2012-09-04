@@ -81,8 +81,21 @@ int16_t	collectAndSend(void){
 	blueToothPower(0);
 	blueToothPower(1);
 	initBlueTooth(0);
+	ISP_DIRECTION=USART_SIM;
 	sim900_power_on();
 
+
+//	while(1)
+//	{
+//		ISP_DIRECTION=USART_SIM;
+//		printf("\r\nprepare gps\r\n");
+//		gpsDataInit();
+//		delay_ms(5000);
+//		reportPos(&sysCfg.netConfig,0,1);
+//		ISP_DIRECTION=USART_GPS;
+//		delay_ms(4000);
+//
+//	}
 	Send_AT_And_Wait("AT\r","OK",500);
 	Send_AT_And_Wait("AT\r","OK",500);
 	ISP_DIRECTION=USART_OBD;
@@ -90,6 +103,8 @@ int16_t	collectAndSend(void){
 	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 	obdAtAndWait("BT+MIL\r\n",NULL,5000);
 	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+
+
 
 	OBD_START = getObdPids() > 0 ?1:0;
 	ISP_DIRECTION=USART_SIM;
@@ -110,7 +125,8 @@ int16_t	collectAndSend(void){
 		goto ERROR_ENTRY;
 	}
 	readImei();
-
+	printf("\r\nprepare gps\r\n");
+	gpsDataInit();//初始化gps数据
 	while(1){
 	   	timeCounter = RTC_GetCounter();
 		printf("\r\nprepare gps\r\n");
@@ -130,12 +146,17 @@ int16_t	collectAndSend(void){
 			printf("\r\ncar running ---------------------\r\n");
 			reportQL100(&sysCfg.netConfig,0,1,obdType++);
 			reportPos(&sysCfg.netConfig,0,1);
-			delay_ms(30000);
+			
+			printf("\r\nprepare gps\r\n");
+			gpsDataInit();//初始化gps数据
+			delay_ms(10000);
 		}
 		else
 		{
 			printf("\r\ncat stopped++++++++++++++++++++++\r\n");
 			reportPos(&sysCfg.netConfig,0,1);
+			printf("\r\nprepare gps\r\n");
+			gpsDataInit();//初始化gps数据
 			for(i = 0; i < 120 ;i++){
 				if(DEVICE_STATE != 0){
 					break;
@@ -351,7 +372,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	static uint32_t timeCounter = 0;
 	static int32_t rtcModifyCounter = 0;
 	i = 0;
-	printf("\r\nREPORT OBD MESSAGE++++\r\n");
+	printf("\r\nREPORT GPS MESSAGE++++\r\n");
 	if(GPS_RMC_DINGWEI_OK && GPS_GGA_DINGWEI_OK)
 	{
 		#ifdef PRINTF_DEBUG
@@ -362,7 +383,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	else
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nGPS未定位\r\n");
+		printf("\r\nGPS not ready\r\n");
 		#endif
 		rtcModifyCounter = 0;
 	}
@@ -438,56 +459,21 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 		}
 
 		gpsDataReport.posState = 1;
-		//get time;
-//		gpsDataReport.timeYY = 0;//(GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
-//		gpsDataReport.timemm = 0;//(GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
-//		gpsDataReport.timeDD = 0;//(GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
-//		gpsDataReport.timeHH = 0;//(GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0') + 8;
-//		gpsDataReport.timeMM = 0;//(GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
-//		gpsDataReport.timeSS = 0;//(GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
+
 		#ifdef PRINTF_DEBUG
 		printf("\r\ndate:%s\r\n",GPS_RMC_Data.UTCDate);
 		printf("\r\ntime:%s\r\n",GPS_RMC_Data.UTCTime);
 		printf("\r\nhight:%s\r\n",GPS_GGA_Data.HEIGHT);
 		#endif
 		
-//		if(timeCounter % 10 == 0)
-//		{
-//			#ifdef PRINTF_DEBUG
-//			printf("\r\nmodify rtc\r\n");
-//			#endif
-//			time.year = (GPS_RMC_Data.UTCDate[4]-'0')*10+(GPS_RMC_Data.UTCDate[5]-'0');
-//			time.month = (GPS_RMC_Data.UTCDate[2]-'0')*10+(GPS_RMC_Data.UTCDate[3]-'0');
-//			time.date = (GPS_RMC_Data.UTCDate[0]-'0')*10+(GPS_RMC_Data.UTCDate[1]-'0');
-//			time.hour = (GPS_RMC_Data.UTCTime[0]-'0')*10+(GPS_RMC_Data.UTCTime[1]-'0');
-//			time.minute = (GPS_RMC_Data.UTCTime[2]-'0')*10+(GPS_RMC_Data.UTCTime[3]-'0');
-//			time.second = (GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
-//			#ifdef PRINTF_DEBUG
-//			printf("\r\ncurrent time:  %3d-%3d-%3d  %3d-%3d-%3d\r\n",\
-//
-//							time.year,\
-//							time.month,\
-//							time.date,\
-//							time.hour,\
-//							time.minute,\
-//							time.second );
-//			#endif
-////			modifyTime(&time);
-////			setDs1302(time);
-////			showTime();
-//			RTC_Set(time.year,time.month,time.date,time.hour,time.minute,time.second);
-//
-//		}
 
-
-//		timeCounter++;
 
 		//get height
 		gpsDataReport.height = atoi(GPS_GGA_Data.HEIGHT);
 		#ifdef PRINTF_DEBUG
 		printf("\r\nGPS high：%d\r\n",gpsDataReport.height);
 		#endif
-			delay_ms(2000);
+		//	delay_ms(2000);
 		//get state
 		gpsDataReport.posState = 1;
 		//get longitude经度	//10
@@ -585,46 +571,46 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	}
 	else if(GPS_SHUJU_OK)			  //如果GPS有数据但没定位
 	{
-//		printf("\r\nGPS DATA WEAK\r\n");
+		printf("\r\nGPS DATA WEAK\r\n");
 		gpsDataReport.posState = 0;
-//		gpsDataReport.longitude = 	((u32)(GPS_DATA.V_Longitude[0]-'0'))*10000000 +\
-//									((u32)(GPS_DATA.V_Longitude[1]-'0'))*1000000 +\
-//									((u32)(GPS_DATA.V_Longitude[2]-'0'))*100000 +\
-//									((u32)(GPS_DATA.V_Longitude[3]-'0'))*10000 +\
-//									((u32)(GPS_DATA.V_Longitude[4]-'0'))*1000 +\
-//									((u32)(GPS_DATA.V_Longitude[6]-'0'))*100 +\
-//									((u32)(GPS_DATA.V_Longitude[7]-'0'))*10 +\
-//									((u32)(GPS_DATA.V_Longitude[8]-'0')) ;
-//		//get latitude
-//		gpsDataReport.latitude = 		((u32)(GPS_DATA.V_Latitude[0]-'0'))*10000000 +\
-//									((u32)(GPS_DATA.V_Latitude[1]-'0'))*1000000 +\
-//									((u32)(GPS_DATA.V_Latitude[2]-'0'))*100000 +\
-//									((u32)(GPS_DATA.V_Latitude[3]-'0'))*10000 +\
-//									((u32)(GPS_DATA.V_Latitude[4]-'0'))*1000 +\
-//									((u32)(GPS_DATA.V_Latitude[6]-'0'))*100 +\
-//									((u32)(GPS_DATA.V_Latitude[7]-'0'))*10 +\
-//									((u32)(GPS_DATA.V_Latitude[8]-'0')) ;
-//
-//				//get WE
-//		if(GPS_DATA.V_EW == 'W' || GPS_DATA.V_EW == 'w')
-//		{
-//			gpsDataReport.longitude |= 0x8000;
-//		}
-//		//get NS
-//		if(GPS_DATA.V_NS == 'S' || GPS_DATA.V_NS == 's')   //
-//		{
-//			gpsDataReport.latitude  |= 0x8000;
-//		}
-//		//get height
-//		gpsDataReport.height = 0;
-//		//get speed
-//		gpsDataReport.speed = 0;
-//		//get angle
-//		gpsDataReport.angle = 0;
-//
-//		//get stars
-//		gpsDataReport.stars = 0; 
-//		gpsDataReport.stars = ((GPS_DATA.V_SateUsed[0]-'0')*10+(GPS_DATA.V_SateUsed[1]-'0'));
+		gpsDataReport.longitude = 	((u32)(GPS_DATA.V_Longitude[0]-'0'))*10000000 +\
+									((u32)(GPS_DATA.V_Longitude[1]-'0'))*1000000 +\
+									((u32)(GPS_DATA.V_Longitude[2]-'0'))*100000 +\
+									((u32)(GPS_DATA.V_Longitude[3]-'0'))*10000 +\
+									((u32)(GPS_DATA.V_Longitude[4]-'0'))*1000 +\
+									((u32)(GPS_DATA.V_Longitude[6]-'0'))*100 +\
+									((u32)(GPS_DATA.V_Longitude[7]-'0'))*10 +\
+									((u32)(GPS_DATA.V_Longitude[8]-'0')) ;
+		//get latitude
+		gpsDataReport.latitude = 		((u32)(GPS_DATA.V_Latitude[0]-'0'))*10000000 +\
+									((u32)(GPS_DATA.V_Latitude[1]-'0'))*1000000 +\
+									((u32)(GPS_DATA.V_Latitude[2]-'0'))*100000 +\
+									((u32)(GPS_DATA.V_Latitude[3]-'0'))*10000 +\
+									((u32)(GPS_DATA.V_Latitude[4]-'0'))*1000 +\
+									((u32)(GPS_DATA.V_Latitude[6]-'0'))*100 +\
+									((u32)(GPS_DATA.V_Latitude[7]-'0'))*10 +\
+									((u32)(GPS_DATA.V_Latitude[8]-'0')) ;
+
+				//get WE
+		if(GPS_DATA.V_EW == 'W' || GPS_DATA.V_EW == 'w')
+		{
+			gpsDataReport.longitude |= 0x8000;
+		}
+		//get NS
+		if(GPS_DATA.V_NS == 'S' || GPS_DATA.V_NS == 's')   //
+		{
+			gpsDataReport.latitude  |= 0x8000;
+		}
+		//get height
+		gpsDataReport.height = 0;
+		//get speed
+		gpsDataReport.speed = 0;
+		//get angle
+		gpsDataReport.angle = 0;
+
+		//get stars
+		gpsDataReport.stars = 0; 
+		gpsDataReport.stars = ((GPS_DATA.V_SateUsed[0]-'0')*10+(GPS_DATA.V_SateUsed[1]-'0'));
 	}
 	else
 	{
