@@ -347,6 +347,7 @@ void UART5_IRQHandler(void){
 
 //SIM BEGIN		
 //		simDataIrq(temp);
+//		simErrorIrq(temp);
 		#ifdef PRINTF_DEBUG
 		if(ISP_DIRECTION==USART_SIM)
 		{

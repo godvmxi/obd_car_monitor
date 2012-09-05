@@ -130,7 +130,7 @@ int16_t	collectAndSend(void){
 	while(1){
 	   	timeCounter = RTC_GetCounter();
 		printf("\r\nprepare gps\r\n");
-		gpsDataInit();//初始化gps数据
+//		gpsDataInit();//初始化gps数据
 		if(establishConnect(sysCfg.netConfig) == 0){
 			printf("\r\nestablish network fail :%d\r\n",failCounter);
 			goto ERROR_ENTRY;
@@ -216,6 +216,12 @@ int		establishConnect(SOCKET socket){
 	int i,j;
 
 	static uint8_t socketFlag=0,socketCmd[80],socketState[40];
+	char closeCmd[50];
+		
+	sprintf(closeCmd,"AT+MIPCLOSE=1\r");
+	printf("\r\nclose socket\r\n");
+	Send_AT_And_Wait("AT+MIPCLOSE?\r","NULL",1000);
+	Send_AT_And_Wait("AT+MIPCLOSE=1\r","NULL",1000);
 
 
 	
@@ -401,6 +407,9 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 		timer.second = (GPS_RMC_Data.UTCTime[4]-'0')*10+(GPS_RMC_Data.UTCTime[5]-'0');
 		RTC_Set(timer.year,timer.month,timer.date,timer.hour,timer.second,timer.second);
 	}
+	else{
+		printf("\r\nnot raady for modify clock :%d %d\r\n",rtcModifyFlag,rtcModifyCounter);
+	}
 
 	if(rtcModifyFlag != 0){
 		RTC_Get();
@@ -447,16 +456,33 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	if(GPS_RMC_DINGWEI_OK && GPS_GGA_DINGWEI_OK)
 	{
 		printf("\r\nGPS DATA READY\r\n");
-		printf("\r\nGPS RMC\r\n");
-		for(i = 0;i<sizeof(stru_GPSRMC);i++)
-		{
-			printf(" %c",(char *)(GPS_RMC_Data.UTCTime));	
-		}
-		printf("\r\nGPS RMC\r\n");
-		for(i = 0;i<sizeof(stru_GPSGGA);i++)
-		{
-			printf(" %c",(char *)(GPS_GGA_Data.Latitude));	
-		}
+		printf("\r\nGPS RMC UTC    :%s\r\n",GPS_RMC_Data.UTCTime);
+		printf("\r\nGPS RMC STA    :%s\r\n",GPS_RMC_Data.Status);
+		printf("\r\nGPS RMC Lat    :%s\r\n",GPS_RMC_Data.Latitude);
+		printf("\r\nGPS RMC NS     :%s\r\n",GPS_RMC_Data.NS);
+		printf("\r\nGPS RMC LON    :%s\r\n",GPS_RMC_Data.Longitude);
+		printf("\r\nGPS RMC EW     :%s\r\n",GPS_RMC_Data.EW);
+		printf("\r\nGPS RMC SPEED  :%s\r\n",GPS_RMC_Data.Speed);
+		printf("\r\nGPS RMC Course :%s\r\n\r\n\r\n",GPS_RMC_Data.Course);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.Latitude);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.NS);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.Longitude);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.EW);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.PositionFix);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.SateUsed);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.HDOP);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.HEIGHT);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_GGA_Data.hdop_int);
+
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.A_Latitude);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.A_NS);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.A_Longitude);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.A_EW);
+		printf("\r\nGPS GGA Course :%d\r\n",GPS_DATA.HDOP);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.Speed);
+		printf("\r\nGPS GGA Course :%s\r\n",GPS_DATA.Course);
+
+		
 
 		gpsDataReport.posState = 1;
 

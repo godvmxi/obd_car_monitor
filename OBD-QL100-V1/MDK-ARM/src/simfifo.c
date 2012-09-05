@@ -181,6 +181,81 @@ void simDataIrq(char charTmp)
 	}
 }
 
+void simErrorIrq(char charTmp)
+{
+	static int charIndex = 1;
+	static char std;
+	
+	if(charTmp == '+')
+		charIndex = 1;
+	switch(charIndex)
+	{
+		case 1:
+			if(charTmp == '+')
+			{
+				std = charTmp;
+				charIndex++;
+			}
+			break;
+		case 2:
+			if((std == '+')&&(charTmp == 'M'))
+			{
+				std = 'M';
+				charIndex++;
+			}
+			else
+			{
+				charIndex = 1;
+
+			}
+			break;
+		case 3:
+			if((std == 'M')&&(charTmp == 'I') )
+			{
+				std = 'I';
+				charIndex++;
+			}
+			else
+			{
+				charIndex = 1; 
+			}
+			break;
+		case 4:
+			if((std == 'I')&&(charTmp == 'P') )
+			{
+				std = 'P';
+				charIndex++;
+			}
+			else
+			{
+				charIndex = 1;
+			}
+			break;
+		case 5:
+			if((std == 'P')&&(charTmp == 'S') )
+			{
+				printf("\r\nFIND +MIPR\r\n");
+//				if(!getInFifoPointer(&fifoHead,&bufferPointer))//获取新的缓冲区指针
+//				{
+//					//error
+//					charIndex = 1;
+//					return ;
+//
+//				}
+//				bufferPointer->bufferNum = 0;
+	//			initFifoNode(&bufferPointer);
+			}
+			charIndex = 1;
+			break;
+		default:
+			charIndex = 1;
+
+			break;
+	}
+	printf("\r\nSIM STATE\r\n");
+}
+
+
 void dealFifoMsg(FIFO_HEAD *head)
 {
 	FIFO_NODE *nodeP = NULL;
