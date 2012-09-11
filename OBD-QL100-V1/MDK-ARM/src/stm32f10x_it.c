@@ -482,19 +482,10 @@ void TIM3_IRQHandler(void)
 	static int state = 0,counter = 0,i = 0;
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{ 
-
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-		if(OBD_START && ((i++)%2 == 0))
-	//	if(OBD_START)
-		{
-		//	obdIrq();
-			obdCollectData();
-		}
 		//CHECK CAR STATE START		
 		if(counter == 3)
-		{//enable can exti
-		//	printf("\r\nenable can exti\r\n");
-		//	enableCanExti(1);
+		{
 			TIM_SetCounter(TIM2, 0);
 			CAN_DETECTER = 0;
 		}
@@ -502,20 +493,22 @@ void TIM3_IRQHandler(void)
 		{
 			CAN_DETECTER = TIM_GetCounter(TIM2);
 			DEVICE_STATE = CAN_DETECTER > 2000? 1 :0;
-			printf("\r\nSTATE--->%d -->%d-->%d\r\n",DEVICE_STATE,CAN_DETECTER,OBD_START);	////0:STOP 1:RUNNING
+			printf("\r\nSTATE--->%d -->%d-->%d-->%d\r\n",DEVICE_STATE,CAN_DETECTER,OBD_START,POWER_STATE);	////0:STOP 1:RUNNING
 			counter = 0;	; 
 		}
 		counter++;
 		//CHECK CAR STATE END
 		if(state == 0){
 			LED1(Bit_SET);
-
 			state = 1;
 		}
 		else{
 			LED1(Bit_RESET);
-
 			state = 0;
+		}
+		if(OBD_START)
+		{
+			obdCollectData();
 		} 
 	}
 

@@ -32,14 +32,15 @@ void sim900_boot(void)
 void sim900_power_on(void)
 {
 	// GPIO_InitTypeDef GPIO_InitStructure;
-	delay_ms(3000);
+//	delay_ms(3000);
 	#ifdef PRINTF_DEBUG
 	printf("\r\nOPEN SIM900....\r\n");
 	#endif
 	SIM_DTR(Bit_RESET);
 	SIM_EN(Bit_SET);
-	delay_ms(1000);
+	delay_ms(6000);
 	SIM_EN(Bit_RESET);
+	delay_ms(5000);
 
 //	
 	

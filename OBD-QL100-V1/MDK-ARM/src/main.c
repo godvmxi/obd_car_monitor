@@ -39,7 +39,7 @@ int main(void)
 //	enableCanExti(1);
 //	obdPower(1);
 //	while(1);
-//	TIM_Cmd(TIM3, DISABLE);
+	TIM_Cmd(TIM3, DISABLE);
 //	while(1);
 //	enableCanExti(0);
 //	obdGetAllData();
@@ -53,7 +53,19 @@ int main(void)
 //	ISP_DIRECTION=USART_GPS;								    
 //	while(1);
 //	
+	
+//	initAT45DB041B();
+//	initFlashFifo();
+//	flashFifoTest();
+//	flashTest();
 	setDebugPara();	 
+
+	ISP_DIRECTION=USART_SIM;
+//	sim900_power_on();
+//		ISP_DIRECTION=USART_SIM;
+//	sim900_power_on();
+//		ISP_DIRECTION=USART_SIM;
+//	sim900_power_on();
 //	blueTest();
 //	ISP_DIRECTION=USART_SIM;
 

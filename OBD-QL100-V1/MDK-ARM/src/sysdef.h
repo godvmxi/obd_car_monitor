@@ -276,8 +276,7 @@ typedef struct {
 
 			
 
-#define		ApplicationAddress		0x8008000
-#define		NVIC_VectTab_FLASH_ADDR		ApplicationAddress-NVIC_VectTab_FLASH
+
 //#define		QTD2_TEST
 //#define		GPS_ANT_SEL
 //#define		PERSONAL	  s
@@ -464,6 +463,7 @@ extern 		int32_t OBD_MODE;
 extern 		int32_t CAN_DETECTER;
 extern		int32_t DEVICE_STATE;
 extern		int32_t OBD_START ;
+extern		int32_t CAR_POWER_FAILED;
 typedef struct {
 	char cmd[60];
 	char buf[200];
@@ -579,6 +579,12 @@ extern OBD_INFO obdInfo,obdInfoFlash;
 #define		SYS_PARAMETER			0x0800F400
 #define 	SYS_MAIN				0x08005C00 
 #define		SYS_VECTOR				(SYS_MAIN-NVIC_VectTab_FLASH)	
+
+#define		ApplicationAddress		0x8008000
+#define		NVIC_VectTab_FLASH_ADDR		ApplicationAddress-NVIC_VectTab_FLASH
+
+#define	FLASH_ADR	0x08007400	//要写入数据的地址
+#define	FLASH_FIFO	0x08007000
 
 
 

@@ -678,11 +678,11 @@ void	flashTest(void)
 	u8 in[20];
 	u8 out[20];
 	int i = 0;
-	printf("\r\n开始读取存储测试\r\n");
+	printf("\r\nbegin flash test\r\n");
 	for(i=0;i<4000;i++)
 	{
 		memset(in,i,20);
-		printf("\r\n\r\n\r\n\r\n在第%d页写入的数据为:",i);
+		printf("\r\n\r\n\r\n\r\nindex %d write into data:",i);
 		showBuffer(in,20);
 		AT45DB041B_BufferToMainMemoryPageProgramWithBuilt_inErase(1,i,0,in,20);
 
@@ -691,19 +691,19 @@ void	flashTest(void)
 		delay_ms(100);
 		AT45DB041B_BufferRead(1,0,out,20);
 		
-		printf("\r\n读取buffer的数据为:");
+		printf("\r\nread buffer dada:");
 		showBuffer(out,20);
 
-	   	printf("\r\n在第%d页读出的数据为:",i);
+	   	printf("\r\nread index %d data:",i);
 		memset(out,0,20);
 		AT45DB041B_ContinuousArrayRead(i,0,out,20);
-		printf("\r\n读取ContinuousArrayRead的数据为:");
+		printf("\r\nread ContinuousArrayRead data:");
 		showBuffer(out,20);
 
 
 		memset(out,0,20);
 		AT45DB041B_MainMemoryPageRead(i,0,out,20);
-		printf("\r\n读取MainMemoryPageRead的数据为:");
+		printf("\r\nread MainMemoryPageRead data:");
 		showBuffer(out,20);
 		delay_ms(500);
 

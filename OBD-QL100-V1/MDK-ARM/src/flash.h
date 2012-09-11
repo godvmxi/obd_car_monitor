@@ -63,8 +63,8 @@ uint16_t calBufCrc(unsigned char *ptr, unsigned char len);
 
 
 void chipFlashTest(void);
-#define	FLASH_ADR	0x0800F000	//要写入数据的地址
-#define	FLASH_FIFO	0x0800EC00
+//#define	FLASH_ADR	0x0800F000	//要写入数据的地址
+//#define	FLASH_FIFO	0x0800EC00
 #define sysStateInFlash volatile (DATA_IN_FLASH *)FLASH_ADR
 
 

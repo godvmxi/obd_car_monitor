@@ -47,7 +47,7 @@ int16_t	collectAndSend(void){
 	uint32_t obdType = 0;
 	int failCounter = 0;
 	BLUE_OBD = 0;
-	
+	ERROR_ENTRY:
 	printf("\r\n system begin\r\n");
 
 	initData();
@@ -64,12 +64,22 @@ int16_t	collectAndSend(void){
 	ISP_DIRECTION = USART_SIM;
 	printf("\r\nBEGIN SEND MSG\r\n");
 	
-	ERROR_ENTRY:
-
+	
+	ISP_DIRECTION = USART_OBD;
 	TIM_Cmd(TIM3, DISABLE);
 	OBD_START = 0;
 //	BLUE_OBD = 1;
 	TIM_Cmd(TIM3, ENABLE);
+//	OBD_START = 1;
+//	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
+////	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+MIL\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//
+//
+//
+//	OBD_START = getObdPids() > 0 ?1:0;
+//	while(1);
 
 
 
@@ -100,7 +110,7 @@ int16_t	collectAndSend(void){
 	Send_AT_And_Wait("AT\r","OK",500);
 	ISP_DIRECTION=USART_OBD;
 	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
-	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 	obdAtAndWait("BT+MIL\r\n",NULL,5000);
 	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 
@@ -131,39 +141,66 @@ int16_t	collectAndSend(void){
 	   	timeCounter = RTC_GetCounter();
 		printf("\r\nprepare gps\r\n");
 //		gpsDataInit();//初始化gps数据
-		if(establishConnect(sysCfg.netConfig) == 0){
-			printf("\r\nestablish network fail :%d\r\n",failCounter);
-			goto ERROR_ENTRY;
-		}
-//		while(1){
-//
-//			reportObd(&sysCfg.netConfig,0,1,OBD_MODE);
-//			delay_ms(3000);
+//		if(establishConnect(sysCfg.netConfig) <= 0){
+//			printf("\r\nestablish network fail :%d\r\n",failCounter);
+//			goto ERROR_ENTRY;
 //		}
+		if(POWER_STATE != 0){
+			printf("\r\nPOWER BY CAR\r\n");
+			if(CAR_POWER_FAILED == 0){
+				printf("\r\nrecover from power failed ,power on blue and obd \r\n");
+				CAR_POWER_FAILED = 1;
+				goto  ERROR_ENTRY;
+			}
 
-		if(DEVICE_STATE != 0)//running
-		{		
-			printf("\r\ncar running ---------------------\r\n");
-			reportQL100(&sysCfg.netConfig,0,1,obdType++);
-			reportPos(&sysCfg.netConfig,0,1);
-			
-			printf("\r\nprepare gps\r\n");
-			gpsDataInit();//初始化gps数据
-			delay_ms(10000);
+			if(DEVICE_STATE != 0)//running
+			{		
+				printf("\r\ncar running ---------------------\r\n");
+				reportQL100(&sysCfg.netConfig,0,1,obdType++);
+				reportPos(&sysCfg.netConfig,0,1);
+				
+				printf("\r\nprepare gps\r\n");
+				gpsDataInit();//初始化gps数据
+				delay_ms(15000);
+			}
+			else
+			{
+				printf("\r\ncat stopped++++++++++++++++++++++\r\n");
+				reportPos(&sysCfg.netConfig,0,1);
+				printf("\r\nprepare gps\r\n");
+				gpsDataInit();//初始化gps数据
+				for(i = 0; i < 120 ;i++){
+					if(DEVICE_STATE != 0){
+						break;
+						printf("\r\ncar start\r\n");
+					}
+					delay_ms(1000);
+				}
+			}
 		}
+
 		else
 		{
-			printf("\r\ncat stopped++++++++++++++++++++++\r\n");
+			printf("\r\nPOWER BY BATTERY\r\n");
+			printf("\r\ncat emergency !!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n");
 			reportPos(&sysCfg.netConfig,0,1);
-			printf("\r\nprepare gps\r\n");
+			if(CAR_POWER_FAILED == 1)
+			{	 //just for alert
+				printf("\r\ncar power failed ,shut down blue and obd for power saving\r\n");
+				CAR_POWER_FAILED = 0;//power fail ,shut down blue and obd for power saving
+				blueToothPower(0);
+				obdPower(0);
+
+			}
 			gpsDataInit();//初始化gps数据
-			for(i = 0; i < 120 ;i++){
+			for(i = 0; i < 30 ;i++){
 				if(DEVICE_STATE != 0){
 					break;
 					printf("\r\ncar start\r\n");
 				}
 				delay_ms(1000);
 			}
+
 		}
 		printf("\r\nTIME USED :%d->%d-->%d\r\n",RTC_GetCounter(),timeCounter,RTC_GetCounter() - timeCounter);
 	}
@@ -598,7 +635,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	else if(GPS_SHUJU_OK)			  //如果GPS有数据但没定位
 	{
 		printf("\r\nGPS DATA WEAK\r\n");
-		gpsDataReport.posState = 0;
+		gpsDataReport.posState = 2;
 		gpsDataReport.longitude = 	((u32)(GPS_DATA.V_Longitude[0]-'0'))*10000000 +\
 									((u32)(GPS_DATA.V_Longitude[1]-'0'))*1000000 +\
 									((u32)(GPS_DATA.V_Longitude[2]-'0'))*100000 +\
@@ -667,19 +704,7 @@ void reportPos(SOCKET *soc,int timeout,int flag)
 	printf("\r\nstate    ：%10d",gpsDataReport.posState);
 //	printf("\r\nTime: %2d%2d%2d%2d%2d%2d\r\n",gpsDataReport.timeYY,gpsDataReport.timemm,gpsDataReport.timeDD,gpsDataReport.timeHH,gpsDataReport.timeMM,gpsDataReport.timeSS);
 	#endif	 
-//	//get others;
-//	gpsDataReport.others = 9;	 	
-//	//
-//	gpsDataReport.longitude = 8;
-//	gpsDataReport.latitude = 7;
-//	//get height
-//	gpsDataReport.height = 6;
-//	//get speed
-//	gpsDataReport.speed = 5;
-//	//get angle
-//	gpsDataReport.angle = 4;
-//	//get stars
-//	gpsDataReport.stars = 3; 
+
 
 	setDataHeader(DEV_POS_REPORT,(char *)(&gpsDataReport),sizeof(DEV_POS_REPORT));	
 	dataSend((char *)(&gpsDataReport),sizeof(GPS_DATA_REPORT),1,1,1,*soc,1);
@@ -1017,6 +1042,7 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 char ql100Buf[1024];
 void reportQL100(SOCKET *soc,int timeout,int flag,int mode){
 	int32_t len = 0,i = 0,msgLength = 0;
+	static uint32_t obdType = 0; 
 
 	printf("\r\nreport ql100 data_+_+_+_+_+_+_+_+_\r\n");
 	TIM_Cmd(TIM3, DISABLE);
@@ -1030,7 +1056,8 @@ void reportQL100(SOCKET *soc,int timeout,int flag,int mode){
 	}
 	showTime(&obdNormalBuf.time);
 	memset(ql100Buf,0,1024);
-	if(mode % 5 != 0){
+	if(obdType++ % 5 != 0){//normal obd data
+		printf("\r\nreport FAST obd data\r\n");
 		strcat(ql100Buf,"&");
 		strcat(ql100Buf,obdInfo.vin);
 		strcat(ql100Buf,"&");
@@ -1040,10 +1067,12 @@ void reportQL100(SOCKET *soc,int timeout,int flag,int mode){
 			strcat(ql100Buf,pidBuf.mulCmd[i].buf);
 		}
 		msgLength = strlen(ql100Buf);
-		printf("\r\nobd fast --> %s\r\n",ql100Buf);
+		printf("\r\n\r\n\r\n\r\nobd fast --> %s\r\n",ql100Buf);
+		
 		setDataHeader(OBD_FAST_REPORT,(int8_t *)(ql100Buf),msgLength);
 	}
 	else{
+		printf("\r\nreport NORMAL obd data\r\n");
 		strcat(ql100Buf,"&");
 		strcat(ql100Buf,obdInfo.vin);
 		strcat(ql100Buf,"&");
@@ -1067,7 +1096,7 @@ void reportQL100(SOCKET *soc,int timeout,int flag,int mode){
 		strcat(ql100Buf,"&");
 		strcat(ql100Buf,obdInfo.ad_feh);
 		msgLength = strlen(ql100Buf);
-		printf("\r\nobd normal --> %s\r\n",ql100Buf);
+		printf("\r\n\r\n\r\n\r\nobd normal --> %s\r\n",ql100Buf);
 		setDataHeader(OBD_COMMON_REPORT,(int8_t *)(ql100Buf),msgLength);
 	}	
 	TIM_Cmd(TIM3, ENABLE);

@@ -1088,6 +1088,7 @@ void hardware_init(void)
 
 
 	TIM_Configuration();
+	initAT45DB041B();
 }
 
 void open_sys(void)	  //LED2ц╩сп

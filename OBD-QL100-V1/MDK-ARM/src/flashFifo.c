@@ -51,7 +51,7 @@ u32		inFlashFifo(u8 *pointer,u32 length)
 	if(flashData.crc != (0 ^ flashData.bufferNum ^ flashData.inIndex ^ flashData.outIndex))
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nfifo头结点CRC失败，重新初始化fifo\r\n");
+		printf("\r\nfifo data header crc error，reinit fifo\r\n");
 		#endif
 		//re init fifo
 		initFlashFifo();
@@ -60,7 +60,7 @@ u32		inFlashFifo(u8 *pointer,u32 length)
 	#ifdef PRINTF_DEBUG
 	else
 	{
-		printf("\r\n入队获取FIFO头校验正确\r\n");	
+		printf("\r\nin queeen get FIFO head crc right\r\n");	
 	}
 	#endif
 
@@ -73,7 +73,7 @@ u32		inFlashFifo(u8 *pointer,u32 length)
 	if(flashData.bufferNum >= FLASHH_MAX_DATA_NUM)
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nflash写满，覆盖原先数据\r\n");
+		printf("\r\nflash si full ,covery old data\r\n");
 		#endif
 		flashData.outIndex++;//	调整出队指针
 		if(flashData.outIndex > FLASHH_MAX_DATA_NUM)
@@ -90,7 +90,7 @@ u32		inFlashFifo(u8 *pointer,u32 length)
 	else
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nflash未满，可以继续写入\r\n");
+		printf("\r\nflash is ok,go on\r\n");
 		#endif
 		flashData.bufferNum++;
 		flashData.inIndex++;  //调整入队指针
@@ -135,7 +135,7 @@ u32		outFlashFifo(u8 *pointer,u32 length)
 	if(flashData.crc != (0 ^ flashData.bufferNum ^ flashData.inIndex ^ flashData.outIndex))
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nfifo头结点CRC失败，重新初始化fifo\r\n");
+		printf("\r\nfifo head CRC error，re init fifo\r\n");
 		#endif
 		initFlashFifo();
 		//re init fifo
@@ -144,13 +144,13 @@ u32		outFlashFifo(u8 *pointer,u32 length)
 	#ifdef PRINTF_DEBUG
 	else
 	{
-		printf("\r\nfifo头结点CRC校验成功\r\n");
+		printf("\r\nfifo head CRC ok\r\n");
 	}
 	#endif
 	if(flashData.bufferNum <= 0)
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nfifo为空，返回\r\n");
+		printf("\r\nfifo empty,return \r\n");
 		#endif
 		return 0;
 	}
@@ -184,11 +184,11 @@ u32		getFifoHead(void)
 //	u32	crc;	  	//数据块检验，防止写入出错
 	readFlashFifo(FLASH_FIFO,(uint32_t *)(&flashData),4);
 	#ifdef PRINTF_DEBUG
-	printf("\r\n\r\n读取后数据头内容");
-	printf("\r\n数据块个数:%d",flashData.bufferNum);
-	printf("\r\n入队数据的数据块索引:%d",flashData.inIndex);
-	printf("\r\n出队数据的数据块索引:%d",flashData.outIndex);
-	printf("\r\n数据块检验:%d",flashData.crc);
+	printf("\r\nread fifo head");
+	printf("\r\nnode number :%d",flashData.bufferNum);
+	printf("\r\nin queen data index :%d",flashData.inIndex);
+	printf("\r\nout queen data index :%d",flashData.outIndex);
+	printf("\r\nblock crc:%d",flashData.crc);
 	#endif
 	return 1;	
 }
@@ -205,11 +205,11 @@ u32		getFifoHead(void)
 u32		writeFifoHead(void)
 {
 	#ifdef PRINTF_DEBUG
-	printf("\r\n\r\n写入前数据头内容");
-	printf("\r\n数据块个数: %d",flashData.bufferNum);
-	printf("\r\n入队数据的数据块索引:%d",flashData.inIndex);
-	printf("\r\n出队数据的数据块索引:%d",flashData.outIndex);
-	printf("\r\n数据块检验:%d",flashData.crc);
+	printf("\r\nread fifo head");
+	printf("\r\nnode number :%d",flashData.bufferNum);
+	printf("\r\nin queen data index :%d",flashData.inIndex);
+	printf("\r\nout queen data index :%d",flashData.outIndex);
+	printf("\r\nblock crc:%d",flashData.crc);
 	#endif
 	writeFlashFifo(FLASH_FIFO,(uint32_t *)(&flashData),4);
 //	AT45DB041B_BufferToMainMemoryPageProgramWithBuilt_inErase(1,FLASH_HEAD_PAGE,0,(u8 *)(&flashData),sizeof(FLASH_DATA));
@@ -224,31 +224,33 @@ void	flashFifoTest(void)
 	printf("\r\nFlash Fifo test----------------\r\n");
 	while(1)
 	{
-		printf("\r\n数据入队\r\n");
-		for(i=0;i<FLASHH_MAX_DATA_NUM;i++)
-		{
-			memset(in,i,20);  			
-			printf("\r\n第%d次写入数据\r\n",i);
-			showBuffer(in,20);
-			inFlashFifo(in,20);
-			delay_ms(10);
-		}
-		delay_ms(3000);
-		printf("\r\n数据出队\r\n");
-		for(i=0;i<(FLASHH_MAX_DATA_NUM+12);i++)
-		{
-			memset(out,0,20);
-			
-			printf("\r\n第%d次读出数据\r\n",i);
-			if(outFlashFifo(out,20))
+		printf("\r\n data in queen \r\n");
+		for(i=0;i<FLASHH_MAX_DATA_NUM;i++){
+//			for(i=0;i<FLASHH_MAX_DATA_NUM;i++)
 			{
-				showBuffer(out,20);
+				memset(in,i,20);  			
+				printf("\r\nNo. %d write into data\r\n",i);
+				showBuffer(in,20);
+				inFlashFifo(in,20);
+				delay_ms(1000);
 			}
-			else
+			delay_ms(3000);
+			printf("\r\ndata out of queen\r\n");
+//			for(i=0;i<(FLASHH_MAX_DATA_NUM+12);i++)
 			{
-				printf("\r\nFIFO为空，没有数据返回\r\n");
+				memset(out,0,20);
+				
+				printf("\r\nNo. %d read out data\r\n",i);
+				if(outFlashFifo(out,20))
+				{
+					showBuffer(out,20);
+				}
+				else
+				{
+					printf("\r\nFIFO empty ,no data return\r\n");
+				}
+				delay_ms(1000);
 			}
-			delay_ms(10);
 		}
 		delay_ms(3000);
 	}

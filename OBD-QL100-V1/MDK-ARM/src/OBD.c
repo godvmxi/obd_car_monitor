@@ -2870,11 +2870,11 @@ typedef struct {
 	char pids[160];
 }OBD_INFO;
 */
-#define DELAY_10S		10
-#define DELAY_5S		5
-#define DELAY_3S		3
-#define DELAY_2S		2
-#define DELAY_1S		1
+#define DELAY_10S		20
+#define DELAY_5S		10
+#define DELAY_3S		6
+#define DELAY_2S		4
+#define DELAY_1S		2
 
 void obdCollectData(void){
 	static int index = 0;
@@ -3013,7 +3013,7 @@ void obdCollectData(void){
 				 printf("\r\nRDTC Error : %s\r\n",obdInfo.ife);
 			}
 
-obdAtAndWait("BT+DATA.WHP\r\n",NULL,0);
+			obdAtAndWait("BT+DATA.WHP\r\n",NULL,0);
 
 			break;
 		case 7:	  // 7 get Edtc
@@ -3035,7 +3035,7 @@ obdAtAndWait("BT+DATA.WHP\r\n",NULL,0);
 				 printf("\r\nRDTC Error : %s\r\n",obdInfo.whp);
 			}
 
-obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,0);
+			obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,0);
 
 			break;
 		case 8:	  //8 get ad_mil
@@ -3058,7 +3058,7 @@ obdAtAndWait("BT+DATA.AD_Mil\r\n",NULL,0);
 			}
 
 
-obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,0);
+			obdAtAndWait("BT+DATA.AD_FEH\r\n",NULL,0);
 
 			break;
 
@@ -3113,21 +3113,39 @@ int32_t obdGetPidDatas(uint32_t index){
 	}
 
 	if(currentIndex != pidBuf.cmdNum){
+		memset(pidBuf.mulCmd[currentIndex].buf,0,120);
 		if(currentIndex == pidBuf.cmdNum-1){
 			printf("\r\ncheck accel\r\n");
 			point = strstr(OBD_BUF,"AD_Accel:");
+
+			if(point != NULL){
+				pidBuf.mulCmd[currentIndex].buf[0] = '&';
+				for(i = 0;point[i] != 0x0D;i++){
+					pidBuf.mulCmd[currentIndex].buf[i+1] = point[i];
+				} 
+				printf("\r\nbuf %d --> %s \r\n",currentIndex,pidBuf.mulCmd[currentIndex].buf);
+			}
 		}
 		else{
 			printf("\r\ncheck pids :%s\r\n",pidBuf.mulCmd[currentIndex].cmd);
 			point = strstr(OBD_BUF,"MUL:");
+
+			if(point != NULL){
+				point+= 5;
+				for(i = 0;point[i] != 0x0D;i++){
+					pidBuf.mulCmd[currentIndex].buf[i] = point[i];
+				} 
+				printf("\r\nbuf %d --> %s \r\n",currentIndex,pidBuf.mulCmd[currentIndex].buf);
+			}
 		}		
-		memset(pidBuf.mulCmd[currentIndex].buf,0,120);
-		if(point != NULL){
-			for(i = 0;point[i] != 0x0D;i++){
-				pidBuf.mulCmd[currentIndex].buf[i] = point[i];
-			} 
-			printf("\r\nbuf %d --> %s \r\n",currentIndex,pidBuf.mulCmd[currentIndex].buf);
-		}
+		
+//		if(point != NULL){
+//			for(i = 0;point[i] != 0x0D;i++){
+//				pidBuf.mulCmd[currentIndex].buf[i] = point[i];
+//			} 
+//			printf("\r\nbuf %d --> %s \r\n",currentIndex,pidBuf.mulCmd[currentIndex].buf);
+//		}
+			
 		currentIndex++;	
 		if(currentIndex == pidBuf.cmdNum){
 			flag = 1;
