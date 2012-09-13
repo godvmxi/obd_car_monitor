@@ -965,8 +965,7 @@ void showGpsData(void){
 	printf("\r\nutcDate :%s\r\n",gpsGprmc.utcDate);
 	printf("\r\nmagAngle :%s\r\n",gpsGprmc.magAngle);
 	printf("\r\n magDirection:%s\r\n",gpsGprmc.magDirection);
-	printf("\r\nmode :%s\r\n",gpsGprmc.mode);
-	
+	printf("\r\nmode :%s\r\n",gpsGprmc.mode); 	
 
 }
 

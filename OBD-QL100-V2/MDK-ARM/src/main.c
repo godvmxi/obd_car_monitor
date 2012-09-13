@@ -48,16 +48,16 @@ int main(void)
 //	obdPower(1);
 //	while(1);
 	TIM_Cmd(TIM3, ENABLE);
-	gpsPowerOn();
-	while(1){
-		USART_Cmd(GPS, DISABLE);
-		showGpsData();
-		USART_Cmd(GPS, ENABLE);
-		ISP_DIRECTION=USART_GPS;
-		delay_ms(5000);
-		ISP_DIRECTION=USART_SIM;
-		printf("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
-	};
+//	gpsPowerOn();
+//	while(1){
+//		USART_Cmd(GPS, DISABLE);
+//		showGpsData();
+//		USART_Cmd(GPS, ENABLE);
+//		ISP_DIRECTION=USART_GPS;
+//		delay_ms(5000);
+//		ISP_DIRECTION=USART_SIM;
+//		printf("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+//	};
 //	while(1);
 //	enableCanExti(0);
 //	obdGetAllData();
@@ -114,23 +114,23 @@ int main(void)
 	LED2(Bit_SET);
 	LED2(Bit_SET);
 	LED2(Bit_SET);
-	delay_ms(1000);
+	delay_ms(500);
 	LED2(Bit_RESET);
 	LED2(Bit_RESET);
 	LED2(Bit_RESET);
-	delay_ms(1000);
+	delay_ms(500);
 	LED2(Bit_SET);
 	LED2(Bit_SET);
 	LED2(Bit_SET);
-	delay_ms(1000);
+	delay_ms(500);
 	LED2(Bit_RESET);
 	LED2(Bit_RESET);
 	LED2(Bit_RESET);
-	delay_ms(1000);
+	delay_ms(500);
 	LED2(Bit_SET);
 	LED2(Bit_SET);
 	LED2(Bit_SET);
-	delay_ms(1000);
+	delay_ms(500);
 	
 
 

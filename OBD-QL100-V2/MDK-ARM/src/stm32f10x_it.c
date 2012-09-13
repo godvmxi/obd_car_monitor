@@ -283,7 +283,7 @@ void USART3_IRQHandler(void)
 	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
 	{ 
 		temp=USART_ReceiveData(USART3);
-
+		gpsDealChar(&temp);	
 
 //GPS START
 		if(ISP_DIRECTION==USART_GPS)
@@ -291,8 +291,8 @@ void USART3_IRQHandler(void)
 			USART_SendData(USART1,temp);	
 			while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET);			
 		}
-		gpsDataIrq(temp);
-	//	gpsDealChar(&temp);	
+	//	gpsDataIrq(temp);
+		
 					
 		
 //GPS END

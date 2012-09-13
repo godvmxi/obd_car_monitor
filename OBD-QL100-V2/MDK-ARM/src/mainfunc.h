@@ -14,7 +14,7 @@
 #define		OBD_COMMON_REPORT_RESEND			0x0031
 #define		OBD_FAST_REPORT						0x0032
 #define		OBD_FAST_REPORT_RESEND				0x0033
-#define		REQUEST_OBD_PROFILE					0x0040
+
 //
 //Host --> terminal	
 #define		SET_IAP_PARA		0x0110
@@ -30,7 +30,7 @@
 
 int16_t	collectAndSend(void);
 int		checkConnectState(uint32_t socketNum);
-int		establishConnect(SOCKET socket);
+int		establishConnect(SOCKET socket,int close);
 
 
 int closeConnect(SOCKET *soc);
@@ -40,6 +40,7 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 
 
 void reportPos(SOCKET *soc,int timeout,int flag);
+void reportGPS(SOCKET *soc,int timeout,int flag);
 void reportObd(SOCKET *soc,int timeout,int flag,int mode);
 void reportQL100(SOCKET *soc,int timeout,int flag,int mode);
 void reportCan(SOCKET *soc,int timeout,int flag);

@@ -141,7 +141,7 @@ void tcpIap(void){
 			for(i = 0 ;i<500;i++){
 				printf("Net Error,reConnect\r\n");
 	
-				while(establishConnect(net) <= 0){
+				while(establishConnect(net,0) <= 0){
 					printf("\r\nestablish network fail :%d\r\n",failCounter);
 					delay_ms(1000);
 					

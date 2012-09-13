@@ -2047,6 +2047,27 @@ void obdBlue(void)
  * 作    者:蛋蛋                                                                     
  * 修改日期:2011年7月13日                                                                    
  *******************************************************************************/
+int obdInit(void)
+{
+	char *point=NULL;
+	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
+	point = strstr(OBD_BUF,"RDTC:");
+	if(point != NULL){
+		
+	}
+	obdAtAndWait("BT+MIL\r\n",NULL,5000);
+	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+}
+/*******************************************************************************
+ * 函数名称:obdAtAndWait                                                                     
+ * 描    述:OBD AT命令执行                                                                     
+ *                                                                               
+ * 输    入:at命令串，返回值查询关键字，命令执行等待时间                                                                    
+ * 输    出:无                                                                     
+ * 返    回:0：命令未出现期望结果，1：命令出现期望结果                                                                    
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2011年7月13日                                                                    
+ *******************************************************************************/
 int obdAtAndWait(char *at,char *key,int ms){
 	int x = 0;
 	memset(OBD_BUF,0,300);

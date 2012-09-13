@@ -118,7 +118,12 @@ typedef struct {
 }APP_CFG;
 //数据发送结构体定义
 typedef struct {
+	uint8_t  	START[2];
 	uint16_t	MSG_CRC;
+
+	
+
+	uint8_t		time[6];
 	uint16_t 	MSG_TYPE;
 
 	uint32_t	IMEI_H;//第一个字节是power mode
@@ -130,8 +135,6 @@ typedef struct {
 
 	uint32_t 	DEV_ID_H;//imei 高32位
 	uint32_t 	DEV_ID_L;//imei 低32位
-	uint32_t	CELL_ID;
-	
 }DATA_HEAD;	
 typedef struct{	
 	uint32_t	longitude; //经度
@@ -140,23 +143,21 @@ typedef struct{
 	uint32_t	cellid;	
 
 	int16_t		height;
-	uint16_t	speed;
+	int16_t		speed;
 
-	uint16_t	angle;
-	
-	TIME		time;
+	uint16_t	angle;	
+	uint16_t	hdop;
 
 	uint8_t		signal;
 	uint8_t		stars;
 	uint8_t 	posState;// 1:定位 0：未定位
-	uint8_t		debugBytes;
-
 	uint8_t		voltage;
-	uint8_t		hardVersion;
-	uint8_t		softVersion;								   
-	uint8_t		other;	
+
+	uint8_t		reserved[4];								   	
 
 }GPS_DATA_REPORT;
+
+
 
 
 //应用设计结构体定义
@@ -475,6 +476,8 @@ typedef struct {
 }MUL_PIDS;
 extern MUL_PIDS pidBuf;
 extern OBD_INFO obdInfo,obdInfoFlash;
+
+
 
 
 /////*GPS*/

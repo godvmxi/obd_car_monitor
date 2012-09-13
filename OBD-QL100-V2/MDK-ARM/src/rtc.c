@@ -147,8 +147,8 @@ int8_t RTC_Set(int16_t syear,int8_t smon,int8_t sday,int8_t hour,int8_t min,int8
 	
 	int16_t t;
 	u32 seccount = 0; 
-	if(syear<2000 || syear>2099)
-		return 1;//syear范围1970-2099，此处设置范围为2000-2099        
+//	if(syear<2000 || syear>3099)
+//		return 1;//syear范围1970-2099，此处设置范围为2000-2099        
 	for (t = 1970;t<syear ;t++) //把所有年份的秒钟相加 
 	{ 
 		if(Is_Leap_Year (t))

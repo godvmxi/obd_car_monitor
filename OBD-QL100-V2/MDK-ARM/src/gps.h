@@ -173,5 +173,8 @@ typedef struct
 	char reserved1[2];
 	char reserved2[2];	
 }GPGGA;
+
+extern GPGGA gpsGpgga;
+extern GPRMC gpsGprmc;
 #endif
 
