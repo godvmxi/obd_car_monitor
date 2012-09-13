@@ -16,6 +16,8 @@ typedef struct
 	FIFO_NODE *rear; //指向队列尾的指针
 	u32	nodeNum;	 //队列中项目的个数
 }FIFO_HEAD;
+extern FIFO_NODE fifoNode[FIFO_MAX_SIZE];
+extern FIFO_HEAD fifoHead;
 /*	initialize fifo data
 输入：队列头，node起始内存，node节点数量
 node节点采用数组形式申请

@@ -735,7 +735,7 @@ void copyGpsData(){
 		
 		for(i = 0;point[i] != ',';i++)
 		{
-			gpsGprmc.longitude[i] = point[i];	
+			gpsGprmc.latitude[i] = point[i];	
 		}
 		if(i > 12)
 			return;
@@ -751,7 +751,7 @@ void copyGpsData(){
 		
 		for(i = 0;point[i] != ',';i++)
 		{
-			gpsGprmc.latitude[i] = point[i];	
+			gpsGprmc.longitude[i] = point[i];	
 		}
 		if(i > 12)
 			return;
@@ -827,7 +827,7 @@ void copyGpsData(){
 
 		for(i = 0;point[i] != ',';i++)
 		{
-			gpsGpgga.longitude[i] = point[i];	
+			gpsGpgga.latitude[i] = point[i];	
 		}
 		if(i > 12)
 			return;
@@ -843,7 +843,7 @@ void copyGpsData(){
 
 		for(i = 0;point[i] != ',';i++)
 		{
-			gpsGpgga.latitude[i] = point[i];	
+			gpsGpgga.longitude[i] = point[i];	
 		}
 		if(i > 12)
 			return;

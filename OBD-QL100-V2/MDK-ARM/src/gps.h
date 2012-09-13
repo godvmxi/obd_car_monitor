@@ -144,9 +144,9 @@ typedef struct
 {
 	char utc[12];
 	char state[2];
-	char longitude[12];		//ddmm.mmmm
+	char latitude[12];		//ddmm.mmmm	 纬度ddmm.mmmm（度分）格式
 	char ns[2];				//ns
-	char latitude[12];	 	//dddmm.mmmm
+	char longitude[12];	 	//dddmm.mmmm	 经度dddmm.mmmm（度分）格式
 	char ew[2];	
 	char speed[6];			//speed  000.0~999.9
 	char angle[8];			//direction relative north
@@ -159,9 +159,9 @@ typedef struct
 typedef struct
 {
 	char utc[12];		//hhmmss.000
-	char longitude[12];		//ddmm.mmmm
+	char latitude[12];		//ddmm.mmmm
 	char ns[2];				//ns
-	char latitude[12];	 	//dddmm.mmmm
+	char longitude[12];	 	//dddmm.mmmm
 	char ew[2];				//ew
 	char state[2];			//0=not，1=not diff，2=diff，6= cal ing
 	char stars[4];		   	//working stars

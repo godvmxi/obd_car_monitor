@@ -40,7 +40,7 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 
 
 void reportPos(SOCKET *soc,int timeout,int flag);
-void reportGPS(SOCKET *soc,int timeout,int flag);
+void reportGps(SOCKET *soc,int timeout,int flag);
 void reportObd(SOCKET *soc,int timeout,int flag,int mode);
 void reportQL100(SOCKET *soc,int timeout,int flag,int mode);
 void reportCan(SOCKET *soc,int timeout,int flag);

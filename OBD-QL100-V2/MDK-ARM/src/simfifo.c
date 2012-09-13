@@ -157,7 +157,7 @@ void simDataIrq(char charTmp)
 		case 5:
 			if((std == 'P')&&(charTmp == 'R') )
 			{
-				printf("\r\nFIND +MIPR\r\n");
+				//printf("\r\nFIND +MIPR\r\n");
 				if(!getInFifoPointer(&fifoHead,&bufferPointer))//获取新的缓冲区指针
 				{
 					//error
@@ -235,15 +235,10 @@ void simErrorIrq(char charTmp)
 			if((std == 'P')&&(charTmp == 'S') )
 			{
 				printf("\r\nFIND +MIPR\r\n");
-//				if(!getInFifoPointer(&fifoHead,&bufferPointer))//获取新的缓冲区指针
-//				{
-//					//error
-//					charIndex = 1;
-//					return ;
-//
-//				}
-//				bufferPointer->bufferNum = 0;
-	//			initFifoNode(&bufferPointer);
+
+				charIndex = 1;
+
+
 			}
 			charIndex = 1;
 			break;
@@ -270,292 +265,291 @@ void dealFifoMsg(FIFO_HEAD *head)
 	else
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\n待处理的下发数据量：%d\r\n",head->nodeNum);	
+		printf("\r\nwait for data-->%d\r\n",head->nodeNum);	
 		#endif
 	}
 	while(!fifoIsEmpty(head))
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\n剩余需处理的信息量：%d\r\n",head->nodeNum);
+		printf("\r\nremaining data number-->%d\r\n",head->nodeNum);
 		#endif	
 		
 		getOutFifoPointer(head,&nodeP);
 		
 		#ifdef PRINTF_DEBUG	 
-		printf("\r\n节点数据量：%d\r\n",nodeP->bufferNum);
+		printf("\r\nnode data length--->%d\r\n",nodeP->bufferNum);
 		#endif		
-//		dealMsg(nodeP);
+		dealMsg(nodeP);
 		nodeP->bufferNum = 0;
 		memset(nodeP->buffer,'\0',FIFO_BUFFER_SIZE);
 	}
 }
 
-//void dealMsg(FIFO_NODE *nodeP)
-//{
-//	
-//	char *charP;
-//	
-//	SANY_DATA *sanyP;
-//	int i;
-//	#ifdef PRINTF_DEBUG
-//	
-//	printf("\r\nBUFFERT DADA:\r\n");
-//	
-//	for(i= 0;i<FIFO_BUFFER_SIZE;i++)
-//	{
-//		printf("%3X",nodeP->buffer[i]);
-//	}
-//	#endif
-//	charP = strstr(nodeP->buffer,":***");
-//	charP++;
-//	
-//	if( charP != NULL)
-//	{
-//
-////		sanyP = (SANY_DATA *)charP;
-//		if(sanyP->MSG_CRC == checkCrc((char *)(&sanyP->MSG_TYPE),sanyP->MSG_LENGTH+16))
-//		{
-//			#ifdef PRINTF_DEBUG
-//			printf("\r\nCRC OK!!\r\n");
-//			#endif
-//
-//			switch(sanyP->MSG_TYPE)
-//			{
-////				case ACK_POWER_ON_MSG://heart head
-//					
-////				case ACK_POWER_OFF_MSG://heart head
-//					//do something
+void dealMsg(FIFO_NODE *nodeP)
+{
+	
+	char *charP; 	
+	DATA_HEAD *header;
+	int i;
+
+	#ifdef PRINTF_DEBUG
+	
+	printf("\r\nBUFFERT DADA:\r\n");
+	
+	for(i= 0;i<FIFO_BUFFER_SIZE;i++)
+	{
+		printf("%3X",nodeP->buffer[i]);
+	}
+	#endif
+	charP = strstr(nodeP->buffer,":**");
+	
+	if( charP != NULL)
+	{
+
+//		header = (SANY_DATA *)charP;
+		if(header->MSG_CRC == 1)
+		{
+			#ifdef PRINTF_DEBUG
+			printf("\r\nCRC OK!!\r\n");
+			#endif
+
+			switch(header->MSG_TYPE)
+			{
+//				case ACK_POWER_ON_MSG://heart head
+					
+//				case ACK_POWER_OFF_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_POWER_STATE_MSG--\r\n");
+					#endif
+					break;
+//				case ACK_SOFT_UPDATE_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_SOFT_UPDATE_MSG--\r\n");
+					#endif
+						
+					//软件升级功能
+					break;
+//				case ACK_SET_NET_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_SET_NET_MSG--\r\n");
+					#endif
+					//参数设置功能
+					break;
+//				case ACK_SET_REPORT_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_SET_REPORT_MSG--\r\n");
+					printf("\r\n开始修正网络上报参数--\r\n");
+					delay_ms(2000);
+					#endif
+					charP = (char *)header;
+					charP+=20;
+					setNetArgument(charP,header->MSG_LENGTH);
+					
+					break;
+//				case ACK_ONLINE_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_ONLINE_MSG--\r\n");
+					#endif
+					onlineTimeOutFlag = 1;//上线超时确认
+					break;
+//				case ACK_OFFLINE_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_OFFLINE_MSG--\r\n");
+					#endif
+					break;			
+				
+//				case ACK_HEART_MSG://heart head
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_HEART_MSG--\r\n");
+					#endif
+					break;
+//				case ACK_GPS_MSG://gps
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_GPS_MSG--\r\n");
+					#endif
+	
+					break;
+//				case ACK_CAN_MSG://can
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\nACK_CAN_MSG--\r\n");
+					#endif
+					break;
+//				case SOFT_UPDATE_MSG://update
+					//do something
+//					feedDog();
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\n收到升级指令--\r\n");
+					#endif
+//					charP = (char *)(header->MDT_ID+8);
+					for(i=0;i<header->MSG_LENGTH;i++)
+					{
+						printf("%3x",charP[i]);
+					}
+					#ifdef PRINTF_DEBUG
+					printf("\r\n回发升级确认数据\r\n");
+					#endif
+					header->MSG_TYPE |= 0x8000;
+					header->MSG_LENGTH = 0;
+					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+					sendData((char *)header,20,0,0,0);
+					delay_ms(2000);
+	
+					break;
+//				case SET_NET_MSG://net
+					//do something
+//					feedDog();
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\n收到网络参数设置指令--\r\n");
+					#endif
+//					charP = (char *)(header->MDT_ID+8);
+					for(i=0;i<header->MSG_LENGTH;i++)
+					{
+						printf("%3x",charP[i]);
+					}
+					#ifdef PRINTF_DEBUG
+					printf("\r\n回发确认数据\r\n");
+					#endif
+					header->MSG_TYPE |= 0x8000;
+					header->MSG_LENGTH = 0;
+					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+					sendData((char *)header,20,0,0,0);
+					delay_ms(2000);
+					break;
+//				case SET_REPORT_MSG://report
+					//do something
 //					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_POWER_STATE_MSG--\r\n");
+//					printf("\r\nSET_REPORT_MSG--\r\n");
 //					#endif
-//					break;
-////				case ACK_SOFT_UPDATE_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_SOFT_UPDATE_MSG--\r\n");
-//					#endif
-//						
-//					//软件升级功能
-//					break;
-////				case ACK_SET_NET_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_SET_NET_MSG--\r\n");
-//					#endif
-//					//参数设置功能
-//					break;
-////				case ACK_SET_REPORT_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_SET_REPORT_MSG--\r\n");
-//					printf("\r\n开始修正网络上报参数--\r\n");
-//					delay_ms(2000);
-//					#endif
-//					charP = (char *)sanyP;
-//					charP+=20;
-//					setNetArgument(charP,sanyP->MSG_LENGTH);
-//					
-//					break;
-////				case ACK_ONLINE_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_ONLINE_MSG--\r\n");
-//					#endif
-//					onlineTimeOutFlag = 1;//上线超时确认
-//					break;
-////				case ACK_OFFLINE_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_OFFLINE_MSG--\r\n");
-//					#endif
-//					break;			
-//				
-////				case ACK_HEART_MSG://heart head
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_HEART_MSG--\r\n");
-//					#endif
-//					break;
-////				case ACK_GPS_MSG://gps
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_GPS_MSG--\r\n");
-//					#endif
-//	
-//					break;
-////				case ACK_CAN_MSG://can
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nACK_CAN_MSG--\r\n");
-//					#endif
-//					break;
-////				case SOFT_UPDATE_MSG://update
-//					//do something
 ////					feedDog();
 //					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到升级指令--\r\n");
+//					printf("\r\n\r\n\r\n收到上报参数设置指令--\r\n");
 //					#endif
-//					charP = (char *)(sanyP->MDT_ID+8);
-//					for(i=0;i<sanyP->MSG_LENGTH;i++)
+//					charP = (char *)(header->MDT_ID+8);
+//					for(i=0;i<header->MSG_LENGTH;i++)
 //					{
 //						printf("%3x",charP[i]);
 //					}
 //					#ifdef PRINTF_DEBUG
-//					printf("\r\n回发升级确认数据\r\n");
-//					#endif
-//					sanyP->MSG_TYPE |= 0x8000;
-//					sanyP->MSG_LENGTH = 0;
-//					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-//					sendData((char *)sanyP,20,0,0,0);
-//					delay_ms(2000);
-//	
-//					break;
-////				case SET_NET_MSG://net
-//					//do something
-////					feedDog();
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到网络参数设置指令--\r\n");
-//					#endif
-//					charP = (char *)(sanyP->MDT_ID+8);
-//					for(i=0;i<sanyP->MSG_LENGTH;i++)
-//					{
-//						printf("%3x",charP[i]);
-//					}
-//					#ifdef PRINTF_DEBUG
 //					printf("\r\n回发确认数据\r\n");
 //					#endif
-//					sanyP->MSG_TYPE |= 0x8000;
-//					sanyP->MSG_LENGTH = 0;
-//					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-//					sendData((char *)sanyP,20,0,0,0);
+//					header->MSG_TYPE |= 0x8000;
+//					header->MSG_LENGTH = 0;
+//					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+//					sendData((char *)header,20,0,0,0);
 //					delay_ms(2000);
 //					break;
-////				case SET_REPORT_MSG://report
-//					//do something
-////					#ifdef PRINTF_DEBUG
-////					printf("\r\nSET_REPORT_MSG--\r\n");
-////					#endif
-//////					feedDog();
-////					#ifdef PRINTF_DEBUG
-////					printf("\r\n\r\n\r\n收到上报参数设置指令--\r\n");
-////					#endif
-////					charP = (char *)(sanyP->MDT_ID+8);
-////					for(i=0;i<sanyP->MSG_LENGTH;i++)
-////					{
-////						printf("%3x",charP[i]);
-////					}
-////					#ifdef PRINTF_DEBUG
-////					printf("\r\n回发确认数据\r\n");
-////					#endif
-////					sanyP->MSG_TYPE |= 0x8000;
-////					sanyP->MSG_LENGTH = 0;
-////					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-////					sendData((char *)sanyP,20,0,0,0);
-////					delay_ms(2000);
-////					break;
-//
-////				case SET_CAN_UNLOCK_MSG://report
-//					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到解锁指令--\r\n");
-//					#endif
-//					
-//					// charP = (char *)(sanyP->MDT_ID+8);
-//					// #ifdef PRINTF_DEBUG
-//					// for(i=0;i<sanyP->MSG_LENGTH;i++)
-//					// {
-//						// printf("%3x",charP[i]);
-//					// }
-//					// #endif
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n回发确认数据\r\n");
-//					#endif
-//					sanyP->MSG_TYPE |= 0x8000;
-//					sanyP->MSG_LENGTH = 0;
-//					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-//					sendData((char *)sanyP,20,0,0,0);					
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n设备尝试解锁\r\n");
-//					#endif
-////					unlockCan();
-//				
-//					break;
-//					
-//				/* 	delay_ms(2000); */
-//
-//
-////				case SET_CAN_LOCK_1_MSG://report
-//					//do something
-////					feedDog();
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到一级锁机指令--\r\n");
-//					#endif
-//					charP = (char *)(sanyP->MDT_ID+8);
-//					// #ifdef PRINTF_DEBUG
-//					// for(i=0;i<sanyP->MSG_LENGTH;i++){
-//						// printf("%3x",charP[i]);
-//					// }					
-//					// printf("\r\n回发确认数据\r\n");
-//					// #endif
-//					sanyP->MSG_TYPE |= 0x8000;
-//					sanyP->MSG_LENGTH = 0;
-//					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-//					sendData((char *)sanyP,20,0,0,0);	
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n设备尝试一级锁机\r\n");
-//					#endif
-//					lockCan(1);
-//					break;	
-////				case SET_CAN_LOCK_2_MSG://二级锁机
-//					//do something
-////					feedDog();
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到二级锁机指令--\r\n");
-//					#endif
-//					charP = (char *)(sanyP->MDT_ID+8);
-//					#ifdef PRINTF_DEBUG
-//					// for(i=0;i<sanyP->MSG_LENGTH;i++){
-//						// printf("%3x",charP[i]);
-//					// }					
-//					printf("\r\n回发确认数据\r\n");
-//					#endif
-//					sanyP->MSG_TYPE |= 0x8000;
-//					sanyP->MSG_LENGTH = 0;
-//					sanyP->MSG_CRC = checkCrc((char *)(&sanyP->MSG_TYPE),16);
-//					sendData((char *)sanyP,20,0,0,0);	
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n设备尝试二级锁机\r\n");
-//					#endif
-//					lockCan(2);
-//					break;
-//
-//				default:
-//					//error handler
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nERROR MESG TYPE--\r\n");
-//					#endif
-//					break;
-//			}
-//
-//
-//		}
-//		else
-//		{
-//			printf("\r\nCRC ERROR\r\n");
-//			printf("\r\nMSG TYPE: %5X\r\n",sanyP->MSG_TYPE);
-//			printf("\r\nMSG ID:   %5X\r\n",sanyP->MSG_ID);
-//			printf("\r\nBUFFERT DADA:\r\n");
-//			for(i= 0;i<50;i++)
-//			{
-//				printf("%3X",((char *)sanyP)[i]);
-//			}
-//
-//			return;
-//		}
-//	
-//	}
-//
-//}
+
+//				case SET_CAN_UNLOCK_MSG://report
+					//do something
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\n收到解锁指令--\r\n");
+					#endif
+					
+					// charP = (char *)(header->MDT_ID+8);
+					// #ifdef PRINTF_DEBUG
+					// for(i=0;i<header->MSG_LENGTH;i++)
+					// {
+						// printf("%3x",charP[i]);
+					// }
+					// #endif
+					#ifdef PRINTF_DEBUG
+					printf("\r\n回发确认数据\r\n");
+					#endif
+					header->MSG_TYPE |= 0x8000;
+					header->MSG_LENGTH = 0;
+					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+					sendData((char *)header,20,0,0,0);					
+					#ifdef PRINTF_DEBUG
+					printf("\r\n设备尝试解锁\r\n");
+					#endif
+//					unlockCan();
+				
+					break;
+					
+				/* 	delay_ms(2000); */
+
+
+//				case SET_CAN_LOCK_1_MSG://report
+					//do something
+//					feedDog();
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\n收到一级锁机指令--\r\n");
+					#endif
+//					charP = (char *)(header->MDT_ID+8);
+					// #ifdef PRINTF_DEBUG
+					// for(i=0;i<header->MSG_LENGTH;i++){
+						// printf("%3x",charP[i]);
+					// }					
+					// printf("\r\n回发确认数据\r\n");
+					// #endif
+					header->MSG_TYPE |= 0x8000;
+					header->MSG_LENGTH = 0;
+					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+					sendData((char *)header,20,0,0,0);	
+					#ifdef PRINTF_DEBUG
+					printf("\r\n设备尝试一级锁机\r\n");
+					#endif
+					lockCan(1);
+					break;	
+//				case SET_CAN_LOCK_2_MSG://二级锁机
+					//do something
+//					feedDog();
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\n收到二级锁机指令--\r\n");
+					#endif
+//					charP = (char *)(header->MDT_ID+8);
+					#ifdef PRINTF_DEBUG
+					// for(i=0;i<header->MSG_LENGTH;i++){
+						// printf("%3x",charP[i]);
+					// }					
+					printf("\r\n回发确认数据\r\n");
+					#endif
+					header->MSG_TYPE |= 0x8000;
+					header->MSG_LENGTH = 0;
+					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
+					sendData((char *)header,20,0,0,0);	
+					#ifdef PRINTF_DEBUG
+					printf("\r\n设备尝试二级锁机\r\n");
+					#endif
+					lockCan(2);
+					break;
+
+				default:
+					//error handler
+					#ifdef PRINTF_DEBUG
+					printf("\r\nERROR MESG TYPE--\r\n");
+					#endif
+					break;
+			}
+
+
+		}
+		else
+		{
+			printf("\r\nCRC ERROR\r\n");
+			printf("\r\nMSG TYPE: %5X\r\n",header->MSG_TYPE);
+//			printf("\r\nMSG ID:   %5X\r\n",header->MSG_ID);
+			printf("\r\nBUFFERT DADA:\r\n");
+			for(i= 0;i<50;i++)
+			{
+				printf("%3X",((char *)header)[i]);
+			}
+
+			return;
+		}
+	
+	}
+
+}
 void ackFifoTest(void)
 {
 	FIFO_NODE *test;

@@ -38,7 +38,7 @@ extern SIM_STRUCT simState;
 
 int checkAckMsg(int type)
 {
-	
+	dealFifoMsg(&fifoHead);	
 }
 int16_t	collectAndSend(void){
 	int i = 0;
@@ -80,11 +80,7 @@ int16_t	collectAndSend(void){
 	Send_AT_And_Wait("AT\r","OK",500);
 	Send_AT_And_Wait("AT\r","OK",500);
 	readImei();
-	while(1){
-		reportGPS(&sysCfg.netConfig,0,1);
-		delay_ms(5000);
 
-	}
 	blueToothPower(0);
 	blueToothPower(1);
 	initBlueTooth(0);
@@ -117,11 +113,7 @@ int16_t	collectAndSend(void){
 	while(1){
 	   	timeCounter = RTC_GetCounter();
 		printf("\r\nprepare gps\r\n");
-//		gpsDataInit();//初始化gps数据
-//		if(establishConnect(sysCfg.netConfig) <= 0){
-//			printf("\r\nestablish network fail :%d\r\n",failCounter);
-//			goto ERROR_ENTRY;
-//		}
+
 		if(POWER_STATE != 0){
 			printf("\r\nPOWER BY CAR\r\n");
 			if(CAR_POWER_FAILED == 0){
@@ -139,21 +131,22 @@ int16_t	collectAndSend(void){
 				else
 				{
 					reportQL100(&sysCfg.netConfig,0,1,5);
+					delay_ms(5000);
 				}
 //				reportPos(&sysCfg.netConfig,0,1);
-				reportGPS(&sysCfg.netConfig,0,1);
+				reportGps(&sysCfg.netConfig,0,1);
 				
 				printf("\r\nprepare gps\r\n");
 //				gpsDataInit();//初始化gps数据
-				delay_ms(15000);
+				delay_ms(5000);
 			}
 			else
 			{
 				printf("\r\ncat stopped++++++++++++++++++++++\r\n");
-				reportPos(&sysCfg.netConfig,0,1);
+				reportGps(&sysCfg.netConfig,0,1);
 				printf("\r\nprepare gps\r\n");
 //				gpsDataInit();//初始化gps数据
-				for(i = 0; i < 120 ;i++){
+				for(i = 0; i < 60 ;i++){
 					if(DEVICE_STATE != 0){
 						break;
 						printf("\r\ncar start\r\n");
@@ -167,7 +160,7 @@ int16_t	collectAndSend(void){
 		{
 			printf("\r\nPOWER BY BATTERY\r\n");
 			printf("\r\ncat emergency !!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n");
-			reportPos(&sysCfg.netConfig,0,1);
+			reportGps(&sysCfg.netConfig,0,1);
 			if(CAR_POWER_FAILED == 1)
 			{	 //just for alert
 				printf("\r\ncar power failed ,shut down blue and obd for power saving\r\n");
@@ -176,7 +169,6 @@ int16_t	collectAndSend(void){
 				obdPower(0);
 
 			}
-			gpsDataInit();//初始化gps数据
 			for(i = 0; i < 30 ;i++){
 				if(DEVICE_STATE != 0){
 					break;
@@ -380,7 +372,7 @@ int		establishConnect(SOCKET socket,int close){
 	return 1;
 }
 /*******************************************************************************
- * 函数名称:reportGPS                                                                    
+ * 函数名称:reportGps                                                                    
  * 描    述:发送GPS数据                                                               
  *                                                                               
  * 输    入:SOCKET,网络参数 ，timeout : GPS未定位是的等待时间，  flag :未定位信息是否上报                                                                  
@@ -390,7 +382,7 @@ int		establishConnect(SOCKET socket,int close){
  * 修改日期:2012年3月9日                                                                    
  *******************************************************************************/
 
-void reportGPS(SOCKET *soc,int timeout,int flag)
+void reportGps(SOCKET *soc,int timeout,int flag)
 {
 	int  i;
 	char *temp;
@@ -493,6 +485,7 @@ void reportGPS(SOCKET *soc,int timeout,int flag)
 		printf("\r\nGPS error\r\n");
 	} 
 	//get longitude经度	//10
+	//get latitude 纬度	  //9
 	gpsDataReport.longitude = 	((u32)(gpsGpgga.longitude[0]-'0'))*100000000 +\
 								((u32)(gpsGpgga.longitude[1]-'0'))*10000000 +\
 								((u32)(gpsGpgga.longitude[2]-'0'))*1000000 +\
@@ -502,7 +495,14 @@ void reportGPS(SOCKET *soc,int timeout,int flag)
 								((u32)(gpsGpgga.longitude[7]-'0'))*100 +\
 								((u32)(gpsGpgga.longitude[8]-'0'))*10 +\
 								((u32)(gpsGpgga.longitude[9]-'0')) ;
-	//get latitude 纬度	  //9
+	
+	//get NS
+	if(gpsGpgga.ns[0] == 'S' || gpsGpgga.ns[0] == 's')   //
+	{
+		gpsDataReport.latitude  |= 0x8000;
+	}
+
+	//get longitude经度	//10
 	gpsDataReport.latitude = 	((u32)(gpsGpgga.latitude[0]-'0'))*10000000 +\
 								((u32)(gpsGpgga.latitude[1]-'0'))*1000000 +\
 								((u32)(gpsGpgga.latitude[2]-'0'))*100000 +\
@@ -516,11 +516,7 @@ void reportGPS(SOCKET *soc,int timeout,int flag)
 	{
 		gpsDataReport.longitude |= 0x8000;
 	}
-	//get NS
-	if(gpsGpgga.ns[0] == 'S' || gpsGpgga.ns[0] == 's')   //
-	{
-		gpsDataReport.latitude  |= 0x8000;
-	}
+	
 		  
 
 	#ifdef PRINTF_DEBUG
@@ -1170,7 +1166,7 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 	}
 	if(checkAck)//检查返回数据
 	{
-//		checkAckMsg();//检查返回信息
+		checkAckMsg(1);//检查返回信息
 	} 
 	return 1;
 
