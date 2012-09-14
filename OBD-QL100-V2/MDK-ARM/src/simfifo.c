@@ -251,38 +251,46 @@ void simErrorIrq(char charTmp)
 }
 
 
-void dealFifoMsg(FIFO_HEAD *head)
+int dealFifoMsg(FIFO_HEAD *head,int num)
 {
+	int i = 0;
 	FIFO_NODE *nodeP = NULL;
+	#ifdef PRINTF_DEBUG
+	printf("\r\n%s\r\n",__FUNCTION__);
+	#endif
 
 	if(fifoIsEmpty(head))//没有下发数据待处理
 	{
-		// #ifdef PRINTF_DEBUG
-		// printf("\r\n没有下发数据待处理\r\n");
-		// #endif
-		return ;
+		#ifdef PRINTF_DEBUG
+		printf("\r\nno data to deal\r\n");
+		#endif
+		return 0;
 	}
 	else
 	{
 		#ifdef PRINTF_DEBUG
-		printf("\r\nwait for data-->%d\r\n",head->nodeNum);	
+		printf("\r\nwait for deal data items-->%d\r\n",head->nodeNum);	
 		#endif
 	}
-	while(!fifoIsEmpty(head))
-	{
+	num = num == 0 ? 100 : num;
+	printf("\r\ncurrent deal msg :%5d\r\n",num);
+	for(i = 0;i<num;i++){
+		if(fifoIsEmpty(head))
+			break;
 		#ifdef PRINTF_DEBUG
-		printf("\r\nremaining data number-->%d\r\n",head->nodeNum);
-		#endif	
-		
-		getOutFifoPointer(head,&nodeP);
-		
+		printf("\r\nremaining data items-->%d\r\n",head->nodeNum);
+		#endif	  		
+		getOutFifoPointer(head,&nodeP);	 		
 		#ifdef PRINTF_DEBUG	 
 		printf("\r\nnode data length--->%d\r\n",nodeP->bufferNum);
 		#endif		
 		dealMsg(nodeP);
 		nodeP->bufferNum = 0;
 		memset(nodeP->buffer,'\0',FIFO_BUFFER_SIZE);
+		printf("\r\ndeal msg index -->%d\r\n",i);
+//		delay_ms(3000);
 	}
+	return i;
 }
 
 void dealMsg(FIFO_NODE *nodeP)
@@ -301,13 +309,17 @@ void dealMsg(FIFO_NODE *nodeP)
 		printf("%3X",nodeP->buffer[i]);
 	}
 	#endif
-	charP = strstr(nodeP->buffer,":**");
+	charP = strstr(nodeP->buffer,"**");
+
+	return;
 	
 	if( charP != NULL)
 	{
 
-//		header = (SANY_DATA *)charP;
-		if(header->MSG_CRC == 1)
+		header = (DATA_HEAD *)charP;
+		printf("\r\nCRC->%4X MSG_TYPE->%4X \r\n",header->MSG_CRC,header->MSG_TYPE);
+//		if(header->MSG_CRC == calBufCrc(charP,header->MSG_LENGTH - 4))
+		if(1)
 		{
 			#ifdef PRINTF_DEBUG
 			printf("\r\nCRC OK!!\r\n");
@@ -315,79 +327,11 @@ void dealMsg(FIFO_NODE *nodeP)
 
 			switch(header->MSG_TYPE)
 			{
-//				case ACK_POWER_ON_MSG://heart head
-					
-//				case ACK_POWER_OFF_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_POWER_STATE_MSG--\r\n");
-					#endif
-					break;
-//				case ACK_SOFT_UPDATE_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_SOFT_UPDATE_MSG--\r\n");
-					#endif
-						
-					//软件升级功能
-					break;
-//				case ACK_SET_NET_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_SET_NET_MSG--\r\n");
-					#endif
-					//参数设置功能
-					break;
-//				case ACK_SET_REPORT_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_SET_REPORT_MSG--\r\n");
-					printf("\r\n开始修正网络上报参数--\r\n");
-					delay_ms(2000);
-					#endif
-					charP = (char *)header;
-					charP+=20;
-					setNetArgument(charP,header->MSG_LENGTH);
-					
-					break;
-//				case ACK_ONLINE_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_ONLINE_MSG--\r\n");
-					#endif
-					onlineTimeOutFlag = 1;//上线超时确认
-					break;
-//				case ACK_OFFLINE_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_OFFLINE_MSG--\r\n");
-					#endif
-					break;			
-				
-//				case ACK_HEART_MSG://heart head
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_HEART_MSG--\r\n");
-					#endif
-					break;
-//				case ACK_GPS_MSG://gps
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_GPS_MSG--\r\n");
-					#endif
-	
-					break;
-//				case ACK_CAN_MSG://can
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\nACK_CAN_MSG--\r\n");
-					#endif
-					break;
-//				case SOFT_UPDATE_MSG://update
+				case SET_IAP_PARA://update
 					//do something
 //					feedDog();
 					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\n收到升级指令--\r\n");
+					printf("\r\n\r\n\r\nreceive iap para cmd--\r\n");
 					#endif
 //					charP = (char *)(header->MDT_ID+8);
 					for(i=0;i<header->MSG_LENGTH;i++)
@@ -395,20 +339,20 @@ void dealMsg(FIFO_NODE *nodeP)
 						printf("%3x",charP[i]);
 					}
 					#ifdef PRINTF_DEBUG
-					printf("\r\n回发升级确认数据\r\n");
+					printf("\r\nsemd ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
-					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-					sendData((char *)header,20,0,0,0);
-					delay_ms(2000);
-	
+					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
+					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					delay_ms(2000);	
 					break;
-//				case SET_NET_MSG://net
+
+			case SET_NET_PARA://update
 					//do something
 //					feedDog();
 					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\n收到网络参数设置指令--\r\n");
+					printf("\r\n\r\n\r\nreceive net para cmd--\r\n");
 					#endif
 //					charP = (char *)(header->MDT_ID+8);
 					for(i=0;i<header->MSG_LENGTH;i++)
@@ -416,114 +360,56 @@ void dealMsg(FIFO_NODE *nodeP)
 						printf("%3x",charP[i]);
 					}
 					#ifdef PRINTF_DEBUG
-					printf("\r\n回发确认数据\r\n");
+					printf("\r\nsemd ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
-					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-					sendData((char *)header,20,0,0,0);
-					delay_ms(2000);
+					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
+					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					delay_ms(2000);	
 					break;
-//				case SET_REPORT_MSG://report
-					//do something
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\nSET_REPORT_MSG--\r\n");
-//					#endif
-////					feedDog();
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n\r\n\r\n收到上报参数设置指令--\r\n");
-//					#endif
-//					charP = (char *)(header->MDT_ID+8);
-//					for(i=0;i<header->MSG_LENGTH;i++)
-//					{
-//						printf("%3x",charP[i]);
-//					}
-//					#ifdef PRINTF_DEBUG
-//					printf("\r\n回发确认数据\r\n");
-//					#endif
-//					header->MSG_TYPE |= 0x8000;
-//					header->MSG_LENGTH = 0;
-//					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-//					sendData((char *)header,20,0,0,0);
-//					delay_ms(2000);
-//					break;
 
-//				case SET_CAN_UNLOCK_MSG://report
-					//do something
-					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\n收到解锁指令--\r\n");
-					#endif
-					
-					// charP = (char *)(header->MDT_ID+8);
-					// #ifdef PRINTF_DEBUG
-					// for(i=0;i<header->MSG_LENGTH;i++)
-					// {
-						// printf("%3x",charP[i]);
-					// }
-					// #endif
-					#ifdef PRINTF_DEBUG
-					printf("\r\n回发确认数据\r\n");
-					#endif
-					header->MSG_TYPE |= 0x8000;
-					header->MSG_LENGTH = 0;
-					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-					sendData((char *)header,20,0,0,0);					
-					#ifdef PRINTF_DEBUG
-					printf("\r\n设备尝试解锁\r\n");
-					#endif
-//					unlockCan();
-				
-					break;
-					
-				/* 	delay_ms(2000); */
-
-
-//				case SET_CAN_LOCK_1_MSG://report
+			case SET_WORK_PARA://update
 					//do something
 //					feedDog();
 					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\n收到一级锁机指令--\r\n");
+					printf("\r\n\r\n\r\nreceive work para cmd--\r\n");
 					#endif
 //					charP = (char *)(header->MDT_ID+8);
-					// #ifdef PRINTF_DEBUG
-					// for(i=0;i<header->MSG_LENGTH;i++){
-						// printf("%3x",charP[i]);
-					// }					
-					// printf("\r\n回发确认数据\r\n");
-					// #endif
+					for(i=0;i<header->MSG_LENGTH;i++)
+					{
+						printf("%3x",charP[i]);
+					}
+					#ifdef PRINTF_DEBUG
+					printf("\r\nsemd ack msg\r\n");
+					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
-					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-					sendData((char *)header,20,0,0,0);	
-					#ifdef PRINTF_DEBUG
-					printf("\r\n设备尝试一级锁机\r\n");
-					#endif
-					lockCan(1);
-					break;	
-//				case SET_CAN_LOCK_2_MSG://二级锁机
+					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
+					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					delay_ms(2000);	
+					break;
+			case SET_BLUE_PARA://update
 					//do something
 //					feedDog();
 					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\n收到二级锁机指令--\r\n");
+					printf("\r\n\r\n\r\nreceive blue para cmd--\r\n");
 					#endif
 //					charP = (char *)(header->MDT_ID+8);
+					for(i=0;i<header->MSG_LENGTH;i++)
+					{
+						printf("%3x",charP[i]);
+					}
 					#ifdef PRINTF_DEBUG
-					// for(i=0;i<header->MSG_LENGTH;i++){
-						// printf("%3x",charP[i]);
-					// }					
-					printf("\r\n回发确认数据\r\n");
+					printf("\r\nsemd ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
-					header->MSG_CRC = checkCrc((char *)(&header->MSG_TYPE),16);
-					sendData((char *)header,20,0,0,0);	
-					#ifdef PRINTF_DEBUG
-					printf("\r\n设备尝试二级锁机\r\n");
-					#endif
-					lockCan(2);
+					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
+					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					delay_ms(2000);	
 					break;
-
-				default:
+			default:
 					//error handler
 					#ifdef PRINTF_DEBUG
 					printf("\r\nERROR MESG TYPE--\r\n");

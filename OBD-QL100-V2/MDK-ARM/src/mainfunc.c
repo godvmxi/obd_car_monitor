@@ -15,6 +15,20 @@ extern int	GPS_RMC_DINGWEI_OK;//若GPS定位，则将此变量置1，否则为0
 extern int	GPS_SHUJU_OK;//若GPS输出坐标信息，则将此变量置1，否则为0 
 extern SIM_STRUCT simState;
 
+/*******************************************************************************
+ * 函数名称:checkAckMsg                                                                     
+ * 描    述:检查下发的数据                                                                     
+ *                                                                               
+ * 输    入:处理的最大的数据量 0：全部处理 -1：不处理                                                                    
+ * 输    出:无                                                                    
+ * 返    回:实际处理的消息量                                                                     
+ * 作    者:蛋蛋                                                                     
+ * 修改日期:2012年3月9日                                                                    
+ *******************************************************************************/
+int checkAckMsg(int num)
+{
+	return dealFifoMsg(&fifoHead,num);	
+}
 
 /*******************************************************************************
  * 函数名称:collectAndSend                                                                     
@@ -26,26 +40,12 @@ extern SIM_STRUCT simState;
  * 作    者:蛋蛋                                                                     
  * 修改日期:2012年3月9日                                                                    
  *******************************************************************************/
-// 	int32_t	crc;
-//	int32_t	length;
-//	int32_t	flag;//鉴定是否需要重新生产改结构体
-//	int8_t	ipUrl[40];
-//	int32_t udpTcp;
-//	uint32_t socketNum;
-//	int32_t localPort;
-//	int32_t	desPort; 
-//+MIPRUDP
-
-int checkAckMsg(int type)
-{
-	dealFifoMsg(&fifoHead);	
-}
 int16_t	collectAndSend(void){
 	int i = 0;
 	int8_t temp[20];
 	uint32_t timeCounter = 0; 	
 	uint32_t obdType = 0;
-	int failCounter = 0;
+	int failCounter = 0; //错误计数器
 	BLUE_OBD = 0;
 	ERROR_ENTRY:
 	printf("\r\n system begin\r\n");
@@ -89,13 +89,20 @@ int16_t	collectAndSend(void){
 	obdAtAndWait("BT+RDTC\r\n",NULL,5000);
 //	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 	obdAtAndWait("BT+MIL\r\n",NULL,5000);
-	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
+//	obdAtAndWait("BT+EDTC\r\n",NULL,5000);
 
 
 
 	OBD_START = getObdPids() > 0 ?1:0;
 	ISP_DIRECTION=USART_SIM;
-
+	readImei();
+	read_cellid();
+	read_cimi();
+	read_voltage();
+	if(establishConnect(sysCfg.netConfig,1) <= 0)
+	{
+		goto  ERROR_ENTRY;
+	}
 
 
 
@@ -107,9 +114,15 @@ int16_t	collectAndSend(void){
 		sysErrorHandle(sim900NotInsert);
 		goto ERROR_ENTRY;
 	}
-	readImei();
+	
 	printf("\r\nprepare gps\r\n");
-	gpsDataInit();//初始化gps数据
+//	gpsDataInit();//初始化gps数据
+//test
+
+	TIM_Cmd(TIM3, DISABLE);
+
+
+
 	while(1){
 	   	timeCounter = RTC_GetCounter();
 		printf("\r\nprepare gps\r\n");
@@ -133,7 +146,6 @@ int16_t	collectAndSend(void){
 					reportQL100(&sysCfg.netConfig,0,1,5);
 					delay_ms(5000);
 				}
-//				reportPos(&sysCfg.netConfig,0,1);
 				reportGps(&sysCfg.netConfig,0,1);
 				
 				printf("\r\nprepare gps\r\n");
@@ -146,7 +158,7 @@ int16_t	collectAndSend(void){
 				reportGps(&sysCfg.netConfig,0,1);
 				printf("\r\nprepare gps\r\n");
 //				gpsDataInit();//初始化gps数据
-				for(i = 0; i < 60 ;i++){
+				for(i = 0; i < 10 ;i++){
 					if(DEVICE_STATE != 0){
 						break;
 						printf("\r\ncar start\r\n");
@@ -269,6 +281,7 @@ int		establishConnect(SOCKET socket,int close){
 		printf("\r\n网络注册失败次数过多,设备故障，请检查\r\n");
 		#endif
 		sysErrorHandle(sim900NotInsert);
+		sim900_power_on();
 		regieterCounter = 0;
 		return -1;	
 	}
@@ -368,7 +381,7 @@ int		establishConnect(SOCKET socket,int close){
 	
 	}
 	
-//	getSimTime();
+
 	return 1;
 }
 /*******************************************************************************
@@ -474,7 +487,7 @@ void reportGps(SOCKET *soc,int timeout,int flag)
 		gpsDataReport.posState = 1;
 		printf("\r\nGPS ready\r\n");	
 	}
-	else if(gpsDataReport.stars >= 3)
+	else if(gpsDataReport.stars >= 4)
 	{
 		gpsDataReport.posState = 2;
 		printf("\r\nGPS weak\r\n");
@@ -1032,9 +1045,6 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 			#ifdef PRINTF_DEBUG
 			printf("\r\nreconnect net error\r\n");
 			#endif
-		//		RED_ON;
-		//		delay_ms(10000);
-		//		RED_OFF;
 			goto reTrySend;	
 		}
 	}
@@ -1097,12 +1107,12 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 //	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
 //	USART_SendData(ISP,'D');	
 //	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
-	USART_SendData(ISP,'"');	
-	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
-	USART_SendData(ISP,'\r');	
-	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
-	USART_SendData(ISP,'\n');	
-	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
+//	USART_SendData(ISP,'"');	
+//	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
+//	USART_SendData(ISP,'\r');	
+//	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
+//	USART_SendData(ISP,'\n');	
+//	while(USART_GetFlagStatus(ISP,USART_FLAG_TC)==RESET);
 
 //	printf("\r\ncmd:%d  buf:%d  data:%d\r\n",strlen(sendCmd),strlen(sendBuf),dataLength); 
 
@@ -1164,9 +1174,11 @@ int16_t dataSend(char *pointer,int length,int head,int reSend,int checkAck,SOCKE
 
 		}
 	}
+	printf("\r\nWait for udp data\r\n");
+	delay_ms(5000);
 	if(checkAck)//检查返回数据
 	{
-		checkAckMsg(1);//检查返回信息
+		checkAckMsg(0);//检查返回信息
 	} 
 	return 1;
 
@@ -1328,6 +1340,10 @@ void initSimSms(int type)
 
 
 }
+
+
+
+
 
 
 

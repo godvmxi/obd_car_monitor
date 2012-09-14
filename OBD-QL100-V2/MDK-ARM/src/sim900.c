@@ -114,6 +114,7 @@ int power_sim900(void)
 	#ifdef PRINTF_DEBUG
 	printf("\r\nname:%s\r\n",__FUNCTION__);
 	#endif
+	
 	if(!Send_AT_And_Wait("AT\r","OK",500))
 	{
 		#ifdef PRINTF_DEBUG

@@ -58,7 +58,7 @@ u32 emptyFifo(FIFO_HEAD *head);
 
 void initData(void);
 
-void dealFifoMsg(FIFO_HEAD *head);
+int dealFifoMsg(FIFO_HEAD *head,int num);
 
 void dealMsg(FIFO_NODE *nodeP);
 void simDataIrq(char charTmp);

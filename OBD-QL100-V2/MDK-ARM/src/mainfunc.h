@@ -46,7 +46,7 @@ void reportQL100(SOCKET *soc,int timeout,int flag,int mode);
 void reportCan(SOCKET *soc,int timeout,int flag);
 void reportHeart(SOCKET *soc,int timeout,int flag);
 void initSimSms(int type);
-int checkAckMsg(int type);
+int checkAckMsg(int num);
 
 
 

@@ -43,7 +43,7 @@ extern int shuiyin_counter;
 void NMI_Handler(void)
 {
 	printf("\r\nERROR_NMI\r\n");
-	while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -68,7 +68,7 @@ void HardFault_Handler(void)
   while (1)
   {
   		printf("\r\nERROR_HARD_FAULT\r\n");
-		while(1);
+
 		__disable_irq();//关总中断
 		__disable_fault_irq();
 		delay_ms(2000);
@@ -90,7 +90,7 @@ void MemManage_Handler(void)
   while (1)
   {
 	printf("\r\nERROR_MEM\r\n");
-	while(1);
+
 	__disable_irq();//关总中断
 	__disable_fault_irq();
 	delay_ms(2000);
@@ -112,7 +112,7 @@ void BusFault_Handler(void)
   while (1)
   {
   	printf("\r\nERROR_BUS\r\n");
-		while(1);
+
 
 	__disable_irq();//关总中断
 	__disable_fault_irq();
@@ -134,7 +134,7 @@ void UsageFault_Handler(void)
   while (1)
   {
   	printf("\r\nERROR_USAGE\r\n");
-		while(1);
+
 
 	__disable_irq();//关总中断
 	__disable_fault_irq();
@@ -153,7 +153,7 @@ void UsageFault_Handler(void)
 void SVC_Handler(void)
 {
 	printf("\r\nERROR_SVC\r\n");
-		while(1);
+
 
 	__disable_irq();//关总中断
 	__disable_fault_irq();
@@ -349,7 +349,7 @@ void UART5_IRQHandler(void){
 
 
 //SIM BEGIN		
-//		simDataIrq(temp);
+		simDataIrq(temp);
 //		simErrorIrq(temp);
 		#ifdef PRINTF_DEBUG
 		if(ISP_DIRECTION==USART_SIM)
@@ -501,6 +501,8 @@ void TIM3_IRQHandler(void)
 		}
 		counter++;
 		//CHECK CAR STATE END
+
+		//light led start
 		if(state == 0){
 			LED1(Bit_SET);
 			state = 1;
@@ -509,10 +511,14 @@ void TIM3_IRQHandler(void)
 			LED1(Bit_RESET);
 			state = 0;
 		}
+		//light led end
+
+		//collect obd data start
 		if(OBD_START)
 		{
 			obdCollectData();
-		} 
+		}
+		//collect obd data end 
 	}
 
 

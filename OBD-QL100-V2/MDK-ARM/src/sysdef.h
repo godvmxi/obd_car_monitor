@@ -221,6 +221,11 @@ typedef struct {
 	OBD_LIST cmdList[200];
 	uint8_t reserved[20];	
 }OBD_CONFIG;
+typedef struct {
+	uint32_t interval;//发送间隔
+	uint32_t proportion; //fast obd and normal 比例
+ 	uint8_t	 reserved[20];//保留
+}SYS_CONFIG;
 
 typedef struct {
 	uint16_t crc;
@@ -230,7 +235,8 @@ typedef struct {
 	IAP_BRIFE		iapBrife;
 	uint8_t			iapReserved[20];	
 	BLUE_CONFIG		blueConfig;
-	OBD_CONFIG		obdConfig;	
+	OBD_CONFIG		obdConfig;
+	SYS_CONFIG		sysConfig;	
 }FLASH_CONFIG;
 
 typedef struct {

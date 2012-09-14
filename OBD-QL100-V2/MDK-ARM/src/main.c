@@ -13,10 +13,10 @@ int fputc(int ch, FILE *f){//printf
 	return ch;
 
 }
-char test[] = "$GPRMC,054823.000,A,3110.4511,N,12123.6058,E,0.00,144.06,110912,,,A*61";
+//char test[] = "$GPRMC,054823.000,A,3110.4511,N,12123.6058,E,0.00,144.06,110912,,,A*61";
 int main(void)
 {	
-	int i = 0;
+//	int i = 0;
 	
 
 	
@@ -131,6 +131,7 @@ int main(void)
 	LED2(Bit_SET);
 	LED2(Bit_SET);
 	delay_ms(500);
+	
 	
 
 
