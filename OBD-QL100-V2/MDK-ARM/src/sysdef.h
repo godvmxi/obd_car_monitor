@@ -224,6 +224,7 @@ typedef struct {
 typedef struct {
 	uint32_t interval;//发送间隔
 	uint32_t proportion; //fast obd and normal 比例
+	uint32_t canCounter;
  	uint8_t	 reserved[20];//保留
 }SYS_CONFIG;
 

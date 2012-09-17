@@ -298,7 +298,8 @@ void dealMsg(FIFO_NODE *nodeP)
 	
 	char *charP; 	
 	DATA_HEAD *header;
-	int i;
+	char tmp[50];
+	int i,j;
 
 	#ifdef PRINTF_DEBUG
 	
@@ -308,17 +309,18 @@ void dealMsg(FIFO_NODE *nodeP)
 	{
 		printf("%3X",nodeP->buffer[i]);
 	}
+	printf("\r\nstring all data --> %s\r\n",nodeP->buffer);
 	#endif
 	charP = strstr(nodeP->buffer,"**");
 
-	return;
+//	return;
 	
 	if( charP != NULL)
 	{
 
 		header = (DATA_HEAD *)charP;
-		printf("\r\nCRC->%4X MSG_TYPE->%4X \r\n",header->MSG_CRC,header->MSG_TYPE);
-//		if(header->MSG_CRC == calBufCrc(charP,header->MSG_LENGTH - 4))
+		printf("\r\nCRC->%4X MSG_TYPE->%4X MSG_LEN->5d\r\n",header->MSG_CRC,header->MSG_TYPE,header->MSG_LENGTH);
+//		if(header->MSG_CRC == calBufCrc(charP+4,header->MSG_LENGTH - 4))
 		if(1)
 		{
 			#ifdef PRINTF_DEBUG
@@ -333,14 +335,56 @@ void dealMsg(FIFO_NODE *nodeP)
 					#ifdef PRINTF_DEBUG
 					printf("\r\n\r\n\r\nreceive iap para cmd--\r\n");
 					#endif
-//					charP = (char *)(header->MDT_ID+8);
+					charP += sizeof(DATA_HEAD);
 					for(i=0;i<header->MSG_LENGTH;i++)
 					{
-						printf("%3x",charP[i]);
+						printf("%3X",charP[i]);
 					}
+					printf("\r\n");
+					memset(tmp,0,50);//get hardware version
+					for(i = 0; charP[i] != '+' ;i++) {
+							tmp[i] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					memset(sysCfg.iapConfig.ipUrl,0,40);
+					strcat(sysCfg.iapConfig.ipUrl,tmp);
+					printf("\r\nnet msg interval :%s -->%s\r\n",tmp,sysCfg.iapConfig.ipUrl);
+					//get software version
+					memset(tmp,0,50);
+					for(j=0;	charP[i] != '+' ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					sysCfg.sysConfig.proportion =  atoi(tmp);
+					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
+					memset(tmp,0,50);
+					for(j=0;	i< header->MSG_LENGTH ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					sysCfg.sysConfig.canCounter =  atoi(tmp);
+					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
+
 					#ifdef PRINTF_DEBUG
 					printf("\r\nsemd ack msg\r\n");
 					#endif
+
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
 					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
@@ -352,13 +396,56 @@ void dealMsg(FIFO_NODE *nodeP)
 					//do something
 //					feedDog();
 					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\nreceive net para cmd--\r\n");
+					printf("\r\n\r\n\r\nreceive net para cmd-->\r\n");
 					#endif
-//					charP = (char *)(header->MDT_ID+8);
+					charP += sizeof(DATA_HEAD);
+
+					
 					for(i=0;i<header->MSG_LENGTH;i++)
 					{
-						printf("%3x",charP[i]);
+						printf("%3X",charP[i]);
 					}
+					
+					memset(tmp,0,50);
+					for(i = 0; charP[i] != '+' ;i++) {
+							tmp[i] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					
+					sysCfg.sysConfig.interval = atoi(tmp);
+					printf("\r\nnet msg interval :%s -->%d\r\n",tmp,sysCfg.sysConfig.interval);
+
+					memset(tmp,0,50);
+					for(j=0;charP[i] != '+' ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					sysCfg.sysConfig.proportion =  atoi(tmp);
+					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
+					memset(tmp,0,50);
+					for(j=0;	i< header->MSG_LENGTH ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					sysCfg.sysConfig.canCounter =  atoi(tmp);
+					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
+
 					#ifdef PRINTF_DEBUG
 					printf("\r\nsemd ack msg\r\n");
 					#endif
@@ -370,16 +457,55 @@ void dealMsg(FIFO_NODE *nodeP)
 					break;
 
 			case SET_WORK_PARA://update
-					//do something
-//					feedDog();
-					#ifdef PRINTF_DEBUG
 					printf("\r\n\r\n\r\nreceive work para cmd--\r\n");
-					#endif
-//					charP = (char *)(header->MDT_ID+8);
+					charP += sizeof(DATA_HEAD);	
+					printf("\r\nhex print:\r\n");
 					for(i=0;i<header->MSG_LENGTH;i++)
 					{
-						printf("%3x",charP[i]);
+						printf("%3X",charP[i]);
 					}
+					printf("\r\nstring  print: %s\r\n",charP); 
+					printf("\r\nstring print:\r\n");					
+					memset(tmp,0,50);
+					for(i = 0; charP[i] != '+' ;i++) {
+							tmp[i] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					
+					sysCfg.sysConfig.interval = atoi(tmp);
+					printf("\r\nnet msg interval :%s -->%d\r\n",tmp,sysCfg.sysConfig.interval);
+
+					memset(tmp,0,50);
+					for(j=0;charP[i] != '+' ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					i++;
+					sysCfg.sysConfig.proportion =  atoi(tmp);
+					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
+					memset(tmp,0,50);
+					for(j=0;	i< header->MSG_LENGTH ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data error\r\n");
+								return ;
+							}
+					}
+					sysCfg.sysConfig.canCounter =  atoi(tmp);
+					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
+
 					#ifdef PRINTF_DEBUG
 					printf("\r\nsemd ack msg\r\n");
 					#endif
@@ -387,7 +513,7 @@ void dealMsg(FIFO_NODE *nodeP)
 					header->MSG_LENGTH = 0;
 					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
 					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
-					delay_ms(2000);	
+					delay_ms(2000);
 					break;
 			case SET_BLUE_PARA://update
 					//do something

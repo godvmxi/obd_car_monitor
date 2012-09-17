@@ -661,34 +661,47 @@ int setSimApn(int type)
 		case 46001:
 		case 46010:
 			printf("\r\nsim type:unicom\r\n");
-			switch(type){
-				case  3:				
-					printf("\r\nset apn uniwap\r\n");
-					Send_AT_And_Wait("AT+MIPCALL=1,\"UNIWAP\"\r","OK",500);
-//					apnType = 1;
-					return 3;
-				case  4: 				
-					printf("\r\nset apn uninet\r\n");
-					Send_AT_And_Wait("AT+MIPCALL=1,\"UNINET\"\r","OK",500);
-//					apnType = 1;
-					return 4;
-				case  5:				
-					printf("\r\nset apn uniwap\r\n");
-					Send_AT_And_Wait("AT+MIPCALL=1,\"3GWAP\"\r","OK",500);
-//					apnType = 1;
-					return 5;
-				case  6: 				
-					printf("\r\nset apn uniwap\r\n");
-					Send_AT_And_Wait("AT+MIPCALL=1,\"3GNET\"\r","OK",500);
-//					apnType = 1;
-					return 6;
-				default :
-					return -1;	
+
+			if(type == 0){
+				printf("\r\nset apn cmwap\r\n");
+				Send_AT_And_Wait("AT+MIPCALL=1,\"3GWAP\"\r","OK",500);
+//				apnType = 1;
+				return 1;	
 			}
-			
+			else{
+				printf("\r\nset apn cmnet\r\n");
+				Send_AT_And_Wait("AT+MIPCALL=1,\"UNINET\"\r","OK",500);
+//				apnType = 1;
+				return 2;
+			}
+//			switch(type){
+//				case  3:				
+//					printf("\r\nset apn uniwap\r\n");
+//					Send_AT_And_Wait("AT+MIPCALL=1,\"UNIWAP\"\r","OK",500);
+////					apnType = 1;
+//					return 3;
+//				case  4: 				
+//					printf("\r\nset apn uninet\r\n");
+//					Send_AT_And_Wait("AT+MIPCALL=1,\"UNINET\"\r","OK",500);
+////					apnType = 1;
+//					return 4;
+////				case  5:				
+////					printf("\r\nset apn uniwap\r\n");
+////					Send_AT_And_Wait("AT+MIPCALL=1,\"3GWAP\"\r","OK",500);
+//////					apnType = 1;
+////					return 5;
+////				case  6: 				
+////					printf("\r\nset apn uniwap\r\n");
+////					Send_AT_And_Wait("AT+MIPCALL=1,\"3GNET\"\r","OK",500);
+//////					apnType = 1;
+////					return 6;
+//				default :
+//					return -1;	
+//			}
+//			
 		case 46003:
 			printf("\r\nsim type:telecom\r\n");
-			return 7;
+			return -1;
 		default:
 			printf("sim type :unknown");
 			return -1;
