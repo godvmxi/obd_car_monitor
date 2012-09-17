@@ -296,7 +296,7 @@ int dealFifoMsg(FIFO_HEAD *head,int num)
 void dealMsg(FIFO_NODE *nodeP)
 {
 	
-	char *charP; 	
+	char *charP,*charOld; 	
 	DATA_HEAD *header;
 	char tmp[50];
 	int i,j;
@@ -313,13 +313,13 @@ void dealMsg(FIFO_NODE *nodeP)
 	#endif
 	charP = strstr(nodeP->buffer,"**");
 
-//	return;
 	
 	if( charP != NULL)
 	{
 
+		charOld = charP;
 		header = (DATA_HEAD *)charP;
-		printf("\r\nCRC->%4X MSG_TYPE->%4X MSG_LEN->5d\r\n",header->MSG_CRC,header->MSG_TYPE,header->MSG_LENGTH);
+		printf("\r\nCRC->%4X MSG_TYPE->%4X MSG_LEN->%5d\r\n",header->MSG_CRC,header->MSG_TYPE,header->MSG_LENGTH);
 //		if(header->MSG_CRC == calBufCrc(charP+4,header->MSG_LENGTH - 4))
 		if(1)
 		{
@@ -331,7 +331,6 @@ void dealMsg(FIFO_NODE *nodeP)
 			{
 				case SET_IAP_PARA://update
 					//do something
-//					feedDog();
 					#ifdef PRINTF_DEBUG
 					printf("\r\n\r\n\r\nreceive iap para cmd--\r\n");
 					#endif
@@ -341,118 +340,133 @@ void dealMsg(FIFO_NODE *nodeP)
 						printf("%3X",charP[i]);
 					}
 					printf("\r\n");
-					memset(tmp,0,50);//get hardware version
-					for(i = 0; charP[i] != '+' ;i++) {
+					//get hardware version
+					memset(tmp,0,50);
+					for(i = 0; charP[i] != '+' ;i++){
 							tmp[i] = charP[i];
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\niap get HV error\r\n");
 								return ;
 							}
 					}
-					i++;
-					memset(sysCfg.iapConfig.ipUrl,0,40);
-					strcat(sysCfg.iapConfig.ipUrl,tmp);
-					printf("\r\nnet msg interval :%s -->%s\r\n",tmp,sysCfg.iapConfig.ipUrl);
+					
+					sysCfg.iapBrife.hv = atoi(tmp);
+					printf("\r\niap msg hv :%s <-->%d\r\n",tmp,sysCfg.iapBrife.hv);
 					//get software version
+					i++;
+					memset(tmp,0,50);
+					for(j=0;charP[i] !='+';i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\niap get SV error\r\n");
+								return ;
+							}
+					}					
+					sysCfg.iapBrife.sv =  atoi(tmp);
+					printf("\r\nIAP msg sv :%s -->%d\r\n",tmp,sysCfg.iapBrife.sv);
+
+					//get ip url version
+					i++;
 					memset(tmp,0,50);
 					for(j=0;	charP[i] != '+' ;i++) {
 							tmp[j] = charP[i];
 							j++;
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\niap get ipurl error\r\n");
 								return ;
 							}
 					}
+					memset(sysCfg.iapConfig.ipUrl,0,40);
+					strcat(sysCfg.iapConfig.ipUrl,tmp);
+					printf("\r\niap URL :%s -->%s\r\n",tmp,sysCfg.iapConfig.ipUrl);
+					//get port
 					i++;
-					sysCfg.sysConfig.proportion =  atoi(tmp);
-					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
-					memset(tmp,0,50);
-					for(j=0;	i< header->MSG_LENGTH ;i++) {
-							tmp[j] = charP[i];
-							j++;
-							if(i > header->MSG_LENGTH)
-							{
-								printf("\r\nnet data error\r\n");
-								return ;
-							}
-					}
-					sysCfg.sysConfig.canCounter =  atoi(tmp);
-					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
-
-					#ifdef PRINTF_DEBUG
-					printf("\r\nsemd ack msg\r\n");
-					#endif
-
-					header->MSG_TYPE |= 0x8000;
-					header->MSG_LENGTH = 0;
-					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
-					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
-					delay_ms(2000);	
-					break;
-
-			case SET_NET_PARA://update
-					//do something
-//					feedDog();
-					#ifdef PRINTF_DEBUG
-					printf("\r\n\r\n\r\nreceive net para cmd-->\r\n");
-					#endif
-					charP += sizeof(DATA_HEAD);
-
-					
-					for(i=0;i<header->MSG_LENGTH;i++)
-					{
-						printf("%3X",charP[i]);
-					}
-					
-					memset(tmp,0,50);
-					for(i = 0; charP[i] != '+' ;i++) {
-							tmp[i] = charP[i];
-							if(i > header->MSG_LENGTH)
-							{
-								printf("\r\nnet data error\r\n");
-								return ;
-							}
-					}
-					i++;
-					
-					sysCfg.sysConfig.interval = atoi(tmp);
-					printf("\r\nnet msg interval :%s -->%d\r\n",tmp,sysCfg.sysConfig.interval);
-
 					memset(tmp,0,50);
 					for(j=0;charP[i] != '+' ;i++) {
 							tmp[j] = charP[i];
 							j++;
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\niap data get port error\r\n");
 								return ;
 							}
 					}
+					sysCfg.iapConfig.desPort = atoi(tmp); 					
+					printf("\r\niap PORT :%s -->%d\r\n",tmp,sysCfg.iapConfig.desPort);
+					//get update flag
 					i++;
-					sysCfg.sysConfig.proportion =  atoi(tmp);
-					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
 					memset(tmp,0,50);
-					for(j=0;	i< header->MSG_LENGTH ;i++) {
+					if(charP[i] == '1'){
+						printf("\r\nbegin to upgrade system\r\n");
+						printf("\r\nstore the config data\r\n");
+						printf("\r\nwaiting for reboot\r\n");
+						//ready to store data
+					
+						header->MSG_TYPE |= 0x8000;
+						header->MSG_LENGTH = 0;
+						header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
+						dataSend(charOld,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+						return ;
+					}
+					else {
+						printf("just update the system para");
+						//store the data without reboot
+						//update the config
+					}
+					delay_ms(2000);	
+					break;
+
+			case SET_NET_PARA://update
+					//do something;
+					#ifdef PRINTF_DEBUG
+					printf("\r\n\r\n\r\nreceive net para cmd-->\r\n");
+					#endif
+					charP += sizeof(DATA_HEAD);
+					for(i=0;i<header->MSG_LENGTH;i++)
+					{
+						printf("%3X",charP[i]);
+					}
+					printf("\r\n");
+					//get ip url version
+					memset(tmp,0,50);
+					for(i=0;charP[i] != '+' ;i++) {
+							tmp[i] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nnet data ipurl error\r\n");
+								return ;
+							}
+					}					
+					memset(sysCfg.iapConfig.ipUrl,0,40);
+					strcat(sysCfg.iapConfig.ipUrl,tmp);
+					printf("\r\nnet URL :%s -->%s\r\n",tmp,sysCfg.iapConfig.ipUrl);
+					//get port
+					i++;
+					memset(tmp,0,50);
+					for(j=0;i< header->MSG_LENGTH ;i++) {
 							tmp[j] = charP[i];
 							j++;
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\nnet data get port error\r\n");
 								return ;
 							}
 					}
-					sysCfg.sysConfig.canCounter =  atoi(tmp);
-					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
-
+					sysCfg.iapConfig.desPort = atoi(tmp); 					
+					printf("\r\nnet PORT :%s -->%d\r\n",tmp,sysCfg.iapConfig.desPort);
+					//get update flag
+					
 					#ifdef PRINTF_DEBUG
 					printf("\r\nsemd ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
 					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
-					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					dataSend(charOld,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
 					delay_ms(2000);	
 					break;
 
@@ -464,29 +478,27 @@ void dealMsg(FIFO_NODE *nodeP)
 					{
 						printf("%3X",charP[i]);
 					}
-					printf("\r\nstring  print: %s\r\n",charP); 
-					printf("\r\nstring print:\r\n");					
+					printf("\r\nstring  print: %s\r\n",charP); 					
 					memset(tmp,0,50);
 					for(i = 0; charP[i] != '+' ;i++) {
 							tmp[i] = charP[i];
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\nworking get intervals  error\r\n");
 								return ;
 							}
-					}
-					i++;
-					
+					}  			
 					sysCfg.sysConfig.interval = atoi(tmp);
-					printf("\r\nnet msg interval :%s -->%d\r\n",tmp,sysCfg.sysConfig.interval);
-
+					printf("\r\nworking msg interval :%s -->%d\r\n",tmp,sysCfg.sysConfig.interval);
+					//
+					i++;
 					memset(tmp,0,50);
 					for(j=0;charP[i] != '+' ;i++) {
 							tmp[j] = charP[i];
 							j++;
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\nworking msg proportion data error\r\n");
 								return ;
 							}
 					}
@@ -494,12 +506,12 @@ void dealMsg(FIFO_NODE *nodeP)
 					sysCfg.sysConfig.proportion =  atoi(tmp);
 					printf("\r\nnet msg proportion :%s -->%d\r\n",tmp,sysCfg.sysConfig.proportion);
 					memset(tmp,0,50);
-					for(j=0;	i< header->MSG_LENGTH ;i++) {
+					for(j=0;i< header->MSG_LENGTH ;i++) {
 							tmp[j] = charP[i];
 							j++;
 							if(i > header->MSG_LENGTH)
 							{
-								printf("\r\nnet data error\r\n");
+								printf("\r\nworking canConter error\r\n");
 								return ;
 							}
 					}
@@ -507,32 +519,74 @@ void dealMsg(FIFO_NODE *nodeP)
 					printf("\r\nnet msg canCounter :%s -->%d\r\n",tmp,sysCfg.sysConfig.canCounter);
 
 					#ifdef PRINTF_DEBUG
-					printf("\r\nsemd ack msg\r\n");
+					printf("\r\nsemd working ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
 					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
-					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					dataSend(charOld,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
 					delay_ms(2000);
 					break;
 			case SET_BLUE_PARA://update
 					//do something
-//					feedDog();
 					#ifdef PRINTF_DEBUG
 					printf("\r\n\r\n\r\nreceive blue para cmd--\r\n");
 					#endif
-//					charP = (char *)(header->MDT_ID+8);
+					charP += sizeof(DATA_HEAD);
 					for(i=0;i<header->MSG_LENGTH;i++)
 					{
 						printf("%3x",charP[i]);
 					}
+					printf("\r\nstring  print: %s\r\n",charP); 					
+					memset(tmp,0,50);
+					for(i = 0; charP[i] != '+' ;i++) {
+							tmp[i] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nblue get name error\r\n");
+								return ;
+							}
+					}
+					memset(sysCfg.blueConfig.name,0,20); 
+					strcat(sysCfg.blueConfig.name,tmp); 			
+					printf("\r\nnet msg interval :%s -->%s\r\n",tmp,sysCfg.blueConfig.name);
+					//
+					i++;  
+					memset(tmp,0,50);
+					for(j = 0; charP[i] != '+' ;i++) {
+							tmp[j++] = charP[i];
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nblue get passwdord data error\r\n");
+								return ;
+							}
+					}
+					memset(sysCfg.blueConfig.password,0,20); 
+					strcat(sysCfg.blueConfig.password,tmp); 			
+					printf("\r\nblue password :%s -->%s\r\n",tmp,sysCfg.blueConfig.password);
+
+					i++;  
+					memset(tmp,0,50);
+					for(j = 0; i < header->MSG_LENGTH ;i++) {
+							tmp[j] = charP[i];
+							j++;
+							if(i > header->MSG_LENGTH)
+							{
+								printf("\r\nblue get baudrate error\r\n");
+								return ;
+							}
+					}
+				   	sysCfg.blueConfig.baudrate = atoi(tmp); 			
+					printf("\r\nblue baudrate :%s -->%d\r\n",tmp,sysCfg.blueConfig.baudrate);
+
+
 					#ifdef PRINTF_DEBUG
-					printf("\r\nsemd ack msg\r\n");
+					printf("\r\nsemd blue ack msg\r\n");
 					#endif
 					header->MSG_TYPE |= 0x8000;
 					header->MSG_LENGTH = 0;
 					header->MSG_CRC = calBufCrc(charP+4,sizeof(DATA_HEAD)-4);
-					dataSend(charP,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
+					dataSend(charOld,sizeof(DATA_HEAD),0,0,0,sysCfg.netConfig,1);
 					delay_ms(2000);	
 					break;
 			default:
